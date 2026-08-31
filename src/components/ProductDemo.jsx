@@ -7,12 +7,115 @@ const states = [
   ["Risk surfaced", "One dependency needs review", CircleAlert],
 ];
 
-const signals = [
-  "Sources connected",
-  "Evidence validated",
-  "Controls mapped",
-  "Actions assigned",
-  "Audit path clear",
+const journeySignals = [
+  "Framework path selected",
+  "Risk posture taking shape",
+  "Implementation moving",
+  "Secura review in progress",
+  "Teams aligned and audit-ready",
+];
+
+const journeyStates = [
+  [
+    [
+      "Framework selected",
+      "Relevant requirements are now in scope",
+      Check,
+      "READY",
+    ],
+    [
+      "Control set prepared",
+      "Assessment workspace is ready",
+      FileCheck2,
+      "READY",
+    ],
+    [
+      "Owners invited",
+      "Accountability starts from day one",
+      CircleAlert,
+      "NEXT",
+    ],
+  ],
+  [
+    [
+      "Risk scope opened",
+      "Assets, vendors, privacy, and AI are included",
+      Check,
+      "CURRENT",
+    ],
+    [
+      "Cloud signals linked",
+      "Live context informs prioritization",
+      FileCheck2,
+      "LIVE",
+    ],
+    [
+      "Priorities ranked",
+      "High-impact work has a clear path",
+      CircleAlert,
+      "READY",
+    ],
+  ],
+  [
+    [
+      "Controls assigned",
+      "Implementation work has accountable owners",
+      Check,
+      "CURRENT",
+    ],
+    [
+      "Evidence attached",
+      "Policies and procedures stay connected",
+      FileCheck2,
+      "LIVE",
+    ],
+    [
+      "Gaps tracked",
+      "Missing context remains visible",
+      CircleAlert,
+      "READY",
+    ],
+  ],
+  [
+    [
+      "Secura review running",
+      "Control context is being assessed",
+      Check,
+      "LIVE",
+    ],
+    [
+      "Gaps clarified",
+      "Missing support is easy to find",
+      FileCheck2,
+      "READY",
+    ],
+    [
+      "Actions prepared",
+      "Owners receive clear next steps",
+      CircleAlert,
+      "NEXT",
+    ],
+  ],
+  [
+    [
+      "Team review active",
+      "Decisions stay connected to the work",
+      Check,
+      "LIVE",
+    ],
+    [
+      "Auditor access ready",
+      "Evidence is organized in one place",
+      FileCheck2,
+      "READY",
+    ],
+    [
+      "Progress current",
+      "Readiness stays visible to everyone",
+      CircleAlert,
+      "CURRENT",
+    ],
+  ],
 ];
 
 export default function ProductDemo({
@@ -25,8 +128,15 @@ export default function ProductDemo({
 }) {
   const readiness = 76 + active * 3;
   const showsStageProgress = Boolean(stageLabel && stageCount);
+  const journeyIndex = Math.min(
+    journeyStates.length - 1,
+    Math.max(0, stageIndex),
+  );
+  const previewStates = showsStageProgress
+    ? journeyStates[journeyIndex]
+    : states;
   const signal = showsStageProgress
-    ? signals[Math.min(active, signals.length - 1)]
+    ? journeySignals[journeyIndex]
     : active > 2
       ? "Audit path clear"
       : "Moving in the right direction";
@@ -50,7 +160,7 @@ export default function ProductDemo({
           transition={{ duration: 0.68, ease: "easeOut" }}
         />
       )}
-      <div className="relative flex items-center justify-between gap-3">
+      <div className="product-demo__header relative flex items-center justify-between gap-3">
         <div className="relative flex items-center justify-between gap-3">
           <img
             alt=""
@@ -59,11 +169,17 @@ export default function ProductDemo({
             decoding="async"
             draggable="false"
             src="/assets/emblemLogo.svg"
-          />
-          <span>
-            <strong className="block text-[.78rem]">Compliance current</strong>
+            />
+            <span>
+              <strong className="block text-[.78rem]">
+                {showsStageProgress
+                  ? "7-Day readiness plan"
+                  : "Compliance current"}
+            </strong>
             <small className="mt-0.75 block text-[.6rem] text-muted">
-              Live assurance workspace
+              {showsStageProgress
+                ? "Guided compliance workspace"
+                : "Live assurance workspace"}
             </small>
           </span>
         </div>
@@ -73,7 +189,7 @@ export default function ProductDemo({
         </span>
       </div>
       {showsStageProgress && (
-        <div className="relative mt-5 flex min-h-9 items-center justify-between gap-4 border-y border-navy/8 py-2.25">
+        <div className="product-demo__stage relative mt-5 flex min-h-9 items-center justify-between gap-4 border-y border-navy/8 py-2.25">
           <span className="font-mono text-[.52rem] font-medium uppercase tracking-[.08em] text-muted">
             Current stage
           </span>
@@ -94,9 +210,9 @@ export default function ProductDemo({
           </AnimatePresence>
         </div>
       )}
-      <div className="mt-6 mb-4 grid grid-cols-[100px_1fr] items-center gap-4.5 rounded-[18px] bg-navy p-4.5 text-white">
+      <div className="product-demo__signal mt-6 mb-4 grid grid-cols-[100px_1fr] items-center gap-4.5 rounded-[18px] bg-navy p-4.5 text-white">
         {showsStageProgress ? (
-          <div className="relative grid size-22 place-content-center text-center">
+          <div className="product-demo__ring relative grid size-22 place-content-center text-center">
             <motion.span
               aria-hidden="true"
               className="absolute inset-0 rounded-full"
@@ -107,7 +223,7 @@ export default function ProductDemo({
               }}
               transition={{ duration: 0.42, ease: "easeOut" }}
             />
-            <div className="relative z-1 grid size-18 place-content-center rounded-full bg-navy">
+            <div className="product-demo__ring-core relative z-1 grid size-18 place-content-center rounded-full bg-navy">
               <AnimatePresence initial={false} mode="wait">
                 <motion.strong
                   className="text-[1.3rem]"
@@ -154,42 +270,52 @@ export default function ProductDemo({
           </small>
         </div>
       </div>
-      <div className="grid gap-2">
-        {states.map(([title, detail, Icon], index) => (
-          <motion.div
-            className={`grid grid-cols-[30px_1fr_auto] items-center gap-2.5 rounded-[13px] p-3 ${
-              index <= active
-                ? "bg-[#ecf9f5] opacity-100"
-                : "bg-[#f1f5f4] opacity-[.52]"
-            }`}
-            animate={
-              showsStageProgress && motionEnabled
-                ? { opacity: index <= active ? 1 : 0.52, x: 0 }
-                : undefined
-            }
-            initial={
-              showsStageProgress && motionEnabled
-                ? { opacity: 0.52, x: -8 }
-                : false
-            }
-            key={title}
-            transition={{ duration: 0.3, delay: index * 0.035 }}
-          >
-            <Icon className="w-4.25 text-teal" aria-hidden="true" />
-            <span>
-              <strong className="block text-[.68rem]">{title}</strong>
-              <small className="mt-0.75 block text-[.56rem] text-muted">
-                {detail}
-              </small>
-            </span>
-            <em className="font-mono text-[.49rem] font-medium leading-none not-italic text-teal">
-              {index <= active ? "CURRENT" : "WAITING"}
-            </em>
-          </motion.div>
-        ))}
+      <div className="product-demo__states grid gap-2">
+        {previewStates.map(([title, detail, Icon, status], index) => {
+          const isCurrent = showsStageProgress
+            ? status !== "NEXT"
+            : index <= active;
+
+          return (
+            <motion.div
+              className={`product-demo__state grid grid-cols-[30px_1fr_auto] items-center gap-2.5 rounded-[13px] p-3 ${
+                isCurrent
+                  ? "bg-[#ecf9f5] opacity-100"
+                  : "bg-[#f1f5f4] opacity-[.52]"
+              }`}
+              animate={
+                showsStageProgress && motionEnabled
+                  ? { opacity: isCurrent ? 1 : 0.52, x: 0 }
+                  : undefined
+              }
+              initial={
+                showsStageProgress && motionEnabled
+                  ? { opacity: 0.52, x: -8 }
+                  : false
+              }
+              key={title}
+              transition={{ duration: 0.3, delay: index * 0.035 }}
+            >
+              <Icon className="w-4.25 text-teal" aria-hidden="true" />
+              <span>
+                <strong className="block text-[.68rem]">{title}</strong>
+                <small className="product-demo__state-detail mt-0.75 block text-[.56rem] text-muted">
+                  {detail}
+                </small>
+              </span>
+              <em className="font-mono text-[.49rem] font-medium leading-none not-italic text-teal">
+                {showsStageProgress
+                  ? status
+                  : index <= active
+                    ? "CURRENT"
+                    : "WAITING"}
+              </em>
+            </motion.div>
+          );
+        })}
       </div>
       {showsStageProgress && (
-        <div className="relative mt-5 grid grid-cols-5 gap-1.5" aria-hidden="true">
+        <div className="product-demo__progress relative mt-5 grid grid-cols-5 gap-1.5" aria-hidden="true">
           {Array.from({ length: stageCount }, (_, index) => (
             <motion.span
               className="h-1 rounded-full"

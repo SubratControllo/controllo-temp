@@ -18,14 +18,57 @@ describe('RiskSection', () => {
     });
 
     expect(section).toHaveAttribute('data-motion', 'static');
-    expect(screen.getByRole('img', {
+    expect(screen.getByRole('group', {
       name: /twenty-five risk groups. two critical/i
     })).toBeInTheDocument();
     expect(section.querySelectorAll('[data-risk-cell]')).toHaveLength(25);
     expect(section.querySelectorAll('[data-risk-level="critical"]')).toHaveLength(2);
+    expect(section).toHaveTextContent('Risk Management based on NIST');
+    expect(screen.getByRole('heading', {
+      name: 'Manage Risk Across Your Entire Program'
+    })).toBeInTheDocument();
+    expect(section).toHaveTextContent(
+      'Manage risks across asset, organization, vendor, privacy, and AI.'
+    );
+    expect(section).toHaveTextContent('Dashboards for Clear Risk Posture');
+    expect(section).toHaveTextContent('2high asset risks');
+    expect(section).toHaveTextContent('3moderate vendor risks');
+    expect(section).toHaveTextContent('5low organisational risks');
     expect(screen.getByRole('link', {
       name: /explore unified risk/i
     })).toHaveAttribute('href', '/platform/risk-management');
+  });
+
+  it('explains and renders the complete risk severity scale', () => {
+    renderSection(false);
+
+    const legend = screen.getByRole('list', { name: /risk severity/i });
+    const cells = screen.getAllByRole('img', { name: /risk group/i });
+
+    expect(legend).toHaveTextContent('Controlled');
+    expect(legend).toHaveTextContent('Low');
+    expect(legend).toHaveTextContent('Moderate');
+    expect(legend).toHaveTextContent('High');
+    expect(legend).toHaveTextContent('Critical');
+    expect(cells).toHaveLength(25);
+    expect(cells.filter((cell) => cell.dataset.riskLevel === 'controlled')).toHaveLength(11);
+    expect(cells.filter((cell) => cell.dataset.riskLevel === 'low')).toHaveLength(5);
+    expect(cells.filter((cell) => cell.dataset.riskLevel === 'moderate')).toHaveLength(4);
+    expect(cells.filter((cell) => cell.dataset.riskLevel === 'high')).toHaveLength(3);
+    expect(cells.filter((cell) => cell.dataset.riskLevel === 'critical')).toHaveLength(2);
+  });
+
+  it('scatters severity levels across every matrix row', () => {
+    renderSection(false);
+
+    const levels = [...document.querySelectorAll('[data-risk-cell]')]
+      .map((cell) => cell.dataset.riskLevel);
+    const rows = Array.from({ length: 5 }, (_, index) =>
+      levels.slice(index * 5, index * 5 + 5)
+    );
+
+    expect(rows.every((row) => new Set(row).size >= 3)).toBe(true);
+    expect(new Set(rows.map((row) => row.join(','))).size).toBe(5);
   });
 
   it('removes the decorative scan when motion is reduced', () => {

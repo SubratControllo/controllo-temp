@@ -102,6 +102,38 @@ export const frameworks = [
   { slug: 'iso-42001', code: 'ISO 42001', type: 'AI governance', title: 'Create an operating system for responsible AI', summary: 'Structure AI governance responsibilities, risks, controls, and evidence.', comingSoon: true }
 ];
 
+export const frameworkShowcase = [
+  {
+    label: 'Security & assurance',
+    frameworks: [
+      'SOC 2',
+      'ISO/IEC 27001',
+      'NIST CSF 2.0',
+      'NIST SP 800-53',
+      'PCI DSS 4.0',
+      'CIS Controls v8.1'
+    ]
+  },
+  {
+    label: 'Privacy',
+    frameworks: [
+      'HIPAA',
+      'GDPR',
+      'ISO/IEC 27701',
+      'CPRA',
+      'NIST Privacy Framework'
+    ]
+  },
+  {
+    label: 'AI governance',
+    frameworks: ['ISO/IEC 42001', 'NIST AI RMF', 'EU AI Act']
+  },
+  {
+    label: 'Operational resilience',
+    frameworks: ['DORA', 'NIS2']
+  }
+];
+
 export const frameworkTypes = ['All', ...new Set(frameworks.map((item) => item.type))];
 const publishedFrameworksBySlug = new Map(
   frameworks.filter((item) => !item.comingSoon).map((item) => [item.slug, item])

@@ -57,7 +57,7 @@ describe("SecuraSection", () => {
     expect(screen.getByText("Introducing Secura AI")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
-        name: "Find the gap before it becomes a finding.",
+        name: "Find the gap before it becomes an Audit finding.",
       }),
     ).toBeInTheDocument();
     expect(
@@ -175,7 +175,7 @@ describe("SecuraSection", () => {
 
     expect(assessment).toHaveAttribute("data-phase", "idle");
     expect(assessment.querySelector(".secura-loop-idle")).toHaveClass(
-      "justify-center",
+      "justify-start",
     );
     setPanelVisibility(true);
 
@@ -357,7 +357,7 @@ describe("SecuraSection", () => {
     expect(styles).toContain("top: 50%;");
     expect(styles).toContain("translate: -50% -50%;");
     expect(styles).toMatch(
-      /@media \(max-width: 760px\) {[\s\S]*\.secura-assessment-panel\s*{[^}]*height:\s*540px;/s,
+      /@media \(max-width: 760px\) {[\s\S]*\.secura-assessment-panel\s*{[^}]*width:\s*calc\(100% - 20px\);[^}]*height:\s*auto;[^}]*aspect-ratio:\s*4 \/ 5;/s,
     );
     expect(styles).toMatch(
       /\.secura-loop-surface\s*{[^}]*height: 100%;/s,
@@ -375,7 +375,8 @@ describe("SecuraSection", () => {
     );
     expect(screen.getByTestId("secura-assessment-canvas")).toHaveClass(
       "min-h-[550px]",
-      "max-[760px]:min-h-[570px]",
+      "max-[760px]:min-h-0",
+      "max-[760px]:aspect-[4/5]",
     );
   });
 });

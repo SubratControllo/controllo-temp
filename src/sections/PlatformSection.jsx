@@ -1,6 +1,17 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Bot, Cloud, FileSearch, Radar, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  Building2,
+  Cloud,
+  Database,
+  FileSearch,
+  Radar,
+  ShieldCheck,
+  UserRound,
+  Workflow
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { connectedCapabilities, platformDomains } from '../data/siteContent';
@@ -16,7 +27,427 @@ const capabilityIcons = {
   'cloud-monitoring': Cloud
 };
 
-function DomainPreview({ domain }) {
+const privacyFlowNodes = [
+  {
+    className: 'left-[3%] top-[35%] w-[23%]',
+    detail: 'Data subject',
+    icon: UserRound,
+    label: 'Customer',
+    tone: 'entity'
+  },
+  {
+    className: 'left-[37%] top-[9%] w-[26%]',
+    detail: 'Account setup',
+    icon: Workflow,
+    label: 'Signup service',
+    tone: 'process'
+  },
+  {
+    className: 'right-[3%] top-[35%] w-[24%]',
+    detail: 'PII data store',
+    icon: Database,
+    label: 'Customer records',
+    tone: 'store'
+  },
+  {
+    className: 'bottom-[8%] left-[37%] w-[26%]',
+    detail: 'Granted',
+    icon: ShieldCheck,
+    label: 'Consent record',
+    tone: 'consent'
+  },
+  {
+    className: 'right-[4%] bottom-[8%] w-[22%]',
+    detail: 'Authorized processor',
+    icon: Building2,
+    label: 'CRM',
+    tone: 'entity'
+  }
+];
+
+const privacyFlowEdges = [
+  'M25 46 C30 46 32 20 37 20',
+  'M63 20 C69 20 69 46 73 46',
+  'M50 36 C50 48 50 59 50 70',
+  'M85 55 C85 63 85 68 85 73',
+  'M63 81 C68 81 70 81 74 81'
+];
+
+const privacyNodeTones = {
+  consent: 'border-[#d9b95d]/40 bg-[#fff9e7] text-navy',
+  entity: 'border-navy/12 bg-white text-navy',
+  process: 'border-navy bg-navy text-white shadow-[0_10px_24px_rgba(6,27,50,.14)]',
+  store: 'border-teal/20 bg-[#e7f8f3] text-navy'
+};
+
+const readinessIcons = [Workflow, FileSearch, ShieldCheck];
+
+function CybersecurityReadinessPreview({ domain, motionEnabled }) {
+  const Icon = domainIcons[domain.id];
+  const { preview } = domain;
+
+  return (
+    <div
+      aria-label={`${preview.title} cybersecurity readiness console`}
+      className="mx-auto w-full max-w-[32rem] overflow-hidden rounded-[24px] border border-navy/10 bg-white shadow-[0_24px_60px_rgba(6,27,50,.10)]"
+      data-motion={motionEnabled ? 'progress' : 'static'}
+      role="img"
+    >
+      <div className="flex items-center justify-between gap-4 border-b border-line px-5.5 py-4.5 max-[420px]:px-4">
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-[11px] bg-mint-soft text-teal">
+            <Icon aria-hidden="true" className="size-4.5" />
+          </span>
+          <span className="min-w-0">
+            <small className="block truncate font-mono text-[.56rem] font-medium tracking-[.08em] uppercase text-teal">
+              {preview.label}
+            </small>
+            <strong className="mt-1 block truncate text-[.82rem]">{preview.title}</strong>
+          </span>
+        </span>
+        <span className="shrink-0 rounded-[10px] bg-[#edf8f5] px-2.5 py-1.5 font-mono text-[.55rem] font-medium leading-none text-teal">
+          {preview.meta}
+        </span>
+      </div>
+
+      <div className="px-5.5 pt-5 pb-5 max-[420px]:px-4">
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <span>
+            <small className="block text-[.64rem] text-muted">Current status</small>
+            <strong className="mt-1.5 block text-[1.18rem] tracking-[-.025em]">
+              {preview.metric}
+            </strong>
+          </span>
+          <span className="mb-0.5 inline-flex shrink-0 items-center gap-1.5 text-[.58rem] text-teal">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-mint" />
+            Live readiness
+          </span>
+        </div>
+
+        <div className="grid grid-cols-[.76fr_1.24fr] overflow-hidden rounded-[16px] border border-navy/10 max-[420px]:grid-cols-[.72fr_1.28fr]">
+          <div className="flex min-h-50 flex-col justify-between bg-navy p-4 text-white max-[420px]:p-3">
+            <span className="grid size-9 place-items-center rounded-[11px] bg-white/10 text-mint">
+              <ShieldCheck aria-hidden="true" className="size-4.5" />
+            </span>
+            <span>
+              <small className="font-mono text-[.49rem] font-medium tracking-[.08em] uppercase text-white/55">
+                Overall readiness
+              </small>
+              <strong className="mt-1 block text-[2.35rem] leading-none text-white max-[420px]:text-[1.75rem]">82%</strong>
+              <span className="mt-3 block text-[.53rem] leading-[1.35] text-white/65">
+                {preview.metric}
+              </span>
+            </span>
+          </div>
+
+          <div className="divide-y divide-navy/8 bg-field">
+            {preview.rows.map(([label, value, status], index) => {
+              const RowIcon = readinessIcons[index];
+
+              return (
+                <div className="min-h-[4.15rem] px-3 py-2.5 max-[420px]:px-2.5" key={label}>
+                  <div className="mb-1.5 grid grid-cols-[22px_1fr_auto] items-center gap-2">
+                    <span className="grid size-5.5 place-items-center rounded-[7px] bg-white text-teal">
+                      <RowIcon aria-hidden="true" className="size-3" />
+                    </span>
+                    <strong className="min-w-0 truncate text-[.56rem] max-[420px]:text-[.5rem]">{label}</strong>
+                    <span className="font-mono text-[.47rem] text-teal">{value}%</span>
+                  </div>
+                  <div className="ml-7.5 h-1.5 overflow-hidden rounded-full bg-navy/8">
+                    <motion.span
+                      animate={{ scaleX: 1 }}
+                      className="block h-full origin-left rounded-full bg-teal"
+                      data-readiness-track
+                      initial={motionEnabled ? { scaleX: 0 } : false}
+                      style={{ width: `${value}%` }}
+                      transition={{ delay: motionEnabled ? 0.12 + index * 0.12 : 0, duration: motionEnabled ? 0.65 : 0, ease: 'easeOut' }}
+                    />
+                  </div>
+                  <small className="mt-1 ml-7.5 block font-mono text-[.43rem] font-medium uppercase text-muted">{status}</small>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-4 border-t border-line pt-3.5">
+          <div className="flex items-center justify-between gap-4">
+            <span className="min-w-0">
+              <small className="block font-mono text-[.48rem] font-medium tracking-[.08em] uppercase text-muted">Active control</small>
+              <strong className="mt-1 block truncate text-[.68rem]">Access reviews</strong>
+            </span>
+            <span className="shrink-0 font-mono text-[.48rem] font-medium uppercase text-teal">Audit ready</span>
+          </div>
+          <div className="mt-3 grid grid-cols-3 divide-x divide-navy/8 border-t border-navy/8 pt-2.5 text-center text-[.47rem] text-muted">
+            <span>Owner assigned</span>
+            <span>Evidence current</span>
+            <span>SOC 2 / ISO 27001 / NIST</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PrivacyFlowNode({ className, detail, icon: Icon, label, tone }) {
+  const isProcess = tone === 'process';
+
+  return (
+    <div
+      className={`absolute z-1 grid min-h-15 place-items-center rounded-[8px] border px-2 py-2 text-center ${privacyNodeTones[tone]} ${className}`}
+      data-flow-node
+    >
+      <Icon
+        aria-hidden="true"
+        className={`size-3.5 ${isProcess ? 'text-mint' : 'text-teal'}`}
+        strokeWidth={1.8}
+      />
+      <strong className="mt-1 text-[.6rem] leading-[1.25]">{label}</strong>
+      <small className={`mt-0.5 text-[.48rem] leading-[1.25] max-[420px]:hidden ${isProcess ? 'text-white/60' : 'text-muted'}`}>
+        {detail}
+      </small>
+    </div>
+  );
+}
+
+function PrivacyFlowPreview({ domain, motionEnabled }) {
+  const Icon = domainIcons[domain.id];
+  const { preview } = domain;
+
+  return (
+    <div
+      aria-label="Customer onboarding data flow diagram"
+      className="mx-auto w-full max-w-[32rem] overflow-hidden rounded-[24px] border border-navy/10 bg-white shadow-[0_24px_60px_rgba(6,27,50,.10)]"
+      data-motion={motionEnabled ? 'flow' : 'static'}
+      role="img"
+    >
+      <div className="flex items-center justify-between gap-4 border-b border-line px-5.5 py-4.5 max-[420px]:px-4">
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-[11px] bg-mint-soft text-teal">
+            <Icon aria-hidden="true" className="size-4.5" />
+          </span>
+          <span className="min-w-0">
+            <small className="block truncate font-mono text-[.56rem] font-medium tracking-[.08em] uppercase text-teal">
+              {preview.label}
+            </small>
+            <strong className="mt-1 block truncate text-[.82rem] max-[420px]:text-[.72rem]">
+              {preview.title}
+            </strong>
+          </span>
+        </span>
+        <span className="shrink-0 rounded-[10px] bg-[#edf8f5] px-2.5 py-1.5 font-mono text-[.55rem] font-medium leading-none text-teal">
+          {preview.meta}
+        </span>
+      </div>
+
+      <div className="px-5.5 pt-5 pb-4.5 max-[420px]:px-4">
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <span>
+            <small className="block text-[.64rem] text-muted">Current status</small>
+            <strong className="mt-1.5 block text-[1.18rem] tracking-[-.025em]">
+              {preview.metric}
+            </strong>
+          </span>
+          <span className="mb-0.5 inline-flex items-center gap-1.5 text-[.58rem] text-teal">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-mint" />
+            Live map
+          </span>
+        </div>
+
+        <div className="relative min-h-68 overflow-hidden rounded-[16px] border border-teal/12 bg-[#f7fffd] bg-[radial-gradient(circle_at_1px_1px,rgba(8,127,140,.12)_1px,transparent_0)] [background-size:18px_18px] max-[420px]:min-h-64">
+          <svg
+            aria-hidden="true"
+            className="absolute inset-0 size-full"
+            preserveAspectRatio="none"
+            viewBox="0 0 100 100"
+          >
+            <defs>
+              <marker
+                id="privacy-flow-arrow"
+                markerHeight="5"
+                markerWidth="5"
+                orient="auto"
+                refX="4"
+                refY="2.5"
+              >
+                <path d="M0,0 L5,2.5 L0,5 Z" fill="#087f8c" />
+              </marker>
+            </defs>
+            {privacyFlowEdges.map((path, index) => (
+              <motion.path
+                animate={motionEnabled ? { strokeDashoffset: [0, -12] } : { strokeDashoffset: 0 }}
+                data-flow-edge
+                d={path}
+                fill="none"
+                initial={false}
+                key={path}
+                markerEnd="url(#privacy-flow-arrow)"
+                stroke="#087f8c"
+                strokeDasharray="2.5 2.5"
+                strokeLinecap="round"
+                strokeOpacity={index === 2 || index === 4 ? 0.8 : 0.58}
+                strokeWidth="0.75"
+                transition={{
+                  delay: index * 0.08,
+                  duration: 1.2,
+                  ease: 'linear',
+                  repeat: motionEnabled ? Infinity : 0
+                }}
+              />
+            ))}
+          </svg>
+
+          {privacyFlowNodes.map((node) => (
+            <PrivacyFlowNode {...node} key={node.label} />
+          ))}
+
+          <span className="absolute top-[20%] left-[25%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
+            Identity data
+          </span>
+          <span className="absolute top-[20%] right-[25%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
+            PII
+          </span>
+          <span className="absolute top-[52%] left-[51%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
+            Consent
+          </span>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+const aiPassportIcons = [UserRound, Radar, ShieldCheck];
+const aiAssessmentSteps = ['Registered', 'Owner', 'Risk scored', 'Oversight'];
+
+function AISystemPassportPreview({ domain, motionEnabled }) {
+  const Icon = domainIcons[domain.id];
+  const { preview } = domain;
+
+  return (
+    <div
+      aria-label={`${preview.title} AI governance passport`}
+      className="mx-auto w-full max-w-[32rem] overflow-hidden rounded-[24px] border border-navy/10 bg-white shadow-[0_24px_60px_rgba(6,27,50,.10)]"
+      data-motion={motionEnabled ? 'progress' : 'static'}
+      role="img"
+    >
+      <div className="flex items-center justify-between gap-4 border-b border-line px-5.5 py-4.5 max-[420px]:px-4">
+        <span className="flex min-w-0 items-center gap-3">
+          <span className="grid size-9 shrink-0 place-items-center rounded-[11px] bg-mint-soft text-teal">
+            <Icon aria-hidden="true" className="size-4.5" />
+          </span>
+          <span className="min-w-0">
+            <small className="block truncate font-mono text-[.56rem] font-medium tracking-[.08em] uppercase text-teal">
+              {preview.label}
+            </small>
+            <strong className="mt-1 block truncate text-[.82rem]">{preview.title}</strong>
+          </span>
+        </span>
+        <span className="shrink-0 rounded-[10px] bg-[#edf8f5] px-2.5 py-1.5 font-mono text-[.55rem] font-medium leading-none text-teal max-[420px]:px-2 max-[420px]:text-[.48rem]">
+          {preview.meta}
+        </span>
+      </div>
+
+      <div className="px-5.5 pt-5 pb-5 max-[420px]:px-4">
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <span>
+            <small className="block text-[.64rem] text-muted">Current status</small>
+            <strong className="mt-1.5 block text-[1.18rem] tracking-[-.025em] max-[420px]:text-[1rem]">
+              {preview.metric}
+            </strong>
+          </span>
+          <span className="mb-0.5 inline-flex shrink-0 items-center gap-1.5 text-[.58rem] text-teal">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-mint" />
+            Active
+          </span>
+        </div>
+
+        <div className="grid grid-cols-[.88fr_1.12fr] overflow-hidden rounded-[16px] border border-navy/10 max-[420px]:grid-cols-[.82fr_1.18fr]">
+          <div className="flex min-h-50 flex-col justify-between bg-navy p-4 text-white max-[420px]:p-3">
+            <span className="grid size-9 place-items-center rounded-[11px] bg-white/10 text-mint">
+              <Bot aria-hidden="true" className="size-4.5" />
+            </span>
+            <span>
+              <small className="font-mono text-[.49rem] font-medium tracking-[.08em] uppercase text-white/55">
+                Registered system
+              </small>
+              <strong className="mt-2 block text-[.86rem] leading-[1.3] max-[420px]:text-[.7rem]">
+                {preview.title}
+              </strong>
+              <span className="mt-3 inline-flex items-center gap-1.5 text-[.55rem] text-mint">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-mint" />
+                Production
+              </span>
+            </span>
+          </div>
+
+          <div className="divide-y divide-navy/8 bg-field">
+            {preview.rows.map(([label, value, status], index) => {
+              const RowIcon = aiPassportIcons[index];
+
+              return (
+                <div className="grid min-h-[4.15rem] grid-cols-[26px_1fr] items-center gap-2.5 px-3 max-[420px]:gap-2 max-[420px]:px-2.5" key={label}>
+                  <span className="grid size-6.5 place-items-center rounded-[8px] bg-white text-teal shadow-[0_1px_0_rgba(6,27,50,.08)]">
+                    <RowIcon aria-hidden="true" className="size-3.5" />
+                  </span>
+                  <span className="min-w-0">
+                    <small className="block truncate text-[.49rem] text-muted">{label}</small>
+                    <strong className="mt-0.5 block truncate text-[.62rem] max-[420px]:text-[.55rem]">{value}</strong>
+                    <span className="mt-0.5 block font-mono text-[.45rem] font-medium uppercase text-teal">{status}</span>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-4 border-t border-line pt-3.5">
+          <div className="mb-3 flex items-center justify-between">
+            <small className="font-mono text-[.5rem] font-medium tracking-[.08em] uppercase text-muted">Assessment path</small>
+            <small className="text-[.5rem] text-teal">4 linked stages</small>
+          </div>
+          <div className="relative">
+            <span aria-hidden="true" className="absolute top-1.5 right-[12.5%] left-[12.5%] h-px bg-navy/12" />
+            <motion.span
+              animate={motionEnabled ? { scaleX: [0, 1, 1] } : { scaleX: 1 }}
+              aria-hidden="true"
+              className="absolute top-1.5 right-[12.5%] left-[12.5%] h-px origin-left bg-teal"
+              initial={false}
+              transition={{
+                duration: motionEnabled ? 3.2 : 0,
+                ease: 'easeInOut',
+                repeat: motionEnabled ? Infinity : 0,
+                times: [0, 0.72, 1]
+              }}
+            />
+            <div className="relative grid grid-cols-4">
+              {aiAssessmentSteps.map((step) => (
+                <span className="text-center" data-assessment-step key={step}>
+                  <span aria-hidden="true" className="mx-auto block size-3 rounded-full border-[3px] border-white bg-teal shadow-[0_0_0_1px_rgba(8,127,140,.28)]" />
+                  <small className="mt-2 block text-[.46rem] text-muted max-[420px]:text-[.4rem]">{step}</small>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DomainPreview({ domain, motionEnabled }) {
+  if (domain.id === 'cybersecurity') {
+    return <CybersecurityReadinessPreview domain={domain} motionEnabled={motionEnabled} />;
+  }
+
+  if (domain.id === 'privacy') {
+    return <PrivacyFlowPreview domain={domain} motionEnabled={motionEnabled} />;
+  }
+
+  if (domain.id === 'ai-governance') {
+    return <AISystemPassportPreview domain={domain} motionEnabled={motionEnabled} />;
+  }
+
   const Icon = domainIcons[domain.id];
   const { preview } = domain;
 
@@ -46,7 +477,7 @@ function DomainPreview({ domain }) {
       <div className="px-5.5 pt-6 pb-5 max-[420px]:px-4">
         <div className="mb-5 flex items-end justify-between gap-4 border-b border-line pb-5">
           <span>
-            <small className="block text-[.64rem] text-muted">Current signal</small>
+            <small className="block text-[.64rem] text-muted">Current status</small>
             <strong className="mt-1.5 block text-[1.5rem] tracking-[-.035em]">{preview.metric}</strong>
           </span>
           <span className="mb-1 inline-flex items-center gap-1.5 text-[.61rem] text-teal">
@@ -168,7 +599,7 @@ export default function PlatformSection({ motionEnabled }) {
               </div>
 
               <div className="flex items-center border-l border-teal/10 bg-white/35 px-9 py-10 max-[1080px]:border-t max-[1080px]:border-l-0 max-[760px]:px-5 max-[760px]:py-8">
-                <DomainPreview domain={activeDomain} />
+                <DomainPreview domain={activeDomain} motionEnabled={motionEnabled} />
               </div>
             </motion.div>
           </div>

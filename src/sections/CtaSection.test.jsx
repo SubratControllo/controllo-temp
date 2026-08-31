@@ -39,8 +39,25 @@ describe('CtaSection', () => {
 
     expect(emblemField).toHaveAttribute('aria-hidden', 'true');
     expect(emblem).toBeInTheDocument();
+    expect(emblem).toHaveAttribute('viewBox', '-18 -18 317 364');
     expect(emblem.querySelectorAll('path')).toHaveLength(3);
     expect(emblemField.querySelectorAll('img')).toHaveLength(0);
+  });
+
+  it('gates emblem hover separation behind the motion preference', () => {
+    const { rerender } = renderSection(true);
+    const interactiveField = document.querySelector('.cta-emblem-field');
+
+    expect(interactiveField).toHaveAttribute('data-motion', 'interactive');
+    expect(interactiveField.querySelectorAll('.cta-emblem-field__segment')).toHaveLength(3);
+
+    rerender(
+      <MemoryRouter>
+        <CtaSection motionEnabled={false} />
+      </MemoryRouter>
+    );
+
+    expect(document.querySelector('.cta-emblem-field')).toHaveAttribute('data-motion', 'static');
   });
 
   it('pairs the navbar primary hover treatment with the quieter hero secondary response', () => {

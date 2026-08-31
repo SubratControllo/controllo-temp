@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useMotionValueEvent,
@@ -9,28 +9,29 @@ import ProductDemo from "../components/ProductDemo";
 
 const steps = [
   [
-    "Connect",
-    "Bring cloud, identity, engineering, and business systems into one evidence stream.",
+    "Select",
+    "Choose the compliance framework(s) relevant to your business.",
   ],
   [
-    "Validate",
-    "Check scope, ownership, freshness, and audit usefulness before gaps become fire drills.",
+    "Assess",
+    "Identify & manage risks. Integrate cloud assets for live visibility.",
   ],
   [
-    "Map",
-    "Reuse approved controls across frameworks without duplicating the operating work.",
+    "Implement",
+    "Add implementation details, policies, procedures, and evidence.",
   ],
   [
-    "Resolve",
-    "Route clear next actions to accountable people with the context already attached.",
+    "Review",
+    "Use Secura AI for fast gap assessments and clearer next actions.",
   ],
   [
-    "Report",
-    "Give leaders and auditors a current view of posture, decisions, and progress.",
+    "Collaborate",
+    "Track progress, work with internal teams and auditors in one place.",
   ],
 ];
 
 const orbitEmblems = ["outer", "middle", "inner"];
+const mobileJourneyQuery = "(max-width: 1080px)";
 
 export function getComplianceStage(progress) {
   return Math.min(steps.length - 1, Math.floor(Math.max(0, progress) * steps.length));
@@ -39,6 +40,10 @@ export function getComplianceStage(progress) {
 export default function ComplianceStory({ motionEnabled }) {
   const ref = useRef(null);
   const [scrollStage, setScrollStage] = useState(0);
+  const [mobileStage, setMobileStage] = useState(0);
+  const [isMobileJourney, setIsMobileJourney] = useState(
+    () => window.matchMedia?.(mobileJourneyQuery).matches ?? false,
+  );
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
@@ -52,7 +57,22 @@ export default function ComplianceStory({ motionEnabled }) {
     middleOrbitRotation,
     innerOrbitRotation,
   ];
-  const activeStage = motionEnabled ? scrollStage : steps.length - 1;
+  const activeStage = motionEnabled
+    ? isMobileJourney
+      ? mobileStage
+      : scrollStage
+    : steps.length - 1;
+
+  useEffect(() => {
+    const query = window.matchMedia?.(mobileJourneyQuery);
+    if (!query) return undefined;
+
+    const updateLayout = ({ matches }) => setIsMobileJourney(matches);
+    updateLayout(query);
+    query.addEventListener("change", updateLayout);
+
+    return () => query.removeEventListener("change", updateLayout);
+  }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
     if (!motionEnabled) return;
@@ -60,35 +80,52 @@ export default function ComplianceStory({ motionEnabled }) {
     setScrollStage((current) => (current === nextStage ? current : nextStage));
   });
 
+  const handleMobileStepScroll = (event) => {
+    if (!motionEnabled || !isMobileJourney) return;
+
+    const { clientWidth, scrollLeft, scrollWidth } = event.currentTarget;
+    const maxScroll = scrollWidth - clientWidth;
+    if (maxScroll <= 0) return;
+
+    const nextStage = Math.round(
+      (Math.max(0, Math.min(scrollLeft, maxScroll)) / maxScroll) *
+        (steps.length - 1),
+    );
+    setMobileStage((current) => (current === nextStage ? current : nextStage));
+  };
+
   return (
     <section
-      className="current-story relative overflow-x-clip py-35 text-white max-[760px]:py-22.5"
+      className="current-story relative overflow-x-clip py-35 text-white max-[1080px]:py-25 max-[760px]:py-22.5"
       ref={ref}
     >
-      <div className="shell pb-27.5 max-[760px]:pb-17.5">
-        <p className="eyebrow text-mint">The compliance current</p>
-        <h2>Experience the program moving forward.</h2>
-        <p className="lede mt-5.5 text-[#b7c9d4]">
-          Each stage changes the state of the work—not just the way the page
-          looks.
-        </p>
+      <div className="shell pb-27.5 max-[1080px]:pb-12 max-[760px]:pb-10">
+        <p className="eyebrow text-mint">Get started in 7 Days</p>
+        <h2>A Faster Path to Compliance</h2>
       </div>
-      <div className="shell grid grid-cols-[.85fr_1.15fr] gap-22.5 max-[1080px]:grid-cols-1 max-[760px]:gap-12.5">
-        <div className="grid gap-45 pb-30 max-[1080px]:gap-15 max-[760px]:gap-7.5 max-[760px]:pb-0">
+      <div className="shell grid grid-cols-[.85fr_1.15fr] gap-22.5 max-[1080px]:grid-cols-1 max-[1080px]:gap-7">
+        <div
+          aria-label="Seven-day compliance steps"
+          className="compliance-mobile-rail grid gap-45 pb-30 max-[1080px]:pb-3"
+          onScroll={handleMobileStepScroll}
+          role="list"
+          tabIndex={isMobileJourney ? 0 : undefined}
+        >
           {steps.map(([title, detail], index) => (
             <article
               aria-current={index === activeStage ? "step" : undefined}
-              className={`compliance-step min-h-60 border-l pl-7 transition-[border-color,opacity,transform] duration-400 max-[760px]:min-h-0 max-[760px]:border-b max-[760px]:border-l-0 max-[760px]:border-white/15 max-[760px]:px-0 max-[760px]:py-7 motion-reduce:transition-none ${
+              className={`compliance-step min-h-60 border-l pl-7 transition-[border-color,opacity,transform] duration-400 max-[1080px]:min-h-0 motion-reduce:transition-none ${
                 index === activeStage
                   ? "compliance-step--current border-mint opacity-100"
                   : "border-white/10 opacity-[.58]"
               }`}
               key={title}
+              role="listitem"
             >
               <span className="font-mono text-[.64rem] font-medium leading-none text-mint">
                 0{index + 1}
               </span>
-              <h3 className="mt-5 mb-3.5 text-[2.4rem] max-[760px]:text-[1.8rem]">
+              <h3 className="mt-5 mb-3.5 text-[2.4rem] max-[1080px]:text-[2rem] max-[760px]:text-[1.8rem]">
                 {title}
               </h3>
               <p className="max-w-112.5 leading-[1.8] text-[#c2d1db]">
@@ -100,11 +137,11 @@ export default function ComplianceStory({ motionEnabled }) {
         <div className="relative row-start-1 min-[1081px]:col-start-2">
           <motion.div
             className="relative isolate top-auto min-[1081px]:sticky min-[1081px]:top-40"
-            style={{ y: motionEnabled ? demoY : 0 }}
+            style={{ y: motionEnabled && !isMobileJourney ? demoY : 0 }}
           >
             <div
               aria-hidden="true"
-              className="compliance-orbit-field max-[760px]:hidden"
+              className="compliance-orbit-field max-[1080px]:hidden"
               data-motion={motionEnabled ? "scroll" : "static"}
               data-testid="compliance-current-orbit"
             >
@@ -132,6 +169,7 @@ export default function ComplianceStory({ motionEnabled }) {
             <div className="relative z-1">
               <ProductDemo
                 active={activeStage}
+                compact
                 motionEnabled={motionEnabled}
                 stageCount={steps.length}
                 stageIndex={activeStage}

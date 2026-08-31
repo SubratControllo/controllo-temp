@@ -2,22 +2,16 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Reveal from "../components/Reveal";
 import IntegrationLogo from "../components/IntegrationLogo";
-import { frameworks, integrations } from "../data/enterpriseContent";
+import {
+  frameworkShowcase,
+  integrations,
+} from "../data/enterpriseContent";
 
 const proofMetrics = [
   ["100+", "Global and regional frameworks"],
   ["7,000+", "Structured compliance controls"],
   ["200,000+", "Control relationships"],
 ];
-
-const frameworkCoverage = [
-  ["Cybersecurity", "Security"],
-  ["Privacy", "Privacy"],
-  ["AI governance", "AI governance"],
-].map(([label, type]) => ({
-  frameworks: frameworks.filter((framework) => framework.type === type),
-  label,
-}));
 
 const integrationCoverage = [
   { categories: ["Cloud"], label: "Cloud systems" },
@@ -104,21 +98,26 @@ export default function FrameworkSection({ motionEnabled }) {
                 aria-label="Selected framework coverage"
                 className="mt-8 list-none border-b border-line pl-0"
               >
-                {frameworkCoverage.map((group) => (
-                  <li className="border-t border-line py-5" key={group.label}>
+                {frameworkShowcase.map((group) => (
+                  <li className="border-t border-line py-4.5" key={group.label}>
                     <strong className="block text-[.7rem] font-medium text-navy">
                       {group.label}
                     </strong>
-                    <p className="mt-2.5 mb-0 flex flex-wrap gap-x-3 gap-y-2 text-[.67rem] leading-[1.5] text-muted">
+                    <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5">
                       {group.frameworks.map((framework) => (
                         <span
-                          className="border-b border-teal/25 pb-0.5"
-                          key={framework.slug}
+                          className="flex min-w-0 items-center gap-2 text-[.62rem] leading-[1.45] text-muted"
+                          data-framework-wordmark
+                          key={framework}
                         >
-                          {framework.code}
+                          <span
+                            aria-hidden="true"
+                            className="size-1 shrink-0 rounded-full bg-mint shadow-[0_0_0_3px_rgba(63,228,196,.1)]"
+                          />
+                          <span>{framework}</span>
                         </span>
                       ))}
-                    </p>
+                    </div>
                   </li>
                 ))}
               </ul>

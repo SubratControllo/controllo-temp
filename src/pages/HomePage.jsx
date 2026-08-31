@@ -22,10 +22,10 @@ export default function HomePage() {
       <HeroSection motionEnabled={motionEnabled} />
       <TrustStrip motionEnabled={motionEnabled} />
       <PlatformSection motionEnabled={motionEnabled} />
-      <ComplianceStory motionEnabled={motionEnabled} />
       <SecuraSection motionEnabled={motionEnabled} />
       <RiskSection motionEnabled={motionEnabled} />
       <FrameworkSection motionEnabled={motionEnabled} />
+      <ComplianceStory motionEnabled={motionEnabled} />
       <BlogSection motionEnabled={motionEnabled} />
       <CtaSection motionEnabled={motionEnabled} />
     </>

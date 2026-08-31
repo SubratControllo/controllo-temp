@@ -59,14 +59,14 @@ describe("HeroSection focus stack", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("reuses the navbar CTA hover system for the primary hero action", () => {
+  it("keeps the navbar hover system while giving the hero a distinct pricing action", () => {
     renderHero(true);
 
     const primaryCta = screen.getByRole("link", {
-      name: /Request a Demo/i,
+      name: /View plans/i,
     });
 
-    expect(primaryCta).toHaveAttribute("href", "/demo");
+    expect(primaryCta).toHaveAttribute("href", "/pricing");
     expect(primaryCta).toHaveClass(
       "button",
       "button--mint",
@@ -92,6 +92,22 @@ describe("HeroSection focus stack", () => {
     expect(primaryCta.querySelector('[aria-hidden="true"]')?.textContent).not.toBe(
       "→",
     );
+  });
+
+  it("replaces the generic focus-stack labels with specific product states", () => {
+    renderHero(false);
+
+    const readinessHeader = screen.getByTestId("hero-readiness-header");
+    const riskCard = screen.getByTestId("hero-event-card-1");
+    const ownerCard = screen.getByTestId("hero-event-card-2");
+
+    expect(readinessHeader).toHaveTextContent("SOC 2 readiness");
+    expect(readinessHeader).toHaveTextContent("Live across your program");
+    expect(readinessHeader).not.toHaveTextContent("Readiness current");
+    expect(riskCard).toHaveTextContent("3 High Asset Risks");
+    expect(riskCard).not.toHaveTextContent("Evidence validated");
+    expect(ownerCard).toHaveTextContent("New chats");
+    expect(ownerCard).not.toHaveTextContent("Owner approved");
   });
 
   it("keeps the hero primary CTA static when motion is disabled", () => {
@@ -331,13 +347,13 @@ describe("HeroSection focus stack", () => {
       /@media \(max-width: 1080px\) {[\s\S]*\.event-card--secura\s*{[^}]*top:\s*-40px;[^}]*left:\s*8px;/s,
     );
     expect(styles).toMatch(
-      /@media \(max-width: 760px\) {[\s\S]*\.event-card--three\s*{[^}]*right:\s*2px;[^}]*bottom:\s*18px;/s,
+      /@media \(max-width: 760px\) {[\s\S]*\.event-card--three\s*{[^}]*right:\s*0;[^}]*bottom:\s*4px;[^}]*min-width:\s*142px;/s,
     );
     expect(styles).toMatch(
-      /@media \(max-width: 760px\) {[\s\S]*\.event-card--secura\s*{[^}]*top:\s*-32px;[^}]*left:\s*-6px;[^}]*width:\s*184px;/s,
+      /@media \(max-width: 760px\) {[\s\S]*\.event-card--secura\s*{[^}]*top:\s*-18px;[^}]*left:\s*-2px;[^}]*width:\s*158px;/s,
     );
     expect(styles).toMatch(
-      /@media \(max-width: 760px\) {[\s\S]*\.event-card--secura \.secura-card__mark\s*{[^}]*width:\s*34px;[^}]*height:\s*34px;/s,
+      /@media \(max-width: 760px\) {[\s\S]*\.event-card--secura \.secura-card__mark\s*{[^}]*width:\s*28px;[^}]*height:\s*28px;/s,
     );
   });
 
@@ -447,14 +463,16 @@ describe("HeroSection focus stack", () => {
     const hero = container.querySelector("section.hero");
     const foregroundPanel = screen.getByTestId("hero-readiness-extraction");
     const readinessRing = container.querySelector(".readiness__ring");
+    const waveDivider = container.querySelector(".wave-divider");
 
     expect(hero.className).toContain("pb-0");
     expect(hero.className).toContain("max-[1080px]:pb-[9rem]");
     expect(hero.className).toContain("max-[760px]:pb-[7rem]");
     expect(foregroundPanel.className).toContain(
-      "max-[760px]:inset-[60px_7%_auto]",
+      "max-[760px]:inset-[72px_12%_auto]",
     );
-    expect(foregroundPanel.className).toContain("max-[760px]:min-h-88");
-    expect(readinessRing.className).toContain("max-[760px]:size-23");
+    expect(foregroundPanel.className).toContain("max-[760px]:min-h-76");
+    expect(readinessRing.className).toContain("max-[760px]:size-18");
+    expect(waveDivider.className).toContain("max-[760px]:translate-y-8");
   });
 });

@@ -9,19 +9,22 @@ const emblemSegments = [
   {
     d: "M152.438 163.418L113.869 67.461H0L38.5686 163.418L0 259.376H113.869L152.438 163.418Z",
     fill: "#6F8190",
-    initial: { opacity: 0, x: -18, y: 0 },
+    initial: { opacity: 0, x: -42, y: 5, rotate: -4 },
+    className: "cta-emblem-field__segment--one",
     delay: 0.16
   },
   {
     d: "M228.351 232.043L189.782 136.085H75.9129L114.481 232.043L75.9129 328H189.782L228.351 232.043Z",
     fill: "#10AFA4",
-    initial: { opacity: 0, x: 0, y: 18 },
+    initial: { opacity: 0, x: 2, y: 42, rotate: 3 },
+    className: "cta-emblem-field__segment--two",
     delay: 0.26
   },
   {
     d: "M281 95.9574L242.431 0H128.562L167.131 95.9574L128.562 191.915H242.431L281 95.9574Z",
     fill: "#32D6BA",
-    initial: { opacity: 0, x: 0, y: -18 },
+    initial: { opacity: 0, x: 36, y: -38, rotate: 4 },
+    className: "cta-emblem-field__segment--three",
     delay: 0.36
   }
 ];
@@ -32,33 +35,22 @@ function CtaEmblem({ motionEnabled }) {
       aria-hidden="true"
       className="cta-emblem-field__svg"
       focusable="false"
-      viewBox="0 0 281 328"
+      viewBox="-18 -18 317 364"
       viewport={{ once: true, amount: 0.55 }}
     >
-      {motionEnabled && (
-        <motion.line
-          initial={{ opacity: 0, pathLength: 0 }}
-          stroke="#061B32"
-          strokeLinecap="round"
-          strokeWidth="2"
-          transition={{ duration: 1.05, delay: 0.08, times: [0, 0.58, 1] }}
-          vectorEffect="non-scaling-stroke"
-          whileInView={{ opacity: [0, 0.2, 0], pathLength: [0, 1, 1] }}
-          x1="140.5"
-          x2="140.5"
-          y1="8"
-          y2="320"
-        />
-      )}
       {emblemSegments.map((segment) => (
-        <motion.path
-          d={segment.d}
-          fill={segment.fill}
+        <motion.g
           initial={motionEnabled ? segment.initial : false}
           key={segment.fill}
-          transition={{ duration: 0.48, delay: segment.delay, ease: [0.2, 0.7, 0.2, 1] }}
-          whileInView={motionEnabled ? { opacity: 1, x: 0, y: 0 } : undefined}
-        />
+          transition={{ duration: 0.62, delay: segment.delay, ease: [0.16, 1, 0.3, 1] }}
+          whileInView={motionEnabled ? { opacity: 1, x: 0, y: 0, rotate: 0 } : undefined}
+        >
+          <path
+            className={`cta-emblem-field__segment ${segment.className}`}
+            d={segment.d}
+            fill={segment.fill}
+          />
+        </motion.g>
       ))}
     </motion.svg>
   );
@@ -112,7 +104,8 @@ export default function CtaSection({ motionEnabled }) {
 
           <div
             aria-hidden="true"
-            className="cta-emblem-field relative min-h-[26rem] overflow-hidden border-l border-navy/10 max-[900px]:min-h-48 max-[900px]:border-t max-[900px]:border-l-0"
+            className="cta-emblem-field relative min-h-[26rem] overflow-hidden border-l border-white/12 bg-navy max-[900px]:min-h-48 max-[900px]:border-t max-[900px]:border-l-0"
+            data-motion={motionEnabled ? "interactive" : "static"}
           >
             <CtaEmblem motionEnabled={motionEnabled} />
           </div>

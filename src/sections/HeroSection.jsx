@@ -48,14 +48,14 @@ const eventCards = [
     detail: "Identity provider · now",
     icon: FileCheck2,
     initial: { rotateZ: 0, scale: 0.72, x: 0, y: 0, z: -100 },
-    title: "Evidence validated",
+    title: "3 High Asset Risks",
   },
   {
     className: "event-card--two event-card--lifted-mobile",
     detail: "Encryption policy · 2m",
     icon: UserCheck,
     initial: { rotateZ: 0, scale: 0.72, x: 0, y: 0, z: -100 },
-    title: "Owner approved",
+    title: "New chats",
   },
   {
     className: "event-card--three",
@@ -78,7 +78,7 @@ function DashboardBackdrop({ motionEnabled, scale, y }) {
   return (
     <motion.div
       aria-hidden="true"
-      className="hero-dashboard hero-dashboard--perspective pointer-events-none absolute -top-[18px] left-[32%] z-0 h-[650px] w-[1240px] [perspective:1400px] will-change-transform max-[1080px]:left-[38%] max-[760px]:top-0 max-[760px]:left-[12%] max-[760px]:h-[510px] max-[760px]:w-[700px]"
+      className="hero-dashboard hero-dashboard--perspective pointer-events-none absolute -top-[18px] left-[32%] z-0 h-[650px] w-[1240px] [perspective:1400px] will-change-transform max-[1080px]:left-[38%] max-[760px]:top-2 max-[760px]:left-[18%] max-[760px]:h-[430px] max-[760px]:w-[560px]"
       data-testid="hero-dashboard"
       style={{ scale: motionEnabled ? scale : 1, y: motionEnabled ? y : 0 }}
     >
@@ -213,13 +213,13 @@ export default function HeroSection({ motionEnabled }) {
           <div className="action-row">
             <Link
               className="button button--mint button--directional group/brand-cta relative isolate overflow-hidden border border-white/30 text-navy transition-transform duration-300 hover:scale-[1.015] hover:bg-mint focus-visible:scale-[1.015] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100"
-              to="/demo"
+              to="/pricing"
             >
               <HeaderCtaContent
                 iconTestId="hero-primary-cta-icon"
                 shineTestId="hero-primary-cta-shine"
               >
-                Request a Demo
+                View plans
               </HeaderCtaContent>
             </Link>
             <Link
@@ -259,7 +259,7 @@ export default function HeroSection({ motionEnabled }) {
           </div>
         </Reveal>
 
-        <div className="relative isolate min-h-140 w-full max-w-175 max-[1080px]:mx-auto max-[760px]:min-h-130">
+        <div className="relative isolate min-h-140 w-full max-w-175 max-[1080px]:mx-auto max-[760px]:min-h-112">
           <DashboardBackdrop
             motionEnabled={motionEnabled}
             scale={dashboardScale}
@@ -309,7 +309,7 @@ export default function HeroSection({ motionEnabled }) {
               ))}
             </motion.div>
             <motion.div
-              className="product-panel hero-focus-panel absolute inset-[82px_56px_auto_86px] z-2 min-h-94 rounded-[26px] border border-navy/10 bg-white/92 p-5.5 shadow-elevated backdrop-blur-md [backface-visibility:hidden] [transform-style:preserve-3d] will-change-transform max-[760px]:inset-[60px_7%_auto] max-[760px]:min-h-88 max-[760px]:rounded-[22px] max-[760px]:p-4"
+              className="product-panel hero-focus-panel absolute inset-[82px_56px_auto_86px] z-2 min-h-94 rounded-[26px] border border-navy/10 bg-white/92 p-5.5 shadow-elevated backdrop-blur-md [backface-visibility:hidden] [transform-style:preserve-3d] will-change-transform max-[760px]:inset-[72px_12%_auto] max-[760px]:min-h-76 max-[760px]:rounded-[18px] max-[760px]:p-3"
               data-motion={motionEnabled ? "extract" : "static"}
               data-final-scale="0.94"
               data-testid="hero-readiness-extraction"
@@ -344,33 +344,33 @@ export default function HeroSection({ motionEnabled }) {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <div className="flex items-center justify-between gap-3.5 border-b border-line pb-4.5">
+              <div className="flex items-center justify-between gap-3.5 border-b border-line pb-4.5 max-[760px]:gap-2 max-[760px]:pb-3">
                 <div
-                  className="flex items-center gap-3"
+                  className="flex min-w-0 items-center gap-3 max-[760px]:gap-2"
                   data-testid="hero-readiness-header"
                 >
                   <img
                     alt=""
                     aria-hidden="true"
-                    className="size-7 shrink-0 select-none drop-shadow-[0_8px_14px_rgba(8,127,140,.14)]"
+                    className="size-7 shrink-0 select-none drop-shadow-[0_8px_14px_rgba(8,127,140,.14)] max-[760px]:size-5.5"
                     data-testid="hero-readiness-emblem"
                     draggable={false}
                     src="/assets/emblemLogo.svg"
                   />
                   <span>
-                    <strong className="block text-[.88rem]">
-                      Readiness current
+                    <strong className="block text-[.88rem] max-[760px]:text-[.7rem]">
+                      SOC 2 readiness
                     </strong>
-                    <small className="mt-0.75 block text-[.67rem] text-muted">
+                    <small className="mt-0.75 block text-[.67rem] text-muted max-[760px]:text-[.54rem]">
                       Live across your program
                     </small>
                   </span>
                 </div>
                 <span className="status-pill">On track</span>
               </div>
-              <div className="grid grid-cols-[108px_1fr] items-center gap-4.5 pt-5 pb-3.5 max-[420px]:grid-cols-[86px_1fr]">
+              <div className="grid grid-cols-[108px_1fr] items-center gap-4.5 pt-5 pb-3.5 max-[760px]:grid-cols-[72px_1fr] max-[760px]:gap-3 max-[760px]:pt-4 max-[760px]:pb-2.5">
                 <div
-                  className="readiness__ring relative grid size-26 aspect-square place-items-center rounded-full max-[760px]:size-23 max-[420px]:size-21"
+                  className="readiness__ring relative grid size-26 aspect-square place-items-center rounded-full max-[760px]:size-18"
                   role="img"
                   aria-label="82 percent audit readiness"
                 >
@@ -387,10 +387,10 @@ export default function HeroSection({ motionEnabled }) {
                   </span>
                 </div>
                 <div>
-                  <strong className="text-[.86rem]">
+                  <strong className="text-[.86rem] max-[760px]:text-[.67rem]">
                     Audit readiness is rising
                   </strong>
-                  <p className="mt-1.5 mb-0 text-[.73rem] leading-[1.6] text-muted">
+                  <p className="mt-1.5 mb-0 text-[.73rem] leading-[1.6] text-muted max-[760px]:mt-1 max-[760px]:text-[.56rem] max-[760px]:leading-[1.45]">
                     12 controls advanced this week. Three owners need a nudge.
                   </p>
                 </div>
@@ -398,19 +398,19 @@ export default function HeroSection({ motionEnabled }) {
               <div className="grid gap-2">
                 {controls.map(([initials, title, detail, status]) => (
                   <div
-                    className="hero-control-row grid min-h-12.5 grid-cols-[32px_1fr_auto] items-center gap-2.5 rounded-[14px] bg-[#f4f8f7] px-2.5 py-1.75"
+                    className="hero-control-row grid min-h-12.5 grid-cols-[32px_1fr_auto] items-center gap-2.5 rounded-[14px] bg-[#f4f8f7] px-2.5 py-1.75 max-[760px]:min-h-10 max-[760px]:grid-cols-[26px_1fr_auto] max-[760px]:gap-2 max-[760px]:rounded-[11px] max-[760px]:px-2 max-[760px]:py-1.25"
                     key={title}
                   >
-                    <span className="grid size-7.5 place-items-center rounded-[10px] bg-mint-soft text-[.68rem] text-teal">
+                    <span className="grid size-7.5 place-items-center rounded-[10px] bg-mint-soft text-[.68rem] text-teal max-[760px]:size-6.5 max-[760px]:rounded-[8px] max-[760px]:text-[.56rem]">
                       {initials}
                     </span>
                     <div>
-                      <strong className="block text-[.72rem]">{title}</strong>
-                      <small className="mt-0.5 block text-[.62rem] text-muted">
+                      <strong className="block text-[.72rem] max-[760px]:text-[.59rem]">{title}</strong>
+                      <small className="mt-0.5 block text-[.62rem] text-muted max-[760px]:text-[.49rem]">
                         {detail}
                       </small>
                     </div>
-                    <em className="font-mono text-[.57rem] leading-none not-italic text-teal">
+                    <em className="font-mono text-[.57rem] leading-none not-italic text-teal max-[760px]:text-[.47rem]">
                       {status}
                     </em>
                   </div>
@@ -434,7 +434,7 @@ export default function HeroSection({ motionEnabled }) {
                   className={`event-card ${className} absolute z-3 [backface-visibility:hidden] will-change-transform ${
                     tone === "secura"
                       ? "grid"
-                      : "flex min-w-47.5 items-center gap-2.75 rounded-[15px] bg-white px-3.75 py-3.25 shadow-[0_16px_45px_rgba(6,27,50,.14)] max-[420px]:min-w-41.5"
+                      : "flex min-w-47.5 items-center gap-2.75 rounded-[15px] bg-white px-3.75 py-3.25 shadow-[0_16px_45px_rgba(6,27,50,.14)] max-[760px]:min-w-0 max-[760px]:gap-2 max-[760px]:rounded-[12px] max-[760px]:px-2.5 max-[760px]:py-2"
                   }`}
                   data-entry-mode="pop-in-place"
                   data-entry-x={initial.x}

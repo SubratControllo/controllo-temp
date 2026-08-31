@@ -6,9 +6,17 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 const riskMetrics = [
-  ["02", "critical priorities"],
-  ["07", "active treatments"],
-  ["94%", "owner coverage"],
+  ["2", "high asset risks"],
+  ["3", "moderate vendor risks"],
+  ["5", "low organisational risks"],
+];
+
+const riskLevels = [
+  ['controlled', 'Controlled'],
+  ['low', 'Low'],
+  ['moderate', 'Moderate'],
+  ['high', 'High'],
+  ['critical', 'Critical'],
 ];
 
 const getCellDelay = (index, critical) => {
@@ -49,11 +57,12 @@ export default function RiskSection({ motionEnabled }) {
     >
       <div className="shell grid grid-cols-[.86fr_1.14fr] items-center gap-22 max-[1080px]:grid-cols-1 max-[1080px]:gap-13">
         <Reveal motionEnabled={motionEnabled}>
-          <p className="eyebrow">Risk that has somewhere to go</p>
-          <h2>See exposure. Understand impact. Move.</h2>
+          <p className="eyebrow">Risk Management based on NIST</p>
+          <h2>Manage Risk Across Your Entire Program</h2>
           <p className="lede mt-6.25 mb-7.5">
-            Connect risks to controls, evidence, assets, and owners so your team
-            can act on what matters—not just maintain another register.
+            Manage risks across asset, organization, vendor, privacy, and AI.
+            Score risk, assign ownership, and see priorities through connected
+            dashboards and heatmaps.
           </p>
           <Link className="button button--directional" to="/platform/risk-management">
             Explore unified risk <ArrowRight aria-hidden="true" />
@@ -65,11 +74,22 @@ export default function RiskSection({ motionEnabled }) {
           delay={0.08}
         >
           <div className="mb-5.5 flex items-center justify-between gap-4">
-            <strong>Risk exposure / example view</strong>
+            <strong>Dashboards for Clear Risk Posture</strong>
             <span className="font-mono text-[.59rem] font-medium leading-none tracking-[.08em] uppercase text-teal">
               Illustrative data
             </span>
           </div>
+          <ul aria-label="Risk severity" className="risk-severity-legend">
+            {riskLevels.map(([level, label]) => (
+              <li key={level}>
+                <span
+                  aria-hidden="true"
+                  className={`risk-severity-swatch risk-severity-swatch--${level}`}
+                />
+                {label}
+              </li>
+            ))}
+          </ul>
           <div
             className="risk-matrix-hover-field relative overflow-hidden rounded-[18px] border border-navy/8 bg-white/55 p-2"
             data-risk-hover={motionEnabled ? "enabled" : "disabled"}
@@ -79,20 +99,18 @@ export default function RiskSection({ motionEnabled }) {
           >
             <div
               className="relative z-1 grid grid-cols-5 gap-2"
-              role="img"
+              role="group"
               aria-label="Twenty-five risk groups. Two critical, seven monitored, and sixteen controlled."
             >
               {riskCells.map((cell, index) => (
                 <motion.span
-                  className={`risk-matrix-cell relative grid aspect-square place-items-center rounded-[10px] font-mono text-[.6rem] leading-none ${
-                    cell.critical
-                      ? "bg-teal text-white shadow-[0_10px_24px_rgba(8,127,140,.18)]"
-                      : "bg-mint/12 text-navy/70 nth-[4n+1]:bg-teal/20 nth-[7n+2]:bg-navy/13"
-                  }`}
+                  aria-label={`Risk group ${cell.id}, ${cell.level} risk`}
+                  className={`risk-matrix-cell risk-matrix-cell--${cell.level} relative grid aspect-square place-items-center rounded-[10px] font-mono text-[.6rem] leading-none`}
                   data-risk-cell
-                  data-risk-level={cell.critical ? "critical" : "managed"}
+                  data-risk-level={cell.level}
                   initial={motionEnabled ? { opacity: 0.18, scale: 0.9 } : false}
                   key={cell.id}
+                  role="img"
                   transition={{
                     delay: motionEnabled ? getCellDelay(index, cell.critical) : 0,
                     duration: cell.critical ? 0.52 : 0.38,

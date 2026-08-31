@@ -79,7 +79,7 @@ function SecuraIdentity() {
           <span className="mx-2 text-white/28">·</span>
           <span className="text-white/58">CONTROL REVIEW</span>
         </span>
-        <span className="mt-1 block text-[.55rem] text-[#9fb8c1]">
+        <span className="secura-review-identity__support mt-1 block text-[.55rem] text-[#9fb8c1]">
           Reviewable guidance from connected evidence
         </span>
       </span>
@@ -89,7 +89,7 @@ function SecuraIdentity() {
 
 function IdleSurface({ isClicking, onActivate }) {
   return (
-    <div className="secura-loop-surface secura-loop-idle secura-control-preview justify-center">
+    <div className="secura-loop-surface secura-loop-idle secura-control-preview justify-start">
       <header>
         <p className="secura-control-preview__breadcrumb m-0 font-mono text-[.43rem] tracking-[.08em] text-white/42">
           <span>Audit Frameworks</span>
@@ -156,7 +156,7 @@ function IdleSurface({ isClicking, onActivate }) {
           </strong>
         </div>
 
-        <div className="mt-2 border-t border-white/7 pt-2">
+        <div className="secura-control-preview__description mt-2 border-t border-white/7 pt-2">
           <small className="block text-[.45rem] text-white/42">
             Description
           </small>
@@ -282,7 +282,7 @@ function ChatSurface() {
             </li>
           </ul>
 
-          <p>
+          <p className="secura-chat-mobile-hidden">
             Once updated, Secura can re-review the control and confirm whether
             the coverage gap has been resolved.
           </p>
@@ -449,14 +449,14 @@ export default function SecuraAssessment({ motionEnabled = true }) {
 
   return (
     <div
-      className={`ai-canvas relative min-h-[550px] overflow-hidden rounded-[36px] max-[760px]:min-h-[570px] max-[760px]:rounded-[28px] ${
+      className={`ai-canvas relative min-h-[550px] overflow-hidden rounded-[36px] max-[760px]:aspect-[4/5] max-[760px]:min-h-0 max-[760px]:rounded-[24px] ${
         motionEnabled ? "ai-canvas--animated" : ""
       }`}
       data-testid="secura-assessment-canvas"
     >
       <article
         ref={panelRef}
-        className="secura-assessment-panel absolute z-20 overflow-hidden rounded-[28px] border border-mint/20 bg-[#07131f]/95 p-5 text-white shadow-[0_30px_90px_rgba(0,0,0,.34)] backdrop-blur-[14px] max-[760px]:rounded-[22px] max-[760px]:p-4"
+        className="secura-assessment-panel absolute z-20 overflow-hidden rounded-[28px] border border-mint/20 bg-[#07131f]/95 p-5 text-white shadow-[0_30px_90px_rgba(0,0,0,.34)] backdrop-blur-[14px] max-[760px]:rounded-[18px] max-[760px]:p-2.5"
         aria-label="Secura access-review assessment example"
         data-in-view={inView ? "true" : "false"}
         data-motion={motionEnabled ? "sequence" : "static"}

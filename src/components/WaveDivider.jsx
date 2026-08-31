@@ -16,7 +16,7 @@ export default function WaveDivider({
 }) {
   return (
     <div
-      className="wave-divider pointer-events-none absolute inset-x-0 -bottom-0.5 z-2 h-57.5 overflow-hidden"
+      className="wave-divider pointer-events-none absolute inset-x-0 -bottom-0.5 z-2 h-57.5 overflow-hidden max-[760px]:translate-y-8"
       aria-hidden="true"
     >
       <motion.div className="relative size-full" style={{ y }}>

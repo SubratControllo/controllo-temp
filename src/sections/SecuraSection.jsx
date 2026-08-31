@@ -40,7 +40,7 @@ export default function SecuraSection({ motionEnabled }) {
           motionEnabled={motionEnabled}
         >
           <p className="eyebrow text-mint">Introducing Secura AI</p>
-          <h2>Find the gap before it becomes a finding.</h2>
+          <h2>Find the gap before it becomes an Audit finding.</h2>
           <p className="lede mt-6.5 text-[#b8c8d5]">
             Secura reviews the control requirement alongside its
             implementation, policies, procedures, and evidence. It shows what

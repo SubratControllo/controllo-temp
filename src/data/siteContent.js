@@ -15,10 +15,21 @@ export const operatingSteps = [
   ['Report', 'Give leadership and auditors a clear, current view of assurance.']
 ];
 
-export const riskCells = Array.from({ length: 25 }, (_, index) => ({
-  id: `${String.fromCharCode(65 + Math.floor(index / 5))}${(index % 5) + 1}`,
-  critical: index === 6 || index === 18
-}));
+const riskLevelRows = [
+  ['controlled', 'high', 'low', 'controlled', 'moderate'],
+  ['critical', 'controlled', 'low', 'moderate', 'controlled'],
+  ['low', 'controlled', 'high', 'controlled', 'critical'],
+  ['controlled', 'moderate', 'controlled', 'low', 'high'],
+  ['moderate', 'controlled', 'low', 'controlled', 'controlled']
+];
+
+export const riskCells = riskLevelRows.flatMap((row, rowIndex) =>
+  row.map((level, columnIndex) => ({
+    id: `${String.fromCharCode(65 + rowIndex)}${columnIndex + 1}`,
+    level,
+    critical: level === 'critical'
+  }))
+);
 
 export const platformDomains = [
   {
@@ -35,9 +46,9 @@ export const platformDomains = [
       meta: '82% ready',
       metric: '12 controls advanced',
       rows: [
-        ['Access reviews', 'Evidence current', 'Ready'],
-        ['Encryption policy', 'Owner review', 'Review'],
-        ['Vendor monitoring', 'Mapped to 3 frameworks', 'Synced']
+        ['Implementation', 86, 'On track'],
+        ['Policies & procedures', 78, 'Review'],
+        ['Evidence', 82, 'Current']
       ]
     }
   },
@@ -47,13 +58,13 @@ export const platformDomains = [
     eyebrow: 'Privacy operations',
     title: 'Operationalize privacy across data, systems, and teams.',
     description: 'Build and maintain ROPA, conduct DPIA and PIA reviews, document data flows, and keep PII accountability visible.',
-    features: ['ROPA', 'DPIA / PIA', 'Data flows', 'PII tracking'],
+    features: ['ROPA', 'DPIA / PIA', 'Data Flows & PII', 'Consent management'],
     cta: ['Explore privacy operations', '/solutions/privacy'],
     preview: {
-      label: 'Records of processing activities',
+      label: 'Data flow diagram',
       title: 'Customer onboarding',
-      meta: 'Owner assigned',
-      metric: 'DPIA review due',
+      meta: 'PII mapped',
+      metric: 'PII flows mapped',
       rows: [
         ['Processing purpose', 'Account activation', 'Recorded'],
         ['Data categories', 'Contact and identity', 'Mapped'],
@@ -70,14 +81,14 @@ export const platformDomains = [
     features: ['AI inventory', 'Accountability', 'System status', 'AI-specific risk'],
     cta: ['Explore AI governance', '/solutions/ai-governance'],
     preview: {
-      label: 'AI system inventory',
+      label: 'AI system passport',
       title: 'Support assistant',
       meta: 'Assessment active',
-      metric: 'Medium inherent risk',
+      metric: 'Governed in production',
       rows: [
-        ['Business owner', 'Customer operations', 'Assigned'],
-        ['System status', 'Production', 'Active'],
-        ['Risk assessment', 'Human oversight', 'Review']
+        ['AI owner', 'Customer operations', 'Assigned'],
+        ['Inherent risk', 'Medium', 'Scored'],
+        ['Human oversight', 'Review required', 'Open']
       ]
     }
   }
