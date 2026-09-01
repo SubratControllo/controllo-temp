@@ -60,12 +60,6 @@ export const productPages = {
     accent: 'teal', icon: Cloud,
     features: [['Cloud asset visibility', 'Bring AWS, Azure, and Google Cloud resources into one operating view.'], ['Identity and endpoint context', 'Review Microsoft Entra, Intune, Defender, and Google Workspace signals.'], ['Connected decisions', 'Keep monitoring context linked to assets, risk, and control work.']]
   },
-  '/solutions/cybersecurity': {
-    eyebrow: 'Cybersecurity', title: 'Keep security controls ready with evidence, risk, and audit context.',
-    description: 'Run framework implementation, policy and evidence management, control assessment, and audit collaboration in one connected workspace.',
-    accent: 'navy', icon: ShieldCheck,
-    features: [['Control implementation', 'Keep requirements, descriptions, owners, and progress together.'], ['Evidence and policy management', 'Connect reviewable proof and governed documentation to the right controls.'], ['Multi-framework readiness', 'Reuse approved control work across related security frameworks.']]
-  },
   '/solutions/privacy': {
     eyebrow: 'Privacy', title: 'Operationalize privacy across data, systems, and teams.',
     description: 'Maintain ROPA, conduct DPIA and PIA reviews, document data flows, and keep PII accountability visible across the program.',

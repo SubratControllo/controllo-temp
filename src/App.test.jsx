@@ -231,6 +231,19 @@ describe('Compliance Current landing page', () => {
     expect(screen.getByRole('heading', { name: /turn live environment signals into compliance context/i })).toBeInTheDocument();
   });
 
+  it('renders the dedicated Cybersecurity route instead of the generic product template', async () => {
+    renderRoute('/solutions/cybersecurity');
+
+    expect(await screen.findByRole('heading', {
+      level: 1,
+      name: /one platform for cyber readiness and connected environment visibility/i
+    })).toBeInTheDocument();
+    expect(screen.getByRole('region', {
+      name: /see what is connected and where attention is needed/i
+    })).toBeInTheDocument();
+    expect(screen.queryByText('Clarity at every handoff.')).not.toBeInTheDocument();
+  });
+
   it('separates product privacy from the legal privacy policy', async () => {
     const { unmount } = renderRoute('/privacy-policy');
     expect(await screen.findByRole('heading', { name: /privacy information, written for people/i })).toBeInTheDocument();
