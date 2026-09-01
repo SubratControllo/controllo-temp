@@ -205,7 +205,7 @@ Proof remains restrained and uses only governed site claims.
 
 ## Visual design
 
-The visual system remains `Compliance Current`: navy, teal, mint, mist, warm shell, white space, Sora headings, Inter body copy, IBM Plex Mono labels, thin rules, restrained radii, product-state surfaces, and clear accountable status.
+The visual system remains `Compliance Current`: navy, teal, mint, mist, warm shell, white space, Manrope headings and body copy, IBM Plex Mono labels, thin rules, restrained radii, product-state surfaces, and clear accountable status.
 
 The Cybersecurity page must echo the homepage without copying its frozen Hero Focus Stack, Connected Platform tabs, Secura canvas, risk matrix, framework ledger, seven-day sticky card, article index, or final emblem assembly.
 
