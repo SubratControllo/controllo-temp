@@ -36,7 +36,7 @@ const privacyFlowNodes = [
     tone: 'entity'
   },
   {
-    className: 'left-[37%] top-[9%] w-[26%]',
+    className: 'left-[38%] top-[9%] w-[24%]',
     detail: 'Account setup',
     icon: Workflow,
     label: 'Signup service',
@@ -51,14 +51,14 @@ const privacyFlowNodes = [
   },
   {
     className: 'bottom-[8%] left-[37%] w-[26%]',
-    detail: 'Granted',
-    icon: ShieldCheck,
-    label: 'Consent record',
-    tone: 'consent'
+    detail: 'Processing activity',
+    icon: Workflow,
+    label: 'Identity verification',
+    tone: 'process'
   },
   {
     className: 'right-[4%] bottom-[8%] w-[22%]',
-    detail: 'Authorized processor',
+    detail: 'External recipient',
     icon: Building2,
     label: 'CRM',
     tone: 'entity'
@@ -66,15 +66,14 @@ const privacyFlowNodes = [
 ];
 
 const privacyFlowEdges = [
-  'M25 46 C30 46 32 20 37 20',
-  'M63 20 C69 20 69 46 73 46',
+  'M25 46 H28 Q31 46 31 43 V24 Q31 20 35 20 H37',
+  'M63 20 H81 Q85 20 85 24 V34',
   'M50 36 C50 48 50 59 50 70',
-  'M85 55 C85 63 85 68 85 73',
-  'M63 81 C68 81 70 81 74 81'
+  'M79 55 H82 Q85 55 85 58 V69',
+  'M63 78 C69 73 74 64 78 56'
 ];
 
 const privacyNodeTones = {
-  consent: 'border-[#d9b95d]/40 bg-[#fff9e7] text-navy',
   entity: 'border-navy/12 bg-white text-navy',
   process: 'border-navy bg-navy text-white shadow-[0_10px_24px_rgba(6,27,50,.14)]',
   store: 'border-teal/20 bg-[#e7f8f3] text-navy'
@@ -264,15 +263,28 @@ function PrivacyFlowPreview({ domain, motionEnabled }) {
             <defs>
               <marker
                 id="privacy-flow-arrow"
-                markerHeight="5"
-                markerWidth="5"
+                markerHeight="4.25"
+                markerWidth="4.25"
                 orient="auto"
                 refX="4"
-                refY="2.5"
+                refY="2.125"
               >
-                <path d="M0,0 L5,2.5 L0,5 Z" fill="#087f8c" />
+                <path d="M0,0 L4.25,2.125 L0,4.25 Z" fill="#087f8c" />
               </marker>
             </defs>
+            {privacyFlowEdges.map((path, index) => (
+              <path
+                d={path}
+                data-flow-underlay
+                fill="none"
+                key={`underlay-${path}`}
+                stroke="#087f8c"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeOpacity={index === 2 || index === 4 ? 0.24 : 0.18}
+                strokeWidth="0.48"
+              />
+            ))}
             {privacyFlowEdges.map((path, index) => (
               <motion.path
                 animate={motionEnabled ? { strokeDashoffset: [0, -12] } : { strokeDashoffset: 0 }}
@@ -285,6 +297,7 @@ function PrivacyFlowPreview({ domain, motionEnabled }) {
                 stroke="#087f8c"
                 strokeDasharray="2.5 2.5"
                 strokeLinecap="round"
+                strokeLinejoin="round"
                 strokeOpacity={index === 2 || index === 4 ? 0.8 : 0.58}
                 strokeWidth="0.75"
                 transition={{
@@ -301,14 +314,14 @@ function PrivacyFlowPreview({ domain, motionEnabled }) {
             <PrivacyFlowNode {...node} key={node.label} />
           ))}
 
-          <span className="absolute top-[20%] left-[25%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
+          <span className="absolute top-[20%] left-[10%] lg:left-[20%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
             Identity data
           </span>
-          <span className="absolute top-[20%] right-[25%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
+          <span className="absolute top-[25%] right-[18%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
             PII
           </span>
           <span className="absolute top-[52%] left-[51%] z-2 bg-[#f7fffd]/90 px-1 text-[.45rem] text-muted">
-            Consent
+            Verification request
           </span>
         </div>
 
@@ -317,16 +330,16 @@ function PrivacyFlowPreview({ domain, motionEnabled }) {
   );
 }
 
-const aiPassportIcons = [UserRound, Radar, ShieldCheck];
-const aiAssessmentSteps = ['Registered', 'Owner', 'Risk scored', 'Oversight'];
+const aiInventoryIcons = [UserRound, Radar, ShieldCheck];
+const aiRiskSteps = ['Registered', 'Owner assigned', 'Risks evaluated', 'Score current'];
 
-function AISystemPassportPreview({ domain, motionEnabled }) {
+function AIInventoryPreview({ domain, motionEnabled }) {
   const Icon = domainIcons[domain.id];
   const { preview } = domain;
 
   return (
     <div
-      aria-label={`${preview.title} AI governance passport`}
+      aria-label={`${preview.title} AI system inventory`}
       className="mx-auto w-full max-w-[32rem] overflow-hidden rounded-[24px] border border-navy/10 bg-white shadow-[0_24px_60px_rgba(6,27,50,.10)]"
       data-motion={motionEnabled ? 'progress' : 'static'}
       role="img"
@@ -340,7 +353,9 @@ function AISystemPassportPreview({ domain, motionEnabled }) {
             <small className="block truncate font-mono text-[.56rem] font-medium tracking-[.08em] uppercase text-teal">
               {preview.label}
             </small>
-            <strong className="mt-1 block truncate text-[.82rem]">{preview.title}</strong>
+            <strong className="mt-1 line-clamp-2 whitespace-normal text-[.82rem] max-[420px]:text-[.72rem] max-[420px]:leading-[1.25]">
+              {preview.title}
+            </strong>
           </span>
         </span>
         <span className="shrink-0 rounded-[10px] bg-[#edf8f5] px-2.5 py-1.5 font-mono text-[.55rem] font-medium leading-none text-teal max-[420px]:px-2 max-[420px]:text-[.48rem]">
@@ -369,21 +384,21 @@ function AISystemPassportPreview({ domain, motionEnabled }) {
             </span>
             <span>
               <small className="font-mono text-[.49rem] font-medium tracking-[.08em] uppercase text-white/55">
-                Registered system
+                AI system record
               </small>
               <strong className="mt-2 block text-[.86rem] leading-[1.3] max-[420px]:text-[.7rem]">
                 {preview.title}
               </strong>
               <span className="mt-3 inline-flex items-center gap-1.5 text-[.55rem] text-mint">
                 <span aria-hidden="true" className="size-1.5 rounded-full bg-mint" />
-                Production
+                Active
               </span>
             </span>
           </div>
 
           <div className="divide-y divide-navy/8 bg-field">
             {preview.rows.map(([label, value, status], index) => {
-              const RowIcon = aiPassportIcons[index];
+              const RowIcon = aiInventoryIcons[index];
 
               return (
                 <div className="grid min-h-[4.15rem] grid-cols-[26px_1fr] items-center gap-2.5 px-3 max-[420px]:gap-2 max-[420px]:px-2.5" key={label}>
@@ -403,8 +418,8 @@ function AISystemPassportPreview({ domain, motionEnabled }) {
 
         <div className="mt-4 border-t border-line pt-3.5">
           <div className="mb-3 flex items-center justify-between">
-            <small className="font-mono text-[.5rem] font-medium tracking-[.08em] uppercase text-muted">Assessment path</small>
-            <small className="text-[.5rem] text-teal">4 linked stages</small>
+            <small className="font-mono text-[.5rem] font-medium tracking-[.08em] uppercase text-muted">Risk workflow</small>
+            <small className="text-[.5rem] text-teal">4 current steps</small>
           </div>
           <div className="relative">
             <span aria-hidden="true" className="absolute top-1.5 right-[12.5%] left-[12.5%] h-px bg-navy/12" />
@@ -421,7 +436,7 @@ function AISystemPassportPreview({ domain, motionEnabled }) {
               }}
             />
             <div className="relative grid grid-cols-4">
-              {aiAssessmentSteps.map((step) => (
+              {aiRiskSteps.map((step) => (
                 <span className="text-center" data-assessment-step key={step}>
                   <span aria-hidden="true" className="mx-auto block size-3 rounded-full border-[3px] border-white bg-teal shadow-[0_0_0_1px_rgba(8,127,140,.28)]" />
                   <small className="mt-2 block text-[.46rem] text-muted max-[420px]:text-[.4rem]">{step}</small>
@@ -445,7 +460,7 @@ function DomainPreview({ domain, motionEnabled }) {
   }
 
   if (domain.id === 'ai-governance') {
-    return <AISystemPassportPreview domain={domain} motionEnabled={motionEnabled} />;
+    return <AIInventoryPreview domain={domain} motionEnabled={motionEnabled} />;
   }
 
   const Icon = domainIcons[domain.id];

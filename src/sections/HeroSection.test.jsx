@@ -105,8 +105,12 @@ describe("HeroSection focus stack", () => {
     expect(readinessHeader).toHaveTextContent("Live across your program");
     expect(readinessHeader).not.toHaveTextContent("Readiness current");
     expect(riskCard).toHaveTextContent("3 High Asset Risks");
+    expect(riskCard).toHaveTextContent("Impact scored · now");
+    expect(riskCard).not.toHaveTextContent("Identity provider · now");
     expect(riskCard).not.toHaveTextContent("Evidence validated");
     expect(ownerCard).toHaveTextContent("New chats");
+    expect(ownerCard).toHaveTextContent("Control 5.1 · 2m");
+    expect(ownerCard).not.toHaveTextContent("Encryption policy · 2m");
     expect(ownerCard).not.toHaveTextContent("Owner approved");
   });
 

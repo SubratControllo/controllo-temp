@@ -100,9 +100,17 @@ export default function FrameworkSection({ motionEnabled }) {
               >
                 {frameworkShowcase.map((group) => (
                   <li className="border-t border-line py-4.5" key={group.label}>
-                    <strong className="block text-[.7rem] font-medium text-navy">
-                      {group.label}
-                    </strong>
+                    <div className="flex items-baseline justify-between gap-4">
+                      <strong className="min-w-0 text-[.7rem] leading-[1.4] font-medium text-navy">
+                        {group.label}
+                      </strong>
+                      <span
+                        aria-label={`More ${group.label} frameworks available in the library`}
+                        className="shrink-0 font-mono text-[.5rem] font-medium tracking-[.06em] uppercase text-teal"
+                      >
+                        + More in library
+                      </span>
+                    </div>
                     <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2.5">
                       {group.frameworks.map((framework) => (
                         <span

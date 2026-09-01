@@ -36,7 +36,7 @@ export const platformDomains = [
     id: 'cybersecurity',
     label: 'Cybersecurity',
     eyebrow: 'Cybersecurity operations',
-    title: 'Implement controls with the evidence and owners attached.',
+    title: 'Keep security controls ready with evidence, risk, and audit context.',
     description: 'Run security compliance across frameworks without separating implementation, policies, evidence, risk, and audit collaboration.',
     features: ['Control implementation', 'Evidence management', 'Policy management', 'Audit collaboration'],
     cta: ['Explore cybersecurity', '/solutions/cybersecurity'],
@@ -81,14 +81,14 @@ export const platformDomains = [
     features: ['AI inventory', 'Accountability', 'System status', 'AI-specific risk'],
     cta: ['Explore AI governance', '/solutions/ai-governance'],
     preview: {
-      label: 'AI system passport',
-      title: 'Support assistant',
-      meta: 'Assessment active',
-      metric: 'Governed in production',
+      label: 'AI system inventory',
+      title: 'Customer support assistant',
+      meta: 'System active',
+      metric: 'Moderate inherent risk',
       rows: [
-        ['AI owner', 'Customer operations', 'Assigned'],
-        ['Inherent risk', 'Medium', 'Scored'],
-        ['Human oversight', 'Review required', 'Open']
+        ['AI owner', 'Owner assigned', 'Current'],
+        ['AI risk rating', 'Moderate', 'Scored'],
+        ['Linked AI risks', 'Evaluated', 'Tracked']
       ]
     }
   }

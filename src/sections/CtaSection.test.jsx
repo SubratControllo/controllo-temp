@@ -10,6 +10,19 @@ const renderSection = (motionEnabled = false) => render(
 );
 
 describe('CtaSection', () => {
+  it('describes framework-first growth without unsupported package claims', () => {
+    renderSection();
+
+    const section = screen.getByRole('region', {
+      name: /a clearer compliance program starts here/i
+    });
+
+    expect(within(section).getByText(
+      /start with the frameworks relevant to your business, then connect controls, evidence, risks, and ownership as your assurance program grows/i
+    )).toBeInTheDocument();
+    expect(within(section).queryByText(/focused package/i)).not.toBeInTheDocument();
+  });
+
   it('presents distinct trial and demo actions inside a named conversion region', () => {
     renderSection();
 

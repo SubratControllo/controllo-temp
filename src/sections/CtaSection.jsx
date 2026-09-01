@@ -76,9 +76,9 @@ export default function CtaSection({ motionEnabled }) {
               A clearer compliance program starts here.
             </h2>
             <p className="mb-7.5 max-w-150 text-base leading-[1.7] text-[#174a54]">
-              Start with a focused package or bring one real workflow to a
-              readiness tour. Controllo can grow from a lean first program to
-              connected enterprise governance.
+              Start with the frameworks relevant to your business, then
+              connect controls, evidence, risks, and ownership as your
+              assurance program grows.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link

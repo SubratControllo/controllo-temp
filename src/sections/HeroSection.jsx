@@ -45,14 +45,14 @@ const orbitingEmblems = ["outer", "middle", "inner"];
 const eventCards = [
   {
     className: "event-card--one",
-    detail: "Identity provider · now",
+    detail: "Impact scored · now",
     icon: FileCheck2,
     initial: { rotateZ: 0, scale: 0.72, x: 0, y: 0, z: -100 },
     title: "3 High Asset Risks",
   },
   {
     className: "event-card--two event-card--lifted-mobile",
-    detail: "Encryption policy · 2m",
+    detail: "Control 5.1 · 2m",
     icon: UserCheck,
     initial: { rotateZ: 0, scale: 0.72, x: 0, y: 0, z: -100 },
     title: "New chats",

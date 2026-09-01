@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from "react";
-import { ArrowRight, Check, CircleAlert, Clock3, UserRound } from "lucide-react";
+import { ArrowRight, CircleAlert, CircleCheck, Clock3, UserRound } from "lucide-react";
 import SecuraChatBanner from "./SecuraChatBanner";
 import SecuraMark from "./SecuraMark";
 
@@ -22,7 +22,7 @@ const PHASE_ANNOUNCEMENTS = {
 };
 
 const reviewMetrics = [
-  { value: "4", label: "Checks completed", tone: "supported", Icon: Check },
+  { value: "4", label: "Checks completed", tone: "supported", Icon: CircleCheck },
   { value: "2", label: "Gaps detected", tone: "attention", Icon: CircleAlert },
   { value: "3m", label: "Review time", tone: "supported", Icon: Clock3 },
 ];
@@ -449,7 +449,7 @@ export default function SecuraAssessment({ motionEnabled = true }) {
 
   return (
     <div
-      className={`ai-canvas relative min-h-[550px] overflow-hidden rounded-[36px] max-[760px]:aspect-[4/5] max-[760px]:min-h-0 max-[760px]:rounded-[24px] ${
+      className={`ai-canvas relative min-h-137.5 overflow-hidden rounded-[36px] max-[760px]:aspect-4/5 max-[760px]:min-h-0 max-[760px]:rounded-3xl ${
         motionEnabled ? "ai-canvas--animated" : ""
       }`}
       data-testid="secura-assessment-canvas"

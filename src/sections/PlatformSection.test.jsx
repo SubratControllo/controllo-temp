@@ -16,7 +16,7 @@ describe('PlatformSection', () => {
 
     const selector = screen.getByRole('tablist', { name: /governance domains/i });
     expect(within(selector).getByRole('tab', { name: 'Cybersecurity' })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('heading', { name: /implement controls with the evidence and owners attached/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /keep security controls ready with evidence, risk, and audit context/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /explore cybersecurity/i })).toHaveAttribute('href', '/solutions/cybersecurity');
     expect(screen.queryByText(/operationalize privacy across data/i)).not.toBeInTheDocument();
   });
@@ -53,7 +53,8 @@ describe('PlatformSection', () => {
     expect(screen.getByText('Current status')).toBeInTheDocument();
     expect(screen.queryByText('Current signal')).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: /explore privacy operations/i })).toHaveAttribute('href', '/solutions/privacy');
-    expect(screen.queryByText(/implement controls with the evidence and owners attached/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/keep security controls ready with evidence, risk, and audit context/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/owners attached/i)).not.toBeInTheDocument();
   });
 
   it('supports arrow-key selection across the domain controls', async () => {
@@ -80,36 +81,53 @@ describe('PlatformSection', () => {
 
     expect(diagram).toHaveAttribute('data-motion', 'static');
     expect(diagram.querySelectorAll('[data-flow-node]')).toHaveLength(5);
+    expect(diagram.querySelectorAll('[data-flow-underlay]')).toHaveLength(5);
     expect(diagram.querySelectorAll('[data-flow-edge]')).toHaveLength(5);
-    expect(diagram.querySelectorAll('[data-flow-edge]')[0]).toHaveAttribute('d', 'M25 46 C30 46 32 20 37 20');
-    expect(diagram.querySelectorAll('[data-flow-edge]')[1]).toHaveAttribute('d', 'M63 20 C69 20 69 46 73 46');
+    expect(diagram.querySelectorAll('[data-flow-edge]')[0]).toHaveAttribute('d', 'M25 46 H28 Q31 46 31 43 V24 Q31 20 35 20 H37');
+    expect(diagram.querySelectorAll('[data-flow-edge]')[1]).toHaveAttribute('d', 'M63 20 H81 Q85 20 85 24 V34');
+    expect(diagram.querySelectorAll('[data-flow-edge]')[3]).toHaveAttribute('d', 'M79 55 H82 Q85 55 85 58 V69');
+    expect(diagram.querySelectorAll('[data-flow-edge]')[3]).toHaveAttribute('marker-end', 'url(#privacy-flow-arrow)');
     expect(diagram).toHaveTextContent('Customer');
     expect(diagram).toHaveTextContent('Signup service');
     expect(diagram).toHaveTextContent('Customer records');
-    expect(diagram).toHaveTextContent('Consent record');
+    expect(diagram).toHaveTextContent('Identity verification');
+    expect(diagram).toHaveTextContent('Processing activity');
     expect(diagram).toHaveTextContent('CRM');
+    expect(diagram).toHaveTextContent('External recipient');
+    expect(diagram).toHaveTextContent('Verification request');
+    expect(diagram).not.toHaveTextContent('Consent record');
+    expect(diagram).not.toHaveTextContent('Authorized processor');
     expect(screen.getByText('PII flows mapped')).toBeInTheDocument();
     expect(screen.queryByText('mapped nodes')).not.toBeInTheDocument();
     expect(screen.queryByText('consent link')).not.toBeInTheDocument();
     expect(screen.queryByText('Processing purpose')).not.toBeInTheDocument();
   });
 
-  it('uses an AI system passport for the AI Governance preview', async () => {
+  it('uses product-backed AI inventory and risk fields for the AI Governance preview', async () => {
     const user = userEvent.setup();
     renderSection(false);
 
     await user.click(screen.getByRole('tab', { name: 'AI governance' }));
 
-    const passport = screen.getByRole('img', {
-      name: /support assistant ai governance passport/i
+    const inventory = screen.getByRole('img', {
+      name: /customer support assistant ai system inventory/i
     });
 
-    expect(passport).toHaveAttribute('data-motion', 'static');
-    expect(passport).toHaveTextContent('Governed in production');
-    expect(passport).toHaveTextContent('Customer operations');
-    expect(passport).toHaveTextContent('Medium');
-    expect(passport).toHaveTextContent('Review required');
-    expect(passport.querySelectorAll('[data-assessment-step]')).toHaveLength(4);
+    expect(inventory).toHaveAttribute('data-motion', 'static');
+    expect(inventory).toHaveTextContent('AI system inventory');
+    expect(inventory).toHaveTextContent('System active');
+    expect(inventory).toHaveTextContent('Moderate inherent risk');
+    expect(inventory).toHaveTextContent('AI owner');
+    expect(inventory).toHaveTextContent('Linked AI risks');
+    expect(inventory).toHaveTextContent('Risk workflow');
+    expect(inventory).toHaveTextContent('Owner assigned');
+    expect(inventory).toHaveTextContent('Risks evaluated');
+    expect(inventory).toHaveTextContent('Score current');
+    expect(inventory).not.toHaveTextContent('AI system passport');
+    expect(inventory).not.toHaveTextContent('Governed in production');
+    expect(inventory).not.toHaveTextContent('Human oversight');
+    expect(inventory).not.toHaveTextContent('Assessment path');
+    expect(inventory.querySelectorAll('[data-assessment-step]')).toHaveLength(4);
   });
 
   it('keeps risk and cloud monitoring subordinate to the governance domains', () => {

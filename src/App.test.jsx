@@ -43,6 +43,16 @@ describe('Compliance Current landing page', () => {
     expect(footer.querySelector('img[src="/assets/logo-light.svg"]')).toBeInTheDocument();
   });
 
+  it('uses a workflow-specific footer CTA for the demo route', () => {
+    renderRoute();
+
+    const footer = screen.getByRole('contentinfo');
+    expect(within(footer).getByRole('link', {
+      name: /see controllo with your workflow/i
+    })).toHaveAttribute('href', '/demo');
+    expect(within(footer).queryByText(/book a readiness tour/i)).not.toBeInTheDocument();
+  });
+
   it('keeps shared header CTA targets at the 46px button minimum', () => {
     renderRoute();
 
@@ -117,6 +127,9 @@ describe('Compliance Current landing page', () => {
     expect(within(proof).getByText('200,000+')).toBeInTheDocument();
     const frameworkGroups = within(frameworkCoverage).getAllByRole('listitem');
     expect(frameworkGroups).toHaveLength(4);
+    frameworkGroups.forEach((group) => {
+      expect(within(group).getByText('+ More in library')).toBeInTheDocument();
+    });
     expect(within(frameworkGroups[0]).getByText('SOC 2')).toBeInTheDocument();
     expect(within(frameworkGroups[0]).getByText('ISO/IEC 27001')).toBeInTheDocument();
     expect(within(frameworkGroups[0]).getByText('NIST CSF 2.0')).toBeInTheDocument();

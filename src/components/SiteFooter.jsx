@@ -23,7 +23,7 @@ export default function SiteFooter() {
             className="mt-6.5 inline-flex items-center gap-2 text-[.76rem] text-mint [&>svg]:size-3.75 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5"
             to="/demo"
           >
-            Book a readiness tour <ArrowRight aria-hidden="true" />
+            See Controllo with your workflow <ArrowRight aria-hidden="true" />
           </Link>
         </div>
         {footerGroups.map(([heading, links]) => (
