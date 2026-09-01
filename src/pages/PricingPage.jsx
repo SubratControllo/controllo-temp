@@ -3,8 +3,6 @@ import { Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import PageMeta from '../components/PageMeta';
-import FaqList from '../components/FaqList';
-import { faqs } from '../data/enterpriseContent';
 import { useSiteMotion } from '../context/MotionContext';
 
 const packages = [
@@ -32,8 +30,6 @@ const comparisonFeatures = [
   'Risk management',
   'Multiple programs'
 ];
-
-const buyingFaqs = faqs.slice(0, 3);
 
 function PackageCard({ item, index }) {
   const [name, copy, features] = item;
@@ -126,15 +122,6 @@ export default function PricingPage() {
             ))}
           </div>
           {compare ? <PackageComparison /> : null}
-        </div>
-      </section>
-      <section className="section bg-[#f5f9f8]">
-        <div className="shell section-heading--split">
-          <div>
-            <p className="eyebrow">Buying questions</p>
-            <h2>Shape the package around the operating need.</h2>
-          </div>
-          <FaqList items={buyingFaqs} />
         </div>
       </section>
     </>

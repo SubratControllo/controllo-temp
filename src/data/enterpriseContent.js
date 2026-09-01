@@ -163,13 +163,6 @@ const resourcesBySlug = new Map(resources.map((item) => [item.slug, item]));
 
 export const getResourceBySlug = (slug) => resourcesBySlug.get(slug);
 
-export const faqs = [
-  ['Does Controllo replace our auditor?', 'No. Controllo organizes the program, evidence, decisions, and collaboration around the audit. Independent assurance remains with your chosen auditor.'],
-  ['Can we use our existing controls?', 'The platform is designed around a shared control model so teams can bring existing controls forward and map them across applicable frameworks.'],
-  ['How does Secura AI make decisions?', 'Secura AI provides guidance and prepares work for review. Accountable people remain responsible for approvals and program decisions.'],
-  ['Can Controllo support multiple programs?', 'The enterprise experience is designed to provide shared visibility while preserving ownership across teams, products, and business units.']
-];
-
 export const footerGroups = [
   ['Platform', [['Overview', '/platform'], ['Compliance', '/platform/continuous-compliance'], ['Risk', '/platform/risk-management'], ['Cloud', '/platform/cloud-monitoring'], ['Secura AI', '/platform/secura-ai']]],
   ['Explore', [['Cybersecurity', '/solutions/cybersecurity'], ['Privacy operations', '/solutions/privacy'], ['AI governance', '/solutions/ai-governance'], ['Frameworks', '/frameworks'], ['Integrations', '/integrations'], ['Pricing', '/pricing']]],

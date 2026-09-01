@@ -1,11 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import PageMeta from '../components/PageMeta';
-import FaqList from '../components/FaqList';
 import ConversionBand from '../components/ConversionBand';
 import Reveal from '../components/Reveal';
 import ProductDemo from '../components/ProductDemo';
-import { faqs, productPages } from '../data/enterpriseContent';
+import { productPages } from '../data/enterpriseContent';
 import { useSiteMotion } from '../context/MotionContext';
 
 export default function ProductPage() {
@@ -56,15 +55,6 @@ export default function ProductPage() {
             </p>
           </div>
           <ProductDemo active={3} />
-        </div>
-      </section>
-      <section className="section bg-[#f5f9f8]">
-        <div className="shell section-heading--split">
-          <div>
-            <p className="eyebrow">Questions, answered</p>
-            <h2>Build confidence before the call.</h2>
-          </div>
-          <FaqList items={faqs} />
         </div>
       </section>
       <ConversionBand />
