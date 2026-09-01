@@ -87,7 +87,7 @@ export default function CyberFrameworksSection({ frameworks, motionEnabled }) {
                 </small>
                 {framework.href ? (
                   <Link
-                    className="mt-4 inline-flex min-h-11 items-center text-[.68rem] text-teal"
+                    className="mt-4 inline-flex min-h-11.5 items-center text-[.68rem] text-teal"
                     to={framework.href}
                   >
                     Explore {framework.name}
