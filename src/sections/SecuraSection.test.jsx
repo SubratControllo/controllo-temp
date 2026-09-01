@@ -57,7 +57,7 @@ describe("SecuraSection", () => {
     expect(screen.getByText("Introducing Secura AI")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
-        name: "Find the gap before it becomes an Audit finding.",
+        name: "Find the gap before it becomes an audit finding.",
       }),
     ).toBeInTheDocument();
     expect(
@@ -371,12 +371,12 @@ describe("SecuraSection", () => {
       /\.secura-metric__icon\s*{[^}]*width: 30px;[^}]*height: 30px;/s,
     );
     expect(styles).toMatch(
-      /\.secura-metric__glyph\s*{[^}]*width: 16px;[^}]*height: 16px;/s,
+      /\.secura-metric__glyph\s*{[^}]*width: 20px;[^}]*height: 20px;/s,
     );
     expect(screen.getByTestId("secura-assessment-canvas")).toHaveClass(
-      "min-h-[550px]",
+      "min-h-137.5",
       "max-[760px]:min-h-0",
-      "max-[760px]:aspect-[4/5]",
+      "max-[760px]:aspect-4/5",
     );
   });
 });

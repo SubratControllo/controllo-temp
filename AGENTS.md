@@ -9,7 +9,7 @@ This repository is the public Controllo marketing website. Preserve its calm, pr
 3. Read `docs/ARCHITECTURE.md` before changing routes, shared layout, content structures, motion, forms, or SEO.
 4. Read `docs/ROADMAP.md` before treating any existing surface as production-ready.
 
-For visual changes, read `design-system/controllo-compliance-current/MASTER.md`. Use `docs/superpowers/specs/` only when historical design intent is relevant.
+For visual changes, read `design-system/controllo-compliance-current/MASTER.md`. The homepage is frozen under its **Frozen Homepage Baseline**; reopen a homepage surface only when the user explicitly requests a change to that surface. Use `docs/superpowers/specs/` only when historical design intent is relevant.
 
 ## Skill Routing
 

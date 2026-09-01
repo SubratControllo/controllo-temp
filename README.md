@@ -6,10 +6,10 @@ Public marketing website for Controllo, a continuous compliance platform connect
 
 The repository contains a working React/Vite single-page application with:
 
-- A product-led homepage and frozen, release-hardened responsive header baseline
-- A frozen homepage hero Focus Stack with responsive dashboard depth, mobile-safe event cards, header-matched primary CTA hover, and reduced-motion coverage
-- A frozen homepage narrative with three manually selected governance domains, connected risk and cloud capabilities, framework reuse, Secura AI, WordPress article links, and a final trial-intent CTA
-- An approved two-tone “Fast Compliance, Smarter Audit Readiness” hero narrative with quantitative framework, control, and mapping proof plus a demo-request primary action and low-friction platform exploration
+- A product-led homepage frozen as a complete release baseline on 2026-09-01, plus a release-hardened responsive header
+- A frozen hero Focus Stack with responsive dashboard depth, mobile-safe event cards, animated proof values, pricing-intent **View plans**, quiet platform exploration, and reduced-motion coverage
+- A frozen homepage narrative with a popular-framework marquee, three manually selected governance domains, connected risk and cloud capabilities, Secura AI, focused risk proof, framework and integration coverage, a seven-day readiness path, WordPress article links, and final conversion
+- An approved two-tone “Fast Compliance, Smarter Audit Readiness” hero narrative with quantitative framework, control, and mapping proof
 - A one-time Signal Lock header entrance and shared motion-safe demo-request shine
 - A viewport-only Secura product loop that opens on a compact control-detail preview with connected context, review scope, and the real gradient Secura banner, sends a deterministic review request, and resolves into a reviewable gap assessment with an action-ready Secura recommendation tray, with a static reduced-motion result state
 - Tailwind CSS v4 utilities colocated with React components, backed by shared design tokens and a small effects stylesheet
@@ -22,7 +22,7 @@ The repository contains a working React/Vite single-page application with:
 - Per-route metadata, structured data, sitemap, robots rules, and a static-host SPA fallback
 - Operating-system reduced-motion support and a WebGL visual with a static fallback
 
-The last full validation on 2026-08-24 recorded 18 passing tests and a successful production build. The header baseline was frozen on 2026-08-25, the homepage hero Focus Stack on 2026-08-26, and the complete homepage narrative on 2026-08-29 after focused tests and responsive browser QA. The current **Start free trial** action is intentionally presentation-only and leads to pricing until the separate registration/payment flow is connected. The full suite and production build have not been rerun. This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md).
+The last full validation on 2026-08-24 recorded 18 passing tests and a successful production build. After subsequent focused tests and responsive browser QA, the complete homepage baseline was frozen on 2026-09-01. The current **View plans** and **Start free trial** actions lead to pricing and do not claim that registration or payment is connected. The full suite and production build have not been rerun. This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md).
 
 ## Local Setup
 

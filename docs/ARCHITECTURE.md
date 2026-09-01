@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-08-26
+Last reviewed: 2026-09-01
 
 ## System Shape
 
@@ -42,7 +42,23 @@ The production artifact is the static `dist/` directory. The host must serve `in
 - Footer
 - Cookie preference prompt
 
-`SiteHeader` owns its responsive menu and dropdown state, including hover intent, keyboard focus, Escape and outside-click closing, route-family highlighting, and mobile scroll locking. `NavbarIntro` owns the one-time Signal Lock sequence; `HeaderCtaContent` owns the shared readiness-tour label, arrow, and reduced-motion-aware shine used by both the header CTA and homepage hero primary CTA.
+`SiteHeader` owns its responsive menu and dropdown state, including hover intent, keyboard focus, Escape and outside-click closing, route-family highlighting, and mobile scroll locking. `NavbarIntro` owns the one-time Signal Lock sequence; `HeaderCtaContent` owns the shared directional arrow and reduced-motion-aware shine used by the header and homepage hero primary actions while each caller owns its label and destination.
+
+## Homepage Composition
+
+`src/pages/HomePage.jsx` is the homepage-order source of truth. Its frozen sequence is:
+
+1. Hero
+2. Popular-framework marquee
+3. Connected Platform
+4. Secura AI
+5. Focused Risk Management proof
+6. Frameworks and Connectivity
+7. Seven-Day Readiness Path
+8. Blog
+9. Final conversion
+
+The shared footer follows the route content through `SiteLayout`. The complete approved surface is frozen in the design system's **Frozen Homepage Baseline**. Reordering, redesigning, adding sections, or changing homepage motion and CTA hierarchy requires an explicit request that reopens the affected surface. Accuracy, accessibility, legal, verified destination, release-critical responsive, and performance corrections remain permitted.
 
 ## Content Model
 
@@ -50,7 +66,7 @@ The site intentionally keeps content close to the frontend:
 
 - `src/data/enterpriseContent.js` owns navigation, product pages, frameworks, integrations, resources, FAQs, and footer groups.
 - `src/data/brandAssets.js` is the runtime registry for locally hosted third-party brand marks; provenance and review status remain beside the files in `public/assets/brands/README.md`.
-- `src/data/siteContent.js` owns homepage visualization data and framework-flow labels.
+- `src/data/siteContent.js` owns homepage Connected Platform and Risk visualization data.
 - `src/data/staticPages.js` owns company, security, privacy, terms, and accessibility content; `src/pages/StaticPage.jsx` only composes the shared presentation.
 - `src/pages/PricingPage.jsx` currently owns package comparison content locally.
 

@@ -132,6 +132,27 @@ Timing guidance:
 
 Spend motion in one place at a time. Header, hero, and route entrances should feel sequenced rather than simultaneous. Reduced motion removes translation, scale, parallax, and decorative loops while preserving complete content and visible state changes.
 
+## Frozen Homepage Baseline
+
+**Status:** approved and frozen on 2026-09-01. This section is the homepage release-baseline source of truth.
+
+The approved order is Hero, popular-framework marquee, Connected Platform, Secura AI, focused Risk Management proof, Frameworks and Connectivity, Seven-Day Readiness Path, Blog, and final conversion. The shared footer follows the homepage narrative.
+
+Preserve the current copy, section order, layout hierarchy, product-state compositions, responsive behavior, motion choreography, reduced-motion branches, links, and CTA hierarchy. Reopen a homepage surface only when the user explicitly requests a change to that surface. Accuracy, accessibility, legal, verified destination, release-critical responsive, and performance corrections may proceed without reopening the wider homepage design.
+
+The frozen baseline includes:
+
+- The **Fast Compliance, Smarter Audit Readiness** hero, **View plans** and **Explore the platform** actions, three animated proof values, dashboard Focus Stack, readiness panel, and four event cards.
+- The fixed two-line **Compliance is always evolving. So are we.** proof copy beside the continuous popular-framework marquee; reduced motion uses the complete horizontally scrollable static list.
+- Three manually selected Connected Platform domains: Cybersecurity readiness, the Privacy data-flow diagram, and the AI system inventory/risk view. Risk Management and Cloud Monitoring remain subordinate connected capabilities.
+- The Review, Identify, Recommend Secura narrative and deterministic control-assessment canvas, including its stable responsive frame and complete reduced-motion result.
+- The illustrative 25-cell Risk Management matrix, two critical states, summary metrics, and direct product destination.
+- The asymmetric Frameworks and Connectivity ledger, approved scale metrics, registry-backed framework and integration proof, per-category **+ More in library** cues, and one destination link for each directory.
+- The five-step Seven-Day Readiness Path positioned immediately before Blog, with its stable sticky preview, scroll-linked stages, and static reduced-motion completion state.
+- The one-lead/two-supporting-story Blog index with direct WordPress destinations.
+- The final mint conversion panel, one assembled Controllo emblem, accurate framework-first supporting copy, **Start free trial** pricing-intent action, and **Request a demo** action.
+- The shared footer CTA **See Controllo with your workflow**, which continues to `/demo`.
+
 ### Hero Focus Stack
 
 The homepage hero uses a three-layer Focus Stack: an enlarged, half-cropped Controllo dashboard as product context, orbit rings with faded bare Controllo emblems as separation, and the readiness panel plus event cards as the sharp foreground.
@@ -146,19 +167,19 @@ The homepage hero uses a three-layer Focus Stack: an enlarged, half-cropped Cont
 - Use `/assets/emblemLogo.svg` as the bare mark beside the “Readiness current” header inside the foreground graphic instead of the older CSS-built static mark.
 - Add hover life only inside the readiness loader and internal row cards. Do not use a panel-wide sweep or an overall graphic hover effect.
 - Reuse the header CTA shine and Lucide arrow pattern on the hero primary CTA; keep the secondary CTA quieter so the conversion action remains dominant.
-- Phase 1 keeps one dominant demo-request CTA and the existing minimal **Explore the Platform** ghost action inside the frozen hero. The final homepage panel may show **Start free trial** as an interim intent CTA to pricing, but do not promote it into the hero or navbar until the approved registration handoff is connected; later CTA promotions follow `docs/ROADMAP.md`.
+- Keep **View plans** as the dominant pricing-intent action and **Explore the platform** as the quiet secondary action. The pricing destination does not claim that registration or payment is connected; activation remains a launch blocker in `docs/ROADMAP.md`.
 - Leave the readiness panel and event cards still after the entrance. Do not add an ambient float loop.
 - Over the hero scroll range, move the dashboard `18px` and the foreground scene `48px`, with only a very small dashboard scale change.
 - Lower the backdrop opacity, tighten the crop, slightly reduce the foreground readiness graphic, and keep extra bottom clearance on tablet/mobile so the stack does not crowd the following section.
 - Reduced motion renders the complete stack in its final state with no entrance transforms, sweep, or parallax.
 
-### Homepage Compliance Current
+### Homepage Seven-Day Readiness Path
 
-The Compliance Current chapter keeps its five-part Connect, Validate, Map, Resolve, and Report scroll narrative. On desktop, the product preview remains sticky while the current step advances from the section's scroll progress. The active narrative step uses one mint rule and restrained emphasis; inactive steps remain readable but quiet.
+The **Get started in 7 Days** chapter keeps its five-part Select, Assess, Implement, Review, and Collaborate narrative under **A Faster Path to Compliance**. On desktop, the product preview remains sticky while the current step advances from the section's scroll progress. At and below 1080px, the five steps use a focusable horizontal snap rail that updates the product preview without overlapping neighboring cards. The active narrative step uses one mint rule and restrained emphasis; inactive steps remain readable but quiet.
 
 Use two circular low-contrast paths and three bare Controllo emblems behind the product preview as a visual echo of the Hero orbit. The paths do not run on a timer. Their opposing rotations are scrubbed only by section scroll, and the emblems remain between `8%` and `14%` opacity, pointer-inert, accessibility-hidden, and undistorted. Horizontal clipping may contain the field, but must not create a scroll container that breaks sticky positioning. Hide the decorative orbit on small mobile screens.
 
-The card keeps one fixed frame while its stage label, readiness value, program signal, row states, and five-part progress rail change together. Use the official `/assets/emblemLogo.svg` beside the Compliance Current identity. The graphical readiness ring may turn between stages, but its percentage and `readiness` label remain stationary. Each stage change may use one short internal crossfade/rise and a restrained mint signal sweep; it must not resize the card or add perpetual motion. Shared `ProductDemo` instances outside this section retain their established static presentation. Reduced motion renders the completed Report state with a static orbit and no sweep or transforms.
+The card keeps one fixed frame while its stage label, readiness value, program signal, row states, and five-part progress rail change together. Use the official `/assets/emblemLogo.svg` beside the seven-day readiness identity. The graphical readiness ring may turn between stages, but its percentage and `readiness` label remain stationary. Each stage change may use one short internal crossfade/rise and a restrained mint signal sweep; it must not resize the card or add perpetual motion. Shared `ProductDemo` instances outside this section retain their established static presentation. Reduced motion renders the completed Collaborate state with a static orbit and no sweep or transforms.
 
 ### Secura Assessment Canvas
 
@@ -172,9 +193,9 @@ The Secura section uses two equal desktop columns. Center the narrative and prod
 
 ### Homepage Connected Platform
 
-**Freeze status:** approved and frozen on 2026-08-29. Keep Cybersecurity, Privacy, and AI Governance as the three equal, manually selected governance domains. Keep Risk Management and Cloud Monitoring as two compact connected-capability links beneath the main panel. Do not autoplay domain tabs.
+**Freeze status:** included in the 2026-09-01 frozen homepage baseline. Keep Cybersecurity, Privacy, and AI Governance as the three equal, manually selected governance domains. Keep Risk Management and Cloud Monitoring as two compact connected-capability links beneath the main panel. Do not autoplay domain tabs.
 
-At desktop widths the active panel is a stable 50/50 split with both inner compositions centered in their halves. At tablet and mobile widths, stack narrative before product proof with no horizontal overflow. Use one authentic product-state composition per domain, concise verified feature labels, a short crossfade/slide on manual selection, and a static state under reduced motion.
+At desktop widths the active panel is a stable 50/50 split with both inner compositions centered in their halves. At tablet and mobile widths, stack narrative before product proof with no horizontal overflow. Preserve the SOC 2 readiness console, Customer onboarding privacy data-flow diagram, and Customer support assistant AI inventory/risk composition. Use concise verified feature labels, a short crossfade/slide on manual selection, and a static state under reduced motion.
 
 ### Homepage Risk Prioritization
 
@@ -184,9 +205,9 @@ Keep the 25-cell illustrative exposure matrix, two critical states, three summar
 
 ### Homepage Frameworks And Connectivity
 
-**Freeze status:** approved and frozen on 2026-08-29. Use one static proof ledger, not a second tab bar, filter control, animated relationship diagram, or card grid. The left navy field explains the shared-control model and carries the approved scale evidence: 100+ frameworks, 7,000+ structured controls, and 200,000+ control relationships. The light field groups representative framework paths from the framework registry and current integration surfaces from the integration registry.
+**Freeze status:** included in the 2026-09-01 frozen homepage baseline. Use one static proof ledger, not a second tab bar, filter control, animated relationship diagram, or card grid. The left navy field explains the shared-control model and carries the approved scale evidence: 100+ frameworks, 7,000+ structured controls, and 200,000+ control relationships. The light field groups representative framework paths from the framework registry and current integration surfaces from the integration registry.
 
-Keep framework and integration data derived from their existing registries so homepage proof cannot drift from the directory surfaces. Use sparse horizontal rules, compact locally hosted brand marks from the shared registry, and one destination link for each directory. When an exact reviewed product mark is unavailable, retain the neutral category icon rather than substituting a related service logo. Preserve the asymmetric split through 1024px, stack the navy and light fields below 960px, and collapse the two proof columns into one at the established mobile breakpoint. Do not reintroduce the old path filters, center bubble, SVG connector paths, decorative status dots, or perpetual dashed-line motion.
+Keep framework and integration data derived from their existing registries so homepage proof cannot drift from the directory surfaces. Keep the static **+ More in library** cue aligned with every framework-category heading; it communicates breadth without inventing category totals or becoming another control. Use sparse horizontal rules, compact locally hosted brand marks from the shared registry, and one destination link for each directory. When an exact reviewed product mark is unavailable, retain the neutral category icon rather than substituting a related service logo. Preserve the asymmetric split through 1024px, stack the navy and light fields below 960px, and collapse the two proof columns into one at the established mobile breakpoint. Do not reintroduce the old path filters, center bubble, SVG connector paths, decorative status dots, or perpetual dashed-line motion.
 
 ### Homepage Blog Editorial Index
 
@@ -196,9 +217,9 @@ Each story remains a semantic, named article landmark with one direct WordPress 
 
 ### Homepage Final Conversion
 
-**Freeze status:** approved and frozen on 2026-08-30. Keep one mint conversion panel with the narrative on the left and a dedicated brand field on the right. The brand field uses the official three-segment Controllo emblem as one inline SVG; its segments assemble once from short offsets and then remain still. Reduced motion renders the completed emblem immediately.
+**Freeze status:** included in the 2026-09-01 frozen homepage baseline. Keep one mint conversion panel with the narrative on the left and a dedicated brand field on the right. The brand field uses the official three-segment Controllo emblem as one inline SVG; its segments assemble once from short offsets and then remain still. Reduced motion renders the completed emblem immediately.
 
-Keep **Start free trial** as the dominant navy action with one right arrow and **Request a demo** as the quieter white action with a calendar icon. Do not repeat the arrow on both actions. The primary reuses the header CTA's clipped shine and `1.5%` maximum hover/focus scale. The secondary remains non-shiny, does not lift, and uses the homepage Hero secondary action's quiet teal text response while its calendar stays still. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make both actions full width on small mobile screens. Do not reintroduce double rings, duplicated emblems, looping motion, stock imagery, or extra conversion claims.
+Keep the supporting copy framework-first: visitors start with relevant frameworks and connect controls, evidence, risks, and ownership as their assurance program grows. Keep **Start free trial** as the dominant navy action with one right arrow and **Request a demo** as the quieter white action with a calendar icon. Do not repeat the arrow on both actions. The primary reuses the header CTA's clipped shine and `1.5%` maximum hover/focus scale. The secondary remains non-shiny, does not lift, and uses the homepage Hero secondary action's quiet teal text response while its calendar stays still. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make both actions full width on small mobile screens. Do not reintroduce double rings, duplicated emblems, looping motion, stock imagery, package language, or extra conversion claims.
 
 ## Navigation And Interaction
 

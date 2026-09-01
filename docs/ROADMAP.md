@@ -1,6 +1,6 @@
 # Roadmap and Current Progress
 
-Last reviewed: 2026-08-31
+Last reviewed: 2026-09-01
 
 This file is the current delivery source of truth. Update it when a capability or launch blocker changes; keep speculative ideas out until they have an owner and a clear outcome.
 
@@ -14,10 +14,10 @@ Implemented:
 - Calm first-load Signal Lock navbar entrance plus a stable-color CTA shine, with reduced-motion fallbacks and no persistent header runtime
 - Tailwind CSS v4 visual system with component-owned utility classes, shared tokens/primitives, and a focused effects stylesheet
 - Shared button behavior with consistent hover, press, disabled, focus, and reduced-motion states; icon motion is reserved for explicitly directional actions rather than tied to primary or secondary variants
-- Frozen homepage narrative covering three governance domains, connected risk and cloud capabilities, continuous compliance, Secura AI, a focused risk-prioritization proof, framework reuse, current WordPress guidance, and conversion
+- Homepage frozen as a complete 2026-09-01 release baseline covering the popular-framework marquee, three governance domains, connected risk and cloud capabilities, Secura AI, focused risk prioritization, framework reuse, the seven-day readiness path, current WordPress guidance, final conversion, and footer handoff
 - Locally hosted integration brand marks shared by the homepage connectivity proof and integrations directory, with a neutral fallback where an exact reviewed product mark is unavailable
 - Homepage hero Focus Stack with an enlarged perspective dashboard, a readiness graphic that extracts from its plane, four responsive event cards that pop forward in place after it settles without covering the mobile loader/copy, faded bare Controllo emblems orbiting the hero rings, the real emblem beside the readiness header, internal loader/row hover life, a header-matched primary CTA shine/icon hover, a one-shot light activation sweep, distinct scroll depth, responsive crop, extra tablet/mobile bottom clearance, and a static reduced-motion state
-- Homepage hero content aligned to the two-tone “Fast Compliance, Smarter Audit Readiness” narrative, with governed framework/control/mapping proof and a demo-request primary action plus low-friction platform exploration
+- Homepage hero content aligned to the two-tone “Fast Compliance, Smarter Audit Readiness” narrative, with governed framework/control/mapping proof, a pricing-intent **View plans** primary action, and low-friction platform exploration
 - Viewport-driven Secura grid current with matching 42px square tiles, offscreen pausing, no user interaction, and a static reduced-motion fallback
 - Product-authentic Secura viewport loop with the existing CursorGrid, a compact control-detail opening state, connected policy/evidence/owner context, review-scope inputs, the real gradient Secura activation banner, a deterministic control-review request, a “2 gaps found” result, one continuous three-metric rail, four reviewable checks, an action-ready recommendation tray, constrained centered composition, and a static reduced-motion result state
 - Platform pages for overview, continuous compliance, risk, audit management, cloud monitoring, and Secura AI
@@ -110,6 +110,12 @@ Validation on 2026-08-31:
 - The focused Risk Management proof is restored immediately after Secura and before Frameworks, making the homepage handoff explicit: Secura identifies gaps, connected risk prioritizes action, and framework proof shows reusable coverage. The right product proof now resolves once on entry through a diagonal 25-cell reveal, a short matrix scan, two delayed critical states, and settling summary metrics; reduced motion renders the complete static state.
 - `npm test -- --run src/sections/RiskSection.test.jsx src/App.test.jsx --reporter=dot`: 18 focused risk-section and application tests passed. Browser QA passed at 1440×900, 1024×900, 768×1024, and 375×812 with all 25 cells, both critical states, responsive stacking, correct product-route navigation, zero horizontal overflow, and no console warnings or errors. The production build was not run.
 
+Validation on 2026-09-01:
+
+- The complete homepage baseline was reconciled across `AGENTS.md`, `README.md`, `docs/ARCHITECTURE.md`, this roadmap, and the design-system master, then frozen under the master document's **Frozen Homepage Baseline**.
+- The approved Seven-Day Readiness Path is Select, Assess, Implement, Review, and Collaborate. This supersedes the earlier 2026-08-31 Connect, Validate, Map, Resolve, and Report prototype record without rewriting that historical validation entry.
+- `npm test -- src/App.test.jsx src/sections/HeroSection.test.jsx src/sections/TrustStrip.test.jsx src/sections/PlatformSection.test.jsx src/sections/SecuraSection.test.jsx src/sections/RiskSection.test.jsx src/sections/ComplianceStory.test.jsx src/sections/BlogSection.test.jsx src/sections/CtaSection.test.jsx --run --reporter=dot`: 77 homepage-focused tests passed in 9 files. The production build and full test suite were not run.
+
 ## Frozen Header Baseline
 
 Status: frozen on 2026-08-25 for release preparation.
@@ -120,7 +126,7 @@ Treat further visual restyling, motion concepts, navigation restructuring, and C
 
 ## Frozen Hero Focus Stack
 
-Status: frozen on 2026-08-26 for the next delivery phase.
+Status: frozen on 2026-08-26 and included in the complete 2026-09-01 homepage baseline.
 
 The approved baseline includes the enlarged half-cropped dashboard backdrop, extracted readiness panel, four responsive event cards, Secura AI insight card, orbiting bare emblems, one-shot focus sweep, internal-only hover life on the loader and row cards, header-matched primary CTA hover, scroll depth, mobile/tablet bottom clearance, and reduced-motion final state.
 
@@ -128,15 +134,15 @@ Treat further hero motion concepts, dashboard composition changes, new cards, ca
 
 ## Frozen Homepage Narrative
 
-Status: frozen on 2026-08-29 for the next delivery phase.
+Status: approved and frozen on 2026-09-01. The design system's **Frozen Homepage Baseline** is authoritative.
 
-The approved homepage order is Hero, framework proof strip, Connected Platform, Compliance Current, Secura AI, focused Risk Management proof, Frameworks and Connectivity, Blog, and final conversion CTA. Cybersecurity, Privacy, and AI Governance remain the three equal governance domains. Risk Management and Cloud Monitoring remain connected capabilities, not two additional top-level domain tabs; the additional Risk proof is a narrative handoff from identified gaps to prioritized action, not a fourth governance domain. Domain panels change only after manual selection and keep a stable equal-column desktop frame. The Secura narrative carries one contextual product-page link; its assessment canvas remains an interactive demonstration rather than a navigation surface.
+The approved homepage order is Hero, popular-framework marquee, Connected Platform, Secura AI, focused Risk Management proof, Frameworks and Connectivity, Seven-Day Readiness Path, Blog, and final conversion CTA. The shared footer follows. Cybersecurity, Privacy, and AI Governance remain the three equal governance domains. Risk Management and Cloud Monitoring remain connected capabilities, not two additional top-level domain tabs; the additional Risk proof is a narrative handoff from identified gaps to prioritized action, not a fourth governance domain. Domain panels change only after manual selection and keep a stable equal-column desktop frame. The Secura narrative carries one contextual product-page link; its assessment canvas remains an interactive demonstration rather than a navigation surface.
 
-Keep the final **Start free trial** action as an intent CTA that points to pricing until the separate registration/payment experience has an approved public handoff URL. The hero and navbar remain demo-led. Do not add payment, consent management, customer logos, testimonials, or unverified integrations to this homepage baseline without reopening the relevant product/content decision.
+The hero uses **View plans** and **Explore the platform**. The header uses a quiet **Start free trial** pricing link and primary **Request a Demo** action. The final panel uses **Start free trial** and **Request a demo**, while the footer uses **See Controllo with your workflow**. Pricing-intent actions do not claim that registration or payment is connected. Do not add payment, customer logos, testimonials, unverified integrations, or new homepage sections without explicitly reopening the relevant product/content decision.
 
 ## Frozen Homepage Blog Index
 
-Status: frozen on 2026-08-30 for release preparation.
+Status: frozen on 2026-08-30 and included in the complete 2026-09-01 homepage baseline.
 
 The approved baseline is one lead article and two supporting reads, direct WordPress destinations, sparse editorial rules, responsive stacking below 960px, semantic article landmarks, and no unapproved imagery or runtime WordPress dependency.
 
@@ -144,20 +150,22 @@ Treat article-card restyling, carousels, stock imagery, fabricated dates, runtim
 
 ## Frozen Homepage Final Conversion CTA
 
-Status: frozen on 2026-08-30 for release preparation.
+Status: frozen on 2026-09-01 for release preparation.
 
-The approved baseline is one mint split panel, one non-looping three-segment emblem assembly, a dominant arrow-led trial-intent action to pricing with the navbar's clipped shine and restrained scale, and a quieter calendar-led demo action with the Hero secondary action's no-lift color response. The emblem becomes a compact lower band below 900px, and actions become full width on small mobile screens.
+The approved baseline is one mint split panel, accurate framework-first supporting copy, one non-looping three-segment emblem assembly, a dominant arrow-led trial-intent action to pricing with the navbar's clipped shine and restrained scale, and a quieter calendar-led demo action with the Hero secondary action's no-lift color response. The emblem becomes a compact lower band below 900px, and actions become full width on small mobile screens.
 
 Treat new decorative concepts, double rings, duplicate emblems, looping animation, CTA hierarchy changes, and additional conversion claims as out of scope unless a new request explicitly reopens the section. Destination corrections, accessibility fixes, and release-critical responsive issues may still be patched without reopening the design.
 
 ## Conversion CTA Phases
 
-### Phase 1 — Demo request (current)
+### Phase 1 — Pricing intent and demo request (current)
 
-- Hero primary: **Request a Demo**
-- Hero secondary: **Explore the Platform**
-- Navbar primary: **Request a Demo**
+- Hero primary: **View plans** leads to pricing.
+- Hero secondary: **Explore the platform**.
+- Navbar quiet action: **Start free trial** leads to pricing.
+- Navbar primary: **Request a Demo**.
 - Final homepage panel: **Start free trial** leads to pricing as an interim intent CTA; it does not claim that registration is connected.
+- Footer: **See Controllo with your workflow** leads to the demo route.
 - Rename the action to **Book a Demo** only when visitors can select a calendar time directly.
 
 ### Phase 2 — Activated free trial (planned)
@@ -177,11 +185,10 @@ These items must be resolved before calling the website production-ready.
 
 - [ ] Replace privacy and terms placeholders with approved legal language and publish valid privacy/security contact channels.
 - [ ] Configure a production lead endpoint and verify validation, CORS, rate limiting, spam handling, retention, deletion, CRM/email delivery, and failure recovery.
-- [ ] Connect the homepage trial-intent CTA to the approved registration/payment handoff and verify the complete 14-day activation flow before promoting trial in the hero or navbar.
+- [ ] Connect pricing-intent trial actions to the approved registration/payment handoff and verify the complete 14-day activation flow before presenting them as an activated self-serve trial.
 - [ ] Decide whether analytics will launch. If yes, load it only under the approved consent policy and honor `essential`; if no, remove unsupported analytics language and event behavior.
 - [ ] Approve all product claims, framework claims, package descriptions, integration availability, and customer-facing proof.
 - [ ] Complete editorial and product-claim review of every WordPress article linked from the homepage; remove unsupported outcome promises, reconcile framework/control counts, and correct copy before launch.
-- [ ] Connect this workspace to the intended Git repository. No Git metadata or commit history is available in the current folder.
 - [ ] Confirm the deployment host, HTTPS/domain configuration, and deep-route fallback on the production origin.
 
 ## Release Quality
@@ -190,7 +197,7 @@ Complete after the blockers and before launch:
 
 - [x] Harden and freeze the shared header navigation, official light/dark wordmarks, Signal Lock entrance, stable-color hover-only CTA shine, keyboard closing, route state, and responsive menu behavior.
 - [x] Harden and freeze the homepage hero Focus Stack, dashboard backdrop, extracted readiness panel, responsive event-card layout, header-matched primary CTA hover, internal hover life, reduced-motion state, and targeted React best-practices review.
-- [x] Finalize and freeze the homepage narrative, governance-domain interaction, connected-capability hierarchy, Secura text treatment, WordPress article links, and interim trial-intent CTA.
+- [x] Finalize and freeze the complete 2026-09-01 homepage baseline, including section order, governance-domain interaction, product visuals, framework and integration proof, seven-day readiness placement, WordPress links, conversion copy, and responsive/reduced-motion behavior.
 - [x] Standardize shared primary and secondary button interaction while keeping icon usage semantic and context-specific.
 - [x] Consolidate repeated React directory behavior and establish indexed, content-owned route/detail boundaries without changing the current UX.
 - [ ] Finish sitemap coverage for privacy, terms, accessibility, eligible resource detail pages, and every approved public route.
