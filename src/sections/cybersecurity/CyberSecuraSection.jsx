@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FileCheck2, RefreshCw, ScanSearch, ShieldCheck } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 
 export const SECURA_REVIEW_DELAYS = { scope: 650, reviewing: 850 };
 
@@ -8,7 +8,8 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
   const panelRef = useRef(null);
   const timersRef = useRef([]);
   const hasPlayedRef = useRef(false);
-  const [phase, setPhase] = useState(motionEnabled ? 'scope' : 'result');
+  const canPlay = motionEnabled && typeof IntersectionObserver !== 'undefined';
+  const [phase, setPhase] = useState(canPlay ? 'scope' : 'result');
 
   const clearTimers = useCallback(() => {
     timersRef.current.forEach((timer) => window.clearTimeout(timer));
@@ -28,13 +29,8 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
   }, [clearTimers]);
 
   useEffect(() => {
-    if (!motionEnabled) {
+    if (!canPlay) {
       clearTimers();
-      setPhase('result');
-      return undefined;
-    }
-
-    if (typeof IntersectionObserver === 'undefined') {
       setPhase('result');
       return undefined;
     }
@@ -55,7 +51,7 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
       observer.disconnect();
       clearTimers();
     };
-  }, [clearTimers, motionEnabled, play]);
+  }, [canPlay, clearTimers, play]);
 
   return (
     <section className="section overflow-hidden bg-navy text-white" aria-labelledby="cyber-secura-title">
@@ -84,15 +80,13 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
             <span className="text-[.64rem] text-muted">Illustrative product view</span>
           </header>
 
-          <AnimatePresence initial={false}>
-            <motion.div
-              key={phase}
-              className="p-6 max-[520px]:p-4"
-              initial={motionEnabled ? { opacity: 0, y: 8 } : false}
-              animate={{ opacity: 1, y: 0 }}
-              exit={motionEnabled ? { opacity: 0, y: -6 } : undefined}
-              transition={{ duration: 0.24 }}
-            >
+          <motion.div
+            key={phase}
+            className="p-6 max-[520px]:p-4"
+            initial={canPlay ? { opacity: 0, y: 8 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.24 }}
+          >
               {phase === 'scope' && (
                 <div>
                   <ShieldCheck className="size-5 text-teal" aria-hidden="true" />
@@ -138,8 +132,7 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
                   <p className="mt-4 text-[.68rem] text-muted">Validate findings before taking action.</p>
                 </div>
               )}
-            </motion.div>
-          </AnimatePresence>
+          </motion.div>
 
           <div className="flex justify-end border-t border-line px-5 py-3">
             <button
@@ -147,7 +140,7 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
               type="button"
               onClick={() => {
                 hasPlayedRef.current = true;
-                if (motionEnabled) play();
+                if (canPlay) play();
                 else setPhase('result');
               }}
             >

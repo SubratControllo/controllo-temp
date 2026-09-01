@@ -5,13 +5,17 @@ import { cyberSecuraReview } from '../../data/cybersecurityContent';
 import CyberSecuraSection, { SECURA_REVIEW_DELAYS } from './CyberSecuraSection';
 
 let inViewCallback;
+const disconnect = vi.fn();
+
 class IntersectionObserverStub {
   constructor(callback) {
     inViewCallback = callback;
   }
 
   observe() {}
-  disconnect() {}
+  disconnect() {
+    disconnect();
+  }
 }
 
 const enterView = () => act(() => inViewCallback([{ isIntersecting: true, intersectionRatio: 0.7 }]));
@@ -19,6 +23,8 @@ const enterView = () => act(() => inViewCallback([{ isIntersecting: true, inters
 describe('CyberSecuraSection', () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    inViewCallback = undefined;
+    disconnect.mockClear();
     vi.stubGlobal('IntersectionObserver', IntersectionObserverStub);
   });
 
@@ -65,5 +71,48 @@ describe('CyberSecuraSection', () => {
 
     expect(dossier).toHaveAttribute('data-phase', 'result');
     expect(within(dossier).getAllByRole('listitem', { name: /gap:/i })).toHaveLength(2);
+
+    act(() => screen.getByRole('button', { name: 'Replay Secura review' }).click());
+    expect(dossier).toHaveAttribute('data-phase', 'result');
+  });
+
+  it('renders the complete result when IntersectionObserver is unavailable', () => {
+    vi.stubGlobal('IntersectionObserver', undefined);
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    expect(dossier).toHaveAttribute('data-phase', 'result');
+    expect(within(dossier).getAllByRole('listitem', { name: /gap:/i })).toHaveLength(2);
+
+    act(() => screen.getByRole('button', { name: 'Replay Secura review' }).click());
+    expect(dossier).toHaveAttribute('data-phase', 'result');
+  });
+
+  it('does not start the review below the required visibility threshold', () => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    act(() => inViewCallback([{ isIntersecting: true, intersectionRatio: 0.44 }]));
+    act(() => vi.advanceTimersByTime(20_000));
+
+    expect(dossier).toHaveAttribute('data-phase', 'scope');
+  });
+
+  it('keeps a single phase panel in the dossier during a transition', () => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    enterView();
+    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
+
+    expect(within(dossier).getAllByRole('heading', { level: 3 })).toHaveLength(1);
+  });
+
+  it('disconnects the observer when unmounted', () => {
+    const { unmount } = render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+
+    unmount();
+
+    expect(disconnect).toHaveBeenCalledOnce();
   });
 });
