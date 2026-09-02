@@ -14,15 +14,17 @@ const environmentRows = [
 
 function HorizonPlane({ label, rows, motionEnabled, delay }) {
   return (
-    <motion.div className="grid gap-3 p-5 max-[460px]:p-4" initial={motionEnabled ? { opacity: 0, y: 10 } : false} animate={{ opacity: 1, y: 0 }} transition={{ duration: .38, delay }}>
+    <motion.div className="grid gap-3 p-5 max-[460px]:p-4" role="group" aria-label={`${label} status`} initial={motionEnabled ? { opacity: 0, y: 10 } : false} animate={{ opacity: 1, y: 0 }} transition={{ duration: .38, delay }}>
       <span className="font-mono text-[.64rem] font-medium tracking-[.12em] uppercase text-teal">{label}</span>
-      {rows.map(([name, state, Icon]) => (
-        <div className="grid min-h-14 grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-line pt-3" key={name}>
-          <Icon className="size-4 text-teal" aria-hidden="true" />
-          <strong className="text-[.76rem] font-medium">{name}</strong>
-          <span className="text-[.65rem] text-muted">{state}</span>
-        </div>
-      ))}
+      <ul className="m-0 list-none p-0" aria-label={`${label} readiness details`}>
+        {rows.map(([name, state, Icon]) => (
+          <li className="grid min-h-14 grid-cols-[auto_1fr_auto] items-center gap-3 border-t border-line pt-3" aria-label={`${name}: ${state}`} key={name}>
+            <Icon className="size-4 text-teal" aria-hidden="true" />
+            <strong className="text-[.76rem] font-medium">{name}</strong>
+            <span className="text-[.65rem] text-muted">{state}</span>
+          </li>
+        ))}
+      </ul>
     </motion.div>
   );
 }
@@ -39,26 +41,25 @@ export default function CyberHeroSection({ content, motionEnabled }) {
           <div className="action-row max-[460px]:grid">
             <TrialLink className="button button--mint button--directional"><ArrowRight aria-hidden="true" />Start Free Trial</TrialLink>
             <Link className="button button--ghost" to="/demo"><CalendarDays aria-hidden="true" />Request a Demo</Link>
-            <Link className="inline-flex min-h-11.5 items-center gap-2 px-2 text-[.82rem] text-teal" to="/platform"><Eye className="size-4" aria-hidden="true" />Explore the Platform</Link>
+            <Link className="inline-flex min-h-11.5 items-center gap-2 rounded-[12px] px-2 text-[.82rem] text-teal transition-[background-color,color] duration-200 hover:bg-white hover:text-navy focus-visible:bg-white focus-visible:text-navy" to="/platform"><Eye className="size-4" aria-hidden="true" />Explore the Platform</Link>
           </div>
         </div>
-        <motion.div
-          className="relative mx-auto w-full max-w-165 overflow-hidden rounded-[28px] border border-navy/12 bg-white/88 shadow-elevated backdrop-blur"
+        <motion.figure
+          className="relative mx-auto my-0 w-full max-w-165 overflow-hidden rounded-[28px] border border-navy/12 bg-white/88 shadow-elevated backdrop-blur"
           initial={motionEnabled ? { opacity: 0, y: 18, scale: .985 } : false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: .7, ease: [.2, .7, .2, 1] }}
-          role="img"
           aria-label="Illustrative assurance and environment overview"
           data-testid="assurance-horizon"
           data-motion={motionEnabled ? 'animated' : 'static'}
           data-state="resolved"
         >
           {motionEnabled ? <motion.span className="pointer-events-none absolute inset-y-0 z-10 w-1/3 -skew-x-12 bg-linear-to-r from-transparent via-mint/14 to-transparent" initial={{ x: '-130%' }} animate={{ x: '430%' }} transition={{ duration: .8, delay: .62, ease: [.2, .7, .2, 1] }} aria-hidden="true" /> : null}
-          <div className="flex min-h-12 items-center justify-between border-b border-line px-5 font-mono text-[.62rem] uppercase tracking-[.1em] text-muted"><span>Assurance horizon</span><span>Illustrative view</span></div>
+          <figcaption className="flex min-h-12 items-center justify-between border-b border-line px-5 font-mono text-[.62rem] uppercase tracking-[.1em] text-muted"><span>Assurance horizon</span><span>Illustrative view</span></figcaption>
           <HorizonPlane label="Assurance work" rows={assuranceRows} motionEnabled={motionEnabled} delay={motionEnabled ? .16 : 0} />
           <div className="flex items-center gap-3 border-y border-line bg-mist/70 px-5 py-3 font-mono text-[.6rem] uppercase tracking-[.1em] text-muted"><span className="h-px flex-1 bg-line" /><span>Context remains distinct</span><span className="h-px flex-1 bg-line" /></div>
           <HorizonPlane label="Operational context" rows={environmentRows} motionEnabled={motionEnabled} delay={motionEnabled ? .28 : 0} />
-        </motion.div>
+        </motion.figure>
       </div>
     </section>
   );

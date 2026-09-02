@@ -1,10 +1,12 @@
 import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cyberFrameworks } from '../../data/cybersecurityContent';
 import CyberFrameworksSection from './CyberFrameworksSection';
 
 describe('CyberFrameworksSection', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
   it('renders eight featured entries with only two direct detail links', () => {
     render(
       <MemoryRouter>
@@ -27,6 +29,37 @@ describe('CyberFrameworksSection', () => {
       'href',
       '/frameworks',
     );
+  });
+
+  it('provides restrained hover and focus feedback for framework destinations', () => {
+    render(
+      <MemoryRouter>
+        <CyberFrameworksSection frameworks={cyberFrameworks} motionEnabled={false} />
+      </MemoryRouter>,
+    );
+
+    const allFrameworks = screen.getByRole('link', { name: 'Explore All Frameworks' });
+    const soc2 = screen.getByRole('link', { name: /Explore SOC 2/i });
+    expect(allFrameworks).toHaveClass('hover:text-navy', 'focus-visible:text-navy');
+    expect(soc2).toHaveClass('hover:bg-mint-soft', 'focus-visible:bg-mint-soft');
+  });
+
+  it('renders all framework entries statically when IntersectionObserver is unavailable', () => {
+    vi.stubGlobal('IntersectionObserver', undefined);
+    render(
+      <MemoryRouter>
+        <CyberFrameworksSection frameworks={cyberFrameworks} motionEnabled />
+      </MemoryRouter>,
+    );
+
+    const items = within(
+      screen.getByRole('list', { name: 'Featured cyber and cloud frameworks' }),
+    ).getAllByRole('listitem');
+    expect(items).toHaveLength(8);
+    items.forEach((item) => {
+      expect(item).toHaveAttribute('data-motion', 'static');
+      expect(item).not.toHaveStyle({ opacity: '0' });
+    });
   });
 
   it('describes reuse without promising automatic completion', () => {

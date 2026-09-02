@@ -62,7 +62,7 @@ Static arrays and reusable render components stay at module scope. Do not add me
 
 ### Dedicated Cybersecurity Route
 
-`src/pages/CybersecurityPage.jsx` owns metadata and the ordered six-section composition for `/solutions/cybersecurity`. `src/data/cybersecurityContent.js` owns its approved copy and illustrative product states. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
+`src/pages/CybersecurityPage.jsx` owns metadata and the ordered six-section composition for `/solutions/cybersecurity`. `src/data/cybersecurityContent.js` owns the route's core approved narrative, metadata, and configured content arrays; small presentational labels and illustrative UI states may remain local to the section that renders them. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
 
 Each route-owned section controls one visual system: Assurance Horizon, Response Matrix, Review Dossier, Operational Visibility Console, Shared-Control Field, or Quiet Resolution. `MotionContext` supplies the operating-system motion preference; automated sequences settle, clean up timers/observers, and render complete static states under reduced motion.
 

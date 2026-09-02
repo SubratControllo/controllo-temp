@@ -9,6 +9,8 @@ const sharedControls = [
 ];
 
 export default function CyberFrameworksSection({ frameworks, motionEnabled }) {
+  const canReveal = motionEnabled && typeof IntersectionObserver !== 'undefined';
+
   return (
     <section
       className="section overflow-hidden bg-white"
@@ -26,11 +28,11 @@ export default function CyberFrameworksSection({ frameworks, motionEnabled }) {
             100+ global and regional frameworks
           </p>
           <Link
-            className="mt-8 inline-flex min-h-11.5 items-center gap-2 text-[.8rem] font-medium text-teal"
+            className="group mt-8 inline-flex min-h-11.5 items-center gap-2 text-[.8rem] font-medium text-teal transition-colors duration-200 hover:text-navy focus-visible:text-navy"
             to="/frameworks"
           >
             Explore All Frameworks
-            <ArrowRight className="size-4" aria-hidden="true" />
+            <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1" aria-hidden="true" />
           </Link>
         </div>
 
@@ -72,9 +74,11 @@ export default function CyberFrameworksSection({ frameworks, motionEnabled }) {
             {frameworks.map((framework, index) => (
               <motion.li
                 className="min-h-30 rounded-[18px] border border-line bg-white p-4"
-                initial={motionEnabled ? { opacity: 0, y: 10 } : false}
-                whileInView={motionEnabled ? { opacity: 1, y: 0 } : undefined}
-                viewport={{ once: true, amount: 0.3 }}
+                data-motion={canReveal ? 'animated' : 'static'}
+                initial={canReveal ? { opacity: 0, y: 10 } : false}
+                animate={canReveal ? undefined : { opacity: 1, y: 0 }}
+                whileInView={canReveal ? { opacity: 1, y: 0 } : undefined}
+                viewport={canReveal ? { once: true, amount: 0.3 } : undefined}
                 transition={{ duration: 0.34, delay: Math.min(index * 0.04, 0.24) }}
                 key={framework.name}
               >
@@ -87,7 +91,7 @@ export default function CyberFrameworksSection({ frameworks, motionEnabled }) {
                 </small>
                 {framework.href ? (
                   <Link
-                    className="mt-4 inline-flex min-h-11.5 items-center text-[.68rem] text-teal"
+                    className="mt-4 inline-flex min-h-11.5 items-center rounded-[10px] px-2 text-[.68rem] text-teal transition-[background-color,color] duration-200 hover:bg-mint-soft hover:text-navy focus-visible:bg-mint-soft focus-visible:text-navy"
                     to={framework.href}
                   >
                     Explore {framework.name}

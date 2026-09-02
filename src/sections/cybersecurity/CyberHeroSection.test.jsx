@@ -17,14 +17,20 @@ describe('CyberHeroSection', () => {
     expect(within(hero).getByRole('heading', { level: 1, name: cyberHero.title })).toBeInTheDocument();
     expect(within(hero).getByRole('link', { name: 'Start Free Trial' })).toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: 'Request a Demo' })).toHaveAttribute('href', '/demo');
-    expect(within(hero).getByRole('link', { name: 'Explore the Platform' })).toHaveAttribute('href', '/platform');
+    const platformLink = within(hero).getByRole('link', { name: 'Explore the Platform' });
+    expect(platformLink).toHaveAttribute('href', '/platform');
+    expect(platformLink).toHaveClass('hover:bg-white', 'focus-visible:bg-white');
   });
 
-  it('separates assurance work from operational context without connectors', () => {
+  it('preserves meaningful assurance and environment rows inside a labelled figure', () => {
     renderHero();
-    const graphic = screen.getByRole('img', { name: 'Illustrative assurance and environment overview' });
+    const graphic = screen.getByRole('figure', { name: 'Illustrative assurance and environment overview' });
     expect(within(graphic).getByText('Assurance work')).toBeInTheDocument();
     expect(within(graphic).getByText('Operational context')).toBeInTheDocument();
+    expect(within(graphic).getAllByRole('list')).toHaveLength(2);
+    expect(within(graphic).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(graphic).getByRole('listitem', { name: 'Access governance: Reviewable' })).toBeInTheDocument();
+    expect(within(graphic).getByRole('listitem', { name: 'Cloud sources: Current' })).toBeInTheDocument();
     expect(graphic.querySelector('[data-cloud-control-connector]')).not.toBeInTheDocument();
   });
 

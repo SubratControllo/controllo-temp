@@ -19,6 +19,7 @@ class IntersectionObserverStub {
 }
 
 const enterView = () => act(() => inViewCallback([{ isIntersecting: true, intersectionRatio: 0.7 }]));
+const leaveView = () => act(() => inViewCallback([{ isIntersecting: false, intersectionRatio: 0 }]));
 
 describe('CyberSecuraSection', () => {
   beforeEach(() => {
@@ -60,7 +61,9 @@ describe('CyberSecuraSection', () => {
     act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope + SECURA_REVIEW_DELAYS.reviewing));
     vi.useRealTimers();
     const user = userEvent.setup();
-    await user.click(screen.getByRole('button', { name: 'Replay Secura review' }));
+    const replay = screen.getByRole('button', { name: 'Replay Secura review' });
+    expect(replay).toHaveClass('hover:bg-mint-soft', 'focus-visible:bg-mint-soft');
+    await user.click(replay);
 
     expect(screen.getByRole('article', { name: 'Illustrative Secura control review' })).toHaveAttribute('data-phase', 'scope');
   });
@@ -106,6 +109,54 @@ describe('CyberSecuraSection', () => {
     act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
 
     expect(within(dossier).getAllByRole('heading', { level: 3 })).toHaveLength(1);
+  });
+
+  it.each([
+    ['scope', SECURA_REVIEW_DELAYS.scope - 1],
+    ['reviewing', SECURA_REVIEW_DELAYS.scope + SECURA_REVIEW_DELAYS.reviewing - 1],
+  ])('settles to result and clears timers when leaving during %s', (expectedPhase, elapsed) => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    enterView();
+    act(() => vi.advanceTimersByTime(elapsed));
+    expect(dossier).toHaveAttribute('data-phase', expectedPhase);
+
+    leaveView();
+    expect(dossier).toHaveAttribute('data-phase', 'result');
+    expect(vi.getTimerCount()).toBe(0);
+
+    enterView();
+    act(() => vi.advanceTimersByTime(20_000));
+    expect(dossier).toHaveAttribute('data-phase', 'result');
+  });
+
+  it('announces each phase through one stable polite status region', () => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const status = screen.getByRole('status');
+
+    expect(status).toHaveAttribute('aria-live', 'polite');
+    expect(status).toHaveAttribute('aria-atomic', 'true');
+    expect(status).toHaveTextContent(`Review scope ready for ${cyberSecuraReview.control}.`);
+
+    enterView();
+    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
+    expect(screen.getByRole('status')).toBe(status);
+    expect(status).toHaveTextContent('Secura is reviewing connected control context.');
+
+    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.reviewing));
+    expect(screen.getByRole('status')).toBe(status);
+    expect(status).toHaveTextContent('Secura review complete: 2 gaps identified.');
+  });
+
+  it('clears pending review timers when unmounted', () => {
+    const { unmount } = render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    enterView();
+    expect(vi.getTimerCount()).toBe(2);
+
+    unmount();
+
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it('disconnects the observer when unmounted', () => {

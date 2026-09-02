@@ -4,6 +4,12 @@ import { motion } from 'motion/react';
 
 export const SECURA_REVIEW_DELAYS = { scope: 650, reviewing: 850 };
 
+function getPhaseAnnouncement(phase, content) {
+  if (phase === 'reviewing') return 'Secura is reviewing connected control context.';
+  if (phase === 'result') return 'Secura review complete: 2 gaps identified.';
+  return `Review scope ready for ${content.control}.`;
+}
+
 export default function CyberSecuraSection({ content, motionEnabled }) {
   const panelRef = useRef(null);
   const timersRef = useRef([]);
@@ -37,9 +43,14 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.45 && !hasPlayedRef.current) {
+        const isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.45;
+
+        if (isVisible && !hasPlayedRef.current) {
           hasPlayedRef.current = true;
           play();
+        } else if (!isVisible && hasPlayedRef.current) {
+          clearTimers();
+          setPhase('result');
         }
       },
       { threshold: [0.45] }
@@ -79,6 +90,10 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
             <span className="font-mono text-[.62rem] uppercase tracking-[.12em] text-teal">Control review dossier</span>
             <span className="text-[.64rem] text-muted">Illustrative product view</span>
           </header>
+
+          <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {getPhaseAnnouncement(phase, content)}
+          </p>
 
           <motion.div
             key={phase}
@@ -136,7 +151,7 @@ export default function CyberSecuraSection({ content, motionEnabled }) {
 
           <div className="flex justify-end border-t border-line px-5 py-3">
             <button
-              className="inline-flex min-h-11.5 items-center gap-2 rounded-[14px] border border-line bg-white px-4 text-[.72rem] text-teal"
+              className="inline-flex min-h-11.5 items-center gap-2 rounded-[14px] border border-line bg-white px-4 text-[.72rem] text-teal transition-[background-color,border-color,color] duration-200 hover:border-teal/35 hover:bg-mint-soft hover:text-navy focus-visible:border-teal/35 focus-visible:bg-mint-soft focus-visible:text-navy"
               type="button"
               onClick={() => {
                 hasPlayedRef.current = true;

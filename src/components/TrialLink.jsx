@@ -18,20 +18,24 @@ export default function TrialLink({
   className = '',
   onClick,
   trialUrl = import.meta.env.VITE_TRIAL_URL,
-  ...anchorProps
+  href: _href,
+  to: _to,
+  target: _target,
+  rel: _rel,
+  ...linkProps
 }) {
   const destination = resolveTrialUrl(trialUrl);
 
   if (destination) {
     return (
-      <a className={className} href={destination} onClick={onClick} {...anchorProps}>
+      <a {...linkProps} className={className} href={destination} onClick={onClick}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link className={className} to="/pricing" onClick={onClick} {...anchorProps}>
+    <Link {...linkProps} className={className} to="/pricing" onClick={onClick}>
       {children}
     </Link>
   );
