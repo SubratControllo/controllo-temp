@@ -60,6 +60,16 @@ Framework and resource detail pages use module-level slug maps exported through 
 
 Static arrays and reusable render components stay at module scope. Do not add memoization around trivial expressions; introduce deferred rendering, pagination, or remote-data caching only when collection size or a future API makes the cost measurable.
 
+### Dedicated Cybersecurity Route
+
+`src/pages/CybersecurityPage.jsx` owns metadata and the ordered six-section composition for `/solutions/cybersecurity`. `src/data/cybersecurityContent.js` owns its approved copy and illustrative product states. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
+
+Each route-owned section controls one visual system: Assurance Horizon, Response Matrix, Review Dossier, Operational Visibility Console, Shared-Control Field, or Quiet Resolution. `MotionContext` supplies the operating-system motion preference; automated sequences settle, clean up timers/observers, and render complete static states under reduced motion.
+
+`TrialLink` accepts only an absolute `http:` or `https:` `VITE_TRIAL_URL`. A missing, blank, malformed, relative, or non-web value renders an internal Router link to `/pricing`. The variable is public browser configuration and must never contain a secret.
+
+Generic Product and Pricing pages no longer repeat FAQ content. Educational questions belong in the external article library; a future pricing-specific FAQ requires separately approved commercial answers.
+
 ## Presentation and Motion
 
 Tailwind CSS v4 utilities are colocated with the React markup that owns each layout, surface, state, and breakpoint. `src/styles.css` is intentionally limited to `@theme` tokens, global base rules, a small set of shared primitives, and effects that are clearer as CSS: keyframes, pseudo-elements, gradients, and visualization geometry. New component-specific spacing or responsive behavior belongs in JSX rather than a new stylesheet selector.
