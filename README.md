@@ -83,6 +83,7 @@ All three values are optional. Every `VITE_*` variable is embedded in client-sid
 - [Domain language](CONTEXT.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Current progress and roadmap](docs/ROADMAP.md)
+- [Future scope register](docs/FUTURE_SCOPE.md)
 - [Design system](design-system/controllo-compliance-current/MASTER.md)
 
 AI-assisted contributors should also read [AGENTS.md](AGENTS.md).

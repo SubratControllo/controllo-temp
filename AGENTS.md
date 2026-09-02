@@ -8,6 +8,7 @@ This repository is the public Controllo marketing website. Preserve its calm, pr
 2. Read `CONTEXT.md` when changing product language or domain copy.
 3. Read `docs/ARCHITECTURE.md` before changing routes, shared layout, content structures, motion, forms, or SEO.
 4. Read `docs/ROADMAP.md` before treating any existing surface as production-ready.
+5. Read `docs/FUTURE_SCOPE.md` before brainstorming, planning, or deferring work. Bring relevant entries into the current decision flow and record every idea or plan intentionally left for later before completing the task.
 
 For visual changes, read `design-system/controllo-compliance-current/MASTER.md`. The homepage is frozen under its **Frozen Homepage Baseline**; reopen a homepage surface only when the user explicitly requests a change to that surface. Use `docs/superpowers/specs/` only when historical design intent is relevant.
 
@@ -16,6 +17,8 @@ For visual changes, read `design-system/controllo-compliance-current/MASTER.md`.
 Read `docs/AGENT_SKILL_ROUTING.md` before acting on prompts involving brainstorming, planning, UI/UX, frontend implementation, animation, graphics, image generation, branding, reference-to-code work, documentation, debugging, testing, browser QA, architecture, refactoring, review, accessibility, or security.
 
 Natural-language intent is enough to trigger routing; the user does not need to type a skill name. Use every available skill the user explicitly names. For inferred routing, choose the smallest effective set: normally one primary skill and no more than two supporting skills. Read each selected `SKILL.md` completely, follow its required sequence and approval gates, and apply it within this repository's scope, accessibility, dependency, validation, and production-build rules.
+
+`docs/FUTURE_SCOPE.md` is the durable register for every idea, dependency, refinement, and plan intentionally left for later. An entry preserves context but does not authorize expanding the active task; implementation still requires current user approval or an approved plan.
 
 # Codex Execution Rules
 

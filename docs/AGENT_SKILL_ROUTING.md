@@ -15,6 +15,8 @@ Do not invoke every skill that loosely matches. Prefer the most specific primary
 
 ## Discovery And Planning
 
+Before brainstorming or planning, read `docs/FUTURE_SCOPE.md`. Reconcile relevant entries into discovery questions, options, and trade-offs; update the register with any outcome intentionally deferred after the current scope is approved.
+
 | Prompt intent | Primary skill | Optional support | Routing note |
 | --- | --- | --- | --- |
 | Brainstorm, explore ideas, compare concepts, or decide direction before implementation | `superpowers:brainstorming` | None during its discovery workflow | Use first and follow its approval gate. |
