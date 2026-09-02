@@ -60,12 +60,6 @@ export const productPages = {
     accent: 'teal', icon: Cloud,
     features: [['Cloud asset visibility', 'Bring AWS, Azure, and Google Cloud resources into one operating view.'], ['Identity and endpoint context', 'Review Microsoft Entra, Intune, Defender, and Google Workspace signals.'], ['Connected decisions', 'Keep monitoring context linked to assets, risk, and control work.']]
   },
-  '/solutions/cybersecurity': {
-    eyebrow: 'Cybersecurity', title: 'Keep security controls ready with evidence, risk, and audit context.',
-    description: 'Run framework implementation, policy and evidence management, control assessment, and audit collaboration in one connected workspace.',
-    accent: 'navy', icon: ShieldCheck,
-    features: [['Control implementation', 'Keep requirements, descriptions, owners, and progress together.'], ['Evidence and policy management', 'Connect reviewable proof and governed documentation to the right controls.'], ['Multi-framework readiness', 'Reuse approved control work across related security frameworks.']]
-  },
   '/solutions/privacy': {
     eyebrow: 'Privacy', title: 'Operationalize privacy across data, systems, and teams.',
     description: 'Maintain ROPA, conduct DPIA and PIA reviews, document data flows, and keep PII accountability visible across the program.',
@@ -168,13 +162,6 @@ export const resourceTypes = ['All', ...new Set(resources.map((item) => item.typ
 const resourcesBySlug = new Map(resources.map((item) => [item.slug, item]));
 
 export const getResourceBySlug = (slug) => resourcesBySlug.get(slug);
-
-export const faqs = [
-  ['Does Controllo replace our auditor?', 'No. Controllo organizes the program, evidence, decisions, and collaboration around the audit. Independent assurance remains with your chosen auditor.'],
-  ['Can we use our existing controls?', 'The platform is designed around a shared control model so teams can bring existing controls forward and map them across applicable frameworks.'],
-  ['How does Secura AI make decisions?', 'Secura AI provides guidance and prepares work for review. Accountable people remain responsible for approvals and program decisions.'],
-  ['Can Controllo support multiple programs?', 'The enterprise experience is designed to provide shared visibility while preserving ownership across teams, products, and business units.']
-];
 
 export const footerGroups = [
   ['Platform', [['Overview', '/platform'], ['Compliance', '/platform/continuous-compliance'], ['Risk', '/platform/risk-management'], ['Cloud', '/platform/cloud-monitoring'], ['Secura AI', '/platform/secura-ai']]],

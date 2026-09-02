@@ -14,7 +14,7 @@ The repository contains a working React/Vite single-page application with:
 - A viewport-only Secura product loop that opens on a compact control-detail preview with connected context, review scope, and the real gradient Secura banner, sends a deterministic review request, and resolves into a reviewable gap assessment with an action-ready Secura recommendation tray, with a static reduced-motion result state
 - Tailwind CSS v4 utilities colocated with React components, backed by shared design tokens and a small effects stylesheet
 - Lazy route boundaries, shared directory controls, and indexed content lookups prepared for larger content collections
-- Platform and solution detail routes, including cloud monitoring, cybersecurity, privacy operations, and AI governance
+- Platform and solution detail routes, including a dedicated six-section Cybersecurity route plus cloud monitoring, privacy operations, and AI governance
 - Searchable framework and integration directories
 - Framework detail pages for SOC 2, ISO 27001, and HIPAA
 - Resource, package, company, security, privacy-policy, terms, and accessibility pages
@@ -22,7 +22,7 @@ The repository contains a working React/Vite single-page application with:
 - Per-route metadata, structured data, sitemap, robots rules, and a static-host SPA fallback
 - Operating-system reduced-motion support and a WebGL visual with a static fallback
 
-The last full validation on 2026-08-24 recorded 18 passing tests and a successful production build. After subsequent focused tests and responsive browser QA, the complete homepage baseline was frozen on 2026-09-01. The current **View plans** and **Start free trial** actions lead to pricing and do not claim that registration or payment is connected. The full suite and production build have not been rerun. This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md).
+The last full validation on 2026-08-24 recorded 18 passing tests and a successful production build. After subsequent focused tests and responsive browser QA, the complete homepage baseline was frozen on 2026-09-01. The frozen homepage **View plans** and **Start free trial** actions, plus the shared-header **Start free trial** action, intentionally lead to pricing until the separate registration/payment flow is connected. On the dedicated Cybersecurity route, a valid configured `VITE_TRIAL_URL` hands off to the external trial application in the current tab; an absent or invalid value falls back to pricing. The full suite and production build have not been rerun. This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md).
 
 ## Local Setup
 
@@ -48,9 +48,12 @@ The site works without environment values. In that mode, demo requests are simul
 ```dotenv
 VITE_LEAD_ENDPOINT=https://example.com/api/leads
 VITE_DEMO_CALENDAR_URL=https://example.com/book
+VITE_TRIAL_URL=https://trial.example.com/start
 ```
 
-Both values are optional. Every `VITE_*` variable is embedded in client-side code and must be safe to expose publicly. The lead endpoint must accept the browser JSON request described in [the architecture](docs/ARCHITECTURE.md).
+`VITE_TRIAL_URL` is the optional public absolute HTTP(S) handoff owned by the external trial application. When it is absent or invalid, Cybersecurity page trial actions remain visible and lead to `/pricing`. The marketing site does not implement registration, payment, provisioning, onboarding, or trial-duration logic.
+
+All three values are optional. Every `VITE_*` variable is embedded in client-side code and must be safe to expose publicly. The lead endpoint must accept the browser JSON request described in [the architecture](docs/ARCHITECTURE.md).
 
 ## Commands
 

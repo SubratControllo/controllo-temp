@@ -1,6 +1,6 @@
 # Roadmap and Current Progress
 
-Last reviewed: 2026-09-01
+Last reviewed: 2026-09-02
 
 This file is the current delivery source of truth. Update it when a capability or launch blocker changes; keep speculative ideas out until they have an owner and a clear outcome.
 
@@ -22,6 +22,7 @@ Implemented:
 - Product-authentic Secura viewport loop with the existing CursorGrid, a compact control-detail opening state, connected policy/evidence/owner context, review-scope inputs, the real gradient Secura activation banner, a deterministic control-review request, a “2 gaps found” result, one continuous three-metric rail, four reviewable checks, an action-ready recommendation tray, constrained centered composition, and a static reduced-motion result state
 - Platform pages for overview, continuous compliance, risk, audit management, cloud monitoring, and Secura AI
 - Solution pages for cybersecurity, privacy operations, AI governance, enterprise, and growing teams
+- [x] Replace the generic Cybersecurity route with a claim-verified six-section page covering framework implementation, Secura review, risk and auditor context, supported cloud/workforce monitoring, framework reuse, and an externally configurable trial handoff. The route has distinct responsive graphics, keyboard-operable tabs, one-shot motion, and complete reduced-motion states.
 - Framework directory with search/filter and live detail pages for SOC 2, ISO 27001, and HIPAA
 - Integration directory with search/filter
 - Resource directory and detail routes
@@ -116,6 +117,14 @@ Validation on 2026-09-01:
 - The approved Seven-Day Readiness Path is Select, Assess, Implement, Review, and Collaborate. This supersedes the earlier 2026-08-31 Connect, Validate, Map, Resolve, and Report prototype record without rewriting that historical validation entry.
 - `npm test -- src/App.test.jsx src/sections/HeroSection.test.jsx src/sections/TrustStrip.test.jsx src/sections/PlatformSection.test.jsx src/sections/SecuraSection.test.jsx src/sections/RiskSection.test.jsx src/sections/ComplianceStory.test.jsx src/sections/BlogSection.test.jsx src/sections/CtaSection.test.jsx --run --reporter=dot`: 77 homepage-focused tests passed in 9 files. The production build and full test suite were not run.
 
+Validation on 2026-09-02:
+
+- The dedicated Cybersecurity route renders its six claim-verified sections, safe trial fallback, distinct responsive visuals, keyboard-operable Cloud tabs, one-shot Secura review, and complete reduced-motion states. Generic Product and Pricing FAQs are removed.
+- `npm test -- --run src/components/TrialLink.test.jsx src/sections/cybersecurity/CyberHeroSection.test.jsx src/sections/cybersecurity/CyberResponseSection.test.jsx src/sections/cybersecurity/CyberSecuraSection.test.jsx src/sections/cybersecurity/CyberCloudSection.test.jsx src/sections/cybersecurity/CyberFrameworksSection.test.jsx src/sections/cybersecurity/CyberCtaSection.test.jsx src/pages/CybersecurityPage.test.jsx src/pages/FaqRemoval.test.jsx src/App.test.jsx --reporter=dot`:
+  `Test Files  10 passed (10)`
+  `Tests  58 passed (58)`
+- Browser QA passed at 1440×900, 1024×900, 768×1024, 375×812, and 320×700 with zero horizontal overflow and no browser-console warnings. The production build and full test suite were not run.
+
 ## Frozen Header Baseline
 
 Status: frozen on 2026-08-25 for release preparation.
@@ -185,7 +194,7 @@ These items must be resolved before calling the website production-ready.
 
 - [ ] Replace privacy and terms placeholders with approved legal language and publish valid privacy/security contact channels.
 - [ ] Configure a production lead endpoint and verify validation, CORS, rate limiting, spam handling, retention, deletion, CRM/email delivery, and failure recovery.
-- [ ] Connect pricing-intent trial actions to the approved registration/payment handoff and verify the complete 14-day activation flow before presenting them as an activated self-serve trial.
+- [ ] Supply the approved production `VITE_TRIAL_URL` owned by the external trial application, connect pricing-intent actions to the approved registration/payment handoff, verify registration and useful first-session activation end to end, and reconcile the external system's trial duration before publishing any duration claim.
 - [ ] Decide whether analytics will launch. If yes, load it only under the approved consent policy and honor `essential`; if no, remove unsupported analytics language and event behavior.
 - [ ] Approve all product claims, framework claims, package descriptions, integration availability, and customer-facing proof.
 - [ ] Complete editorial and product-claim review of every WordPress article linked from the homepage; remove unsupported outcome promises, reconcile framework/control counts, and correct copy before launch.
