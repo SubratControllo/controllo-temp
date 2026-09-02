@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-08-26
+Last reviewed: 2026-09-02
 
 ## System Shape
 
@@ -48,7 +48,7 @@ The production artifact is the static `dist/` directory. The host must serve `in
 
 The site intentionally keeps content close to the frontend:
 
-- `src/data/enterpriseContent.js` owns navigation, product pages, frameworks, integrations, resources, FAQs, and footer groups.
+- `src/data/enterpriseContent.js` owns navigation, product pages, frameworks, integrations, resources, and footer groups.
 - `src/data/brandAssets.js` is the runtime registry for locally hosted third-party brand marks; provenance and review status remain beside the files in `public/assets/brands/README.md`.
 - `src/data/siteContent.js` owns homepage visualization data and framework-flow labels.
 - `src/data/staticPages.js` owns company, security, privacy, terms, and accessibility content; `src/pages/StaticPage.jsx` only composes the shared presentation.

@@ -190,7 +190,6 @@ These items must be resolved before calling the website production-ready.
 - [ ] Decide whether analytics will launch. If yes, load it only under the approved consent policy and honor `essential`; if no, remove unsupported analytics language and event behavior.
 - [ ] Approve all product claims, framework claims, package descriptions, integration availability, and customer-facing proof.
 - [ ] Complete editorial and product-claim review of every WordPress article linked from the homepage; remove unsupported outcome promises, reconcile framework/control counts, and correct copy before launch.
-- [ ] Connect this workspace to the intended Git repository. No Git metadata or commit history is available in the current folder.
 - [ ] Confirm the deployment host, HTTPS/domain configuration, and deep-route fallback on the production origin.
 
 ## Release Quality
