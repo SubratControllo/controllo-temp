@@ -156,3 +156,13 @@ Every entry must state:
 - **Dependencies:** Product-language verification, an approved motion change, reduced-motion parity, offscreen cancellation, responsive containment, and focused browser and component validation.
 - **Source:** 2026-09-03 Cybersecurity Secura control-removal and freeze decision
 - **Next decision:** What verified user or product need warrants changing the frozen viewport-bound loop?
+
+### FS-014 - Design skill trigger calibration
+
+- **Status:** Deferred
+- **Area:** Codex design capability routing
+- **Outcome:** Validate the curated design, motion, critique, image-direction, and reference skills against representative Controllo prompts, then tighten descriptions or routing where natural-language activation is too broad, too narrow, or duplicative.
+- **Trigger:** At least one real task has exercised each major family: UI implementation, motion, critique, reference workflow, and image direction.
+- **Dependencies:** Fresh Codex task discovery, the installed global and repository-local manifests, observed routing behavior, and preserved Controllo precedence rules.
+- **Source:** 2026-09-03 curated design skill installation
+- **Next decision:** Which skill descriptions or routing rows need adjustment based on observed activation quality without increasing the default skill count?

@@ -19,7 +19,7 @@ Skills define the workflow. Plugins, MCP servers, and app tools provide actions.
 
 ## Capability Inventory Maintenance
 
-Whenever a skill, plugin, MCP server, app tool, agent workflow, or related capability is installed, upgraded, renamed, replaced, or removed, update this file in the same task. Record the resulting capability under the relevant routing or inventory section, reconcile its name, trigger, dependencies, and operating rules, and refresh the `Last reviewed` date. Treat the capability change as incomplete until this file matches what is actually available.
+Whenever a skill, plugin, MCP server, app tool, agent workflow, or related capability is installed, upgraded, renamed, replaced, or removed, update this file in the same task. Record the resulting capability under the relevant routing or inventory section, reconcile its name, trigger, dependencies, and operating rules, and refresh the `Last reviewed` date. Treat the capability change as incomplete until this file matches what is actually available. Use `docs/agents/design-skills.md` as the source inventory for the curated third-party design packages.
 
 ## Discovery And Planning
 
@@ -56,18 +56,29 @@ Subagents require current user authorization or an invoked skill that explicitly
 | Redesign or substantially improve an existing Controllo page or section | `redesign-existing-projects` | `design-taste-frontend`, `build-web-apps:react-best-practices` | Preserve the current design system unless a new direction is requested. |
 | Polish hierarchy, layout, typography, responsiveness, or interaction quality | `design-taste-frontend` | `high-end-visual-design` | Use high-end support for premium art direction, not as a second competing system. |
 | Build a new frontend surface or interactive experience | `build-web-apps:frontend-app-builder` | `design-taste-frontend`, `build-web-apps:react-best-practices` | Follow existing React/Vite and CSS patterns. |
+| Audit one interface domain such as accessibility, color, layout, typography, UI detail, or writing | The matching `better-*` skill | `design-taste-frontend` | Use the narrowest domain skill; use `better-interface` only for a consolidated multi-domain review. |
+| Review a changed interface or generate explicit design variants | `interface-review` or `variant` | `design-taste-frontend` | Use only when review or iteration is requested; do not expand implementation scope automatically. |
+| Shape a landing-page narrative, conversion structure, or product-proof story | `landing-page-design` | `product-proof-saas`, `design-taste-frontend` | Verify public claims and preserve Controllo's product-led narrative. |
+| Model interaction states or evaluate interface feel | `state-machine` or `interfaces-that-feel` | `design-principles` | Use the most specific primary skill and keep behavior accessible and deterministic. |
+| Run focused visual QA for brand consistency or information density | `critique-brand-consistency` or `critique-information-density` | `design-qa-checklist` | Critique only the requested surface and report evidence before proposing changes. |
 | Apply a clean editorial or restrained interface direction | `minimalist-ui` | `design-taste-frontend` | Use when the brief clearly asks for minimalism. |
 | Apply raw Swiss, mechanical, terminal, or brutalist styling | `industrial-brutalist-ui` | `design-taste-frontend` | Use only when explicitly requested; it is not Controllo's default direction. |
 | Create or update a Google Stitch design-system handoff | `stitch-design-taste` | `design-taste-frontend` | Use for Stitch or `DESIGN.md` workflows, not normal site implementation. |
 | Add or compose shadcn components | `build-web-apps:shadcn` | `build-web-apps:react-best-practices` | Use only when shadcn is requested or already part of the affected surface. |
 
-For visual changes, read `design-system/controllo-compliance-current/MASTER.md` before proposing or editing. Treat `high-end-visual-design`, `minimalist-ui`, and `industrial-brutalist-ui` as alternative art directions, not a default stack.
+For visual changes, read `design-system/controllo-compliance-current/MASTER.md` before proposing or editing. Treat `high-end-visual-design`, `minimalist-ui`, and `industrial-brutalist-ui` as alternative art directions, not a default stack. Keep `design-taste-frontend` primary for Controllo implementation and use `docs/agents/design-skills.md` for the installed specialist inventory and collision rules.
+
+Use `operational-enterprise-ai` only for enterprise workflow framing and `product-proof-saas` only for evidence-led SaaS presentation. Neither skill may invent Controllo capabilities, metrics, integrations, or customer proof.
 
 ## Animation And Motion
 
 | Prompt intent | Primary skill | Optional support | Routing note |
 | --- | --- | --- | --- |
 | Add premium website interaction, transition, reveal, or scroll motion | `gpt-taste` | The relevant official `gsap-*` skill when GSAP is requested or already used | Preserve the site motion toggle, reduced-motion behavior, keyboard access, mobile behavior, and static fallbacks. |
+| Implement one bounded animation request | `animate` | `gpt-taste`, the relevant `gsap-*` skill | Use GSAP support only when that runtime is selected or already owns the interaction. |
+| Find animation opportunities without editing | `find-animation-opportunities` | None | Return prioritized opportunities and preserve frozen surfaces. |
+| Audit or review existing animation quality | `improve-animations` or `review-animations` | `optimize-web-animations` for performance | Keep audits read-only unless implementation is separately authorized. |
+| Define a reusable motion language or interaction-feel system | `motion-system` | `interfaces-that-feel`, `design-principles` | Preserve reduced-motion parity and the existing Controllo motion controls. |
 | Add GSAP motion to React components | `gsap-react` | `gsap-core`, `gsap-timeline` | Use `useGSAP`, scoped refs or contexts, and cleanup. Confirm `gsap` and `@gsap/react` are already installed or obtain approval before changing dependencies. |
 | Build scroll-linked, scrubbed, pinned, or parallax motion | `gsap-scrolltrigger` | `gsap-react`, `gsap-performance` | Register ScrollTrigger once, scope and clean up triggers, and preserve a complete reduced-motion state. |
 | Sequence several related motion beats | `gsap-timeline` | `gsap-core`, `gsap-react` | Prefer a labelled timeline over manually chained delays when GSAP is the chosen runtime. |
@@ -88,6 +99,10 @@ The project-scoped GreenSock package is installed under `.agents/skills/` and co
 | --- | --- | --- | --- |
 | Explore website visual directions or generate design-reference images | `imagegen-frontend-web` | `design-taste-frontend` | Use references to settle composition and art direction before implementation. |
 | Generate or edit a raster image, illustration, texture, or product visual | `imagegen` | `imagegen-frontend-web` for web placement direction | Produce actual bitmap assets and verify their intended crop and responsive use. |
+| Capture or translate UI inspiration into prompts | `daily-ui-inspiration-capture` or `design-first-ui-prompting` | `audit-reference-originality` | Use references as inputs, not templates to copy. |
+| Turn HTML or a stitched page capture into interaction direction | `html-to-interaction-prompts` or `stitched-full-page-capture` | `audit-reference-originality` | Keep capture and prompt work separate from implementation approval. |
+| Prepare GPT Image direction for a website visual | `gpt-image-2` | `imagegen-frontend-web`, `imagegen` | `imagegen` remains the runtime for generating the bitmap asset. |
+| Explore a bounded alternative visual direction | `tastemaker` | `design-taste-frontend` | Do not create persistent `.tastemaker` state or reopen frozen surfaces without explicit approval. |
 | Create a logo system, identity board, or brand-guideline visual | `brandkit` | `imagegen` | Preserve existing Controllo identity unless rebranding is explicit. |
 | Convert an attached screenshot or generated design reference into frontend code | `image-to-code` | `redesign-existing-projects`, `build-web-apps:react-best-practices` | Adapt the reference to Controllo rather than copying it blindly. |
 | Generate mobile-app screen concepts | `imagegen-frontend-mobile` | `design-taste-frontend` | Use for app-native mobile work, not ordinary responsive website layouts. |
@@ -211,6 +226,8 @@ Use only capabilities exposed in the current session. A plugin groups workflows;
 - Use `hyperframes` and `remotion` skills for video deliverables, not as substitutes for website animation skills.
 - Use security skills only for security intent. A normal code review does not automatically become a security scan.
 - Use artifact skills only when the requested output format matches the artifact.
+- Treat `tastemaker` as bounded support despite its broad trigger description and installer risk rating. Its dependency, GSAP, `.tastemaker/`, and `~/.tastemaker/` defaults require explicit task authorization.
+- Treat `stitched-full-page-capture` as command-capable tooling. Use it only for explicit capture work and inspect the browser and image command scope first.
 
 ## Controllo Safeguards
 

@@ -32,6 +32,10 @@ Follow the detailed operating rules and fallbacks in `docs/AGENT_SKILL_ROUTING.m
 
 ## Agent skills
 
+### Design capability inventory
+
+The curated global and repository-local design, motion, critique, and image-direction skills are documented in `docs/agents/design-skills.md`. Use `docs/AGENT_SKILL_ROUTING.md` to select them from natural-language task intent.
+
 ### Issue tracker
 
 Issues and specifications are tracked in GitHub Issues for `SubratControllo/controllo-temp`. See `docs/agents/issue-tracker.md`.
