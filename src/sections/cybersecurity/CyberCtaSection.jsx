@@ -27,12 +27,12 @@ export default function CyberCtaSection({ content, motionEnabled }) {
             {content.description}
           </p>
           <div className="action-row max-[460px]:grid">
-            <TrialLink className="button button--mint button--directional hover:bg-mint-soft focus-visible:bg-mint focus-visible:outline-white">
+            <TrialLink className="button button--mint button--directional focus-visible:outline-white">
               <ArrowRight aria-hidden="true" />
               Start Free Trial
             </TrialLink>
             <Link
-              className="button button--light hover:bg-mist hover:text-navy focus-visible:bg-white focus-visible:outline-white"
+              className="button button--light focus-visible:outline-white"
               to="/demo"
             >
               <CalendarDays aria-hidden="true" />

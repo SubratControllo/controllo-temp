@@ -1,5 +1,4 @@
 import { act, render, screen, within } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cyberSecuraReview } from '../../data/cybersecurityContent';
 import CyberSecuraSection, { SECURA_REVIEW_DELAYS } from './CyberSecuraSection';
@@ -35,48 +34,64 @@ describe('CyberSecuraSection', () => {
     vi.unstubAllGlobals();
   });
 
-  it('plays once from review scope to a human-reviewed recommendation', () => {
+  it('loops from scope to review to result while the workspace remains visible', () => {
     render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
     const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
 
-    expect(dossier).toHaveAttribute('data-phase', 'scope');
-
     enterView();
+    expect(dossier).toHaveAttribute('data-phase', 'scope');
     act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
     expect(dossier).toHaveAttribute('data-phase', 'reviewing');
-
     act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.reviewing));
     expect(dossier).toHaveAttribute('data-phase', 'result');
-    expect(within(dossier).getByText('2 gaps identified')).toBeInTheDocument();
-    expect(within(dossier).getByText(cyberSecuraReview.recommendation)).toBeInTheDocument();
-
-    act(() => vi.advanceTimersByTime(20_000));
+    act(() => vi.advanceTimersByTime(3_500));
     expect(dossier).toHaveAttribute('data-phase', 'result');
+    act(() => vi.advanceTimersByTime(1_000));
+    expect(dossier).toHaveAttribute('data-phase', 'scope');
   });
 
-  it('replays only after explicit activation', async () => {
+  it('uses the official Secura identity and removes redundant workflow and replay controls', () => {
     render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
 
-    enterView();
-    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope + SECURA_REVIEW_DELAYS.reviewing));
-    vi.useRealTimers();
-    const user = userEvent.setup();
-    const replay = screen.getByRole('button', { name: 'Replay Secura review' });
-    expect(replay).toHaveClass('hover:bg-mint-soft', 'focus-visible:bg-mint-soft');
-    await user.click(replay);
-
-    expect(screen.getByRole('article', { name: 'Illustrative Secura control review' })).toHaveAttribute('data-phase', 'scope');
+    expect(dossier.querySelector('img[src="/assets/secura-mark.svg"]')).toBeInTheDocument();
+    expect(screen.queryByRole('list', { name: 'Secura review workflow' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Replay Secura review' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /animation/i })).not.toBeInTheDocument();
   });
 
-  it('renders the complete result immediately for reduced motion', () => {
+  it('keeps every phase inside one compact stable workspace', () => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    expect(dossier).toHaveClass('h-[32.5rem]', 'max-w-[35rem]');
+    expect(within(dossier).getByTestId('secura-scope-plane')).toBeInTheDocument();
+    expect(within(dossier).getByTestId('secura-review-plane')).toBeInTheDocument();
+    expect(within(dossier).getByTestId('secura-result-plane')).toBeInTheDocument();
+  });
+
+  it('keeps product-verified review inputs and accountable result language', () => {
+    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled={false} />);
+    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
+
+    ['Implementation description', 'Policies & procedures', 'Evidence'].forEach((label) => {
+      expect(within(dossier).getByText(label)).toBeInTheDocument();
+    });
+    expect(within(dossier).getByText('Review required')).toBeInTheDocument();
+    expect(within(dossier).getByText('3 review inputs linked')).toBeInTheDocument();
+    expect(within(dossier).getByText('Implementation', { exact: true })).toBeInTheDocument();
+    expect(within(dossier).getByText('Validate findings before taking action.')).toBeInTheDocument();
+    expect(within(dossier).queryByText('Connected control context')).not.toBeInTheDocument();
+  });
+
+  it('renders the complete result without autoplay controls for reduced motion', () => {
     render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled={false} />);
     const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
 
     expect(dossier).toHaveAttribute('data-phase', 'result');
     expect(within(dossier).getAllByRole('listitem', { name: /gap:/i })).toHaveLength(2);
-
-    act(() => screen.getByRole('button', { name: 'Replay Secura review' }).click());
-    expect(dossier).toHaveAttribute('data-phase', 'result');
+    expect(screen.queryByRole('button', { name: /animation/i })).not.toBeInTheDocument();
+    expect(inViewCallback).toBeUndefined();
   });
 
   it('renders the complete result when IntersectionObserver is unavailable', () => {
@@ -85,85 +100,29 @@ describe('CyberSecuraSection', () => {
     const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
 
     expect(dossier).toHaveAttribute('data-phase', 'result');
-    expect(within(dossier).getAllByRole('listitem', { name: /gap:/i })).toHaveLength(2);
-
-    act(() => screen.getByRole('button', { name: 'Replay Secura review' }).click());
-    expect(dossier).toHaveAttribute('data-phase', 'result');
+    expect(screen.queryByRole('button', { name: /animation/i })).not.toBeInTheDocument();
   });
 
-  it('does not start the review below the required visibility threshold', () => {
-    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
-    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
-
-    act(() => inViewCallback([{ isIntersecting: true, intersectionRatio: 0.44 }]));
-    act(() => vi.advanceTimersByTime(20_000));
-
-    expect(dossier).toHaveAttribute('data-phase', 'scope');
-  });
-
-  it('keeps a single phase panel in the dossier during a transition', () => {
+  it('stops offscreen and restarts the loop when the workspace re-enters', () => {
     render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
     const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
 
     enterView();
     act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
-
-    expect(within(dossier).getAllByRole('heading', { level: 3 })).toHaveLength(1);
-  });
-
-  it.each([
-    ['scope', SECURA_REVIEW_DELAYS.scope - 1],
-    ['reviewing', SECURA_REVIEW_DELAYS.scope + SECURA_REVIEW_DELAYS.reviewing - 1],
-  ])('settles to result and clears timers when leaving during %s', (expectedPhase, elapsed) => {
-    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
-    const dossier = screen.getByRole('article', { name: 'Illustrative Secura control review' });
-
-    enterView();
-    act(() => vi.advanceTimersByTime(elapsed));
-    expect(dossier).toHaveAttribute('data-phase', expectedPhase);
-
+    expect(dossier).toHaveAttribute('data-phase', 'reviewing');
     leaveView();
     expect(dossier).toHaveAttribute('data-phase', 'result');
     expect(vi.getTimerCount()).toBe(0);
-
     enterView();
-    act(() => vi.advanceTimersByTime(20_000));
-    expect(dossier).toHaveAttribute('data-phase', 'result');
+    expect(dossier).toHaveAttribute('data-phase', 'scope');
   });
 
-  it('announces each phase through one stable polite status region', () => {
-    render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
-    const status = screen.getByRole('status');
-
-    expect(status).toHaveAttribute('aria-live', 'polite');
-    expect(status).toHaveAttribute('aria-atomic', 'true');
-    expect(status).toHaveTextContent(`Review scope ready for ${cyberSecuraReview.control}.`);
-
-    enterView();
-    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.scope));
-    expect(screen.getByRole('status')).toBe(status);
-    expect(status).toHaveTextContent('Secura is reviewing connected control context.');
-
-    act(() => vi.advanceTimersByTime(SECURA_REVIEW_DELAYS.reviewing));
-    expect(screen.getByRole('status')).toBe(status);
-    expect(status).toHaveTextContent('Secura review complete: 2 gaps identified.');
-  });
-
-  it('clears pending review timers when unmounted', () => {
+  it('clears timers and disconnects its observer on unmount', () => {
     const { unmount } = render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
     enterView();
-    expect(vi.getTimerCount()).toBe(2);
-
+    expect(vi.getTimerCount()).toBeGreaterThan(0);
     unmount();
-
     expect(vi.getTimerCount()).toBe(0);
-  });
-
-  it('disconnects the observer when unmounted', () => {
-    const { unmount } = render(<CyberSecuraSection content={cyberSecuraReview} motionEnabled />);
-
-    unmount();
-
     expect(disconnect).toHaveBeenCalledOnce();
   });
 });

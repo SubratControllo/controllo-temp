@@ -13,3 +13,10 @@ pnpm-debug.log*
 .env
 .env.*
 !.env.example
+
+/.agents
+/.playwright-cli
+/.superpowers
+/design-system
+/docs
+/output

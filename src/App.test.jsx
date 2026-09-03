@@ -33,6 +33,16 @@ describe('Compliance Current landing page', () => {
     expect(screen.getByTestId('site-root')).toHaveAttribute('data-motion', 'playing');
   });
 
+  it('does not hide the initial route beneath a second page-level fade', async () => {
+    renderRoute('/solutions/cybersecurity');
+
+    await screen.findByRole('heading', { level: 1, name: /cyber readiness with connected visibility/i });
+
+    const routeFrame = document.querySelector('#main-content > div');
+    expect(routeFrame).toBeInTheDocument();
+    expect(routeFrame).not.toHaveStyle({ opacity: '0' });
+  });
+
   it('renders the official Controllo wordmarks in the header and footer', () => {
     renderRoute();
 
@@ -236,7 +246,7 @@ describe('Compliance Current landing page', () => {
 
     expect(await screen.findByRole('heading', {
       level: 1,
-      name: /one platform for cyber readiness and connected environment visibility/i
+      name: /cyber readiness with connected visibility/i
     })).toBeInTheDocument();
     expect(screen.getByRole('region', {
       name: /see what is connected and where attention is needed/i

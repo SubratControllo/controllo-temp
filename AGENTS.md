@@ -14,11 +14,35 @@ For visual changes, read `design-system/controllo-compliance-current/MASTER.md`.
 
 ## Skill Routing
 
-Read `docs/AGENT_SKILL_ROUTING.md` before acting on prompts involving brainstorming, planning, UI/UX, frontend implementation, animation, graphics, image generation, branding, reference-to-code work, documentation, debugging, testing, browser QA, architecture, refactoring, review, accessibility, or security.
+Read `docs/AGENT_SKILL_ROUTING.md` before acting on prompts involving brainstorming, planning, UI/UX, frontend implementation, animation, graphics, image generation, branding, reference-to-code work, documentation, debugging, testing, browser QA, architecture, refactoring, review, accessibility, security, or any agent-capability installation or lifecycle change.
 
 Natural-language intent is enough to trigger routing; the user does not need to type a skill name. Use every available skill the user explicitly names. For inferred routing, choose the smallest effective set: normally one primary skill and no more than two supporting skills. Read each selected `SKILL.md` completely, follow its required sequence and approval gates, and apply it within this repository's scope, accessibility, dependency, validation, and production-build rules.
 
 `docs/FUTURE_SCOPE.md` is the durable register for every idea, dependency, refinement, and plan intentionally left for later. An entry preserves context but does not authorize expanding the active task; implementation still requires current user approval or an approved plan.
+
+## MCP Routing
+
+Use the designated MCP server when it is available and relevant to the current Controllo task:
+
+- Use Context7 for version-relevant documentation and recommended APIs for the site's third-party libraries, including React, Vite, and Tailwind CSS.
+- Use Notion for internal Controllo product context, requirements, decisions, and approved source material; search for `Controllo` together with the task's specific subject.
+- Use 21st when discovering reusable enterprise SaaS interface patterns or components for Controllo.
+
+Follow the detailed operating rules and fallbacks in `docs/AGENT_SKILL_ROUTING.md`. Reconcile every result with this repository's source of truth, design system, accessibility requirements, dependency policy, and public-claim safeguards before using it.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specifications are tracked in GitHub Issues for `SubratControllo/controllo-temp`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Triage uses the default Matt Pocock skill label vocabulary. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+This is a single-context repository using root `CONTEXT.md` and system-wide ADRs under `docs/adr/`. See `docs/agents/domain.md`.
 
 # Codex Execution Rules
 

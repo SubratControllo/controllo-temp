@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import SiteHeader from "./SiteHeader";
@@ -9,6 +10,13 @@ import { useSiteMotion } from "../context/MotionContext";
 export default function SiteLayout() {
   const { pathname } = useLocation();
   const { motionEnabled } = useSiteMotion();
+  const hasMountedRoute = useRef(false);
+  const animateRouteChange = motionEnabled && hasMountedRoute.current;
+
+  useEffect(() => {
+    hasMountedRoute.current = true;
+  }, []);
+
   return (
     <div
       className="site w-full overflow-clip bg-mist text-navy"
@@ -26,7 +34,7 @@ export default function SiteLayout() {
       <main id="main-content">
         <motion.div
           key={pathname}
-          initial={motionEnabled ? { opacity: 0, y: 8 } : false}
+          initial={animateRouteChange ? { opacity: 0, y: 8 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.28 }}
         >

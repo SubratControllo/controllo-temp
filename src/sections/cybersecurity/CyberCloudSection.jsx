@@ -1,81 +1,108 @@
 import { useRef, useState } from 'react';
-import { Activity, Boxes, Cloud, MonitorCheck, ShieldAlert, UsersRound } from 'lucide-react';
+import { Activity, ArrowRight, Cloud, Radar, ShieldAlert, UsersRound } from 'lucide-react';
 import { motion } from 'motion/react';
+import IntegrationLogo from '../../components/IntegrationLogo';
+import { brandAssets } from '../../data/brandAssets';
 
 const panelIcons = [Cloud, UsersRound, ShieldAlert];
-const metricIcons = [Boxes, MonitorCheck, Activity];
+const stageMotion = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { opacity: 1, y: 0 }
+};
 
-function Metric({ label, value, index }) {
-  const Icon = metricIcons[index] ?? Activity;
-
-  return (
-    <div className="min-w-0 rounded-[18px] border border-line p-4">
-      <Icon className="size-4 text-teal" aria-hidden="true" />
-      <span className="mt-7 block text-[.65rem] text-muted">{label}</span>
-      <strong className="mt-1 block text-[.78rem]">{value}</strong>
-    </div>
-  );
+function StageHeading({ children }) {
+  return <h4 className="font-mono text-[.65rem] font-medium uppercase tracking-[.12em] text-teal">{children}</h4>;
 }
 
-function CloudAssetsView({ view }) {
+function SourceList({ sources }) {
   return (
-    <>
-      <div className="grid grid-cols-3 gap-3 max-[520px]:grid-cols-1">
-        {view.metrics.map(([label, value], index) => <Metric label={label} value={value} index={index} key={label} />)}
-      </div>
-      <OperationalRows rows={view.rows} />
-    </>
-  );
-}
-
-function IdentitiesAndDevicesView({ view }) {
-  return (
-    <div className="grid grid-cols-[.84fr_1.16fr] gap-5 max-[620px]:grid-cols-1">
-      <div className="grid gap-3">
-        {view.metrics.map(([label, value], index) => <Metric label={label} value={value} index={index} key={label} />)}
-      </div>
-      <OperationalRows rows={view.rows} className="mt-0" />
-    </div>
-  );
-}
-
-function AlertsAndExposureView({ view }) {
-  return (
-    <>
-      <dl className="grid grid-cols-3 divide-x divide-line border-y border-line max-[520px]:grid-cols-1 max-[520px]:divide-x-0 max-[520px]:divide-y">
-        {view.metrics.map(([label, value], index) => {
-          const Icon = metricIcons[index] ?? Activity;
-          return (
-            <div className="min-h-28 p-4" key={label}>
-              <Icon className="size-4 text-teal" aria-hidden="true" />
-              <dt className="mt-7 text-[.65rem] text-muted">{label}</dt>
-              <dd className="mt-1 text-[.78rem] font-semibold">{value}</dd>
-            </div>
-          );
-        })}
-      </dl>
-      <OperationalRows rows={view.rows} />
-    </>
-  );
-}
-
-function OperationalRows({ rows, className = 'mt-6' }) {
-  return (
-    <ul className={`${className} list-none border-t border-line pl-0`}>
-      {rows.map(([label, state]) => (
-        <li className="grid min-h-15 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-line text-[.76rem]" key={label}>
-          <span>{label}</span>
-          <strong className="font-medium text-teal">{state}</strong>
+    <ul className="mt-5 list-none space-y-1 pl-0" aria-label="Connected operational sources">
+      {sources.map(({ label, state, brandKey }) => (
+        <li className="flex min-h-14 items-center gap-3 border-b border-line py-2 last:border-b-0" key={label}>
+          <IntegrationLogo brand={brandAssets[brandKey]} fallback={Cloud} size="inline" />
+          <span className="min-w-0 flex-1 text-[.78rem] font-medium">{label}</span>
+          <span className="shrink-0 font-mono text-[.58rem] uppercase tracking-[.08em] text-teal">{state}</span>
         </li>
       ))}
     </ul>
   );
 }
 
-function ActiveView({ view, activeIndex }) {
-  if (activeIndex === 1) return <IdentitiesAndDevicesView view={view} />;
-  if (activeIndex === 2) return <AlertsAndExposureView view={view} />;
-  return <CloudAssetsView view={view} />;
+function SignalList({ signals }) {
+  return (
+    <ul className="mt-5 list-none space-y-3 pl-0" aria-label="Visible operational signals">
+      {signals.map(([label, state]) => (
+        <li className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-3 rounded-[14px] bg-white/80 px-3 py-3 shadow-[inset_0_0_0_1px_rgba(6,27,50,.08)]" key={label}>
+          <span className="flex size-8 items-center justify-center rounded-[10px] bg-[#dff7f1] text-teal" aria-hidden="true">
+            <Activity className="size-4" />
+          </span>
+          <span className="min-w-0 text-[.76rem] font-medium">{label}</span>
+          <span className="col-start-2 mt-0.5 font-mono text-[.58rem] uppercase tracking-[.08em] text-muted">{state}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function AttentionList({ attention }) {
+  return (
+    <ul className="mt-5 list-none space-y-3 pl-0" aria-label="Operational attention items">
+      {attention.map(([label, state]) => (
+        <li className="border-l-2 border-teal pl-4" key={label}>
+          <span className="block text-[.76rem] font-medium">{label}</span>
+          <strong className="mt-1 block font-mono text-[.61rem] font-medium uppercase tracking-[.08em] text-teal">{state}</strong>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SignalBridge({ motionEnabled, delay }) {
+  return (
+    <div className="flex items-center justify-center self-center text-teal max-[820px]:min-h-10 max-[820px]:rotate-90" aria-hidden="true">
+      <motion.span
+        className="h-px w-full max-w-10 origin-left bg-teal/35"
+        initial={motionEnabled ? { opacity: 0, scaleX: 0 } : false}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.32, delay }}
+      />
+      <motion.span
+        initial={motionEnabled ? { opacity: 0, x: -5 } : false}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.24, delay: delay + 0.2 }}
+      >
+        <ArrowRight className="size-4" />
+      </motion.span>
+    </div>
+  );
+}
+
+function OperationalSignalBoard({ view, motionEnabled }) {
+  return (
+    <div className="grid min-h-78 grid-cols-[minmax(0,.95fr)_3.5rem_minmax(0,1.12fr)_3.5rem_minmax(0,.85fr)] items-stretch gap-2 p-7 max-[960px]:grid-cols-[minmax(0,.9fr)_2rem_minmax(0,1.1fr)_2rem_minmax(0,.85fr)] max-[820px]:grid-cols-1 max-[820px]:gap-0 max-[520px]:p-5">
+      <motion.section variants={stageMotion} initial={motionEnabled ? 'hidden' : false} animate="visible" transition={{ duration: 0.3 }} aria-labelledby={`${view.id}-sources`}>
+        <StageHeading><span id={`${view.id}-sources`}>Connected sources</span></StageHeading>
+        <SourceList sources={view.sources} />
+      </motion.section>
+
+      <SignalBridge motionEnabled={motionEnabled} delay={0.12} />
+
+      <motion.section className="rounded-[20px] bg-[#edf8f5] p-5 shadow-[inset_0_0_0_1px_rgba(8,127,140,.12)]" variants={stageMotion} initial={motionEnabled ? 'hidden' : false} animate="visible" transition={{ duration: 0.3, delay: 0.16 }} aria-labelledby={`${view.id}-signals`}>
+        <div className="flex items-center justify-between gap-4">
+          <StageHeading><span id={`${view.id}-signals`}>Visible signals</span></StageHeading>
+          <Radar className="size-5 text-teal" aria-hidden="true" />
+        </div>
+        <SignalList signals={view.signals} />
+      </motion.section>
+
+      <SignalBridge motionEnabled={motionEnabled} delay={0.28} />
+
+      <motion.section variants={stageMotion} initial={motionEnabled ? 'hidden' : false} animate="visible" transition={{ duration: 0.3, delay: 0.34 }} aria-labelledby={`${view.id}-attention`}>
+        <StageHeading><span id={`${view.id}-attention`}>Attention needed</span></StageHeading>
+        <AttentionList attention={view.attention} />
+      </motion.section>
+    </div>
+  );
 }
 
 export default function CyberCloudSection({ views, motionEnabled }) {
@@ -112,7 +139,7 @@ export default function CyberCloudSection({ views, motionEnabled }) {
         </header>
 
         <div className="overflow-hidden rounded-[28px] border border-line bg-white shadow-elevated">
-          <div className="flex gap-2 overflow-x-auto border-b border-line bg-[#f8fbfa] p-3" role="tablist" aria-label="Operational visibility views">
+          <div className="flex gap-2 overflow-x-auto border-b border-line bg-[#f8fbfa] p-3 max-[520px]:grid max-[520px]:grid-cols-3 max-[520px]:gap-1 max-[520px]:overflow-visible max-[520px]:p-2" role="tablist" aria-label="Operational visibility views">
             {views.map((view, index) => {
               const Icon = panelIcons[index] ?? Cloud;
               const isActive = activeIndex === index;
@@ -120,7 +147,7 @@ export default function CyberCloudSection({ views, motionEnabled }) {
               return (
                 <button
                   ref={(node) => { tabRefs.current[index] = node; }}
-                  className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-[13px] border-0 bg-transparent px-4 text-[.78rem] text-muted transition-[background-color,color,box-shadow] duration-200 hover:bg-panel-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy aria-selected:bg-navy aria-selected:text-white aria-selected:shadow-button"
+                  className="inline-flex min-h-12 shrink-0 items-center gap-2 rounded-[13px] border-0 bg-transparent px-4 text-[.78rem] text-muted transition-[background-color,color,box-shadow] duration-200 hover:bg-panel-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy aria-selected:bg-navy aria-selected:text-white aria-selected:shadow-button max-[520px]:min-h-14 max-[520px]:shrink max-[520px]:flex-col max-[520px]:justify-center max-[520px]:gap-1 max-[520px]:px-1 max-[520px]:text-center max-[520px]:text-[.62rem] max-[520px]:leading-tight"
                   id={`cyber-cloud-tab-${view.id}`}
                   type="button"
                   role="tab"
@@ -139,26 +166,28 @@ export default function CyberCloudSection({ views, motionEnabled }) {
           </div>
 
           <motion.div
-            className="grid min-h-125 grid-cols-[minmax(0,.78fr)_minmax(0,1.22fr)] max-[760px]:min-h-0 max-[760px]:grid-cols-1"
+            className="min-h-105"
             id={`cyber-cloud-panel-${active.id}`}
             role="tabpanel"
             aria-labelledby={`cyber-cloud-tab-${active.id}`}
             key={active.id}
-            initial={motionEnabled ? { opacity: 0, y: 8 } : false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.24 }}
+            initial={motionEnabled ? { opacity: 0 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
           >
-            <div className="flex flex-col justify-between border-r border-line bg-navy p-8 text-white max-[760px]:border-r-0 max-[760px]:border-b max-[520px]:p-5">
-              <div>
-                <ActiveIcon className="size-6 text-mint" aria-hidden="true" />
-                <p className="mt-16 font-mono text-[.61rem] uppercase tracking-[.12em] text-mint">{active.label}</p>
-                <h3 className="mt-3 text-white">{active.summary}</h3>
+            <div className="flex min-h-24 items-center justify-between gap-6 border-b border-line bg-navy px-7 py-5 text-white max-[620px]:items-start max-[620px]:px-5">
+              <div className="flex min-w-0 items-center gap-4">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-white/[.08] text-mint shadow-[inset_0_0_0_1px_rgba(255,255,255,.1)]">
+                  <ActiveIcon className="size-5" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <p className="font-mono text-[.61rem] uppercase tracking-[.12em] text-mint">{active.label}</p>
+                  <h3 className="mt-1 text-[clamp(1.05rem,2vw,1.38rem)] text-white">{active.summary}</h3>
+                </div>
               </div>
-              <span className="mt-10 text-[.65rem] text-[#b8c8d5]">Illustrative product view</span>
+              <span className="shrink-0 text-right text-[.62rem] text-[#b8c8d5] max-[620px]:sr-only">Illustrative product view</span>
             </div>
-            <div className="min-w-0 p-8 max-[520px]:p-5">
-              <ActiveView view={active} activeIndex={activeIndex} />
-            </div>
+            <OperationalSignalBoard view={active} motionEnabled={motionEnabled} />
           </motion.div>
         </div>
       </div>

@@ -92,7 +92,7 @@ All actions use a minimum height of `46px`, a `14px` radius, medium-weight `0.84
 
 Variant does not determine iconography. Use an icon only when it clarifies the action: a calendar for choosing a time, an external-link mark for leaving the site, or an arrow for a deliberately directional destination. Form submission controls and quiet secondary actions are text-only by default. Only directional icons translate on hover; calendars, status marks, and other semantic icons remain still.
 
-Shared buttons lift by at most `2px` on hover and press down by `1px` on activation. Disabled controls keep their dimensions, lose elevation, and remain visibly unavailable. Labels stay on one line, keyboard focus remains visible, and reduced motion removes button and icon transforms. Use Lucide icons and keep any directional motion short. The header CTA, and the homepage hero primary CTA that reuses its interaction pattern, preserve their base navy or mint color, scale by at most `1.5%`, and run one clipped white shine while hovered or keyboard-focused. The shine rests fully outside the clipped button and is not visible in the idle state.
+Shared navy and mint primary buttons preserve their base color, lift by at most `2px`, scale by at most `1.5%`, and run one clipped white shine while hovered or keyboard-focused. The shine rests fully outside the clipped button and is not visible in the idle state. Light and ghost buttons use a quiet white-surface response with teal text and no lift. All variants press down by `1px` on activation. Disabled controls keep their dimensions, lose elevation, and remain visibly unavailable. Labels stay on one line, keyboard focus remains visible, and reduced motion removes button, shine, and icon transforms. Use Lucide icons and keep any directional motion short.
 
 ## Header
 
@@ -220,6 +220,16 @@ Each story remains a semantic, named article landmark with one direct WordPress 
 **Freeze status:** included in the 2026-09-01 frozen homepage baseline. Keep one mint conversion panel with the narrative on the left and a dedicated brand field on the right. The brand field uses the official three-segment Controllo emblem as one inline SVG; its segments assemble once from short offsets and then remain still. Reduced motion renders the completed emblem immediately.
 
 Keep the supporting copy framework-first: visitors start with relevant frameworks and connect controls, evidence, risks, and ownership as their assurance program grows. Keep **Start free trial** as the dominant navy action with one right arrow and **Request a demo** as the quieter white action with a calendar icon. Do not repeat the arrow on both actions. The primary reuses the header CTA's clipped shine and `1.5%` maximum hover/focus scale. The secondary remains non-shiny, does not lift, and uses the homepage Hero secondary action's quiet teal text response while its calendar stays still. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make both actions full width on small mobile screens. Do not reintroduce double rings, duplicated emblems, looping motion, stock imagery, package language, or extra conversion claims.
+
+## Frozen Cybersecurity Hero Baseline
+
+**Status:** approved and frozen on 2026-09-03 after focused component tests and responsive browser QA.
+
+Keep the approved headline, supporting copy, two actions, and vertically centered desktop split. The right visual uses one enlarged, pointer-inert **Access review** workspace with its final shallow perspective applied from the first frame. One low-contrast elliptical orbit sits behind the dashboard. Exactly two bare official Controllo emblems follow that same path in the same forward direction with a half-cycle separation; they may disappear naturally while passing behind the product plane.
+
+On desktop and tablet, retain the four product-aligned proof cards for Secura AI, cloud security, identity and endpoint risk, and framework coverage. They enter once from the dashboard origin using only transform and opacity, then remain still. On small mobile screens, retain the two primary Secura and cloud cards and hide the lower supporting pair. Preserve the transient center signal, accurate local brand marks, decorative semantics, pointer inertness, zero horizontal overflow, and the complete reduced-motion state.
+
+Do not add backing dashboard sheets, a dashboard perspective entrance, a second orbit, counter-rotating emblems, lateral ambient card drift, or more proof cards. A future GSAP implementation does not itself reopen this surface; changes require an explicit Cybersecurity-hero request. Accessibility, verified responsive defects, product-claim corrections, and release-critical performance fixes may still proceed.
 
 ## Navigation And Interaction
 
