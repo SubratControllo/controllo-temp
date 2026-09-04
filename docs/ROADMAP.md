@@ -1,6 +1,6 @@
 # Roadmap and Current Progress
 
-Last reviewed: 2026-09-03
+Last reviewed: 2026-09-04
 
 This file is the current delivery source of truth. Update it when a capability or launch blocker changes; keep speculative ideas out until they have an owner and a clear outcome.
 
@@ -23,6 +23,7 @@ Implemented:
 - Platform pages for overview, continuous compliance, risk, audit management, cloud monitoring, and Secura AI
 - Solution pages for cybersecurity, privacy operations, AI governance, enterprise, and growing teams
 - [x] Replace the generic Cybersecurity route with a claim-verified six-section page covering framework implementation, Secura review, risk and auditor context, supported cloud/workforce monitoring, framework reuse, and an externally configurable trial handoff. The route has distinct responsive graphics, keyboard-operable tabs, one-shot motion, and complete reduced-motion states.
+- [x] Replace the generic AI Governance route with a dedicated six-section page for AI-system inventory, risk assessment, accountable ownership, Secura review, conservative framework context, and connected conversion. The explicit lazy route has two manually operated keyboard-accessible selectors, responsive product-led compositions, and complete reduced-motion output. The implementation baseline is pending final user approval.
 - Framework directory with search/filter and live detail pages for SOC 2, ISO 27001, and HIPAA
 - Integration directory with search/filter
 - Resource directory and detail routes
@@ -137,6 +138,12 @@ Validation on 2026-09-02:
 
 - The Cybersecurity **Shared-Control Field** is approved and frozen on 2026-09-03 after its final focused tests and responsive browser check. Reopening its composition or motion requires an explicit request; verified accessibility, responsive, claim-accuracy, and release-critical performance fixes remain permitted.
 - The frozen Cybersecurity page received its enterprise-readiness accessibility pass on 2026-09-03 without reopening any approved composition: inactive response copy remains at full opacity, small Cloud labels use the accessible muted foreground, the illustrative hero workspace no longer adds false headings to the document outline, the official emblem is registered as the site favicon, brand SVGs reserve intrinsic space and load without the lazy-image stability warning, and shared footer links meet the 44px minimum hit area. `npm test -- --run src/sections/cybersecurity/CyberHeroSection.test.jsx src/sections/cybersecurity/CyberResponseSection.test.jsx src/sections/cybersecurity/CyberCloudSection.test.jsx src/pages/CybersecurityPage.test.jsx --reporter=dot`: 36 focused tests passed. Browser QA passed at 1440×1000, 390×844, and 320×800 with zero horizontal overflow, keyboard-operable Cloud tabs and visible focus, no application warnings/errors, and mobile Lighthouse scores of 100 for Accessibility, Best Practices, and SEO. The optional `llms.txt` recommendation remains the only failed agentic-browsing audit; the production build and full test suite were not run.
+
+Validation on 2026-09-04:
+
+- `npx vitest run src/sections/ai-governance/AiHeroSection.test.jsx src/sections/ai-governance/AiChallengesSection.test.jsx src/sections/ai-governance/AiOperationsSection.test.jsx src/sections/ai-governance/AiSecuraSection.test.jsx src/sections/ai-governance/AiFrameworksSection.test.jsx src/sections/ai-governance/AiCtaSection.test.jsx src/pages/AiGovernancePage.test.jsx src/App.test.jsx`: 29 focused tests passed in 8 files.
+- AI Governance browser QA passed at 1440×900, 1024×768, 768×1024, and 375×812 with zero horizontal overflow, normal-to-sticky shared-header behavior, distinct six-section bands, mobile challenge-before-response order, complete Secura input-to-human-decision flow, conservative framework context, spacious closing conversion and normal footer handoff, and no console errors. Both selectors passed click and keyboard navigation with visible focus and no autoplay at every viewport.
+- Native reduced-motion emulation at 375×812 rendered every section immediately with complete settled content and zero active document animations. Viewport and full-page screenshots were captured under `output/playwright/ai-governance/`. The single console warning under emulation was Motion's development-only reduced-motion notice. The production build and full test suite were not run.
 
 ## Frozen Cybersecurity Response Story
 

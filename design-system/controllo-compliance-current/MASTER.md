@@ -1,6 +1,6 @@
 # Controllo Compliance Current Design System
 
-Last reviewed: 2026-09-03
+Last reviewed: 2026-09-04
 
 Use this file for every visual or interaction change. `src/styles.css` is the implementation source for tokens and shared primitives; component markup is the source for local layout and responsive behavior.
 
@@ -220,6 +220,16 @@ Each story remains a semantic, named article landmark with one direct WordPress 
 **Freeze status:** included in the 2026-09-01 frozen homepage baseline. Keep one mint conversion panel with the narrative on the left and a dedicated brand field on the right. The brand field uses the official three-segment Controllo emblem as one inline SVG; its segments assemble once from short offsets and then remain still. Reduced motion renders the completed emblem immediately.
 
 Keep the supporting copy framework-first: visitors start with relevant frameworks and connect controls, evidence, risks, and ownership as their assurance program grows. Keep **Start free trial** as the dominant navy action with one right arrow and **Request a demo** as the quieter white action with a calendar icon. Do not repeat the arrow on both actions. The primary reuses the header CTA's clipped shine and `1.5%` maximum hover/focus scale. The secondary remains non-shiny, does not lift, and uses the homepage Hero secondary action's quiet teal text response while its calendar stays still. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make both actions full width on small mobile screens. Do not reintroduce double rings, duplicated emblems, looping motion, stock imagery, package language, or extra conversion claims.
+
+## AI Governance Page Baseline
+
+**Status:** implemented, pending final user approval. This page is not frozen.
+
+The dedicated `/solutions/ai-governance` route uses six ordered full-width bands: the Operational AI Governance hero and connected dossier, challenge-to-response ledger, AI inventory and risk-assessment workflow, Secura AI control review, framework context with the Controllo operating layer, and the closing AI Governance, Connected conversion. Keep the hero product-led and distinct from the Cybersecurity hero, preserve the challenge-before-response mobile order, and keep the shared header and footer behavior unchanged.
+
+The operations and framework selectors are manual tab systems with click, arrow-key, Home, and End support; they do not autoplay. Focus remains visibly outlined. The Secura dossier reads review inputs, finding, recommended action, then human decision. Framework copy describes relevant context without implying exact mappings. The closing conversion retains generous section spacing and hands off directly to the shared footer.
+
+Responsive behavior is implemented at the established 1440, 1024, 768, and 375 pixel checks with contained dossiers, tabs, and proof text. Reduced motion renders every section immediately in its settled state with no required transition or loop. Do not treat this baseline as approved or freeze it until the user approves the rendered page. Evidence-dependent additions remain deferred in `FS-016`.
 
 ## Frozen Cybersecurity Hero Baseline
 

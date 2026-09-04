@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-09-03
+Last reviewed: 2026-09-04
 
 ## System Shape
 
@@ -85,6 +85,21 @@ Each route-owned section controls one visual system: Assurance Horizon, Response
 `TrialLink` accepts only an absolute `http:` or `https:` `VITE_TRIAL_URL`. A missing, blank, malformed, relative, or non-web value renders an internal Router link to `/pricing`. The variable is public browser configuration and must never contain a secret.
 
 Generic Product and Pricing pages no longer repeat FAQ content. Educational questions belong in the external article library; a future pricing-specific FAQ requires separately approved commercial answers.
+
+### Dedicated AI Governance Route
+
+`src/pages/AiGovernancePage.jsx` owns metadata and the ordered six-section composition for `/solutions/ai-governance`. `src/data/aiGovernanceContent.js` owns the route's approved AI-system, risk, Secura, framework, and conversion language. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
+
+The route composition is:
+
+1. Operational AI Governance hero and connected AI dossier
+2. AI governance challenge-to-response ledger
+3. AI system inventory and risk-assessment workflow
+4. Secura AI control review
+5. AI governance framework context and Controllo operating layer
+6. AI Governance, Connected conversion
+
+Both route-owned selectors change only through pointer or keyboard input and do not autoplay. `MotionContext` keeps entrance effects optional; reduced motion renders all six sections immediately in their complete settled state. Framework descriptions provide conservative context rather than claiming exact mappings, while evidence-dependent product, timing, framework, and company claims remain governed by `FS-016` in `docs/FUTURE_SCOPE.md`.
 
 ## Presentation and Motion
 
