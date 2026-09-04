@@ -81,3 +81,14 @@ export const aiFrameworks = {
   ],
   action: { label: 'Explore frameworks', to: '/frameworks' }
 };
+
+export const aiClosing = {
+  eyebrow: 'AI Governance, Connected',
+  title: 'Know your AI. Manage the risk. Prove readiness.',
+  description: 'Bring systems, owners, assessments, controls, and evidence into one structured operating view.',
+  actions: [
+    { label: 'Start free trial', to: '/pricing', variant: 'primary' },
+    { label: 'Request a demo', to: '/demo', variant: 'secondary' }
+  ],
+  proof: 'AI system inventory · AI risk assessment · Secura AI guidance · Framework readiness'
+};
