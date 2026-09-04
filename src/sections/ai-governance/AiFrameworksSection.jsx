@@ -65,6 +65,7 @@ export default function AiFrameworksSection({ content }) {
               id={`ai-framework-panel-${activeView.id}`}
               role="tabpanel"
               aria-labelledby={`ai-framework-tab-${activeView.id}`}
+              tabIndex={0}
             >
               <p className="font-mono text-[.66rem] uppercase tracking-[.12em] text-teal">Framework lens</p>
               <h3 className="mt-3 text-[1.55rem]">{activeView.label}</h3>

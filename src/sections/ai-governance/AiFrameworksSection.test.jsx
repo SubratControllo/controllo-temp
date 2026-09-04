@@ -60,4 +60,17 @@ describe('AiFrameworksSection', () => {
     expect(within(section).queryByText(/star for ai|exact mapping/i)).not.toBeInTheDocument();
     expect(within(section).queryByRole('link', { name: /iso.*42001/i })).not.toBeInTheDocument();
   });
+
+  it('moves keyboard focus from the active tab into its panel before the framework CTA', async () => {
+    const user = userEvent.setup();
+    renderSection();
+
+    const activeTab = screen.getByRole('tab', { name: 'ISO/IEC 42001' });
+    const panel = screen.getByRole('tabpanel', { name: 'ISO/IEC 42001' });
+
+    activeTab.focus();
+    await user.keyboard('{Tab}');
+
+    expect(panel).toHaveFocus();
+  });
 });
