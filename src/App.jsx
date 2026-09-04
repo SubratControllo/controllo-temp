@@ -16,6 +16,7 @@ const PricingPage = lazy(() => import('./pages/PricingPage'));
 const DemoPage = lazy(() => import('./pages/DemoPage'));
 const StaticPage = lazy(() => import('./pages/StaticPage'));
 const CybersecurityPage = lazy(() => import('./pages/CybersecurityPage'));
+const AiGovernancePage = lazy(() => import('./pages/AiGovernancePage'));
 
 const staticPagePaths = ['/company', '/security', '/privacy-policy', '/terms', '/accessibility'];
 
@@ -36,6 +37,7 @@ export default function App() {
           <Route element={<SiteLayout />}>
             <Route index element={<HomePage />} />
             <Route path="/solutions/cybersecurity" element={<CybersecurityPage />} />
+            <Route path="/solutions/ai-governance" element={<AiGovernancePage />} />
             {productRoutePaths.map((path) => (
               <Route path={path} element={<ProductPage />} key={path} />
             ))}

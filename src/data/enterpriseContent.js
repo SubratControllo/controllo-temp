@@ -1,4 +1,4 @@
-import { Bot, Boxes, CheckCircle2, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, ShieldCheck } from 'lucide-react';
+import { Boxes, CheckCircle2, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, ShieldCheck } from 'lucide-react';
 import SecuraMark from '../components/SecuraMark';
 import { brandAssets } from './brandAssets';
 
@@ -65,12 +65,6 @@ export const productPages = {
     description: 'Maintain ROPA, conduct DPIA and PIA reviews, document data flows, and keep PII accountability visible across the program.',
     accent: 'mint', icon: FileSearch,
     features: [['ROPA management', 'Document processing purpose, data categories, retention, recipients, and ownership.'], ['DPIA and PIA workflows', 'Assess privacy impact and keep the supporting decisions reviewable.'], ['Data flow and PII context', 'Connect systems, data stores, flows, and controller or processor roles.']]
-  },
-  '/solutions/ai-governance': {
-    eyebrow: 'AI governance', title: 'Govern every AI system with clear ownership and risk context.',
-    description: 'Maintain an AI inventory, assign accountable owners, track system status, and connect AI-specific risk assessments to governance work.',
-    accent: 'teal', icon: Bot,
-    features: [['AI system inventory', 'Keep purpose, implementation context, status, and ownership visible.'], ['AI-specific risk', 'Assess likelihood and impact in the context of each system.'], ['Governance readiness', 'Prepare reviewable work for ISO 42001, the EU AI Act, and applicable requirements.']]
   },
   '/solutions/enterprise': {
     eyebrow: 'For enterprise GRC', title: 'One assurance system across every moving part.',

@@ -254,6 +254,16 @@ describe('Compliance Current landing page', () => {
     expect(screen.queryByText('Clarity at every handoff.')).not.toBeInTheDocument();
   });
 
+  it('loads the dedicated AI governance narrative instead of the generic product page', async () => {
+    renderRoute('/solutions/ai-governance');
+    expect(await screen.findByRole('heading', {
+      level: 1,
+      name: /turn ai standards into structured, actionable governance/i
+    })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: /secura ai for ai governance/i })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: /govern every ai system with clear ownership/i })).not.toBeInTheDocument();
+  });
+
   it('separates product privacy from the legal privacy policy', async () => {
     const { unmount } = renderRoute('/privacy-policy');
     expect(await screen.findByRole('heading', { name: /privacy information, written for people/i })).toBeInTheDocument();
