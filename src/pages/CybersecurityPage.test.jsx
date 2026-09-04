@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { MotionProvider } from '../context/MotionContext';
-import { cybersecurityMeta, cyberHero } from '../data/cybersecurityContent';
+import { cyberClosing, cybersecurityMeta, cyberHero } from '../data/cybersecurityContent';
 import CybersecurityPage from './CybersecurityPage';
 
 const renderPage = () => render(
@@ -24,7 +24,7 @@ describe('CybersecurityPage', () => {
       'Review each control with Secura before sharing it with an auditor.',
       'See what is connected and where attention is needed.',
       'Start with one framework. Expand when you need to.',
-      'Build cyber and cloud compliance you can prove.'
+      cyberClosing.title
     ].map((name) => screen.getByRole('heading', { name }));
     headings.slice(0, -1).forEach((heading, index) => {
       expect(heading.compareDocumentPosition(headings[index + 1]))

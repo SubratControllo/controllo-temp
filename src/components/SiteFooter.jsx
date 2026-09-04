@@ -20,7 +20,7 @@ export default function SiteFooter() {
             trust.
           </p>
           <Link
-            className="mt-6.5 inline-flex items-center gap-2 text-[.76rem] text-mint [&>svg]:size-3.75 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5"
+            className="mt-6.5 inline-flex min-h-11 items-center gap-2 text-[.76rem] text-mint [&>svg]:size-3.75 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5"
             to="/demo"
           >
             See Controllo with your workflow <ArrowRight aria-hidden="true" />
@@ -33,7 +33,7 @@ export default function SiteFooter() {
             </strong>
             {links.map(([label, href]) => (
               <Link
-                className="block min-h-9 text-[.7rem] transition-colors hover:text-mint"
+                className="flex min-h-11 items-center text-[.7rem] transition-colors hover:text-mint"
                 to={href}
                 key={href}
               >

@@ -488,8 +488,7 @@ export default function CyberResponseSection({ items, motionEnabled }) {
   const timelineProgress = items.length > 1 ? resolvedIndex / (items.length - 1) : 1;
 
   return (
-    <section className="section overflow-clip bg-white min-[1081px]:pb-[20.25rem]" aria-labelledby="cyber-response-title">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal/20 to-transparent" />
+    <section className="section !pt-20 overflow-clip bg-white min-[1081px]:pb-[20.25rem] max-[760px]:!pt-16" aria-labelledby="cyber-response-title">
       <div className="shell">
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(400px,.82fr)] items-start gap-18 max-[1160px]:gap-12 max-[1080px]:grid-cols-1">
           <div data-testid="cyber-story-narrative">
@@ -535,7 +534,7 @@ export default function CyberResponseSection({ items, motionEnabled }) {
                       {String(index + 1).padStart(2, '0')}
                     </motion.span>
                     <motion.div
-                      animate={{ opacity: isActive ? 1 : 0.7, scale: isActive ? 1 : 0.985, x: isActive ? 0 : -4 }}
+                      animate={{ opacity: 1, scale: isActive ? 1 : 0.985, x: isActive ? 0 : -4 }}
                       className="origin-left"
                       initial={false}
                       transition={motionEnabled ? { duration: 0.38, ease: [0.22, 1, 0.36, 1] } : { duration: 0 }}

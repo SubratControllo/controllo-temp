@@ -22,6 +22,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import IntegrationLogo from '../../components/IntegrationLogo';
 import TrialLink from '../../components/TrialLink';
+import WaveDivider from '../../components/WaveDivider';
 import { brandAssets } from '../../data/brandAssets';
 
 const proofCards = [
@@ -93,7 +94,7 @@ function ControlWorkspace({ motionEnabled }) {
       <header className="cyber-hero-workspace__header">
         <span>
           <span className="cyber-hero-workspace__framework">SOC 2 · CC6.2B</span>
-          <h3>Access review</h3>
+          <p className="cyber-hero-workspace__title">Access review</p>
           <span className="cyber-hero-workspace__subtitle">Control workspace</span>
         </span>
         <span className="cyber-hero-workspace__dots" aria-hidden="true"><i /><i /><i /></span>
@@ -109,8 +110,8 @@ function ControlWorkspace({ motionEnabled }) {
             </span>
           </section>
 
-          <section className="cyber-hero-artifacts">
-            <h4>Connected artifacts</h4>
+          <div className="cyber-hero-artifacts">
+            <p className="cyber-hero-panel__title">Connected artifacts</p>
             <ul aria-label="Connected control artifacts">
               {connectedArtifacts.map(({ label, kind, Icon }) => (
                 <li aria-label={`${label}: ${kind}`} key={label}>
@@ -119,11 +120,11 @@ function ControlWorkspace({ motionEnabled }) {
                 </li>
               ))}
             </ul>
-          </section>
+          </div>
         </div>
 
-        <section className="cyber-hero-review">
-          <h4>Control review</h4>
+        <div className="cyber-hero-review">
+          <p className="cyber-hero-panel__title">Control review</p>
           <ul aria-label="Control review states">
             {controlReviewStates.map(({ label, status, Icon, state }) => (
               <motion.li
@@ -142,7 +143,7 @@ function ControlWorkspace({ motionEnabled }) {
               </motion.li>
             ))}
           </ul>
-        </section>
+        </div>
       </div>
 
       <ul className="cyber-hero-workspace__context" aria-label="Review context">
@@ -291,7 +292,7 @@ function ConnectedProductStage({ motionEnabled }) {
 
 export default function CyberHeroSection({ content, motionEnabled }) {
   return (
-    <section className="relative isolate flex min-h-[calc(100svh-84px)] items-center overflow-hidden bg-[radial-gradient(circle_at_82%_22%,rgba(38,216,173,.22),transparent_31%),linear-gradient(180deg,#f8fbfa_0%,#f3f8f6_78%,#e4f7f1_100%)] pt-16 pb-8 max-[1080px]:min-h-0 max-[1080px]:pt-32 max-[1080px]:pb-20 max-[760px]:pt-28 max-[760px]:pb-16" aria-labelledby="cyber-hero-title">
+    <section className="cyber-hero relative isolate flex min-h-[calc(100svh-84px)] items-center overflow-hidden bg-[radial-gradient(circle_at_82%_22%,rgba(38,216,173,.22),transparent_31%),linear-gradient(180deg,#f8fbfa_0%,#f3f8f6_78%,#e4f7f1_100%)] pt-16 pb-44 max-[1080px]:min-h-0 max-[1080px]:pt-32 max-[1080px]:pb-52 max-[760px]:pt-28 max-[760px]:pb-56" aria-labelledby="cyber-hero-title">
       <div className="shell grid grid-cols-[.86fr_1.14fr] items-center gap-12 max-[1080px]:grid-cols-1 max-[1080px]:gap-8">
         <div className="relative z-10 max-w-145">
           <p className="eyebrow">{content.eyebrow}</p>
@@ -312,6 +313,7 @@ export default function CyberHeroSection({ content, motionEnabled }) {
           <ConnectedProductStage motionEnabled={motionEnabled} />
         </figure>
       </div>
+      <WaveDivider />
     </section>
   );
 }

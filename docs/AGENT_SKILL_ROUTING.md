@@ -111,6 +111,8 @@ Generated assets must show the actual product, workflow, object, or state when t
 
 For third-party product or integration marks, prefer the trademark owner's current asset kit. When an owner-hosted asset is unavailable, use the exact original product-mark variant from a pinned theSVG source snapshot rather than a runtime CDN. Vendor it under `public/assets/brands/`, register it in `src/data/brandAssets.js`, record source provenance and usage status in `public/assets/brands/README.md`, and render it through `IntegrationLogo` without redrawing, recolouring, cropping, simplifying, or substituting the mark. Validate the SVG for scripts, event handlers, external references, and `foreignObject` content before browser QA. Never use a related service logo for the named product.
 
+For interface iconography, choose distinct symbols by meaning instead of repeating one generic glyph across unrelated states. Use the repository's installed Lucide set first. Phosphor's official React package may be considered when a new visual system genuinely needs a weight or semantic vocabulary Lucide does not provide; keep one icon family within a surface and follow the dependency approval rules before adding it.
+
 ## Documentation And Content
 
 | Prompt intent | Primary skill | Optional support | Routing note |

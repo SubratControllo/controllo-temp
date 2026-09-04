@@ -157,7 +157,7 @@ export const cyberFrameworks = [
 
 export const cyberClosing = {
   eyebrow: 'Connected assurance',
-  title: 'Build cyber and cloud compliance you can prove.',
-  description: 'Bring implementation, evidence, risk, monitoring, and auditor collaboration into one connected program.',
+  title: 'Keep cyber assurance current. Keep the proof close.',
+  description: 'Connect control implementation, evidence, risk, monitoring context, and auditor collaboration in one reviewable assurance program.',
   proof: ['100+ frameworks', 'Pre-mapped controls', 'AI-assisted gap assessment']
 };

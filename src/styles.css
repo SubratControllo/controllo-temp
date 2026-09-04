@@ -760,6 +760,10 @@
   transform: none;
 }
 
+.cyber-hero > .wave-divider {
+  bottom: -1.5rem;
+}
+
 .wave-divider__wave--back {
   animation: wave-travel-back 20s linear infinite;
 }
@@ -800,6 +804,12 @@
   }
   100% {
     transform: translate3d(-50%, 4px, 0);
+  }
+}
+
+@media (max-width: 760px) {
+  .cyber-hero > .wave-divider {
+    bottom: -0.5rem;
   }
 }
 
@@ -1893,12 +1903,197 @@
 .compliance-step--current {
   transform: translate3d(8px, 0, 0);
 }
+.cyber-cta-scene {
+  isolation: isolate;
+  background: #076f7b;
+}
+.cyber-cta-scene__field,
+.cyber-cta-scene__aurora,
+.cyber-cta-scene__grain,
+.cyber-cta-scene__vignette {
+  position: absolute;
+  pointer-events: none;
+}
+.cyber-cta-scene__field {
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 12% 16%, rgba(25, 158, 169, 0.34) 0%, transparent 46%),
+    linear-gradient(112deg, #097985 0%, #076f7b 50%, #075f6c 100%);
+}
+.cyber-cta-scene__aurora {
+  border-radius: 50%;
+  opacity: 1;
+  mix-blend-mode: screen;
+  filter: blur(10px);
+  will-change: transform;
+}
+.cyber-cta-scene__grain {
+  z-index: 2;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 0.45px, transparent 0.55px);
+  background-size: 4px 4px;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+}
+.cyber-cta-scene__vignette {
+  z-index: 3;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 27, 50, 0.08), transparent 38%, rgba(6, 27, 50, 0.16)),
+    linear-gradient(180deg, rgba(6, 27, 50, 0.08), transparent 24% 74%, rgba(6, 27, 50, 0.2));
+}
+
+/* Adapted from 21st.dev's soft gradient background motion pattern. */
+.cyber-cta-scene__aurora--primary {
+  top: -38%;
+  right: -8%;
+  width: 66%;
+  height: 132%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(191, 244, 232, 0.46) 0%,
+    rgba(38, 216, 173, 0.2) 32%,
+    transparent 70%
+  );
+}
+.cyber-cta-scene__aurora--secondary {
+  right: 24%;
+  bottom: -54%;
+  width: 54%;
+  height: 116%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(58, 178, 190, 0.34) 0%,
+    rgba(191, 244, 232, 0.12) 42%,
+    transparent 72%
+  );
+}
+.cyber-cta-scene__field[data-motion="animated"] .cyber-cta-scene__aurora--primary {
+  animation: cyber-cta-aurora-primary 15s ease-in-out infinite alternate;
+}
+.cyber-cta-scene__field[data-motion="animated"] .cyber-cta-scene__aurora--secondary {
+  animation: cyber-cta-aurora-secondary 18s ease-in-out infinite alternate;
+}
+.cyber-cta-brand {
+  display: grid;
+  min-height: 25rem;
+  place-items: center;
+}
+.cyber-cta-brand__halo {
+  position: absolute;
+  width: min(29rem, 88%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(191, 244, 232, 0.11) 32%, transparent 68%);
+  box-shadow: inset 0 0 5rem rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+}
+.cyber-cta-brand__halo::after {
+  content: "";
+  position: absolute;
+  inset: 16%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+.cyber-cta-brand img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: clamp(8.5rem, 18vw, 13.5rem);
+  height: auto;
+  filter: drop-shadow(0 26px 42px rgba(6, 27, 50, 0.26));
+}
+.cyber-cta-brand[data-ambient-motion="active"] .cyber-cta-brand__halo {
+  animation: cyber-cta-brand-halo 7s ease-in-out infinite alternate;
+}
+.cyber-cta-brand[data-ambient-motion="active"] img {
+  animation: cyber-cta-brand-float 6s ease-in-out infinite alternate;
+}
+
+@keyframes cyber-cta-aurora-primary {
+  0% {
+    transform: translate3d(-3%, -2%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(5%, 5%, 0) scale(1.06);
+  }
+}
+
+@keyframes cyber-cta-aurora-secondary {
+  0% {
+    transform: translate3d(4%, 3%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(-5%, -4%, 0) scale(0.94);
+  }
+}
+
+@keyframes cyber-cta-brand-float {
+  0% {
+    transform: translate3d(0, -2px, 0);
+  }
+  100% {
+    transform: translate3d(0, 2px, 0);
+  }
+}
+
+@keyframes cyber-cta-brand-halo {
+  0% {
+    opacity: 0.76;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@media (max-width: 900px) {
+  .cyber-cta-scene__aurora--primary {
+    top: 38%;
+    right: -24%;
+    width: 104%;
+    height: 74%;
+  }
+  .cyber-cta-scene__aurora--secondary {
+    right: 24%;
+    bottom: -22%;
+    width: 86%;
+    height: 58%;
+  }
+  .cyber-cta-brand {
+    min-height: 19rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .cyber-cta-brand {
+    min-height: 15rem;
+  }
+  .cyber-cta-brand img {
+    width: 8rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .compliance-orbit-field__track {
     will-change: auto;
   }
   .compliance-step--current {
     transform: none;
+  }
+  .cyber-cta-scene__aurora {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+  .cyber-cta-brand__halo,
+  .cyber-cta-brand img {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
@@ -2621,7 +2816,7 @@
   text-transform: uppercase;
 }
 
-.cyber-hero-workspace__header h3 {
+.cyber-hero-workspace__title {
   margin: 0.22rem 0 0;
   font-size: 0.96rem;
   font-weight: 600;
@@ -2787,8 +2982,7 @@
   line-height: 1.35;
 }
 
-.cyber-hero-artifacts h4,
-.cyber-hero-review h4 {
+.cyber-hero-panel__title {
   margin: 0;
   color: #18324d;
   font-size: 0.56rem;
@@ -2870,7 +3064,7 @@
   padding: 0.58rem 0.64rem;
 }
 
-.cyber-hero-review h4 {
+.cyber-hero-review .cyber-hero-panel__title {
   border-bottom: 1px solid rgba(6, 27, 50, 0.09);
   padding-bottom: 0.48rem;
 }
@@ -3194,7 +3388,7 @@
     font-size: 0.36rem;
   }
 
-  .cyber-hero-workspace__header h3 {
+  .cyber-hero-workspace__title {
     margin-top: 0.14rem;
     font-size: 0.7rem;
   }
@@ -3251,8 +3445,7 @@
     display: none;
   }
 
-  .cyber-hero-artifacts h4,
-  .cyber-hero-review h4 {
+  .cyber-hero-panel__title {
     font-size: 0.41rem;
   }
 
@@ -3285,7 +3478,7 @@
     padding: 0.35rem 0.4rem;
   }
 
-  .cyber-hero-review h4 {
+  .cyber-hero-review .cyber-hero-panel__title {
     padding-bottom: 0.28rem;
   }
 

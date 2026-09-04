@@ -20,13 +20,29 @@ describe('CyberHeroSection', () => {
     expect(within(hero).queryByRole('link', { name: 'Explore the Platform' })).not.toBeInTheDocument();
   });
 
+  it('finishes the hero with the shared decorative wave divider', () => {
+    const { container } = renderHero();
+    const hero = screen.getByRole('region', { name: cyberHero.title });
+    const divider = container.querySelector('.wave-divider[aria-hidden="true"]');
+
+    expect(hero).toHaveClass(
+      'cyber-hero',
+      'pb-44',
+      'max-[1080px]:pb-52',
+      'max-[760px]:pb-56'
+    );
+    expect(divider).toBeInTheDocument();
+    expect(divider.querySelectorAll('svg')).toHaveLength(3);
+  });
+
   it('builds the central branded product object without the old dashboard image', () => {
     renderHero();
     const graphic = screen.getByRole('figure', { name: 'Controllo connected assurance proof cluster' });
     const dashboard = within(graphic).getByTestId('cyber-hero-dashboard');
     expect(within(dashboard).getByTestId('cyber-dashboard-emblem')).toHaveAttribute('src', '/assets/emblemLogo.svg');
     expect(dashboard.querySelector('img[src="/assets/dashboard.webp"]')).not.toBeInTheDocument();
-    expect(within(dashboard).getByRole('heading', { level: 3, name: 'Access review' })).toBeInTheDocument();
+    expect(within(dashboard).getByText('Access review')).toBeInTheDocument();
+    expect(within(dashboard).queryByRole('heading')).not.toBeInTheDocument();
     expect(within(dashboard).getByText('SOC 2 · CC6.2B')).toBeInTheDocument();
     expect(within(dashboard).getByText('Control workspace')).toBeInTheDocument();
     expect(dashboard.querySelectorAll('[data-dashboard-sheet]')).toHaveLength(0);

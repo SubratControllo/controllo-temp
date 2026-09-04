@@ -1,6 +1,6 @@
 # Controllo Compliance Current Design System
 
-Last reviewed: 2026-08-31
+Last reviewed: 2026-09-03
 
 Use this file for every visual or interaction change. `src/styles.css` is the implementation source for tokens and shared primitives; component markup is the source for local layout and responsive behavior.
 
@@ -231,10 +231,34 @@ On desktop and tablet, retain the four product-aligned proof cards for Secura AI
 
 Do not add backing dashboard sheets, a dashboard perspective entrance, a second orbit, counter-rotating emblems, lateral ambient card drift, or more proof cards. A future GSAP implementation does not itself reopen this surface; changes require an explicit Cybersecurity-hero request. Accessibility, verified responsive defects, product-claim corrections, and release-critical performance fixes may still proceed.
 
+## Frozen Cybersecurity Operational Monitoring Baseline
+
+**Status:** approved and frozen on 2026-09-03 after focused component tests, product-source reconciliation, and responsive browser QA.
+
+Keep the split **Operational Monitoring Console** with its three manually selected Cloud Assets, Identities & Devices, and Alerts & Exposure views. Each view retains one navy source roster with uniform reviewed brand lockups and one light workspace that separates current visibility from the attention queue. Source, signal, and review counts remain derived from the configured view content; operational context must not imply that monitoring changes control or compliance status.
+
+Preserve the stable desktop frame, all-three-tab mobile selector, wrapping keyboard navigation, distinct semantic Lucide symbols, exact registry-backed third-party marks, one-shot state transition, complete static reduced-motion output, and zero horizontal overflow. Treat further composition, tab inventory, visual restyling, logo treatment, icon-family changes, motion choreography, and product copy as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
+
+## Frozen Cybersecurity Framework Coverage Baseline
+
+**Status:** approved and frozen on 2026-09-03 after focused component tests and responsive browser QA.
+
+Keep the pointer-inert **Shared-Control Field**: three reusable control anchors converge on the official Controllo emblem, then one measured central spine branches into eight framework endpoints through four straight mirrored rows. The desktop emblem remains right-aligned within its widened middle track to balance both connector spans; the stacked mobile layout keeps it centered. Preserve left labels before their right-edge dots, right labels after their left-edge dots, consistent connector and marker weights, live anchor measurement, resize and font-load recalculation, and the sole **Explore All Frameworks** action outside the visual.
+
+The viewport sequence draws the measured paths once, settles the endpoints, and remains still. Reduced motion and unsupported observers render the complete static diagram. Do not convert the illustration into a dashboard, CTA, interactive framework directory, radial graph, card grid, or continuously animated network unless the section is explicitly reopened. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
+
+## Frozen Cybersecurity Closing Conversion Baseline
+
+**Status:** approved and frozen on 2026-09-03 after focused component tests and responsive browser QA.
+
+Keep the closing conversion section's approved copy, proof points, action hierarchy, and **Kinetic Brand Mosaic**. The right visual uses the exact official Controllo emblem inside twenty-one translucent white, mint-soft, and mint glass fragments over a localized halo and grounded shadow. The section background remains a calm navy-teal field with right-weighted aurora, organic mist, subtle grain, and vignette; it does not use connector geometry, visible visual labels, cards, rings, dashboards, or unsupported metrics.
+
+Preserve the viewport-owned GSAP assembly, offscreen timeline pause, low-frequency ambient fragment and background displacement, complete reduced-motion state, decorative pointer-inert semantics, and zero horizontal overflow. Reopen visual composition, fragment count, background art direction, motion choreography, copy, proof points, or buttons only through an explicit request for this closing section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
+
 ## Navigation And Interaction
 
 - Every interactive element has a visible hover and focus state.
-- Familiar actions use Lucide icons rather than text symbols or hand-drawn interface icons.
+- Familiar actions use distinct semantic icons from one consistent family per surface. Lucide remains the installed default; Phosphor may support a new visual system when its vocabulary or weights materially improve clarity.
 - Buttons state commands; links state destinations.
 - Dropdown triggers expose `aria-expanded` and `aria-controls`.
 - Option groups use toggles, tabs, filters, or segmented controls according to behavior.
@@ -284,7 +308,7 @@ Use the product terms in `CONTEXT.md`. Write from the user's operating reality: 
 - Persistent animation that competes with reading or navigation
 - Layout-shifting hover states
 - Gradient or emblem layers over readable text
-- Manual SVG interface icons when Lucide provides the symbol
+- Repeated generic glyphs for unrelated states, mixed icon families within one surface, or manual SVG interface icons when the selected library provides the symbol
 - Unverified customer proof, integrations, framework coverage, or legal claims
 
 ## Visual Completion Check

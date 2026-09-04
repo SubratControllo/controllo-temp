@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-02
+Last reviewed: 2026-09-04
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -166,3 +166,23 @@ Every entry must state:
 - **Dependencies:** Fresh Codex task discovery, the installed global and repository-local manifests, observed routing behavior, and preserved Controllo precedence rules.
 - **Source:** 2026-09-03 curated design skill installation
 - **Next decision:** Which skill descriptions or routing rows need adjustment based on observed activation quality without increasing the default skill count?
+
+### FS-015 — Cybersecurity closing mosaic refinement
+
+- **Status:** Deferred
+- **Area:** Frozen Cybersecurity closing conversion section
+- **Outcome:** Preserve the current Kinetic Brand Mosaic baseline while leaving room for a later evidence-led refinement of fragment composition, material depth, background lighting, or motion restraint.
+- **Trigger:** An explicit user request reopens the frozen section, or user research shows the current mosaic does not provide a sufficiently distinctive or trustworthy final brand impression.
+- **Dependencies:** A newly approved visual direction, preserved official emblem geometry, unchanged conversion hierarchy unless separately approved, reduced-motion parity, offscreen cancellation, responsive containment, and focused browser and component validation.
+- **Source:** 2026-09-03 Kinetic Brand Mosaic approval and freeze decision
+- **Next decision:** Which single refinement would materially improve the closing brand impression without reintroducing connector diagrams, cards, rings, dashboards, or unsupported proof?
+
+### FS-016 — AI governance evidence-dependent claims
+
+- **Status:** Deferred
+- **Area:** Dedicated AI Governance page, framework explorer, Secura example, and closing conversion
+- **Outcome:** Add only those deeper product and company claims that receive reviewable evidence, including named AI-risk templates, risk comments, internal chat, AI-specific auditor collaboration, CSA STAR for AI coverage, approved clause-level mappings, a measured Secura timing claim, or **Built by Auditors** provenance.
+- **Trigger:** Product owners, approved internal source material, product screenshots, benchmark evidence, or company documentation establish that a specific claim is accurate and publishable.
+- **Dependencies:** Feature-level product verification, current screenshots or workflow documentation, framework coverage and mapping review, repeatable performance measurement where applicable, company-history approval, and editorial/legal sign-off.
+- **Source:** [AI Governance Page Design](superpowers/specs/2026-09-04-ai-governance-page-design.md)
+- **Next decision:** Which deferred claim has sufficient evidence to improve the page without weakening trust or expanding the approved implementation scope?

@@ -31,11 +31,29 @@ describe('CyberResponseSection', () => {
     });
   });
 
+  it('keeps inactive narrative copy at full opacity for readable contrast', () => {
+    render(<CyberResponseSection items={cyberChallenges} motionEnabled />);
+
+    screen.getAllByTestId(/cyber-response-row-/).forEach((row) => {
+      expect(row.querySelector('.origin-left')).toHaveStyle({ opacity: '1' });
+    });
+  });
+
   it('keeps the section introduction and timeline in one narrative column', () => {
     render(<CyberResponseSection items={cyberChallenges} motionEnabled />);
     const narrative = screen.getByTestId('cyber-story-narrative');
     expect(within(narrative).getByRole('heading', { name: 'Turn compliance friction into clearer action.' })).toBeInTheDocument();
     expect(within(narrative).getByRole('list', { name: 'Cybersecurity challenges and responses' })).toBeInTheDocument();
+  });
+
+  it('does not draw a tinted rule below the hero wave', () => {
+    render(<CyberResponseSection items={cyberChallenges} motionEnabled />);
+    const section = screen
+      .getByRole('heading', { name: 'Turn compliance friction into clearer action.' })
+      .closest('section');
+
+    expect(section).toHaveClass('!pt-20', 'max-[760px]:!pt-16');
+    expect(section.firstElementChild).not.toHaveClass('h-px', 'bg-gradient-to-r');
   });
 
   it('ends the desktop timeline track at the final node', () => {
