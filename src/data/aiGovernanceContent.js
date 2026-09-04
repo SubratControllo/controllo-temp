@@ -68,3 +68,16 @@ export const aiSecura = {
     decision: 'Human review required'
   }
 };
+
+export const aiFrameworks = {
+  eyebrow: 'AI Governance Frameworks',
+  title: 'One operating layer for evolving AI requirements.',
+  description: 'Keep AI systems, ownership, risk, controls, and evidence connected as you work across relevant standards and regulations.',
+  operatingLayer: ['AI system inventory', 'Ownership', 'Risk assessment', 'Controls', 'Evidence'],
+  views: [
+    { id: 'iso-iec-42001', label: 'ISO/IEC 42001', description: 'AI management-system structure and continual improvement.' },
+    { id: 'nist-ai-rmf', label: 'NIST AI RMF', description: 'Govern, Map, Measure, and Manage AI risk.' },
+    { id: 'eu-ai-act', label: 'EU AI Act', description: 'Role- and risk-based obligations for AI systems in the European Union.' }
+  ],
+  action: { label: 'Explore frameworks', to: '/frameworks' }
+};
