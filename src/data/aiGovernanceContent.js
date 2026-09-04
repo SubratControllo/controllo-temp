@@ -53,3 +53,18 @@ export const aiOperations = {
     }
   ]
 };
+
+export const aiSecura = {
+  eyebrow: 'Secura AI for AI Governance',
+  title: 'Turn AI governance documentation into a readiness check.',
+  description: 'Secura reviews implementation details, policies, procedures, and supporting evidence against AI governance controls—then surfaces missing context and prepares next actions for accountable people to approve.',
+  capabilities: ['Review', 'Identify gaps', 'Prepare next actions', 'Human approval'],
+  review: {
+    label: 'Illustrative AI control review',
+    inputs: ['Implementation', 'Policy', 'Procedure', 'Evidence'],
+    status: 'Needs attention',
+    finding: 'Supporting evidence does not demonstrate the latest approved AI-risk review.',
+    recommendation: 'Add the current AI-risk assessment and ownership record.',
+    decision: 'Human review required'
+  }
+};
