@@ -1,11 +1,41 @@
 import { useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion, useIsPresent } from 'motion/react';
 import { ClipboardCheck, Layers3, ShieldAlert } from 'lucide-react';
 
 const tabIcons = {
   'ai-systems': Layers3,
   'ai-risk-assessment': ShieldAlert,
 };
+
+function PanelBody({ view, motionEnabled }) {
+  const isPresent = useIsPresent();
+
+  return (
+    <motion.div
+      className="absolute inset-0 grid gap-5 rounded-[22px] border border-navy/10 bg-white p-5 shadow-[0_16px_36px_rgba(6,27,50,.08)] sm:grid-cols-[minmax(0,1fr)_minmax(12rem,.72fr)] sm:p-7"
+      data-testid="ai-operations-panel-body"
+      aria-hidden={!isPresent}
+      initial={motionEnabled ? { opacity: 0 } : false}
+      animate={{ opacity: 1 }}
+      exit={motionEnabled ? { opacity: 0 } : undefined}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="min-w-0">
+        <p className="font-mono text-[.62rem] uppercase tracking-[.12em] text-teal">{view.badge}</p>
+        <h3 className="mt-4 max-w-md text-[1.55rem]">{view.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-muted">A connected record keeps governance context available for the next responsible review.</p>
+      </div>
+      <dl className="grid content-start gap-0 divide-y divide-line border-y border-line">
+        {view.fields.map(([label, value]) => (
+          <div className="grid grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] gap-3 py-3" key={label}>
+            <dt className="text-xs text-muted">{label}</dt>{' '}
+            <dd className="m-0 text-right text-sm font-medium text-navy">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </motion.div>
+  );
+}
 
 export default function AiOperationsSection({ content, motionEnabled }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,30 +107,18 @@ export default function AiOperationsSection({ content, motionEnabled }) {
           </div>
 
           <div className="min-h-105 bg-[#f8fbfa] p-4 sm:p-6">
-            <motion.div
-              className="grid min-h-93 gap-5 rounded-[22px] border border-navy/10 bg-white p-5 shadow-[0_16px_36px_rgba(6,27,50,.08)] sm:grid-cols-[minmax(0,1fr)_minmax(12rem,.72fr)] sm:p-7"
+            <div
+              className="relative min-h-93"
               id={`ai-operations-panel-${activeView.id}`}
               role="tabpanel"
               aria-labelledby={`ai-operations-tab-${activeView.id}`}
-              key={activeView.id}
-              initial={motionEnabled ? { opacity: 0 } : false}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2 }}
             >
-              <div className="min-w-0">
-                <p className="font-mono text-[.62rem] uppercase tracking-[.12em] text-teal">{activeView.badge}</p>
-                <h3 className="mt-4 max-w-md text-[1.55rem]">{activeView.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted">A connected record keeps governance context available for the next responsible review.</p>
-              </div>
-              <dl className="grid content-start gap-0 divide-y divide-line border-y border-line">
-                {activeView.fields.map(([label, value]) => (
-                  <div className="grid grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] gap-3 py-3" key={label}>
-                    <dt className="text-xs text-muted">{label}</dt>{' '}
-                    <dd className="m-0 text-right text-sm font-medium text-navy">{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </motion.div>
+              {motionEnabled ? (
+                <AnimatePresence initial={false}>
+                  <PanelBody key={activeView.id} view={activeView} motionEnabled />
+                </AnimatePresence>
+              ) : <PanelBody view={activeView} motionEnabled={false} />}
+            </div>
           </div>
         </div>
       </div>

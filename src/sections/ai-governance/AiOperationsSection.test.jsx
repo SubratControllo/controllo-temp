@@ -35,4 +35,17 @@ describe('AiOperationsSection', () => {
     await user.keyboard('{ArrowRight}');
     expect(systemsTab).toHaveFocus();
   });
+
+  it('crossfades overlapping panel bodies inside one stable active tabpanel', async () => {
+    const user = userEvent.setup();
+    render(<AiOperationsSection content={aiOperations} motionEnabled />);
+
+    const panel = screen.getByRole('tabpanel', { name: 'AI Systems' });
+    await user.click(screen.getByRole('tab', { name: 'AI Risk Assessment' }));
+
+    expect(screen.getByRole('tabpanel', { name: 'AI Risk Assessment' })).toBe(panel);
+    expect(within(panel).getAllByTestId('ai-operations-panel-body')).toHaveLength(2);
+    expect(within(panel).getByText('Customer support assistance')).toBeVisible();
+    expect(within(panel).getByText('Possible')).toBeInTheDocument();
+  });
 });
