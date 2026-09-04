@@ -36,3 +36,20 @@ export const aiChallenges = {
     ['Progress and next actions remain unclear', 'Use readiness views that connect controls, evidence, risk, owners, and the next action.']
   ].map(([challenge, response], index) => ({ id: `challenge-${index + 1}`, challenge, response }))
 };
+
+export const aiOperations = {
+  eyebrow: 'Govern Every AI System',
+  title: 'From AI inventory to risk assessment—in one workflow.',
+  description: 'Add each AI system, define its purpose, owner, and status, then assess likelihood and impact while keeping the responsible owner and review context connected.',
+  workflow: ['Add AI system', 'Assign owner and status', 'Assess AI-specific risk'],
+  views: [
+    {
+      id: 'ai-systems', label: 'AI Systems', title: 'Customer support assistant', badge: 'Illustrative product view',
+      fields: [['Purpose', 'Customer support assistance'], ['Owner', 'Owner assigned'], ['Status', 'Active'], ['Review context', 'Customer-facing AI system']]
+    },
+    {
+      id: 'ai-risk-assessment', label: 'AI Risk Assessment', title: 'Customer support assistant', badge: 'Illustrative assessment',
+      fields: [['Risk context', 'Linked to AI system'], ['Likelihood', 'Possible'], ['Impact', 'Moderate'], ['Responsible owner', 'Owner assigned'], ['Assessment status', 'Current']]
+    }
+  ]
+};
