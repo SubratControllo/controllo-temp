@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 export default function AiSecuraSection({ content, motionEnabled }) {
   return (
     <section aria-label={content.eyebrow} className="section overflow-hidden bg-navy text-white">
-      <div className="section-shell">
+      <div className="shell">
         <div className="max-w-3xl">
           <p className="eyebrow text-mint">{content.eyebrow}</p>
           <h2 className="mt-5 text-balance text-white">{content.title}</h2>

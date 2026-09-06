@@ -6,6 +6,7 @@ export const aiGovernanceMeta = {
 export const aiHero = {
   eyebrow: 'Operational AI Governance',
   title: 'Turn AI standards into structured, actionable governance.',
+  titleAccent: 'AI standards',
   description: 'Bring AI systems, accountable owners, risk assessment, controls, and evidence into one operating view—so your team can respond to evolving AI standards and regulation with clearer readiness.',
   actions: [
     { label: 'Start free trial', to: '/pricing', variant: 'primary' },

@@ -14,7 +14,12 @@ describe('CyberHeroSection', () => {
   it('presents the focused outcome and two distinct actions', () => {
     renderHero();
     const hero = screen.getByRole('region', { name: cyberHero.title });
-    expect(within(hero).getByRole('heading', { level: 1, name: cyberHero.title })).toBeInTheDocument();
+    const heading = within(hero).getByRole('heading', { level: 1, name: cyberHero.title });
+    expect(heading).toBeInTheDocument();
+    const titleAccent = within(heading).getByText('Cyber readiness', { exact: true });
+    expect(titleAccent.tagName).toBe('EM');
+    expect(titleAccent).toHaveClass('hero-editorial-accent');
+    expect(titleAccent).toHaveClass('hero-editorial-accent--cyber');
     expect(within(hero).getByRole('link', { name: 'Start Free Trial' })).toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: 'Request a Demo' })).toHaveAttribute('href', '/demo');
     expect(within(hero).queryByRole('link', { name: 'Explore the Platform' })).not.toBeInTheDocument();

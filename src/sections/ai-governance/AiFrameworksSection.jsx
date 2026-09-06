@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 export default function AiFrameworksSection({ content }) {
@@ -27,7 +27,7 @@ export default function AiFrameworksSection({ content }) {
 
   return (
     <section className="section bg-white" aria-label={content.eyebrow}>
-      <div className="section-shell">
+      <div className="shell">
         <div className="max-w-3xl">
           <p className="eyebrow">{content.eyebrow}</p>
           <h2 className="mt-5 text-balance" id="ai-frameworks-title">{content.title}</h2>
@@ -74,7 +74,7 @@ export default function AiFrameworksSection({ content }) {
 
             <Link className="mt-7 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-navy transition-colors duration-200 hover:text-teal focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal" to={content.action.to}>
               {content.action.label}
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <ArrowRight className="size-4" aria-hidden="true" weight="bold" />
             </Link>
           </div>
 

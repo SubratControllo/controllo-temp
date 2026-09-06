@@ -35,5 +35,11 @@ describe('AiGovernancePage', () => {
       'href',
       'https://controllo.ai/solutions/ai-governance'
     );
+
+    const sections = document.querySelectorAll('section');
+    expect(sections).toHaveLength(6);
+    sections.forEach((section) => {
+      expect(section.querySelector(':scope > .shell')).toBeInTheDocument();
+    });
   });
 });

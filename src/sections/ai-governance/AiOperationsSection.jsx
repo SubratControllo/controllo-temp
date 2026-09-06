@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
+import { ClipboardText, ShieldWarning, Stack } from '@phosphor-icons/react';
 import { AnimatePresence, motion, useIsPresent } from 'motion/react';
-import { ClipboardCheck, Layers3, ShieldAlert } from 'lucide-react';
 
 const tabIcons = {
-  'ai-systems': Layers3,
-  'ai-risk-assessment': ShieldAlert,
+  'ai-systems': Stack,
+  'ai-risk-assessment': ShieldWarning,
 };
 
 function PanelBody({ view, motionEnabled }) {
@@ -62,7 +62,7 @@ export default function AiOperationsSection({ content, motionEnabled }) {
 
   return (
     <section className="section bg-mist" aria-labelledby="ai-operations-title">
-      <div className="section-shell">
+      <div className="shell">
         <div className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,.68fr)]">
           <div className="max-w-3xl">
             <p className="eyebrow">{content.eyebrow}</p>
@@ -82,7 +82,7 @@ export default function AiOperationsSection({ content, motionEnabled }) {
         <div className="mt-12 overflow-hidden rounded-[28px] border border-line bg-white shadow-elevated">
           <div className="flex gap-2 overflow-x-auto border-b border-line bg-field p-3 max-[460px]:grid max-[460px]:grid-cols-2 max-[460px]:overflow-visible max-[460px]:p-2" role="tablist" aria-label="AI governance workspace views">
             {content.views.map((view, index) => {
-              const Icon = tabIcons[view.id] ?? ClipboardCheck;
+              const Icon = tabIcons[view.id] ?? ClipboardText;
               const isActive = index === activeIndex;
 
               return (
@@ -99,7 +99,7 @@ export default function AiOperationsSection({ content, motionEnabled }) {
                   onKeyDown={(event) => onKeyDown(event, index)}
                   key={view.id}
                 >
-                  <Icon className="size-4 shrink-0" aria-hidden="true" />
+                  <Icon className="size-4 shrink-0" aria-hidden="true" weight="regular" />
                   {view.label}
                 </button>
               );

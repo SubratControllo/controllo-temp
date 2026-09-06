@@ -6,6 +6,7 @@ export const cybersecurityMeta = {
 export const cyberHero = {
   eyebrow: 'Cybersecurity & Cloud Security',
   title: 'Cyber readiness with connected visibility.',
+  titleAccent: 'Cyber readiness',
   description: 'Bring framework implementation, evidence, risk, and auditor collaboration into one workflow, with refreshed visibility across supported cloud and workforce environments.'
 };
 

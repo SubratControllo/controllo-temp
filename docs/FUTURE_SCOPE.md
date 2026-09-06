@@ -167,15 +167,15 @@ Every entry must state:
 - **Source:** 2026-09-03 curated design skill installation
 - **Next decision:** Which skill descriptions or routing rows need adjustment based on observed activation quality without increasing the default skill count?
 
-### FS-015 — Cybersecurity closing mosaic refinement
+### FS-015 — Cybersecurity closing film ownership
 
 - **Status:** Deferred
 - **Area:** Frozen Cybersecurity closing conversion section
-- **Outcome:** Preserve the current Kinetic Brand Mosaic baseline while leaving room for a later evidence-led refinement of fragment composition, material depth, background lighting, or motion restraint.
-- **Trigger:** An explicit user request reopens the frozen section, or user research shows the current mosaic does not provide a sufficiently distinctive or trustworthy final brand impression.
-- **Dependencies:** A newly approved visual direction, preserved official emblem geometry, unchanged conversion hierarchy unless separately approved, reduced-motion parity, offscreen cancellation, responsive containment, and focused browser and component validation.
-- **Source:** 2026-09-03 Kinetic Brand Mosaic approval and freeze decision
-- **Next decision:** Which single refinement would materially improve the closing brand impression without reintroducing connector diagrams, cards, rings, dashboards, or unsupported proof?
+- **Outcome:** Preserve the approved full-bleed cinematic CTA while moving the film to a production-owned, rights-confirmed asset location if one becomes available, without changing its crop, pacing, or conversion hierarchy.
+- **Trigger:** The current third-party CloudFront source changes, becomes unreliable, or an approved production-owned copy and usage record become available.
+- **Dependencies:** Confirmed usage rights, an approved source file, optimized responsive encoding, stable hosting, a fallback poster decision, reduced-motion parity, and repeat browser performance QA.
+- **Source:** 2026-09-06 Cybersecurity closing cinematic CTA approval and freeze decision
+- **Next decision:** Should the exact approved film remain externally hosted or be vendored under Controllo-owned hosting for production reliability?
 
 ### FS-016 — AI governance evidence-dependent claims
 

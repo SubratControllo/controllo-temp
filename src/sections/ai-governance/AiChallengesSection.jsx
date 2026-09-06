@@ -11,7 +11,7 @@ export default function AiChallengesSection({ content, motionEnabled }) {
 
   return (
     <section aria-label={content.eyebrow} className="section bg-white">
-      <div className="section-shell">
+      <div className="shell">
         <div className="max-w-3xl">
           <p className="eyebrow">{content.eyebrow}</p>
           <h2 id="ai-challenges-heading" className="mt-5 text-balance">{content.title}</h2>

@@ -4,10 +4,15 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { cyberClosing } from '../../data/cybersecurityContent';
 import CyberCtaSection from './CyberCtaSection';
 
-describe('CyberCtaSection', () => {
-  afterEach(() => vi.unstubAllGlobals());
+const CTA_VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4';
 
-  it('uses restrained proof and the approved conversion actions', () => {
+describe('CyberCtaSection', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
+  it('keeps the approved conversion content instead of importing unsupported reference claims', () => {
     render(
       <MemoryRouter>
         <CyberCtaSection content={cyberClosing} motionEnabled={false} />
@@ -26,44 +31,31 @@ describe('CyberCtaSection', () => {
     expect(
       within(section).getByRole('list', { name: 'Cybersecurity platform proof' }),
     ).toHaveTextContent('100+ frameworks');
-    expect(section).not.toHaveTextContent(/customer|trusted by|under a minute/i);
+    expect(section).not.toHaveTextContent(/trusted by|platform uptime|context windows|2000\+/i);
   });
 
-  it('renders one branded focal point and a settled background under reduced motion', () => {
+  it('uses the supplied film as a decorative full-bleed background', () => {
     render(
       <MemoryRouter>
-        <CyberCtaSection content={cyberClosing} motionEnabled={false} />
-      </MemoryRouter>,
-    );
-
-    const brand = screen.getByTestId('cyber-brand-mark');
-    expect(brand).toHaveAttribute('data-motion', 'static');
-    expect(brand).toHaveAccessibleName('Controllo connected assurance');
-    expect(brand.querySelectorAll('img[src="/assets/emblemLogo.svg"]')).toHaveLength(1);
-    expect(brand.querySelector('[data-assurance-packet]')).not.toBeInTheDocument();
-  });
-
-  it('keeps the foreground simple while the assurance field owns the ambient motion', () => {
-    render(
-      <MemoryRouter>
-        <CyberCtaSection content={cyberClosing} motionEnabled={true} />
+        <CyberCtaSection content={cyberClosing} motionEnabled />
       </MemoryRouter>,
     );
 
     const section = screen.getByRole('region', { name: cyberClosing.title });
-    const background = section.querySelector('[data-assurance-field-background]');
-    const brand = screen.getByTestId('cyber-brand-mark');
+    const video = section.querySelector('video[data-cyber-cta-video]');
+    const source = video.querySelector('source');
 
-    expect(background.querySelectorAll('[data-aurora-layer]')).toHaveLength(2);
-    expect(background).toHaveAttribute('data-motion', 'animated');
-    expect(brand).toHaveAttribute('data-motion', 'animated');
-    expect(brand).toHaveAttribute('data-ambient-motion', 'active');
-    expect(brand.querySelector('[data-brand-halo]')).toBeInTheDocument();
-    expect(brand.querySelector('svg, [data-assurance-packet], [data-assurance-signal]')).not.toBeInTheDocument();
-    expect(section.querySelectorAll('img[src="/assets/emblemLogo.svg"]')).toHaveLength(1);
+    expect(video).toHaveAttribute('aria-hidden', 'true');
+    expect(video).toHaveAttribute('autoplay');
+    expect(video).toHaveAttribute('loop');
+    expect(video).toHaveAttribute('playsinline');
+    expect(video).toHaveAttribute('preload', 'metadata');
+    expect(video).toHaveProperty('muted', true);
+    expect(source).toHaveAttribute('src', CTA_VIDEO_URL);
+    expect(source).toHaveAttribute('type', 'video/mp4');
   });
 
-  it('keeps text, focus, and button surfaces distinct against the CTA field', () => {
+  it('renders a settled media fallback when motion is disabled', () => {
     render(
       <MemoryRouter>
         <CyberCtaSection content={cyberClosing} motionEnabled={false} />
@@ -71,30 +63,67 @@ describe('CyberCtaSection', () => {
     );
 
     const section = screen.getByRole('region', { name: cyberClosing.title });
-    const proof = within(section).getByRole('list', { name: 'Cybersecurity platform proof' });
+    const field = section.querySelector('[data-cinematic-field]');
+    const video = section.querySelector('video[data-cyber-cta-video]');
+
+    expect(field).toHaveAttribute('data-motion', 'static');
+    expect(video).not.toHaveAttribute('autoplay');
+    expect(video).toHaveAttribute('data-motion', 'static');
+    expect(within(section).getByText(cyberClosing.description)).toBeVisible();
+  });
+
+  it('pauses the decorative film offscreen and resumes it when the CTA returns', () => {
+    let intersectionCallback;
+    const observe = vi.fn();
+    const disconnect = vi.fn();
+    class IntersectionObserverStub {
+      constructor(callback) {
+        intersectionCallback = callback;
+      }
+
+      observe = observe;
+
+      disconnect = disconnect;
+    }
+    vi.stubGlobal('IntersectionObserver', IntersectionObserverStub);
+    const play = vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue();
+    const pause = vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => {});
+
+    const { unmount } = render(
+      <MemoryRouter>
+        <CyberCtaSection content={cyberClosing} motionEnabled />
+      </MemoryRouter>,
+    );
+    const video = screen
+      .getByRole('region', { name: cyberClosing.title })
+      .querySelector('video[data-cyber-cta-video]');
+
+    expect(observe).toHaveBeenCalledWith(video);
+    intersectionCallback([{ isIntersecting: false }]);
+    expect(pause).toHaveBeenCalled();
+    intersectionCallback([{ isIntersecting: true }]);
+    expect(play).toHaveBeenCalled();
+
+    unmount();
+    expect(disconnect).toHaveBeenCalled();
+  });
+
+  it('keeps one centered brand signature and distinct keyboard-focus surfaces', () => {
+    render(
+      <MemoryRouter>
+        <CyberCtaSection content={cyberClosing} motionEnabled={false} />
+      </MemoryRouter>,
+    );
+
+    const section = screen.getByRole('region', { name: cyberClosing.title });
+    const signature = screen.getByTestId('cyber-cta-signature');
     const trial = within(section).getByRole('link', { name: 'Start Free Trial' });
     const demo = within(section).getByRole('link', { name: 'Request a Demo' });
 
-    expect(within(section).getByText(cyberClosing.eyebrow)).toHaveClass('text-white');
-    expect(within(section).getByText(cyberClosing.description)).toHaveClass('text-white');
-    expect(proof).toHaveClass('text-white');
+    expect(signature).toHaveAccessibleName('Controllo connected assurance');
+    expect(signature.querySelectorAll('img[src="/assets/emblemLogo.svg"]')).toHaveLength(1);
+    expect(section.querySelector('header, nav')).not.toBeInTheDocument();
     [trial, demo].forEach((link) => expect(link).toHaveClass('focus-visible:outline-white'));
-    expect(trial).toHaveClass('button', 'button--mint', 'button--directional');
-    expect(demo).toHaveClass('button', 'button--light');
-    expect(section).toHaveClass('cyber-cta-scene');
-  });
-
-  it('keeps the brand visible when motion is disabled', () => {
-    render(
-      <MemoryRouter>
-        <CyberCtaSection content={cyberClosing} motionEnabled={false} />
-      </MemoryRouter>,
-    );
-
-    const brand = screen.getByTestId('cyber-brand-mark');
-    expect(brand).toHaveAttribute('data-motion', 'static');
-    expect(brand).toHaveAttribute('data-ambient-motion', 'still');
-    expect(brand).not.toHaveStyle({ opacity: '0' });
-    expect(brand.querySelector('img')).toBeVisible();
+    expect(section.querySelector('[data-cta-content]')).toHaveClass('text-center');
   });
 });

@@ -27,7 +27,7 @@ export default function AiGovernancePage() {
       <AiOperationsSection content={aiOperations} motionEnabled={motionEnabled} />
       <AiSecuraSection content={aiSecura} motionEnabled={motionEnabled} />
       <AiFrameworksSection content={aiFrameworks} motionEnabled={motionEnabled} />
-      <AiCtaSection content={aiClosing} />
+      <AiCtaSection content={aiClosing} motionEnabled={motionEnabled} />
     </>
   );
 }

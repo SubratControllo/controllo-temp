@@ -1,6 +1,6 @@
 # Controllo Compliance Current Design System
 
-Last reviewed: 2026-09-04
+Last reviewed: 2026-09-06
 
 Use this file for every visual or interaction change. `src/styles.css` is the implementation source for tokens and shared primitives; component markup is the source for local layout and responsive behavior.
 
@@ -44,6 +44,7 @@ Use navy and white for structure, teal for active meaning, and mint for positive
 - **Primary**: Manrope, weights 400 and 500.
 - **Utility**: IBM Plex Mono, weights 400 and 500.
 - **Display**: Manrope medium with compact line-height around `1.06`.
+- **Editorial hero accent**: Cormorant Garamond medium italic, limited to explicitly approved phrases inside page-level hero headings. Keep surrounding heading text in Manrope and use teal only for the accent.
 - **Body**: Manrope regular with line-height between `1.6` and `1.8`.
 - **Labels**: IBM Plex Mono, uppercase, small, and deliberately tracked.
 
@@ -227,15 +228,23 @@ Keep the supporting copy framework-first: visitors start with relevant framework
 
 The dedicated `/solutions/ai-governance` route uses six ordered full-width bands: the Operational AI Governance hero and connected dossier, challenge-to-response ledger, AI inventory and risk-assessment workflow, Secura AI control review, framework context with the Controllo operating layer, and the closing AI Governance, Connected conversion. Keep the hero product-led and distinct from the Cybersecurity hero, preserve the challenge-before-response mobile order, and keep the shared header and footer behavior unchanged.
 
-The operations and framework selectors are manual tab systems with click, arrow-key, Home, and End support; they do not autoplay. Focus remains visibly outlined. The Secura dossier reads review inputs, finding, recommended action, then human decision. Framework copy describes relevant context without implying exact mappings. The closing conversion retains generous section spacing and hands off directly to the shared footer.
+The operations and framework selectors are manual tab systems with click, arrow-key, Home, and End support; they do not autoplay. Focus remains visibly outlined. The Secura dossier reads review inputs, finding, recommended action, then human decision. Framework copy describes relevant context without implying exact mappings. The closing conversion shares the Cybersecurity CTA's single-viewport conversion hierarchy while retaining its own code-built AI governance current: five system-context nodes, three restrained connected paths, traveling mint current bands, and a central mint field sit behind the approved copy and Phosphor action icons. Do not add pulse rings or large orbital rings. Ambient transforms and opacity changes run only while the section is visible; reduced motion renders the complete static field. Do not substitute the Cybersecurity film or unsupported AI performance and trust claims.
 
 Responsive behavior is implemented at the established 1440, 1024, 768, and 375 pixel checks with contained dossiers, tabs, and proof text. Reduced motion renders every section immediately in its settled state with no required transition or loop. Do not treat this baseline as approved or freeze it until the user approves the rendered page. Evidence-dependent additions remain deferred in `FS-016`.
 
+### Frozen AI Governance Closing Conversion Baseline
+
+**Status:** approved and frozen on 2026-09-06 after focused component tests and responsive browser QA.
+
+Keep the approved **AI Governance, Connected** signature, headline, supporting copy, proof line, and two-action hierarchy inside the single-viewport cinematic composition. Preserve the distinct code-built governance current: five context nodes, three connected SVG paths, traveling mint current bands, and the central mint field. Do not add pulse rings, large orbital rings, an automatic button sheen, the Cybersecurity film, or new performance and trust claims.
+
+Ambient transforms and opacity changes run only while the section is visible and stop offscreen. Reduced motion renders the complete static field. Preserve exact `100svh` fit, visible keyboard focus, Phosphor action icons, mobile sentence-level headline wrapping, zero horizontal overflow through 320px, and the normal handoff to the shared footer. Reopen its composition, copy, proof points, motion, or buttons only through an explicit request for this closing section; accessibility, verified responsive defects, claim corrections, and release-critical performance fixes remain permitted.
+
 ## Frozen Cybersecurity Hero Baseline
 
-**Status:** approved and frozen on 2026-09-03 after focused component tests and responsive browser QA.
+**Status:** re-approved and frozen on 2026-09-07 after the explicit editorial-heading refinement, focused component tests, and responsive browser QA.
 
-Keep the approved headline, supporting copy, two actions, and vertically centered desktop split. The right visual uses one enlarged, pointer-inert **Access review** workspace with its final shallow perspective applied from the first frame. One low-contrast elliptical orbit sits behind the dashboard. Exactly two bare official Controllo emblems follow that same path in the same forward direction with a half-cycle separation; they may disappear naturally while passing behind the product plane.
+Keep the approved headline, supporting copy, two actions, and vertically centered desktop split. In the headline, **Cyber readiness** is the sole Cormorant Garamond italic teal accent at its approved `1.16em` optical scale; **with connected visibility.** remains Manrope medium in navy. The right visual uses one enlarged, pointer-inert **Access review** workspace with its final shallow perspective applied from the first frame. One low-contrast elliptical orbit sits behind the dashboard. Exactly two bare official Controllo emblems follow that same path in the same forward direction with a half-cycle separation; they may disappear naturally while passing behind the product plane.
 
 On desktop and tablet, retain the four product-aligned proof cards for Secura AI, cloud security, identity and endpoint risk, and framework coverage. They enter once from the dashboard origin using only transform and opacity, then remain still. On small mobile screens, retain the two primary Secura and cloud cards and hide the lower supporting pair. Preserve the transient center signal, accurate local brand marks, decorative semantics, pointer inertness, zero horizontal overflow, and the complete reduced-motion state.
 
@@ -259,11 +268,11 @@ The viewport sequence draws the measured paths once, settles the endpoints, and 
 
 ## Frozen Cybersecurity Closing Conversion Baseline
 
-**Status:** approved and frozen on 2026-09-03 after focused component tests and responsive browser QA.
+**Status:** approved and frozen on 2026-09-06 after focused component tests and responsive browser QA.
 
-Keep the closing conversion section's approved copy, proof points, action hierarchy, and **Kinetic Brand Mosaic**. The right visual uses the exact official Controllo emblem inside twenty-one translucent white, mint-soft, and mint glass fragments over a localized halo and grounded shadow. The section background remains a calm navy-teal field with right-weighted aurora, organic mist, subtle grain, and vignette; it does not use connector geometry, visible visual labels, cards, rings, dashboards, or unsupported metrics.
+Keep the closing conversion section's approved copy, proof points, and two-action hierarchy inside one centered, single-viewport cinematic composition. A full-bleed abstract film sits behind a layered navy scrim, subtle grain, and vignette; the official emblem appears once in the compact **Connected assurance** signature. The section does not duplicate the site header, import reference-page fonts or navigation, add cards or dashboards, or introduce unsupported trust claims and performance metrics.
 
-Preserve the viewport-owned GSAP assembly, offscreen timeline pause, low-frequency ambient fragment and background displacement, complete reduced-motion state, decorative pointer-inert semantics, and zero horizontal overflow. Reopen visual composition, fragment count, background art direction, motion choreography, copy, proof points, or buttons only through an explicit request for this closing section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
+Preserve the decorative, muted, looping, pointer-inert media semantics; pause playback while the section is offscreen or the document is hidden. Reduced motion removes the film and exposes the complete static navy-teal fallback. Keep the foreground stable after its one-time staggered reveal, retain visible keyboard focus, fit the full composition within `100svh` at desktop and mobile sizes, and maintain zero horizontal overflow. Reopen the media source, background treatment, motion choreography, copy, proof points, or buttons only through an explicit request for this closing section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
 
 ## Navigation And Interaction
 
