@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { ArrowRight, Gauge, Stack, UserCircleCheck } from '@phosphor-icons/react';
 import { gsap } from 'gsap';
 import { Link } from 'react-router-dom';
-import HeroEditorialText from '../../components/HeroEditorialText';
+import HeroTitleText from '../../components/HeroTitleText';
 import WaveDivider from '../../components/WaveDivider';
 
 const stages = ['AI system', 'Accountable owner', 'Risk assessment', 'Framework context'];
@@ -94,7 +94,7 @@ function GovernanceCurrentCanvas({ content, motionEnabled }) {
   return (
     <figure
       ref={figureRef}
-      aria-label="AI governance current canvas"
+      aria-label={content.dossier.accessibleLabel}
       data-motion-state={motionEnabled ? 'live' : 'settled'}
       className="relative isolate min-w-0"
     >
@@ -110,23 +110,18 @@ function GovernanceCurrentCanvas({ content, motionEnabled }) {
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_28%,rgba(38,216,173,.16),transparent_35%),linear-gradient(145deg,rgba(255,255,255,.035),transparent_54%)]" />
         <img alt="" aria-hidden="true" className="pointer-events-none absolute -right-20 -bottom-24 w-80 opacity-[.035]" src="/assets/emblemLogo.svg" />
 
-        <div className="relative flex items-center justify-between gap-4 border-b border-white/10 px-1 pb-4">
-          <div className="flex min-w-0 items-center gap-3">
-            <span className="grid size-9 shrink-0 place-items-center rounded-full border border-mint/25 bg-white/5">
-              <img alt="" aria-hidden="true" className="h-5 w-auto" src="/assets/emblemLogo.svg" />
-            </span>
-            <div className="min-w-0">
-              <figcaption className="font-mono text-[.66rem] tracking-[.14em] uppercase text-mint">
-                <span className="sm:hidden">Product view</span>
-                <span className="hidden sm:inline">{content.dossier.label}</span>
-              </figcaption>
-              <p className="mt-1 text-xs text-white/55">Governance current</p>
-            </div>
-          </div>
-          <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-mint/20 bg-mint/10 px-3 py-1.5 text-[.68rem] font-medium text-mint-soft">
+        <div className="relative grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 gap-y-0.5 border-b border-white/10 px-1 pb-4">
+          <span className="row-span-2 grid size-9 shrink-0 place-items-center rounded-full border border-mint/25 bg-white/5">
+            <img alt="" aria-hidden="true" className="h-5 w-auto" src="/assets/emblemLogo.svg" />
+          </span>
+          <figcaption className="min-w-0 pr-36 font-mono text-[.66rem] tracking-[.14em] uppercase text-mint sm:pr-40">
+            {content.dossier.label}
+          </figcaption>
+          <span className="absolute top-0 right-1 inline-flex shrink-0 items-center gap-2 rounded-full border border-mint/20 bg-mint/10 px-3 py-1.5 text-[.68rem] font-medium text-mint-soft">
             <span aria-hidden="true" className="size-1.5 rounded-full bg-mint shadow-[0_0_12px_rgba(38,216,173,.9)]" />
             Context connected
           </span>
+          <p className="col-start-2 min-w-0 text-[.68rem] leading-4 text-white/55">{content.dossier.supporting}</p>
         </div>
 
         <div className="relative mt-4 min-h-0 md:min-h-[28rem]">
@@ -170,7 +165,7 @@ function GovernanceCurrentCanvas({ content, motionEnabled }) {
             <span data-current-mobile-signal className="absolute left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-mint shadow-[0_0_14px_rgba(38,216,173,.95)]" />
           </div>
 
-          <ol aria-label="Governance current stages" className="relative grid list-none gap-3 pl-4 md:absolute md:inset-0 md:block md:pl-0">
+          <ol aria-label="AI governance workflow stages" className="relative grid list-none gap-3 pl-4 md:absolute md:inset-0 md:block md:pl-0">
             <li data-current-stage className="md:absolute md:top-4 md:left-2 md:w-[55%]">
               <div data-current-response className="relative overflow-hidden rounded-[22px] border border-white/15 bg-white p-5 text-navy shadow-[0_20px_48px_rgba(0,0,0,.2)] sm:p-6">
                 <div className="flex items-start justify-between gap-3">
@@ -227,7 +222,6 @@ function GovernanceCurrentCanvas({ content, motionEnabled }) {
                     <Stack aria-hidden="true" className="size-4" weight="regular" />
                     <p className="font-mono text-[.62rem] tracking-[.11em] uppercase">{stages[3]}</p>
                   </div>
-                  <span className="hidden text-[.65rem] text-white/45 xl:inline">Readiness lens</span>
                 </div>
                 <ul aria-label="Framework context" className="mt-4 flex flex-wrap gap-1.5 lg:mt-3 xl:gap-2">
                   {content.dossier.frameworkContext.map((framework) => (
@@ -247,15 +241,15 @@ function GovernanceCurrentCanvas({ content, motionEnabled }) {
 
 export default function AiHeroSection({ content, motionEnabled }) {
   return (
-    <section aria-label={content.eyebrow} className="ai-governance-hero relative isolate flex min-h-[calc(100svh-5.25rem)] items-center overflow-hidden bg-mist pt-14 pb-44 max-[760px]:pb-56">
+    <section aria-label={content.eyebrow} className="ai-governance-hero relative isolate flex min-h-[calc(100svh-5.25rem)] items-center overflow-hidden bg-mist pt-14 pb-44 max-[760px]:pb-48">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_76%_42%,rgba(38,216,173,.11),transparent_33%)]" />
       <img alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 right-[2%] w-[38rem] -translate-y-1/2 opacity-[.025] max-lg:w-[28rem]" src="/assets/emblemLogo.svg" />
 
       <div className="ai-governance-hero-layout shell relative">
         <div className="max-w-2xl">
           <p className="eyebrow">{content.eyebrow}</p>
-          <h1 aria-label={content.title} className="mt-5 text-balance">
-            <HeroEditorialText accent={content.titleAccent} title={content.title} />
+          <h1 className="mt-5 text-balance">
+            <HeroTitleText accent={content.titleAccent} title={content.title} />
           </h1>
           <p className="mt-6 max-w-2xl text-pretty text-lg text-ink/72">{content.description}</p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -270,7 +264,7 @@ export default function AiHeroSection({ content, motionEnabled }) {
 
         <GovernanceCurrentCanvas content={content} motionEnabled={motionEnabled} />
       </div>
-      <WaveDivider />
+      <WaveDivider front="#F3F8F6" />
     </section>
   );
 }

@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-04
+Last reviewed: 2026-09-07
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -71,7 +71,7 @@ Every entry must state:
 
 - **Status:** Planned
 - **Area:** Production launch readiness
-- **Outcome:** Complete legal approval, live lead delivery, claim/editorial review, hosting/HTTPS/deep-route verification, sitemap coverage, and the decision on pre-rendering plus social metadata.
+- **Outcome:** Complete legal approval, live lead delivery, claim/editorial review, hosting/HTTPS/deep-route verification, and the decision on pre-rendering plus social metadata. Published-route sitemap coverage is now guarded by `src/sitemap.test.js`.
 - **Trigger:** A production launch window and owners are assigned.
 - **Dependencies:** Counsel, product/content approval, deployment host, lead endpoint, crawler requirements, and approved social assets.
 - **Source:** [Roadmap — Launch Blockers](ROADMAP.md#launch-blockers) and [Release Quality](ROADMAP.md#release-quality)
@@ -81,7 +81,7 @@ Every entry must state:
 
 - **Status:** Planned
 - **Area:** Resources, GDPR, ISO 42001, integrations, and supporting detail routes
-- **Outcome:** Replace generic resource bodies, publish or deliberately withhold detailed GDPR and ISO 42001 pages, and give integration cards accurate availability states with supporting destinations.
+- **Outcome:** Replace generic resource bodies, publish or deliberately withhold detailed GDPR and ISO 42001 pages, and give integration cards accurate availability states with supporting destinations. Add sitemap entries only when those currently withheld framework details become published routes.
 - **Trigger:** Reviewed product/content material and integration availability evidence become available.
 - **Dependencies:** Subject-matter review, integration registry accuracy, editorial approval, routes, metadata, and sitemap decisions.
 - **Source:** [Roadmap — Release Quality](ROADMAP.md#release-quality)
@@ -186,3 +186,23 @@ Every entry must state:
 - **Dependencies:** Feature-level product verification, current screenshots or workflow documentation, framework coverage and mapping review, repeatable performance measurement where applicable, company-history approval, and editorial/legal sign-off.
 - **Source:** [AI Governance Page Design](superpowers/specs/2026-09-04-ai-governance-page-design.md)
 - **Next decision:** Which deferred claim has sufficient evidence to improve the page without weakening trust or expanding the approved implementation scope?
+
+### FS-017 — AI Governance Secura orbit refinements
+
+- **Status:** Deferred
+- **Area:** Frozen AI Governance Secura section
+- **Outcome:** If the approved orbit-only Secura visual is reopened, consider a more refined product-authentic motion beat that clarifies how implementation, policy, procedure, and evidence context are reviewed without reintroducing weak packet icons, generated sprites, fake dashboard cards, dead CTAs, or unsupported timing/autonomy claims.
+- **Trigger:** The user explicitly reopens the Secura section, or product evidence identifies a better representative Secura review state.
+- **Dependencies:** Approved product-state reference, motion storyboard, reduced-motion parity, browser QA, and claim review against current Secura capabilities.
+- **Source:** 2026-09-07 AI Governance Secura visual approval and lock decision
+- **Next decision:** What concrete Secura review state is worth showing beyond the current centered brand orbit?
+
+### FS-018 — Continuous Compliance product proof expansion
+
+- **Status:** Deferred
+- **Area:** Dedicated Continuous Compliance hero, oversight workspace, and public product claims
+- **Outcome:** Replace representative code-built states only when approved, privacy-safe product media provides clearer evidence, and add deeper claims such as internal chat, named auditor collaboration, automated monitoring, or **Built by Auditors** only after each is verified and approved for public use.
+- **Trigger:** Product owners provide current screenshots or workflow documentation with publishable data, or company documentation establishes a specific provenance or automation claim.
+- **Dependencies:** Privacy review and redaction, product-state verification, integration and framework availability review, company-history evidence, editorial/legal approval, responsive crops, and focused accessibility/browser QA.
+- **Source:** 2026-09-07 approved Continuous Compliance page plan and implementation
+- **Next decision:** Which verified product state or claim materially improves buyer understanding without implying autonomous or always-on compliance?

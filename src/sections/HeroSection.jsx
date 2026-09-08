@@ -4,7 +4,6 @@ import { FileCheck2, Layers3, UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import CountUp from "../components/CountUp";
 import HeaderCtaContent from "../components/HeaderCtaContent";
-import HeroEditorialText from "../components/HeroEditorialText";
 import Reveal from "../components/Reveal";
 import SecuraMark from "../components/SecuraMark";
 import WaveDivider from "../components/WaveDivider";
@@ -202,10 +201,7 @@ export default function HeroSection({ motionEnabled }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.12 }}
             >
-              <HeroEditorialText
-                accent="Audit Readiness"
-                title="Smarter Audit Readiness"
-              />
+              Smarter Audit Readiness
             </motion.span>
           </h1>
           <p className="lede mt-6.5">

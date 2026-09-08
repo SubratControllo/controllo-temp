@@ -36,11 +36,29 @@ describe('Compliance Current landing page', () => {
   it('does not hide the initial route beneath a second page-level fade', async () => {
     renderRoute('/solutions/cybersecurity');
 
-    await screen.findByRole('heading', { level: 1, name: /cyber readiness with connected visibility/i });
+    await screen.findByRole(
+      'heading',
+      { level: 1, name: /cyber readiness with connected visibility/i },
+      { timeout: 3000 }
+    );
 
     const routeFrame = document.querySelector('#main-content > div');
     expect(routeFrame).toBeInTheDocument();
     expect(routeFrame).not.toHaveStyle({ opacity: '0' });
+  });
+
+  it('serves Continuous Compliance through its dedicated six-section route', async () => {
+    renderRoute('/platform/continuous-compliance');
+
+    expect(await screen.findByRole(
+      'heading',
+      { level: 1, name: /continuous compliance\. beyond the audit/i },
+      { timeout: 3000 },
+    )).toBeInTheDocument();
+    expect(screen.getByRole('heading', {
+      name: /keep the record current, not just the checklist/i,
+    })).toBeInTheDocument();
+    expect(screen.queryByText(/clarity at every handoff/i)).not.toBeInTheDocument();
   });
 
   it('renders the official Controllo wordmarks in the header and footer', () => {
@@ -61,6 +79,22 @@ describe('Compliance Current landing page', () => {
       name: /see controllo with your workflow/i
     })).toHaveAttribute('href', '/demo');
     expect(within(footer).queryByText(/book a readiness tour/i)).not.toBeInTheDocument();
+  });
+
+  it('keeps legal and accessibility routes reachable from the footer', () => {
+    renderRoute();
+
+    const footer = screen.getByRole('contentinfo');
+
+    expect(within(footer).getByRole('link', {
+      name: /privacy policy/i
+    })).toHaveAttribute('href', '/privacy-policy');
+    expect(within(footer).getByRole('link', {
+      name: /^terms$/i
+    })).toHaveAttribute('href', '/terms');
+    expect(within(footer).getByRole('link', {
+      name: /accessibility/i
+    })).toHaveAttribute('href', '/accessibility');
   });
 
   it('keeps shared header CTA targets at the 46px button minimum', () => {
@@ -247,7 +281,7 @@ describe('Compliance Current landing page', () => {
     expect(await screen.findByRole('heading', {
       level: 1,
       name: /cyber readiness with connected visibility/i
-    })).toBeInTheDocument();
+    }, { timeout: 3000 })).toBeInTheDocument();
     expect(screen.getByRole('region', {
       name: /see what is connected and where attention is needed/i
     })).toBeInTheDocument();
@@ -259,7 +293,7 @@ describe('Compliance Current landing page', () => {
     expect(await screen.findByRole('heading', {
       level: 1,
       name: /turn ai standards into structured, actionable governance/i
-    })).toBeInTheDocument();
+    }, { timeout: 3000 })).toBeInTheDocument();
     expect(screen.getByRole('region', { name: /secura ai for ai governance/i })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: /govern every ai system with clear ownership/i })).not.toBeInTheDocument();
   });

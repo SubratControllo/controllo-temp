@@ -27,6 +27,20 @@ export default function PageMeta({ title, description }) {
     );
     upsert('meta[property="og:type"]', "property", "og:type", "website");
     const canonicalUrl = `https://controllo.ai${window.location.pathname}`;
+    upsert('meta[property="og:url"]', "property", "og:url", canonicalUrl);
+    upsert('meta[name="twitter:card"]', "name", "twitter:card", "summary");
+    upsert(
+      'meta[name="twitter:title"]',
+      "name",
+      "twitter:title",
+      `${title} | Controllo`
+    );
+    upsert(
+      'meta[name="twitter:description"]',
+      "name",
+      "twitter:description",
+      description
+    );
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement("link");

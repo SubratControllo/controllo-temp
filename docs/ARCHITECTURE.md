@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-09-04
+Last reviewed: 2026-09-07
 
 ## System Shape
 
@@ -96,10 +96,25 @@ The route composition is:
 2. AI governance challenge-to-response ledger
 3. AI system inventory and risk-assessment workflow
 4. Secura AI control review
-5. AI governance framework context and Controllo operating layer
+5. AI governance framework context
 6. AI Governance, Connected conversion
 
-Both route-owned selectors change only through pointer or keyboard input and do not autoplay. `MotionContext` keeps entrance effects optional; reduced motion renders all six sections immediately in their complete settled state. Framework descriptions provide conservative context rather than claiming exact mappings, while evidence-dependent product, timing, framework, and company claims remain governed by `FS-016` in `docs/FUTURE_SCOPE.md`.
+The operations selector changes only through pointer or keyboard input. The framework selector may auto-preview only while the section is visible and motion is enabled; it stops permanently on pointer, focus, click, or keyboard interaction and never moves keyboard focus during preview. `MotionContext` keeps entrance effects optional; reduced motion renders all six sections immediately in their complete settled state. Framework descriptions provide conservative context rather than claiming exact mappings, while evidence-dependent product, timing, framework, and company claims remain governed by `FS-016` in `docs/FUTURE_SCOPE.md`.
+
+### Dedicated Continuous Compliance Route
+
+`src/pages/ContinuousCompliancePage.jsx` owns metadata and the ordered six-section composition for `/platform/continuous-compliance`. `src/data/continuousComplianceContent.js` owns the route's framework, control, evidence, oversight, and conversion language plus its representative product states. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` continues to drive the shared `ProductPage` routes, while `productRoutePaths` includes both generic and dedicated platform paths for sitemap coverage.
+
+The route composition is:
+
+1. Continuous Compliance hero and Compliance Current workspace
+2. Between-audits change ledger and standards context
+3. Five-step continuous operating loop
+4. Secura review and readiness oversight
+5. Shared-control framework reuse
+6. Continuous assurance conversion
+
+Both selectors change only through pointer or keyboard input, preserve roving focus, and never autoplay. Product examples use qualitative representative states rather than customer metrics or implied live feeds. Secura remains user initiated, recommendations require accountable human review, and framework names receive detail links only when their public routes are published. `MotionContext` limits motion to short entrances and state transitions; reduced motion renders the complete selected state immediately. Evidence-dependent product media and company claims remain governed by `FS-018` in `docs/FUTURE_SCOPE.md`.
 
 ## Presentation and Motion
 

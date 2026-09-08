@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it, vi } from "vitest";
@@ -38,11 +38,7 @@ describe("HeroSection focus stack", () => {
     expect(headlineLines).toHaveLength(2);
     expect(headlineLines[0]).toHaveTextContent("Fast Compliance,");
     expect(headlineLines[1]).toHaveTextContent("Smarter Audit Readiness");
-    const titleAccent = within(heading).getByText("Audit Readiness", {
-      exact: true,
-    });
-    expect(titleAccent.tagName).toBe("EM");
-    expect(titleAccent).toHaveClass("hero-editorial-accent");
+    expect(heading.querySelector("em")).toBeNull();
     expect(
       screen.getByText(/Connect controls to policies, evidence, risks, owners/i),
     ).toBeInTheDocument();

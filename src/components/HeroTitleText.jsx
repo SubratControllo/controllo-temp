@@ -1,4 +1,4 @@
-export default function HeroEditorialText({ title, accent, accentClassName = '' }) {
+export default function HeroTitleText({ title, accent }) {
   const accentStart = accent ? title.indexOf(accent) : -1;
 
   if (accentStart < 0) return title;
@@ -6,7 +6,7 @@ export default function HeroEditorialText({ title, accent, accentClassName = '' 
   return (
     <>
       {title.slice(0, accentStart)}
-      <em className={`hero-editorial-accent ${accentClassName}`.trim()}>{accent}</em>
+      <span className="hero-title-accent">{accent}</span>
       {title.slice(accentStart + accent.length)}
     </>
   );

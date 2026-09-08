@@ -1,4 +1,4 @@
-import { Boxes, CheckCircle2, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, ShieldCheck } from 'lucide-react';
+import { Boxes, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, ShieldCheck } from 'lucide-react';
 import SecuraMark from '../components/SecuraMark';
 import { brandAssets } from './brandAssets';
 
@@ -29,12 +29,6 @@ export const productPages = {
     description: 'Bring controls, evidence, risk, owners, and audit work into one continuously current view.',
     accent: 'mint', icon: Network,
     features: [['Shared control model', 'Define once and reuse approved work across frameworks.'], ['Evidence current', 'Keep source, owner, scope, and freshness attached.'], ['Readiness views', 'Give leaders and teams the right level of detail.']]
-  },
-  '/platform/continuous-compliance': {
-    eyebrow: 'Continuous compliance', title: 'Know what is ready before anyone asks.',
-    description: 'Replace episodic evidence chases with a living program that keeps control status, ownership, and proof connected.',
-    accent: 'mint', icon: CheckCircle2,
-    features: [['Evidence streams', 'Connect cloud, identity, code, and business systems.'], ['Control monitoring', 'Surface stale proof and changing scope early.'], ['Framework reuse', 'Map shared controls to multiple assurance goals.']]
   },
   '/platform/risk-management': {
     eyebrow: 'Risk management', title: 'See risk while it is still actionable.',
@@ -80,7 +74,11 @@ export const productPages = {
   }
 };
 
-export const productRoutePaths = Object.keys(productPages);
+export const genericProductRoutePaths = Object.keys(productPages);
+export const productRoutePaths = [
+  '/platform/continuous-compliance',
+  ...genericProductRoutePaths,
+];
 
 export const frameworks = [
   { slug: 'soc-2', code: 'SOC 2', type: 'Security', title: 'Build a continuously ready SOC 2 program', summary: 'Connect Trust Services Criteria to the controls, evidence, and owners that keep your program moving.' },
@@ -160,7 +158,7 @@ export const getResourceBySlug = (slug) => resourcesBySlug.get(slug);
 export const footerGroups = [
   ['Platform', [['Overview', '/platform'], ['Compliance', '/platform/continuous-compliance'], ['Risk', '/platform/risk-management'], ['Cloud', '/platform/cloud-monitoring'], ['Secura AI', '/platform/secura-ai']]],
   ['Explore', [['Cybersecurity', '/solutions/cybersecurity'], ['Privacy operations', '/solutions/privacy'], ['AI governance', '/solutions/ai-governance'], ['Frameworks', '/frameworks'], ['Integrations', '/integrations'], ['Pricing', '/pricing']]],
-  ['Company', [['About', '/company'], ['Security', '/security'], ['Privacy policy', '/privacy-policy'], ['Accessibility', '/accessibility']]]
+  ['Company', [['About', '/company'], ['Security', '/security'], ['Privacy policy', '/privacy-policy'], ['Terms', '/terms'], ['Accessibility', '/accessibility']]]
 ];
 
 export const productIcons = [FileSearch, ShieldCheck, Network];

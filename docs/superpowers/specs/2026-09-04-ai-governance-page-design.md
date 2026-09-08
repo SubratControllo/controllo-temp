@@ -48,6 +48,8 @@ Do not publish the following without new product or company evidence:
 
 Product examples must be labelled as illustrative when they are not screenshots of a verified live state. Do not quote licensed standards text in the interface.
 
+**Approved refinement — 2026-09-07:** Keep the disclosure in concise accessible figure names using “Representative,” while visible product chrome uses functional object labels. Do not show “Illustrative product view” or similar presentation-only badges in the rendered interface. Qualitative example states remain free of customer metrics, outcome guarantees, and implied live data.
+
 Authoritative framework references:
 
 - [ISO/IEC 42001:2023](https://www.iso.org/standard/42001)
@@ -78,15 +80,24 @@ This is a concise hero composition, not the full interaction shown later. Do not
 
 When motion is enabled, establish the system record, resolve its ownership and status, then connect the risk assessment once. The visual becomes still. Reduced motion renders the completed dossier immediately.
 
-### 2. Challenge-to-Action Ledger
+### 2. Operational Governance Journey
 
-**Eyebrow:** Where AI Governance Breaks Down
+**Eyebrow:** From AI Complexity to Governance Clarity
 
-**Headline:** Turn AI governance challenges into structured action.
+**Headline:** How AI governance becomes operational.
 
-**Supporting line:** From AI inventory to audit readiness, keep governance visible, structured, and accountable.
+**Supporting line:** Move from scattered AI activity to visible systems, accountable risk, reusable control context, and clearer readiness.
 
-Use one full-width, border-led ledger rather than a grid of floating cards. Each row keeps the challenge and response visibly paired:
+Use a light, scroll-led operating journey rather than a grid of floating cards or a click-gated accordion. Group the complete challenge and response set into four stages:
+
+| Stage | Governance focus |
+| --- | --- |
+| Map | AI system inventory, purpose, owner, and status |
+| Assign & assess | AI-specific risk context and accountable ownership |
+| Connect | Reusable controls, implementation, policies, and evidence |
+| Review | Secura-assisted evidence review, readiness, and human approval |
+
+Each stage keeps its underlying challenge and response visibly paired:
 
 | Governance breakdown | Controllo response |
 | --- | --- |
@@ -97,7 +108,9 @@ Use one full-width, border-led ledger rather than a grid of floating cards. Each
 | Evidence exists but readiness is uncertain | Use Secura-assisted review to surface missing context and prepare next actions for human approval. |
 | Progress remains unclear | Use readiness views that connect controls, evidence, risks, owners, and the next accountable action. |
 
-A restrained central current resolves the six pairs once on viewport entry and then becomes still. It must not become a scroll-pinned story or reuse the Cybersecurity signal spine. On mobile, each challenge sits directly above its response with unambiguous reading order.
+On desktop, use three deliberately unequal layers beneath the wide introduction: a narrow sticky stage rail, a substantial scrolling narrative column, and a compact sticky product canvas. The most visible stage updates the progress rail and changes the canvas between inventory, ownership and risk, connected control context, and review. The canvas stays light overall, uses one restrained navy focal surface where useful, and remains shorter and narrower than the combined narrative area so its product content does not float inside unused space. Response copy remains in the narrative instead of being duplicated in the rail.
+
+At and below 1080px, remove the sticky rail and shared canvas. Render each stage as narrative followed by its corresponding product view, with unambiguous reading order and no horizontal page overflow. Reduced motion keeps the complete narrative and all four static product states visible while skipping scroll observers and entrance motion.
 
 ### 3. AI Systems And Risk Operations
 
@@ -212,7 +225,7 @@ Use the existing motion system and dependencies. Do not add a new animation runt
 - Keep every interactive target at least `44px`.
 - Keep tabs keyboard-operable and visible in all states; do not hide options inside swipe-only controls.
 - Use visible focus styling and WCAG AA text contrast.
-- Mark illustrative product graphics with a concise accessible figure label and hide purely decorative layers.
+- Give representative product graphics a concise accessible figure label and hide purely decorative layers.
 - Keep decorative layers pointer-inert.
 - Avoid layout shifts when switching product or framework views.
 - Use complete static fallbacks when observers or motion are unavailable.
@@ -275,4 +288,3 @@ Keep the following outside implementation until supporting evidence and public w
 - **Built by Auditors** company proof;
 - the dedicated ISO/IEC 42001 detail route already tracked in FS-006;
 - expansion of the external trial handoff beyond its currently approved surfaces.
-

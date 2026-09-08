@@ -16,10 +16,10 @@ describe('CyberHeroSection', () => {
     const hero = screen.getByRole('region', { name: cyberHero.title });
     const heading = within(hero).getByRole('heading', { level: 1, name: cyberHero.title });
     expect(heading).toBeInTheDocument();
+    expect(heading.querySelector('em')).toBeNull();
     const titleAccent = within(heading).getByText('Cyber readiness', { exact: true });
-    expect(titleAccent.tagName).toBe('EM');
-    expect(titleAccent).toHaveClass('hero-editorial-accent');
-    expect(titleAccent).toHaveClass('hero-editorial-accent--cyber');
+    expect(titleAccent.tagName).toBe('SPAN');
+    expect(titleAccent).toHaveClass('hero-title-accent');
     expect(within(hero).getByRole('link', { name: 'Start Free Trial' })).toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: 'Request a Demo' })).toHaveAttribute('href', '/demo');
     expect(within(hero).queryByRole('link', { name: 'Explore the Platform' })).not.toBeInTheDocument();

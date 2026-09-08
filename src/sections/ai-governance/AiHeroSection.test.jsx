@@ -18,16 +18,22 @@ describe('AiHeroSection', () => {
       level: 1,
       name: /turn ai standards into structured, actionable governance/i
     })).toBeInTheDocument();
+    expect(within(hero).getByRole('heading', { level: 1 }).querySelector('em')).toBeNull();
     const titleAccent = within(hero).getByText('AI standards', { exact: true });
-    expect(titleAccent.tagName).toBe('EM');
-    expect(titleAccent).toHaveClass('hero-editorial-accent');
+    expect(titleAccent.tagName).toBe('SPAN');
+    expect(titleAccent).toHaveClass('hero-title-accent');
     expect(within(hero).getByRole('link', { name: /start free trial/i }))
       .toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: /request a demo/i }))
       .toHaveAttribute('href', '/demo');
-    expect(within(hero).getByRole('figure', { name: /ai governance current canvas/i }))
+    expect(within(hero).getByRole('figure', { name: /representative ai governance workflow/i }))
       .toHaveAttribute('data-motion-state', 'settled');
-    const connection = within(hero).getByRole('list', { name: /governance current stages/i });
+    expect(within(hero).getByText('AI governance workspace')).toBeVisible();
+    expect(within(hero).getByText('Systems, ownership, risk, and frameworks in one view.'))
+      .toBeVisible();
+    expect(within(hero).queryByText(/illustrative product view|product view|governance current|readiness lens/i))
+      .not.toBeInTheDocument();
+    const connection = within(hero).getByRole('list', { name: /ai governance workflow stages/i });
     ['AI system', 'Accountable owner', 'Risk assessment', 'Framework context'].forEach((label) => {
       expect(within(connection).getByText(label, { exact: true })).toBeInTheDocument();
     });
@@ -35,14 +41,14 @@ describe('AiHeroSection', () => {
       .not.toBeInTheDocument();
   });
 
-  it('identifies the governance current as live when motion is enabled', () => {
+  it('identifies the representative workflow as live when motion is enabled', () => {
     render(
       <MemoryRouter>
         <AiHeroSection content={aiHero} motionEnabled />
       </MemoryRouter>
     );
 
-    expect(screen.getByRole('figure', { name: /ai governance current canvas/i }))
+    expect(screen.getByRole('figure', { name: /representative ai governance workflow/i }))
       .toHaveAttribute('data-motion-state', 'live');
   });
 
@@ -56,8 +62,9 @@ describe('AiHeroSection', () => {
     const hero = screen.getByRole('region', { name: /operational ai governance/i });
     const divider = container.querySelector('.wave-divider[aria-hidden="true"]');
 
-    expect(hero).toHaveClass('ai-governance-hero', 'pb-44', 'max-[760px]:pb-56');
+    expect(hero).toHaveClass('ai-governance-hero', 'pb-44', 'max-[760px]:pb-48');
     expect(divider).toBeInTheDocument();
     expect(divider.querySelectorAll('svg')).toHaveLength(3);
+    expect(divider.querySelector('.wave-divider__wave--front path')).toHaveAttribute('fill', '#F3F8F6');
   });
 });

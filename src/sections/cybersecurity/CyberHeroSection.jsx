@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import HeroEditorialText from '../../components/HeroEditorialText';
+import HeroTitleText from '../../components/HeroTitleText';
 import IntegrationLogo from '../../components/IntegrationLogo';
 import TrialLink from '../../components/TrialLink';
 import WaveDivider from '../../components/WaveDivider';
@@ -297,12 +297,8 @@ export default function CyberHeroSection({ content, motionEnabled }) {
       <div className="shell grid grid-cols-[.86fr_1.14fr] items-center gap-12 max-[1080px]:grid-cols-1 max-[1080px]:gap-8">
         <div className="relative z-10 max-w-145">
           <p className="eyebrow">{content.eyebrow}</p>
-          <h1 aria-label={content.title} className="text-[clamp(2.75rem,3.5vw,3.25rem)]" id="cyber-hero-title">
-            <HeroEditorialText
-              accent={content.titleAccent}
-              accentClassName="hero-editorial-accent--cyber"
-              title={content.title}
-            />
+          <h1 className="text-[clamp(2.75rem,3.5vw,3.25rem)]" id="cyber-hero-title">
+            <HeroTitleText accent={content.titleAccent} title={content.title} />
           </h1>
           <p className="lede mt-5 max-w-135">{content.description}</p>
           <div className="action-row mt-7 max-[460px]:grid">

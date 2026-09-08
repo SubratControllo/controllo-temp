@@ -7,7 +7,7 @@ import ProductPage from './pages/ProductPage';
 import FrameworksPage from './pages/FrameworksPage';
 import FrameworkDetailPage from './pages/FrameworkDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { productRoutePaths } from './data/enterpriseContent';
+import { genericProductRoutePaths } from './data/enterpriseContent';
 
 const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
@@ -17,6 +17,7 @@ const DemoPage = lazy(() => import('./pages/DemoPage'));
 const StaticPage = lazy(() => import('./pages/StaticPage'));
 const CybersecurityPage = lazy(() => import('./pages/CybersecurityPage'));
 const AiGovernancePage = lazy(() => import('./pages/AiGovernancePage'));
+const ContinuousCompliancePage = lazy(() => import('./pages/ContinuousCompliancePage'));
 
 const staticPagePaths = ['/company', '/security', '/privacy-policy', '/terms', '/accessibility'];
 
@@ -38,7 +39,8 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="/solutions/cybersecurity" element={<CybersecurityPage />} />
             <Route path="/solutions/ai-governance" element={<AiGovernancePage />} />
-            {productRoutePaths.map((path) => (
+            <Route path="/platform/continuous-compliance" element={<ContinuousCompliancePage />} />
+            {genericProductRoutePaths.map((path) => (
               <Route path={path} element={<ProductPage />} key={path} />
             ))}
             <Route path="/integrations" element={<IntegrationsPage />} />
