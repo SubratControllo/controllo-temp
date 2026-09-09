@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-07
+Last reviewed: 2026-09-09
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -206,3 +206,13 @@ Every entry must state:
 - **Dependencies:** Privacy review and redaction, product-state verification, integration and framework availability review, company-history evidence, editorial/legal approval, responsive crops, and focused accessibility/browser QA.
 - **Source:** 2026-09-07 approved Continuous Compliance page plan and implementation
 - **Next decision:** Which verified product state or claim materially improves buyer understanding without implying autonomous or always-on compliance?
+
+### FS-019 — Continuous Compliance framework logos and links
+
+- **Status:** Deferred
+- **Area:** Continuous Compliance framework reuse section, framework directory, framework detail routes, metadata, sitemap, and brand assets
+- **Outcome:** Add framework logos or official visual marks where usage rights and brand treatment are approved, and convert representative framework names into proper links only when their public detail routes, metadata, sitemap entries, and claim-reviewed content are ready.
+- **Trigger:** The framework reuse section is explicitly reopened, or approved framework detail content and logo/mark usage guidance becomes available.
+- **Dependencies:** Product-verified framework coverage, approved detail-route copy, legal/brand review for each logo or mark, `public/assets/brands/README.md` updates where applicable, route metadata, sitemap coverage, accessibility labels, responsive visual QA, and focused route/component tests.
+- **Source:** 2026-09-09 Continuous Compliance Section 5 review and user request to defer framework logos plus proper links.
+- **Next decision:** Which framework should receive the first approved logo and detail link without implying unsupported coverage or publishing an unfinished route?

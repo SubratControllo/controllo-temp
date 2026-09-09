@@ -1,6 +1,6 @@
 # Controllo Agent Skill Routing
 
-Last reviewed: 2026-09-03
+Last reviewed: 2026-09-08
 
 Use this reference to turn ordinary task language into deliberate skill selection. Skill availability can vary by session; select only skills listed as available in the current session.
 
@@ -45,6 +45,9 @@ Subagents require current user authorization or an invoked skill that explicitly
 | Split an approved plan or specification into executable vertical slices | `to-tickets` | None | Publish tracer-bullet tickets with explicit blocking edges after the user approves granularity. |
 | Triage an issue or external pull request | `triage` | `grilling`, `domain-modeling` when clarification is needed | Use the configured tracker roles and AI disclaimer. Verify claims before moving an item to an actionable state. |
 | Implement an approved specification or ticket set | `implement` | `superpowers:test-driven-development`, `superpowers:verification-before-completion` | Repository validation limits override generic full-suite or build instructions. Commit only when the user or invoked workflow authorizes it. |
+| Implement with an explicitly requested YAGNI, standard-library-first, or smallest-correct-solution constraint | `ponytail:ponytail` | The relevant implementation skill | Use the requested `lite`, `full`, or `ultra` intensity. Minimalism cannot remove explicit requirements, correctness, security, accessibility, or the narrowest required validation. |
+| Review a diff or repository only for over-engineering and removable complexity | `ponytail:ponytail-review` or `ponytail:ponytail-audit` | `code-review` when correctness also matters | Keep these reviews read-only. Use the repository-wide audit only when the user explicitly requests broad scope. |
+| Inspect Ponytail deferrals, benchmark claims, or command help | `ponytail:ponytail-debt`, `ponytail:ponytail-gain`, or `ponytail:ponytail-help` | None | These are one-shot reports. Treat benchmark figures as upstream medians, not measured Controllo savings. |
 | Configure or repair Matt Pocock issue-tracker workflows | `setup-matt-pocock-skills` | `writing-for-agents` | Use for tracker mapping, triage labels, domain pointers, and setup gaps; not ordinary feature work. |
 | Review a completed agent session for environment improvements | `retro` | `writing-for-agents` | Recommend navigation, checks, standards, or tool-economy changes; do not silently implement them. |
 | Prepare compact context for another agent or session | `handoff` | None | Save a redacted temporary handoff that points to durable artifacts instead of duplicating them. |
@@ -53,6 +56,7 @@ Subagents require current user authorization or an invoked skill that explicitly
 
 | Prompt intent | Primary skill | Optional support | Routing note |
 | --- | --- | --- | --- |
+| Explicit Hallmark use, greenfield page/app design, anti-slop design audit, redesign, or study from a URL/screenshot | `hallmark` | `design-taste-frontend` for Controllo implementation fit | Use Hallmark's verb when supplied: `audit` is read-only, `redesign` preserves existing implementation boundaries unless a rebuild is approved, and `study` extracts design DNA without pixel copying. For default design work, ask Hallmark's audience/use-case/tone question once before building. |
 | Redesign or substantially improve an existing Controllo page or section | `redesign-existing-projects` | `design-taste-frontend`, `build-web-apps:react-best-practices` | Preserve the current design system unless a new direction is requested. |
 | Polish hierarchy, layout, typography, responsiveness, or interaction quality | `design-taste-frontend` | `high-end-visual-design` | Use high-end support for premium art direction, not as a second competing system. |
 | Build a new frontend surface or interactive experience | `build-web-apps:frontend-app-builder` | `design-taste-frontend`, `build-web-apps:react-best-practices` | Follow existing React/Vite and CSS patterns. |
@@ -99,7 +103,7 @@ The project-scoped GreenSock package is installed under `.agents/skills/` and co
 | --- | --- | --- | --- |
 | Explore website visual directions or generate design-reference images | `imagegen-frontend-web` | `design-taste-frontend` | Use references to settle composition and art direction before implementation. |
 | Generate or edit a raster image, illustration, texture, or product visual | `imagegen` | `imagegen-frontend-web` for web placement direction | Produce actual bitmap assets and verify their intended crop and responsive use. |
-| Capture or translate UI inspiration into prompts | `daily-ui-inspiration-capture` or `design-first-ui-prompting` | `audit-reference-originality` | Use references as inputs, not templates to copy. |
+| Capture or translate UI inspiration into prompts | `daily-ui-inspiration-capture` or `design-first-ui-prompting` | `hallmark study`, `audit-reference-originality` | Use references as inputs, not templates to copy. Use Hallmark study when the user wants a DNA diagnosis from a screenshot or URL before applying the reference. |
 | Turn HTML or a stitched page capture into interaction direction | `html-to-interaction-prompts` or `stitched-full-page-capture` | `audit-reference-originality` | Keep capture and prompt work separate from implementation approval. |
 | Prepare GPT Image direction for a website visual | `gpt-image-2` | `imagegen-frontend-web`, `imagegen` | `imagegen` remains the runtime for generating the bitmap asset. |
 | Explore a bounded alternative visual direction | `tastemaker` | `design-taste-frontend` | Do not create persistent `.tastemaker` state or reopen frozen surfaces without explicit approval. |
@@ -157,7 +161,7 @@ Use the cheapest relevant validation from `AGENTS.md`. Browser QA does not autho
 | Restructure code while preserving behavior | `safe-refactor` | `codebase-design` | Protect the existing contract with focused verification. |
 | Change schemas, data formats, APIs, protocols, or configuration compatibly | `migration` | `codebase-design` | Plan rollback and compatibility behavior. |
 | Resolve an active merge or rebase conflict | `resolving-merge-conflicts` | None | Preserve both intended changes and verify the resolved behavior. |
-| Find deepening opportunities across a changing codebase | `improve-codebase-architecture` | `codebase-design`, `domain-modeling` | Use only for an explicit architecture review; present candidates before selecting a refactor. |
+| Find deepening opportunities across a changing codebase | `improve-codebase-architecture` | `codebase-design`, `domain-modeling` | Use only for an explicit architecture review. Its upstream skill disables automatic model invocation, so use the installed skill when exposed or fetch its generated instructions with `npx skills use` when needed; present candidates before selecting a refactor. |
 
 Read `docs/ARCHITECTURE.md` before changing routes, shared layout, content structures, motion, forms, or SEO. Keep unrelated cleanup outside the task.
 
@@ -223,6 +227,9 @@ Use only capabilities exposed in the current session. A plugin groups workflows;
 
 ## Special Cases
 
+- The global `ponytail@ponytail` plugin, version `4.9.0`, contributes six `ponytail:*` skills and lifecycle hooks that default to `full` mode at session start. Treat it as an implementation-efficiency lens only: the current user request, repository instructions, acceptance criteria, investigation requirements, and validation rules remain authoritative. Use `normal mode` when its persistent mode conflicts with the task.
+- The repository-local `hallmark` skill, version `1.1.0`, was installed from `nutlope/hallmark`. Treat it as a page-level anti-slop design specialist, not a blanket override of Controllo's design system. Its default build flow can create `.hallmark/` state, stamps, and `tokens.css`; do that only when Hallmark owns the current design task. Before existing-project edits, state the exact expected files and get explicit confirmation for deletions or full rebuilds.
+- The repository-local `improve-codebase-architecture` skill was installed from `mattpocock/skills` at `skills/engineering/improve-codebase-architecture/SKILL.md`. It is report-first and read-only until the user selects a candidate: read `codebase-design`, `CONTEXT.md`, relevant ADRs when present, and the skill's `HTML-REPORT.md`; write architecture reports only to the OS temp directory, not the repository.
 - Use `full-output-enforcement` only when the user requires complete multi-file output or explicitly asks to prevent truncation.
 - Use `caveman` family skills only when the user explicitly asks for that workflow, compression mode, review style, or Caveman Cloud operation.
 - Use `hyperframes` and `remotion` skills for video deliverables, not as substitutes for website animation skills.

@@ -1,11 +1,41 @@
-import { ArrowRight, CalendarDays, CheckCircle2, CircleAlert, ClipboardCheck, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  BadgeCheck,
+  CalendarClock,
+  CalendarDays,
+  ClipboardCheck,
+  FileCheck2,
+  Gauge,
+  GitMerge,
+  Paperclip,
+  ScanText,
+  ScanSearch,
+  ShieldCheck,
+  SlidersHorizontal,
+  UserRoundCheck,
+} from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import TrialLink from '../../components/TrialLink';
+import WaveDivider from '../../components/WaveDivider';
 
-const stateIcons = {
-  current: CheckCircle2,
-  attention: CircleAlert,
+const recordIcons = {
+  Implementation: SlidersHorizontal,
+  'Policy & procedure': FileCheck2,
+  Evidence: Paperclip,
+  Owner: UserRoundCheck,
+};
+
+const signalIcons = {
+  'Evidence review': ScanSearch,
+  Owner: BadgeCheck,
+  'Review history': CalendarClock,
+};
+
+const proofIcons = {
+  'Pre-mapped controls': GitMerge,
+  'Secura-assisted control review': ScanText,
+  'Readiness views': Gauge,
 };
 
 export default function ContinuousComplianceHeroSection({ content, motionEnabled }) {
@@ -15,7 +45,7 @@ export default function ContinuousComplianceHeroSection({ content, motionEnabled
   return (
     <section
       aria-labelledby="continuous-compliance-title"
-      className="continuous-hero relative -mt-25 overflow-hidden bg-mist pb-25 pt-42 max-[760px]:pb-20 max-[760px]:pt-34"
+      className="continuous-hero relative -mt-25 overflow-hidden bg-mist pb-44 pt-42 max-[1080px]:pb-52 max-[760px]:pb-48 max-[760px]:pt-34"
       data-motion={motionEnabled ? 'animated' : 'static'}
     >
       <div className="continuous-hero__field" aria-hidden="true" />
@@ -43,75 +73,106 @@ export default function ContinuousComplianceHeroSection({ content, motionEnabled
             </Link>
           </div>
           <ul className="continuous-hero__proof" aria-label="Continuous compliance platform proof">
-            {content.proof.map((item) => <li key={item}>{item}</li>)}
+            {content.proof.map((item) => {
+              const Icon = proofIcons[item];
+              return (
+                <li key={item}>
+                  <Icon aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              );
+            })}
           </ul>
         </motion.div>
 
-        <motion.figure
-          aria-label={workspace.accessibleLabel}
-          className="continuous-workspace"
+        <motion.div
+          className="continuous-workspace-scene"
           initial={motionEnabled ? { opacity: 0, x: 28 } : false}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.72, delay: motionEnabled ? 0.12 : 0, ease: [0.2, 0.7, 0.2, 1] }}
         >
-          <span className="continuous-workspace__sweep" aria-hidden="true" />
-          <div className="continuous-workspace__header">
-            <div className="flex min-w-0 items-center gap-3.5">
-              <span className="continuous-workspace__mark" aria-hidden="true">
-                <img src="/assets/emblemLogo.svg" alt="" />
-              </span>
-              <span className="min-w-0">
-                <strong>{workspace.label}</strong>
-                <small>{workspace.supporting}</small>
-              </span>
-            </div>
-            <span className="continuous-workspace__context">Current review</span>
-          </div>
+          <span className="continuous-workspace-scene__halo" aria-hidden="true" />
+          <span className="continuous-workspace-scene__line continuous-workspace-scene__line--top" aria-hidden="true" />
+          <span className="continuous-workspace-scene__line continuous-workspace-scene__line--bottom" aria-hidden="true" />
 
-          <div className="continuous-workspace__frameworks" aria-label="Framework scope">
-            <ShieldCheck aria-hidden="true" />
-            <span>Framework scope</span>
-            <ul>
-              {workspace.frameworks.map((framework) => <li key={framework}>{framework}</li>)}
-            </ul>
-          </div>
-
-          <div className="continuous-workspace__body">
-            <article className="continuous-workspace__control">
-              <div className="continuous-workspace__control-head">
-                <span className="continuous-workspace__control-icon" aria-hidden="true">
-                  <ClipboardCheck />
+          <figure aria-label={workspace.accessibleLabel} className="continuous-workspace">
+            <span className="continuous-workspace__sweep" aria-hidden="true" />
+            <div className="continuous-workspace__header">
+              <div className="flex min-w-0 items-center gap-3.5">
+                <span className="continuous-workspace__mark" aria-hidden="true">
+                  <img src="/assets/emblemLogo.svg" alt="" />
                 </span>
-                <span>
-                  <small>{workspace.reference}</small>
-                  <h3>{workspace.control}</h3>
+                <span className="min-w-0">
+                  <strong>{workspace.label}</strong>
+                  <small>{workspace.supporting}</small>
                 </span>
               </div>
-              <p>{workspace.summary}</p>
-              <div className="continuous-workspace__next">
-                <span>Next review</span>
-                <strong>{workspace.nextReview}</strong>
-              </div>
-            </article>
-
-            <div className="continuous-workspace__states" role="list" aria-label="Control support states">
-              {workspace.states.map((item) => {
-                const Icon = stateIcons[item.state];
-                return (
-                  <div className={`continuous-workspace__state is-${item.state}`} key={item.label} role="listitem" aria-label={`${item.label}: ${item.value}`}>
-                    <Icon aria-hidden="true" />
-                    <span>
-                      <small>{item.label}</small>
-                      <strong>{item.value}</strong>
-                    </span>
-                  </div>
-                );
-              })}
+              <span className="continuous-workspace__context">Current review</span>
             </div>
+
+            <div className="continuous-workspace__frameworks" aria-label="Framework scope">
+              <ShieldCheck aria-hidden="true" />
+              <span>Framework scope</span>
+              <ul>
+                {workspace.frameworks.map((framework) => <li key={framework}>{framework}</li>)}
+              </ul>
+            </div>
+
+            <div className="continuous-workspace__body">
+              <article className="continuous-workspace__control">
+                <div className="continuous-workspace__control-head">
+                  <span className="continuous-workspace__control-icon" aria-hidden="true">
+                    <ClipboardCheck />
+                  </span>
+                  <span>
+                    <small>{workspace.reference}</small>
+                    <h3>{workspace.control}</h3>
+                  </span>
+                </div>
+                <p>{workspace.summary}</p>
+                <div className="continuous-workspace__next">
+                  <span>Next action</span>
+                  <strong>{workspace.nextAction}</strong>
+                </div>
+              </article>
+
+              <div className="continuous-workspace__states" role="list" aria-label="Control support states">
+                {workspace.states.map((item) => {
+                  const Icon = recordIcons[item.label];
+                  return (
+                    <div className={`continuous-workspace__state is-${item.state}`} key={item.label} role="listitem" aria-label={`${item.label}: ${item.value}`}>
+                      <Icon aria-hidden="true" />
+                      <span>
+                        <small>{item.label}</small>
+                        <strong>{item.value}</strong>
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <figcaption className="sr-only">Representative product data showing framework scope, control context, ownership, evidence state, and the next action.</figcaption>
+          </figure>
+
+          <div className="continuous-workspace-signals" aria-hidden="true">
+            {workspace.signals.map((signal, index) => {
+              const Icon = signalIcons[signal.label];
+              return (
+                <span className={`continuous-workspace-signal continuous-workspace-signal--${index + 1} is-${signal.state}`} key={signal.label}>
+                  <span className="continuous-workspace-signal__icon">
+                    <Icon />
+                  </span>
+                  <span className="continuous-workspace-signal__copy">
+                    <small>{signal.label}</small>
+                    <strong>{signal.value}</strong>
+                  </span>
+                </span>
+              );
+            })}
           </div>
-          <figcaption className="sr-only">Representative product data showing framework scope, control context, ownership, evidence state, and the next review.</figcaption>
-        </motion.figure>
+        </motion.div>
       </div>
+      <WaveDivider />
     </section>
   );
 }

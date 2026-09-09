@@ -1,6 +1,13 @@
-import { ArrowRight, Link2 } from 'lucide-react';
+import { ArrowRight, BookOpen, FileCheck2, GitBranch, Link2, ShieldCheck, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Reveal from '../../components/Reveal';
+
+const supportIcons = {
+  Implementation: Wrench,
+  'Policy & procedure': BookOpen,
+  Evidence: FileCheck2,
+  'Risk context': ShieldCheck,
+};
 
 export default function ComplianceFrameworksSection({ content, motionEnabled }) {
   return (
@@ -18,27 +25,53 @@ export default function ComplianceFrameworksSection({ content, motionEnabled }) 
         </Reveal>
 
         <Reveal className="continuous-frameworks__band" delay={0.06} motionEnabled={motionEnabled}>
-          <div className="continuous-frameworks__band-label">
-            <Link2 aria-hidden="true" />
-            <span>Representative framework paths</span>
+          <div className="continuous-frameworks__reuse">
+            <div className="continuous-frameworks__band-label">
+              <GitBranch aria-hidden="true" />
+              <span>{content.reuse.eyebrow}</span>
+            </div>
+            <h3>{content.reuse.title}</h3>
+            <p>{content.reuse.description}</p>
+            <ul aria-label="Reusable control support">
+              {content.reuse.support.map((item) => {
+                const SupportIcon = supportIcons[item.label] ?? ShieldCheck;
+                return (
+                  <li key={item.label}>
+                    <span className="continuous-frameworks__support-icon" aria-hidden="true">
+                      <SupportIcon />
+                    </span>
+                    <span>
+                      <small>{item.label}</small>
+                      <strong>{item.value}</strong>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <ul aria-label="Featured frameworks">
-            {content.frameworks.map((framework) => (
-              <li key={framework.name}>
-                {framework.href ? (
-                  <Link to={framework.href}>
+          <div className="continuous-frameworks__paths">
+            <div className="continuous-frameworks__band-label">
+              <Link2 aria-hidden="true" />
+              <span>Representative framework paths</span>
+            </div>
+            <ul aria-label="Featured frameworks">
+              {content.frameworks.map((framework) => (
+                <li key={framework.name}>
+                  {framework.href ? (
+                    <Link to={framework.href}>
+                      <span>{framework.name}</span>
+                      <ArrowRight aria-hidden="true" />
+                    </Link>
+                  ) : (
                     <span>{framework.name}</span>
-                    <ArrowRight aria-hidden="true" />
-                  </Link>
-                ) : (
-                  <span>{framework.name}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-          <Link className="continuous-frameworks__cta" to="/frameworks">
-            Explore frameworks <ArrowRight aria-hidden="true" />
-          </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <Link className="continuous-frameworks__cta" to="/frameworks">
+              Explore frameworks <ArrowRight aria-hidden="true" />
+            </Link>
+          </div>
         </Reveal>
       </div>
     </section>

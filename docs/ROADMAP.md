@@ -1,6 +1,6 @@
 # Roadmap and Current Progress
 
-Last reviewed: 2026-09-07
+Last reviewed: 2026-09-09
 
 This file is the current delivery source of truth. Update it when a capability or launch blocker changes; keep speculative ideas out until they have an owner and a clear outcome.
 
@@ -158,6 +158,48 @@ Validation on 2026-09-07:
 - The AI Governance Frameworks section is approved and locked for now with a lighter two-part framework lens: tabs that auto-preview only until the user interacts, one larger full-card line-field panel, visible framework-context chips, and the single real `/frameworks` CTA moved into the main lens. The repeated right-side operating-layer/timeline card and the extra horizontal panel rule were removed after visual review. Selected tabs now use a flat navy active state with mint caption text instead of a shadowed white card. `npm test -- --run src/sections/ai-governance/AiFrameworksSection.test.jsx src/pages/AiGovernancePage.test.jsx`: 5 focused tests passed, including auto-preview, no focus stealing, and permanent stop after user interaction. The prior browser QA in the existing Chrome tab confirmed the ISO/IEC 42001 title no longer overlaps the decorative mark, the right-side rail is absent, the full-card line field is active, the selected tab has no box shadow, horizontal overflow is zero, and console warnings/errors are zero. The production build and full test suite were not run.
 - Final source-level launch-polish audit added sitemap coverage for every published route, guarded the sitemap against accidental omissions, exposed the public Terms route from the shared footer next to Privacy policy and Accessibility, and strengthened shared route metadata with `og:url` plus Twitter summary tags. `npm test -- --run src/sitemap.test.js src/App.test.jsx src/pages/AiGovernancePage.test.jsx src/sections/ai-governance/AiFrameworksSection.test.jsx --reporter=dot`: 27 focused tests passed. A visible-copy sweep found no unsafe AI claims outside absence assertions in tests, and the AI Governance route remains free of Lucide imports. Browser QA, a production build, and the full test suite were not run for this audit pass.
 - The dedicated Continuous Compliance route now uses six product-led sections instead of the generic platform template. Its representative workspaces use qualitative control, evidence, ownership, risk, and readiness states; the five-step operating loop and Secura/readiness selector are fully manual and keyboard operable; Secura recommendations require human review; and unpublished framework detail pages remain plain text. The source dashboard image, personal account data, aggregate readiness percentages, always-on testing language, internal-chat claim, **Built by Auditors** claim, and misleading **Explore all 100+ frameworks** action remain excluded. `npm test -- --run src/pages/ContinuousCompliancePage.test.jsx src/sections/continuous-compliance/ComplianceLoopSection.test.jsx src/sections/continuous-compliance/ComplianceOversightSection.test.jsx src/sections/continuous-compliance/ComplianceFrameworksSection.test.jsx src/App.test.jsx src/sitemap.test.js --reporter=dot`: 31 focused tests passed in 6 files. Browser QA at 1440×900, 1024×900, 768×1024, 375×812, and 320×800 confirmed zero horizontal overflow, correct route metadata, complete responsive stacking, working pointer and End-key selector changes, and zero console warnings or errors. The post-scroll screenshot helper timed out while waiting for element stability, so the saved artifacts remain the initial full-page captures; rendered snapshots, layout metrics, and interaction checks completed successfully. The production build and full test suite were not run.
+
+## Frozen Continuous Compliance Hero Baseline
+
+Status: approved and frozen on 2026-09-08.
+
+The approved baseline keeps the centered editorial split, Manrope heading with a teal color-only **Beyond the audit** accent, trial/demo actions, a three-part capability rail, and the claim-audited representative **Compliance Current workspace**. The product visual uses mapped access-review language, qualitative state cards with distinct icons, anchored evidence/owner/history annotations, and a next accountable action without percentages, live-status claims, or an invented control identifier. A shared three-layer wave divider now carries the mist hero into the following white section and resolves statically when motion is paused or reduced.
+
+Treat further hero copy, layout, workspace composition, annotation inventory or position, wave choreography, capability-rail styling, and visual restyling as out of scope unless a new request explicitly reopens the hero. Accessibility corrections, verified responsive defects, product-claim corrections, metadata issues, and release-critical performance fixes may still be patched without reopening the design.
+
+## Frozen Continuous Compliance Between Audits Baseline
+
+Status: approved and frozen on 2026-09-08.
+
+The approved second section keeps the compact wave handoff, split narrative heading, four-item ordered change ledger, and factual SOC 2 Type 2 and ISO/IEC 27001 standards band. Its final audit corrected ordered-list semantics, raised supporting copy to 14px, introduced the contrast-safe Teal Ink token for small text on mist, aligned current SOC terminology, and reduced the section reveal to 450ms while preserving the 50ms scenario stagger and complete reduced-motion state. Browser QA at 1280×720, 375×812, and 320×800 confirmed the desktop ledger, mobile stack, standards transition, and zero horizontal overflow with no console warnings or errors. The focused Continuous Compliance page test passed all 3 tests; `git diff --check` passed. No production build was run.
+
+Treat further copy, ledger composition, standards presentation, iconography, spacing, and motion changes as out of scope unless a new request explicitly reopens the section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed without reopening the wider design.
+
+## Frozen Continuous Compliance Operating Loop Baseline
+
+Status: approved and frozen on 2026-09-08 after final product-language, interaction, motion, and responsive review.
+
+The approved third section keeps the five-step **Set scope**, **Maintain controls**, **Add evidence**, **Review context**, and **Track readiness** story in a viewport-filling desktop stage with an editorial active chapter at the left shell edge and one stable representative workspace on the right. Deliberate scroll advances the qualitative product states while the compact selector remains pointer and keyboard operable; smaller and reduced-motion layouts remain unpinned and manual. The Controllo navy field uses a low-contrast moving square grid with a restrained fine-pointer hover cell, no touch interception, offscreen pausing, and a static reduced-motion state.
+
+The final content audit aligned the narrative with verified product language: frameworks retain visible scope, requirements connect to mapped controls, owners remain accountable, implementation and policy context stay linked, evidence retains source, review-period, freshness, and approval context, risk context remains connected, and readiness exposes qualitative status plus a next accountable action. The section does not claim aggregate readiness scoring, autonomous approval, continuous control testing, real-time compliance, or time-based workflow automation. Treat further copy, product-state inventory, chapter structure, workspace composition, background treatment, scroll choreography, and responsive restyling as out of scope unless a new request explicitly reopens the section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance fixes may still proceed without reopening the wider design.
+
+## Frozen Continuous Compliance Oversight Baseline
+
+Status: approved and frozen on 2026-09-09 after final connector, icon, product-copy, interaction, and responsive review.
+
+The approved fourth section keeps the existing **Readiness oversight** introduction and the two manual tabs, **Review with Secura** and **Track readiness**, inside one integrated workspace plane. The Secura view is explicitly user initiated, presents selected control context, shows three distinct review inputs, routes them through a clean input-to-finding-to-recommendation path, and resolves with **Link the latest approved access-review record** plus the human-review boundary. Directional connectors must begin and end at the relevant workflow planes without overlapping content.
+
+The readiness view keeps a qualitative support ledger for implementation, policy and procedure, evidence, and ownership. It uses state labels and distinct icons instead of percentages, progress bars, aggregate readiness scores, autonomous-change claims, real-time compliance claims, or continuous-control-testing claims. Reduced motion renders the complete selected state immediately, and tabs remain user controlled with pointer, touch, Arrow keys, Home, and End.
+
+Treat further copy, iconography, connector geometry, workspace layout, tab behavior, qualitative state inventory, and visual restyling as out of scope unless a new request explicitly reopens this section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance fixes may still proceed without reopening the wider design.
+
+## Frozen Continuous Compliance Framework Reuse Baseline
+
+Status: approved and frozen on 2026-09-09 after product-copy, route, responsive-layout, and visual review.
+
+The approved fifth section keeps the shared-control narrative, four support signals for implementation, policy and procedure, evidence, and risk context, and eight representative framework paths. SOC 2 and ISO/IEC 27001 retain their published detail links, the remaining framework names stay plain text until their routes are approved, and **Explore frameworks** remains the only directory action.
+
+Treat further copy, support-signal inventory, framework-path inventory, layout, iconography, links, and visual restyling as out of scope unless a new request explicitly reopens this section. Framework logos and additional verified detail links remain intentionally deferred under `FS-019`; accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance fixes may still proceed without reopening the wider design.
 
 ## Frozen Cybersecurity Response Story
 

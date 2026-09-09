@@ -84,6 +84,7 @@ All three values are optional. Every `VITE_*` variable is embedded in client-sid
 - [Architecture](docs/ARCHITECTURE.md)
 - [Current progress and roadmap](docs/ROADMAP.md)
 - [Future scope register](docs/FUTURE_SCOPE.md)
+- [Design operating guide](DESIGN.md)
 - [Design system](design-system/controllo-compliance-current/MASTER.md)
 - [Design skill inventory](docs/agents/design-skills.md)
 

@@ -1,6 +1,6 @@
 # Design Skill Inventory
 
-Last reviewed: 2026-09-03
+Last reviewed: 2026-09-08
 
 This inventory records the curated third-party skills available for design, motion, critique, reference work, and image direction. It is descriptive, not a new source of product or design authority.
 
@@ -30,8 +30,9 @@ The repository-local skill directories are ignored local state. Their sources an
 | [`jakubkrehel/skills`](https://github.com/jakubkrehel/skills) | `better-interface`, `better-accessibility`, `better-colors`, `better-layout`, `better-typography`, `better-ui`, `better-writing`, `interface-review`, `variant` | Domain-specific interface review and explicit iteration |
 | [`codeswithroh/tastemaker`](https://github.com/codeswithroh/tastemaker) | `tastemaker` | Bounded ideation, reference study, and anti-slop critique |
 | [`Owl-Listener/designer-skills`](https://github.com/Owl-Listener/designer-skills) | `design-principles`, `interfaces-that-feel`, `state-machine`, `motion-system`, `design-qa-checklist`, `critique-brand-consistency`, `critique-information-density` | Principles, interaction states, motion systems, QA, and focused critique |
+| [`nutlope/hallmark`](https://github.com/nutlope/hallmark) | `hallmark` | Anti-slop page design, read-only audits, bounded redesigns, and screenshot or URL design-DNA study |
 
-Total curated installation: 33 skills.
+Total curated and add-on installation: 34 skills.
 
 ## Routing Ownership
 
@@ -39,6 +40,7 @@ Total curated installation: 33 skills.
 
 - `design-taste-frontend` owns frontend visual implementation and anti-slop quality.
 - `web-design-engineer`, `landing-page-design`, `tastemaker`, and the `better-*` family are supporting specialists, selected only for a distinct concern.
+- `hallmark` owns explicit Hallmark prompts, greenfield page/app design, anti-slop design audits, bounded redesigns, and screenshot or URL design-DNA study. For existing Controllo surfaces, keep it inside the requested files and preserve routes, component ownership, copy intent, brand, and information architecture unless the user approves a full rebuild.
 - `landing-page-design` applies to page narrative, conversion structure, and copy, not every component task.
 - `operational-enterprise-ai` supports enterprise workflow framing. `product-proof-saas` supports evidence-led SaaS presentation. Neither may invent Controllo capabilities, metrics, integrations, or customer proof.
 
@@ -72,6 +74,7 @@ Total curated installation: 33 skills.
 The installer reports risk metadata, not a permission boundary. Every installed skill can influence an agent with normal task permissions, so repository routing remains the effective guardrail.
 
 - `tastemaker` received a **Critical Risk** Gen assessment. Inspection found documented HTTPS allowlisted asset fetchers and no bundled Python `subprocess`, `os.system`, `shell=True`, `eval`, or `exec` behavior. Its instructions are still unusually broad: they default to most UI tasks, prescribe dependencies and motion, and write `.tastemaker/` plus `~/.tastemaker/` memory. In Controllo, use it only as a bounded supporting skill. Do not create or update its persistent memory, add dependencies, or override frozen surfaces without explicit approval.
+- `hallmark` received a **Safe** Gen assessment, **0 Socket alerts**, and **Low Risk** Snyk assessment from the installer. Its default build flow can create `.hallmark/` state, add Hallmark stamps, and emit `tokens.css`; allow that only when Hallmark owns the active task. Its audit verb is read-only, its study verb extracts design DNA rather than copying pixels, and existing-project deletions or full rebuilds require explicit approval.
 - `stitched-full-page-capture` received one Socket alert and intentionally uses Node child-process APIs for browser and image utilities. Invoke it only for an explicit capture task and inspect its command scope first.
 - `daily-ui-inspiration-capture`, `html-to-interaction-prompts`, `optimize-web-animations`, and `interface-review` received medium-risk ratings. Their generic build, commit, fetch, or validation instructions remain subordinate to the repository's scope, Git, network, and production-build rules.
 

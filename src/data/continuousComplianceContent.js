@@ -15,7 +15,7 @@ export const continuousComplianceHero = {
     supporting: 'Framework scope, control context, and accountable review in one view.',
     frameworks: ['SOC 2', 'ISO/IEC 27001'],
     control: 'User access reviews',
-    reference: 'Shared control · AC-04',
+    reference: 'Mapped control · Access reviews',
     summary: 'Access rights are reviewed against current role and approval context.',
     states: [
       { label: 'Implementation', value: 'Current', state: 'current' },
@@ -23,7 +23,12 @@ export const continuousComplianceHero = {
       { label: 'Evidence', value: 'Review needed', state: 'attention' },
       { label: 'Owner', value: 'Assigned', state: 'current' },
     ],
-    nextReview: 'Confirm current-period evidence',
+    signals: [
+      { label: 'Evidence review', value: 'Needs context', state: 'attention' },
+      { label: 'Owner', value: 'Assigned', state: 'current' },
+      { label: 'Review history', value: 'Recorded', state: 'current' },
+    ],
+    nextAction: 'Confirm current-period evidence',
   },
 };
 
@@ -55,9 +60,9 @@ export const betweenAuditsContent = {
   ],
   standards: [
     {
-      label: 'SOC 2 Type II',
+      label: 'SOC 2 Type 2',
       title: 'Demonstrate effectiveness over time.',
-      description: 'A Type II examination evaluates control design and operating effectiveness over a defined review period, not only on the day documents are reviewed.',
+      description: 'A type 2 examination evaluates whether controls are suitably designed and operating effectively throughout a specified period.',
     },
     {
       label: 'ISO/IEC 27001',
@@ -85,7 +90,7 @@ export const complianceLoopContent = {
       records: [
         ['Framework', 'Selected', 'current'],
         ['Requirements', 'In scope', 'current'],
-        ['Control set', 'Prepared', 'current'],
+        ['Controls', 'Mapped', 'current'],
       ],
       next: 'Assign accountable control owners',
     },
@@ -101,12 +106,12 @@ export const complianceLoopContent = {
         ['Policy & procedure', 'Linked', 'current'],
         ['Owner', 'Assigned', 'current'],
       ],
-      next: 'Attach supporting records',
+      next: 'Link supporting evidence',
     },
     {
       id: 'evidence',
       label: 'Add evidence',
-      title: 'Build evidence as control activity happens.',
+      title: 'Keep evidence with the control it supports.',
       description: 'Keep each supporting record with the relevant control and review period instead of rebuilding the trail before an audit.',
       object: 'Evidence record',
       context: 'Quarterly access review',
@@ -125,7 +130,7 @@ export const complianceLoopContent = {
       object: 'Control review',
       context: 'Access governance',
       records: [
-        ['Control context', 'Assembled', 'current'],
+        ['Control context', 'Connected', 'current'],
         ['Risk context', 'Linked', 'current'],
         ['Evidence', 'Review needed', 'attention'],
       ],
@@ -135,7 +140,7 @@ export const complianceLoopContent = {
       id: 'readiness',
       label: 'Track readiness',
       title: 'See the work that still needs attention.',
-      description: 'Keep framework progress and follow-up work visible, then return to scope as the business changes.',
+      description: 'Keep framework status and follow-up work visible, then return to scope as the business changes.',
       object: 'Readiness view',
       context: 'SOC 2 · Current review',
       records: [
@@ -166,21 +171,21 @@ export const oversightContent = {
         ['Evidence', 'Review needed'],
       ],
       finding: 'Current-period evidence and required approval need confirmation.',
-      recommendation: 'Attach the latest approved access-review record.',
+      recommendation: 'Link the latest approved access-review record.',
       boundary: 'Human review is required before any change is accepted.',
     },
     {
       id: 'readiness',
       label: 'Track readiness',
       eyebrow: 'Framework readiness',
-      title: 'See progress by the work that supports it.',
+      title: 'See readiness through the work that supports it.',
       description: 'Review implementation, policy and procedure, evidence, and ownership as separate signals so incomplete support stays visible.',
       control: 'SOC 2 · Current review period',
       signals: [
-        { label: 'Implementation', value: 'Current', state: 'current', segments: 4 },
-        { label: 'Policy & procedure', value: 'Needs review', state: 'attention', segments: 3 },
-        { label: 'Evidence', value: 'Outstanding', state: 'attention', segments: 2 },
-        { label: 'Ownership', value: 'Assigned', state: 'current', segments: 4 },
+        { label: 'Implementation', value: 'Current', state: 'current' },
+        { label: 'Policy & procedure', value: 'Needs review', state: 'attention' },
+        { label: 'Evidence', value: 'Outstanding', state: 'attention' },
+        { label: 'Ownership', value: 'Assigned', state: 'current' },
       ],
       boundary: 'Representative status only. Accountable owners confirm readiness.',
     },
@@ -192,6 +197,17 @@ export const complianceFrameworksContent = {
   title: "Build on the work you've already done.",
   description: 'Pre-mapped relationships help teams reuse relevant implementation, policies, evidence, and risk context where requirements overlap while preserving each framework\'s scope and review status.',
   note: 'Reuse what applies. Address what is different.',
+  reuse: {
+    eyebrow: 'Shared control model',
+    title: 'One control record can support more than one framework.',
+    description: 'Keep the operating context in one place, then decide what applies as each framework stays scoped and reviewed on its own terms.',
+    support: [
+      { label: 'Implementation', value: 'Current description' },
+      { label: 'Policy & procedure', value: 'Linked support' },
+      { label: 'Evidence', value: 'Reviewable by scope' },
+      { label: 'Risk context', value: 'Preserved' },
+    ],
+  },
   frameworks: [
     { name: 'SOC 2', href: '/frameworks/soc-2' },
     { name: 'ISO/IEC 27001', href: '/frameworks/iso-27001' },
@@ -205,8 +221,8 @@ export const complianceFrameworksContent = {
 };
 
 export const continuousComplianceClosing = {
-  eyebrow: 'Continuous assurance, connected',
   title: 'Make your next audit a review, not a restart.',
+  accent: 'a review, not a restart.',
   description: 'Keep controls, evidence, risk context, ownership, and review work connected throughout the year.',
   proof: 'From your first framework to an ongoing assurance program.',
 };
