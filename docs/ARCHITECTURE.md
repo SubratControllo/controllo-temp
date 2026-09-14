@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-09-07
+Last reviewed: 2026-09-09
 
 ## System Shape
 
@@ -118,6 +118,22 @@ The operating loop remains pointer- and keyboard-selectable with roving focus, a
 
 The fifth-section framework-reuse surface is frozen at its approved shared-control model: four qualitative support signals and eight representative framework paths. Only SOC 2 and ISO/IEC 27001 link to published detail routes; the other framework names remain plain text, and `/frameworks` is the single directory destination. Framework marks and additional detail links require verified assets, approved content, route metadata, and sitemap coverage before implementation and remain tracked under `FS-019` in `docs/FUTURE_SCOPE.md`.
 
+The sixth-section closing conversion and complete route are frozen at the approved 2026-09-09 baseline. The closing conversion is a compact navy poster that flows directly into the shared footer, with a decorative hidden-from-assistive-technology Controllo watermark, one accessible heading, a restrained gradient accent and glow, the existing `/pricing` and `/demo` actions, and one short `motion/react` entrance sequence. Reduced motion renders its complete static state. The route preserves one `h1`, five ordered `h2` section headings, no embedded lead form, and no autonomous, real-time, aggregate-score, third-party-award, or unpublished-route claims. Reopening section composition, content, or motion requires an explicit request; accessibility, factual, responsive, metadata, route, and release-critical performance corrections remain allowed.
+
+### Dedicated Risk Management Route
+
+`src/pages/RiskManagementPage.jsx` owns metadata and the ordered five-section composition for `/platform/risk-management`. `src/data/riskManagementContent.js` owns the route's hero, challenge, risk-context, assessment, register, heatmap, and conversion copy. The route is lazy-loaded explicitly in `src/App.jsx`, and `genericProductRoutePaths` excludes it so the generic `ProductPage` no longer serves the public risk path. `productRoutePaths` still includes the dedicated path for sitemap coverage.
+
+The route composition is:
+
+1. Risk Management hero and representative command-center workspace
+2. Challenge-to-response decision ledger
+3. Manual organization, asset, vendor, privacy, and AI risk-context selector
+4. Risk assessment, register, and heatmap visibility section
+5. Risk Management conversion
+
+The route is grounded in verified product realities from the Controllo product application: organization, asset, vendor, privacy-data-action, AI, owner/comment, likelihood/impact, linked-control, score, and heatmap structures exist in the product codebase. Copy remains conservative where product evidence is still contextual rather than a mature end-to-end workflow claim. It avoids unsupported auditor pedigree, customer proof, automatic risk-score updates, completed-control risk elimination, autonomous remediation, and live compliance-status claims. Both selectors are user controlled with pointer and keyboard support; reduced motion renders complete static content without relying on animation.
+
 ## Presentation and Motion
 
 Tailwind CSS v4 utilities are colocated with the React markup that owns each layout, surface, state, and breakpoint. `src/styles.css` is intentionally limited to `@theme` tokens, global base rules, a small set of shared primitives, and effects that are clearer as CSS: keyframes, pseudo-elements, gradients, and visualization geometry. New component-specific spacing or responsive behavior belongs in JSX rather than a new stylesheet selector.
@@ -157,6 +173,8 @@ Crawler-facing files are static:
 - `public/sitemap.xml`
 
 Route additions require both the React route and relevant crawler entries to change together.
+
+For new public pages, start with `docs/PAGE_CREATION_BRIEF.md`. It keeps the current locked-surface summary, route checklist, and required documentation updates in one compact place so this architecture file does not duplicate roadmap or design-system detail.
 
 ## Architectural Boundaries
 

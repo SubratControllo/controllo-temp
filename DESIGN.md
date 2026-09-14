@@ -1,8 +1,8 @@
 # Design System: Controllo Website
 
-Last reviewed: 2026-09-08
+Last reviewed: 2026-09-09
 
-This file is the root design operating guide for Controllo's public marketing website. Use it before creating, changing, reviewing, or prompting any visual surface. The detailed implementation source remains `src/styles.css`; the frozen baseline and page-specific design decisions remain in `design-system/controllo-compliance-current/MASTER.md`.
+This file is the root design operating guide for Controllo's public marketing website. Use it before creating, changing, reviewing, or prompting any visual surface. For new pages, start with `docs/PAGE_CREATION_BRIEF.md`; the detailed implementation source remains `src/styles.css`, and frozen page decisions remain in `design-system/controllo-compliance-current/MASTER.md`.
 
 ## 1. Visual Theme And Atmosphere
 
@@ -18,10 +18,11 @@ Controllo should feel like an enterprise compliance product that is already in c
 Use these sources in order:
 
 1. `CONTEXT.md` for product terminology and banned language.
-2. `design-system/controllo-compliance-current/MASTER.md` for frozen baselines, route-specific design rules, and visual acceptance criteria.
-3. `src/styles.css` for implemented tokens, shared primitives, effects, and keyframes.
-4. Route data in `src/data/` for product copy and content structures.
-5. Component markup for local layout and responsive behavior.
+2. `docs/PAGE_CREATION_BRIEF.md` for the compact new-page checklist and current locked-surface index.
+3. `design-system/controllo-compliance-current/MASTER.md` for frozen baselines, route-specific design rules, and visual acceptance criteria.
+4. `src/styles.css` for implemented tokens, shared primitives, effects, and keyframes.
+5. Route data in `src/data/` for product copy and content structures.
+6. Component markup for local layout and responsive behavior.
 
 Do not let this file override a frozen baseline. If a surface is frozen, only explicit user approval or a verified accessibility, claim, metadata, responsive, transition, or launch-critical issue can reopen it.
 
@@ -140,12 +141,11 @@ Representative product examples must read as representative examples, not custom
 
 Frozen surfaces stay locked unless explicitly reopened:
 
+- Shared header, frozen on 2026-08-25.
 - Homepage and all homepage sections in the 2026-09-01 baseline.
-- Shared header baseline.
-- Dedicated Cybersecurity page sections and frozen route baselines.
-- All six AI Governance sections.
-- Continuous Compliance hero, including its wave transition into Between Audits.
-- Continuous Compliance Between Audits section, including its split narrative, ordered change ledger, standards band, responsive flow, and reveal timing.
+- Dedicated Cybersecurity route sections: response story, hero, Secura review, operational monitoring, framework coverage, and closing conversion.
+- All six AI Governance sections, locked for now after the 2026-09-07 framework-context approval.
+- Full Continuous Compliance route and all six sections, locked as of 2026-09-09.
 
 Allowed fixes without reopening: accessibility, verified responsive defects, product-claim corrections, metadata issues, legal accuracy, verified CTA destination defects, transition seams, and release-critical performance issues.
 

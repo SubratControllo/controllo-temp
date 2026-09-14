@@ -74,9 +74,16 @@ export const productPages = {
   }
 };
 
-export const genericProductRoutePaths = Object.keys(productPages);
-export const productRoutePaths = [
+const dedicatedProductRoutePaths = [
   '/platform/continuous-compliance',
+  '/platform/risk-management',
+];
+
+export const genericProductRoutePaths = Object.keys(productPages).filter(
+  (path) => !dedicatedProductRoutePaths.includes(path)
+);
+export const productRoutePaths = [
+  ...dedicatedProductRoutePaths,
   ...genericProductRoutePaths,
 ];
 

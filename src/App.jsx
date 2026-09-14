@@ -18,6 +18,7 @@ const StaticPage = lazy(() => import('./pages/StaticPage'));
 const CybersecurityPage = lazy(() => import('./pages/CybersecurityPage'));
 const AiGovernancePage = lazy(() => import('./pages/AiGovernancePage'));
 const ContinuousCompliancePage = lazy(() => import('./pages/ContinuousCompliancePage'));
+const RiskManagementPage = lazy(() => import('./pages/RiskManagementPage'));
 
 const staticPagePaths = ['/company', '/security', '/privacy-policy', '/terms', '/accessibility'];
 
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="/solutions/cybersecurity" element={<CybersecurityPage />} />
             <Route path="/solutions/ai-governance" element={<AiGovernancePage />} />
             <Route path="/platform/continuous-compliance" element={<ContinuousCompliancePage />} />
+            <Route path="/platform/risk-management" element={<RiskManagementPage />} />
             {genericProductRoutePaths.map((path) => (
               <Route path={path} element={<ProductPage />} key={path} />
             ))}

@@ -1,6 +1,6 @@
 # Controllo Agent Skill Routing
 
-Last reviewed: 2026-09-08
+Last reviewed: 2026-09-09
 
 Use this reference to turn ordinary task language into deliberate skill selection. Skill availability can vary by session; select only skills listed as available in the current session.
 
@@ -21,13 +21,18 @@ Skills define the workflow. Plugins, MCP servers, and app tools provide actions.
 
 Whenever a skill, plugin, MCP server, app tool, agent workflow, or related capability is installed, upgraded, renamed, replaced, or removed, update this file in the same task. Record the resulting capability under the relevant routing or inventory section, reconcile its name, trigger, dependencies, and operating rules, and refresh the `Last reviewed` date. Treat the capability change as incomplete until this file matches what is actually available. Use `docs/agents/design-skills.md` as the source inventory for the curated third-party design packages.
 
+Project-local Codex hook: `.codex/hooks.json` registers `.codex/hooks/quiet_output_filter.py` for `PostToolUse` on Bash commands. It leaves short output unchanged and replaces only long or progress-heavy output with errors, failures, summaries, and tail context; it does not rewrite commands or grant approvals.
+
 ## Discovery And Planning
 
 Before brainstorming or planning, read `docs/FUTURE_SCOPE.md`. Reconcile relevant entries into discovery questions, options, and trade-offs; update the register with any outcome intentionally deferred after the current scope is approved.
 
 | Prompt intent | Primary skill | Optional support | Routing note |
 | --- | --- | --- | --- |
+| Choose which skill or smallest skill stack fits a request | `skill-master` | None | Use when the user asks for skill routing help or a broad task has several plausible skills. Select one primary skill, at most two support skills, and avoid subagents unless explicitly requested. |
 | Brainstorm, explore ideas, compare concepts, or decide direction before implementation | `superpowers:brainstorming` | None during its discovery workflow | Use first and follow its approval gate. |
+| Explore ideas, problems, or requirements inside the OpenSpec workflow | `openspec-explore` | None | Use when the user asks for OpenSpec exploration or wants thinking without implementation. It may read files and create/update OpenSpec artifacts only after explicit file-write confirmation. |
+| Create an OpenSpec change proposal, delta specs, design, and tasks | `openspec-propose` | None | Use for spec-driven planning. It creates planning artifacts only; stop after artifacts are complete and wait for a separate implementation request. |
 | Turn an approved specification into an implementation plan | `superpowers:writing-plans` | None | Use after brainstorming or when requirements are already approved. |
 | Execute an approved written plan with subagent support | `superpowers:subagent-driven-development` | `superpowers:verification-before-completion` | Prefer this when the platform exposes suitable subagents. |
 | Execute an approved written plan inline | `superpowers:executing-plans` | `superpowers:verification-before-completion` | Use when subagents are unavailable or inline execution is requested. |
@@ -45,6 +50,9 @@ Subagents require current user authorization or an invoked skill that explicitly
 | Split an approved plan or specification into executable vertical slices | `to-tickets` | None | Publish tracer-bullet tickets with explicit blocking edges after the user approves granularity. |
 | Triage an issue or external pull request | `triage` | `grilling`, `domain-modeling` when clarification is needed | Use the configured tracker roles and AI disclaimer. Verify claims before moving an item to an actionable state. |
 | Implement an approved specification or ticket set | `implement` | `superpowers:test-driven-development`, `superpowers:verification-before-completion` | Repository validation limits override generic full-suite or build instructions. Commit only when the user or invoked workflow authorizes it. |
+| Implement an approved OpenSpec change | `openspec-apply-change` | `superpowers:verification-before-completion` | Use when the user asks to apply or continue an OpenSpec change. Read OpenSpec context files, complete listed tasks, and keep repository validation limits authoritative. |
+| Revise an existing OpenSpec change without code edits | `openspec-update-change` | None | Use when the user wants to fold decisions into an active OpenSpec change or reconcile its artifacts. Confirm artifact edits before writing and never edit implementation code in this workflow. |
+| Sync or archive an OpenSpec change | `openspec-sync-specs` or `openspec-archive-change` | None | Use only when the user asks to sync specs or finalize/archive a completed OpenSpec change. Preserve OpenSpec-reported paths and status instead of assuming file locations. |
 | Implement with an explicitly requested YAGNI, standard-library-first, or smallest-correct-solution constraint | `ponytail:ponytail` | The relevant implementation skill | Use the requested `lite`, `full`, or `ultra` intensity. Minimalism cannot remove explicit requirements, correctness, security, accessibility, or the narrowest required validation. |
 | Review a diff or repository only for over-engineering and removable complexity | `ponytail:ponytail-review` or `ponytail:ponytail-audit` | `code-review` when correctness also matters | Keep these reviews read-only. Use the repository-wide audit only when the user explicitly requests broad scope. |
 | Inspect Ponytail deferrals, benchmark claims, or command help | `ponytail:ponytail-debt`, `ponytail:ponytail-gain`, or `ponytail:ponytail-help` | None | These are one-shot reports. Treat benchmark figures as upstream medians, not measured Controllo savings. |
@@ -204,6 +212,7 @@ Use only capabilities exposed in the current session. A plugin groups workflows;
 | --- | --- |
 | Build Web Apps | Frontend creation, React performance, rendered debugging, shadcn composition, Stripe, or Supabase/Postgres work. Select its most specific skill. |
 | Superpowers | Discovery, planning, test-first implementation, systematic debugging, plan execution, review, or completion verification. Respect each skill's approval gates. |
+| OpenSpec | Spec-driven proposal, design, task, apply, sync, archive, and exploration workflows. Project-local Codex skills live in `.agents/skills/openspec-*`; `openspec/config.yaml` uses the spec-driven schema. |
 | Codex Security | Explicit security review, scan, validation, remediation, threat modeling, or finding management. Normal review remains `code-review`. |
 | Browser / Chrome | Use Browser for isolated in-app browsing; use Chrome when existing tabs, authentication, or extensions matter. |
 | HyperFrames / Remotion | Video compositions, captions, rendering, website-to-video, and video tooling. Do not use for ordinary runtime website animation. |

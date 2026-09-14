@@ -236,18 +236,25 @@ describe('Compliance Current landing page', () => {
     expect(page.querySelector('img[src="/assets/brands/microsoft-entra-id-protection.svg"]')).not.toBeInTheDocument();
   });
 
-  it('renders product deep links and shared navigation', () => {
+  it('renders the dedicated Risk Management route and shared navigation', async () => {
     renderRoute('/platform/risk-management');
 
-    const heading = screen.getByRole('heading', { name: /see risk while it is still actionable/i });
+    const heading = await screen.findByRole('heading', {
+      level: 1,
+      name: /know which risks need your attention/i
+    }, { timeout: 3000 });
     const hero = heading.closest('section');
-    const demoLink = within(hero).getByRole('link', { name: /see it in your program/i });
-    const platformLink = within(hero).getByRole('link', { name: /explore the platform/i });
+    const demoLink = within(hero).getByRole('link', { name: /request a demo/i });
+    const trialLink = within(hero).getByRole('link', { name: /start free trial/i });
 
     expect(heading).toBeInTheDocument();
     expect(demoLink.querySelector('.lucide-calendar-days')).toBeInTheDocument();
     expect(demoLink).not.toHaveClass('button--directional');
-    expect(platformLink.querySelector('svg')).not.toBeInTheDocument();
+    expect(trialLink).toHaveAttribute('href', '/pricing');
+    expect(screen.getByRole('region', {
+      name: /assess the risk\. see where to focus/i
+    })).toBeInTheDocument();
+    expect(screen.queryByText('Clarity at every handoff.')).not.toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: /controllo home/i })).toHaveLength(2);
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });

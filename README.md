@@ -4,25 +4,9 @@ Public marketing website for Controllo, a continuous compliance platform connect
 
 ## Current Status
 
-The repository contains a working React/Vite single-page application with:
+The repository contains a working React/Vite single-page marketing site. It includes a frozen homepage baseline, a release-hardened header, dedicated Cybersecurity, AI Governance, Risk Management, and Continuous Compliance routes, searchable framework and integration directories, resource/static pages, browser-side demo form handling, metadata, sitemap, robots rules, reduced-motion support, and static-host SPA fallback.
 
-- A product-led homepage frozen as a complete release baseline on 2026-09-01, plus a release-hardened responsive header
-- A frozen hero Focus Stack with responsive dashboard depth, mobile-safe event cards, animated proof values, pricing-intent **View plans**, quiet platform exploration, and reduced-motion coverage
-- A frozen homepage narrative with a popular-framework marquee, three manually selected governance domains, connected risk and cloud capabilities, Secura AI, focused risk proof, framework and integration coverage, a seven-day readiness path, WordPress article links, and final conversion
-- An approved two-tone “Fast Compliance, Smarter Audit Readiness” hero narrative with quantitative framework, control, and mapping proof
-- A one-time Signal Lock header entrance and shared motion-safe demo-request shine
-- A viewport-only Secura product loop that opens on a compact control-detail preview with connected context, review scope, and the real gradient Secura banner, sends a deterministic review request, and resolves into a reviewable gap assessment with an action-ready Secura recommendation tray, with a static reduced-motion result state
-- Tailwind CSS v4 utilities colocated with React components, backed by shared design tokens and a small effects stylesheet
-- Lazy route boundaries, shared directory controls, and indexed content lookups prepared for larger content collections
-- Platform and solution detail routes, including a dedicated six-section Cybersecurity route plus cloud monitoring, privacy operations, and AI governance
-- Searchable framework and integration directories
-- Framework detail pages for SOC 2, ISO 27001, and HIPAA
-- Resource, package, company, security, privacy-policy, terms, and accessibility pages
-- A demo-request form with validation, spam honeypot, optional HTTP submission, and optional calendar handoff
-- Per-route metadata, structured data, sitemap, robots rules, and a static-host SPA fallback
-- Operating-system reduced-motion support and a WebGL visual with a static fallback
-
-The last full validation on 2026-08-24 recorded 18 passing tests and a successful production build. After subsequent focused tests and responsive browser QA, the complete homepage baseline was frozen on 2026-09-01. The frozen homepage **View plans** and **Start free trial** actions, plus the shared-header **Start free trial** action, intentionally lead to pricing until the separate registration/payment flow is connected. On the dedicated Cybersecurity route, a valid configured `VITE_TRIAL_URL` hands off to the external trial application in the current tab; an absent or invalid value falls back to pricing. The full suite and production build have not been rerun. This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md).
+This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, deployment verification, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md). AI-assisted contributors should start with [the compact agent brief](docs/AGENT_BRIEF.md).
 
 ## Local Setup
 
@@ -81,6 +65,8 @@ All three values are optional. Every `VITE_*` variable is embedded in client-sid
 ## Documentation
 
 - [Domain language](CONTEXT.md)
+- [Compact AI agent brief](docs/AGENT_BRIEF.md)
+- [Page creation brief](docs/PAGE_CREATION_BRIEF.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [Current progress and roadmap](docs/ROADMAP.md)
 - [Future scope register](docs/FUTURE_SCOPE.md)

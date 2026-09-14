@@ -7,11 +7,13 @@ export default function Reveal({
   delay = 0,
   duration = 0.65,
   motionEnabled = true,
+  ...props
 }) {
   const MotionElement = motion[as] ?? motion.div;
 
   return (
     <MotionElement
+      {...props}
       className={className}
       initial={motionEnabled ? { opacity: 0, y: 28 } : false}
       whileInView={motionEnabled ? { opacity: 1, y: 0 } : undefined}

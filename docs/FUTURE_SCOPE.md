@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-09
+Last reviewed: 2026-09-11
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -216,3 +216,13 @@ Every entry must state:
 - **Dependencies:** Product-verified framework coverage, approved detail-route copy, legal/brand review for each logo or mark, `public/assets/brands/README.md` updates where applicable, route metadata, sitemap coverage, accessibility labels, responsive visual QA, and focused route/component tests.
 - **Source:** 2026-09-09 Continuous Compliance Section 5 review and user request to defer framework logos plus proper links.
 - **Next decision:** Which framework should receive the first approved logo and detail link without implying unsupported coverage or publishing an unfinished route?
+
+### FS-020 — Risk hero tablet composition
+
+- **Status:** Deferred
+- **Area:** Risk Management hero at 768-1080px
+- **Outcome:** Keep the value proposition and representative risk workspace visible sooner without crowding the tablet layout or changing the approved desktop composition.
+- **Trigger:** The Risk hero is explicitly reopened for tablet composition work or usability review shows that below-fold product proof weakens comprehension.
+- **Dependencies:** A dedicated tablet layout decision, responsive typography review, product-panel scaling, and browser QA at 768px and 1024px.
+- **Source:** 2026-09-11 Risk hero vertical-centering and closing-CTA polish
+- **Next decision:** Should tablet use a scaled split, a cropped product preview, or the current narrative-first stack?

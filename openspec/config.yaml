@@ -1,0 +1,58 @@
+schema: spec-driven
+
+# Project context (optional)
+# This is shown to AI when creating artifacts.
+# Add your tech stack, conventions, style guides, domain knowledge, etc.
+# Example:
+#   context: |
+#     Tech stack: TypeScript, React, Node.js
+#     We use conventional commits
+#     Domain: e-commerce platform
+context: |
+  Controllo Website is a public React 19/Vite 8 marketing SPA for a continuous compliance platform.
+  Read docs/AGENT_BRIEF.md first, then open deeper docs only when their trigger applies.
+  Preserve the calm, product-led compliance narrative and verified terminology from CONTEXT.md.
+  Frozen surfaces are governed by docs/ROADMAP.md and require an explicit user request to reopen.
+  Keep secrets and privileged behavior out of the website bundle; all VITE_* values are public browser config.
+  Use existing React/Vite, Tailwind CSS v4, motion/react, and CSS patterns unless the change explicitly justifies otherwise.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+rules:
+  proposal:
+    - State non-goals when work touches frozen surfaces, public claims, legal copy, integrations, or trial/demo flow.
+    - Distinguish verified product behavior from representative marketing examples.
+  design:
+    - Reference existing modules, routes, data owners, motion owners, and validation seams from the repository.
+    - Preserve keyboard access, visible focus, reduced-motion behavior, static fallbacks, and responsive containment.
+  tasks:
+    - Use focused tasks tied to specific files or surfaces.
+    - Do not include production builds, full test suites, full-project linting, dependency installs, or package-lock regeneration unless explicitly required.
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing
+operations:
+  apply:
+    guidance:
+      - Follow AGENTS.md validation limits; prefer focused tests and browser QA for changed visual or interaction surfaces.
+      - Update docs/ROADMAP.md when a user-visible capability, launch blocker, frozen baseline, or delivery status changes.
+      - Update docs/FUTURE_SCOPE.md for ideas, refinements, dependencies, or validation intentionally left for later.
+  archive:
+    guidance:
+      - Summarize what changed, where specs were synced, and what validation remains before production launch.

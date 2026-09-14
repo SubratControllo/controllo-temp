@@ -1,0 +1,16 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "/usr/bin/python3 /Users/ashutoshsingh/Documents/ControlloWebsite/.codex/hooks/quiet_output_filter.py",
+          "timeout": 3,
+          "statusMessage": "Trimming noisy command output",
+          "additionalContextLimit": 1200
+        }
+      ]
+    }
+  ]
+}

@@ -223,7 +223,7 @@ Keep the supporting copy framework-first: visitors start with relevant framework
 
 ## Continuous Compliance Page Baseline
 
-**Status:** implemented from the approved 2026-09-07 page plan. Treat the six-section composition as the current review baseline. The hero, between-audits section, operating loop, oversight section, and framework-reuse section are approved and locked; the closing conversion stays reviewable until final responsive approval.
+**Status:** all six sections approved and locked on 2026-09-09 after final content, visual, interaction, accessibility, motion, and responsive review.
 
 The dedicated `/platform/continuous-compliance` route uses six full-width bands: a light product-led hero, a between-audits change ledger with standards context, a dark five-step operating loop, a light Secura/readiness oversight workspace, a compact framework-reuse band, and a restrained navy conversion. Keep **Beyond the audit** teal while the full heading retains the same Manrope typography. The hero's code-built **Compliance Current workspace** shows framework scope, one mapped access-review control, qualitative implementation, policy, evidence, and ownership states, the next accountable action, and recorded review history. Do not use the existing full dashboard asset, personal account data, readiness percentages, customer metrics, or integration states on this route.
 
@@ -271,7 +271,21 @@ Preserve the shared-control narrative, the four support signals for implementati
 
 Framework logos and additional detail links remain deferred under `FS-019` until exact assets, usage guidance, content, routes, metadata, and sitemap coverage are approved. Treat further copy, support-signal inventory, framework-path inventory, layout, iconography, links, and visual restyling as out of scope unless a new request explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed without reopening the wider design.
 
-The closing conversion remains open for final visual and responsive approval. It uses the shared trial fallback and `/demo` route and must not introduce **Built by Auditors**, internal-chat functionality, autonomous compliance, continuous control testing, real-time compliance, dead framework links, invented performance evidence, third-party awards, email capture, or copied reference assets and wording. Both selectors elsewhere on the page support pointer, touch, Arrow keys, Home, and End; reduced motion renders complete selected states immediately.
+### Frozen Continuous Compliance Closing Conversion Baseline
+
+**Status:** approved and locked on 2026-09-09 after final copy, visual, motion, accessibility, and responsive review.
+
+Preserve the uninterrupted navy closing poster and direct handoff into the shared navy footer. The centered uppercase heading uses a white lead line and a warm-white-to-lavender-to-coral gradient accent with a restrained soft glow; the complete accessible heading remains **Make your next audit a review, not a restart.** Keep the oversized low-opacity Controllo watermark decorative and hidden from assistive technology. Preserve the concise description, mint **Start free trial** action to `/pricing`, outlined **Request a demo** action to `/demo`, and subordinate proof sentence. Buttons remain at least 46px high and stack without clipped or wrapped labels on narrow screens.
+
+The entrance is a single sequence under 750ms: lead line, accent flow, description, actions, and proof. It does not loop, autoplay a state change, track the cursor, or continue offscreen. Paused and reduced-motion modes render the complete composition immediately. Do not add a form, trust-logo strip, third-party award, copied reference asset or wording, video, ambient glow field, aggregate metric, unsupported automation claim, or a separate visual boundary before the footer.
+
+Treat further CTA copy, typography, gradient palette, glow, watermark, conversion-rail composition, motion, and responsive restyling as out of scope unless a new request explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, route fixes, and release-critical performance fixes may still proceed without reopening the wider design.
+
+### Frozen Continuous Compliance Full-Page Baseline
+
+**Status:** approved and locked on 2026-09-09.
+
+Preserve the six-section narrative order, the shared header and footer behavior, product-safe qualitative states, published-route boundaries, manual selector behavior, and the established desktop-to-mobile layout transitions. Both selectors support pointer, touch, Arrow keys, Home, and End; reduced motion renders complete selected states immediately. Reopen page composition, section design, public copy, motion choreography, or conversion treatment only through an explicit request. Accessibility corrections, verified responsive defects, factual or legal corrections, metadata and route fixes, and release-critical performance work remain permitted. Product-proof expansion remains deferred under `FS-018`; framework logos and additional framework links remain deferred under `FS-019`.
 
 ## AI Governance Page Baseline
 
