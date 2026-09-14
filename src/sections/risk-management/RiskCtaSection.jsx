@@ -80,11 +80,11 @@ export default function RiskCtaSection({ content, motionEnabled }) {
                 {...cardMotion(0.16)}
                 className="absolute top-[7%] left-[2%] w-[245px] rotate-[-4deg] rounded-[22px] border border-navy/[.1] bg-white px-6 py-5 shadow-[0_20px_46px_rgba(6,27,50,.12)] max-[560px]:relative max-[560px]:top-auto max-[560px]:left-auto max-[560px]:w-full max-[560px]:rotate-0"
               >
-                <p className="font-mono text-[.62rem] font-semibold uppercase tracking-[.13em] text-muted">Inherent exposure</p>
-                <div className="mt-5 flex items-end justify-between gap-5">
-                  <strong className="text-[3.4rem] font-medium leading-none tracking-[-.07em] text-navy">80</strong>
+                <div className="flex items-center justify-between gap-4">
+                  <p className="font-mono text-[.62rem] font-semibold uppercase tracking-[.13em] text-muted">Inherent exposure</p>
                   <span className="rounded-full bg-[#f7e4cf] px-3 py-1 text-[.7rem] font-semibold text-[#8a4c18]">High</span>
                 </div>
+                <strong className="mt-5 block text-[3.4rem] font-medium leading-none tracking-[-.07em] text-navy">80</strong>
               </motion.div>
 
               <motion.div
