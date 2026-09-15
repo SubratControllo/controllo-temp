@@ -36,12 +36,6 @@ export const productPages = {
     accent: 'teal', icon: Radar,
     features: [['Living register', 'Keep context, impact, ownership, and treatment together.'], ['Control context', 'See which controls reduce exposure and where gaps remain.'], ['Executive view', 'Translate operational detail into decision-ready signals.']]
   },
-  '/platform/audit-management': {
-    eyebrow: 'Audit management', title: 'Give every audit a cleaner starting point.',
-    description: 'Coordinate requests, approvals, evidence, and auditor collaboration without rebuilding the same trail.',
-    accent: 'shell', icon: ClipboardCheck,
-    features: [['Request workspace', 'Route every question to the right owner with context.'], ['Evidence review', 'Validate scope and freshness before it reaches the auditor.'], ['Audit trail', 'Preserve decisions, changes, and approvals in one place.']]
-  },
   '/platform/secura-ai': {
     eyebrow: 'Secura AI', title: 'Guidance that understands the work around the control.',
     description: 'Use an AI co-auditor to find missing context, prepare next steps, and keep humans in control of every decision.',
@@ -77,6 +71,7 @@ export const productPages = {
 const dedicatedProductRoutePaths = [
   '/platform/continuous-compliance',
   '/platform/risk-management',
+  '/platform/audit-management',
 ];
 
 export const genericProductRoutePaths = Object.keys(productPages).filter(

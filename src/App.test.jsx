@@ -61,6 +61,17 @@ describe('Compliance Current landing page', () => {
     expect(screen.queryByText(/clarity at every handoff/i)).not.toBeInTheDocument();
   });
 
+  it('serves Audit Management through its dedicated product route', async () => {
+    renderRoute('/platform/audit-management');
+
+    expect(await screen.findByRole('heading', {
+      level: 1,
+      name: 'Keep audit scope, evidence, and reviewers in view.',
+    }, { timeout: 3000 })).toBeInTheDocument();
+    expect(screen.getByRole('tablist', { name: 'Audit documentation views' })).toBeInTheDocument();
+    expect(screen.queryByText('Give every audit a cleaner starting point.')).not.toBeInTheDocument();
+  });
+
   it('renders the official Controllo wordmarks in the header and footer', () => {
     renderRoute();
 

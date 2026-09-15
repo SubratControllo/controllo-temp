@@ -92,7 +92,7 @@ All actions use a minimum height of `46px`, a `14px` radius, medium-weight `0.84
 
 Variant does not determine iconography. Use an icon only when it clarifies the action: a calendar for choosing a time, an external-link mark for leaving the site, or an arrow for a deliberately directional destination. Form submission controls and quiet secondary actions are text-only by default. Only directional icons translate on hover; calendars, status marks, and other semantic icons remain still.
 
-Shared navy and mint primary buttons preserve their base color, lift by at most `2px`, scale by at most `1.5%`, and run one clipped white shine while hovered or keyboard-focused. The shine rests fully outside the clipped button and is not visible in the idle state. Light and ghost buttons use a quiet white-surface response with teal text and no lift. All variants press down by `1px` on activation. Disabled controls keep their dimensions, lose elevation, and remain visibly unavailable. Labels stay on one line, keyboard focus remains visible, and reduced motion removes button, shine, and icon transforms. Use Lucide icons and keep any directional motion short.
+Shared navy and mint primary buttons preserve their base color, lift by at most `2px`, scale by at most `1.5%`, and run one clipped white shine while hovered or keyboard-focused. The shine rests fully outside the clipped button and is not visible in the idle state. Light and ghost buttons use a quiet white-surface response with teal text and no lift. All variants press down by `1px` on activation. Disabled controls keep their dimensions, lose elevation, and remain visibly unavailable. Labels stay on one line, keyboard focus remains visible, and reduced motion removes button, shine, and icon transforms. Follow `DESIGN.md` for the icon family on new or reopened work and keep any directional motion short.
 
 ## Header
 
@@ -344,7 +344,7 @@ Preserve the decorative, muted, looping, pointer-inert media semantics; pause pl
 ## Navigation And Interaction
 
 - Every interactive element has a visible hover and focus state.
-- Familiar actions use distinct semantic icons from one consistent family per surface. Lucide remains the installed default; Phosphor may support a new visual system when its vocabulary or weights materially improve clarity.
+- Familiar actions use distinct semantic icons from one consistent family per surface. Follow the Phosphor default in `DESIGN.md` for new or reopened surfaces; historical icon-family notes in frozen sections remain their approved baselines.
 - Buttons state commands; links state destinations.
 - Dropdown triggers expose `aria-expanded` and `aria-controls`.
 - Option groups use toggles, tabs, filters, or segmented controls according to behavior.

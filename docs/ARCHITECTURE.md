@@ -134,6 +134,12 @@ The route composition is:
 
 The route is grounded in verified product realities from the Controllo product application: organization, asset, vendor, privacy-data-action, AI, owner/comment, likelihood/impact, linked-control, score, and heatmap structures exist in the product codebase. Copy remains conservative where product evidence is still contextual rather than a mature end-to-end workflow claim. It avoids unsupported auditor pedigree, customer proof, automatic risk-score updates, completed-control risk elimination, autonomous remediation, and live compliance-status claims. Both selectors are user controlled with pointer and keyboard support; reduced motion renders complete static content without relying on animation.
 
+### Dedicated Audit Management Route
+
+`src/pages/AuditManagementPage.jsx` owns metadata and the five-part composition for `/platform/audit-management`. `src/data/auditManagementContent.js` owns the route's claim-reviewed copy, and `src/sections/audit-management/` owns representative framework, repository, and auditor visuals. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains sitemap coverage. The existing navigation destination and sitemap entry are unchanged.
+
+The product source and supplied sandbox screenshots support in-scope frameworks, readiness/progress and View actions, an XLSX framework export, policy/evidence files with effective dates and linked controls, multiple auditor contacts with a primary flag, and separate internal/external framework assignments. Code-built visuals reinterpret those fields; they are illustrative, not approved product captures or customer data. The hero presents one connected review plane with an icon-only decorative rail and supporting cards rather than repeated framework cards; its entrance plays once, its thin background orbit loops only while visible, and the shared three-layer wave closes its mist-to-white boundary. Orbit and wave render statically when site motion is paused or reduced. The repository selector is manual and keyboard operable, with a brief state crossfade. Production availability, commercial entitlements, Confluence linking, templates, auditor access, and final public-claim approval are not established by sandbox UI or source-code review alone; see `FS-022` in `docs/FUTURE_SCOPE.md`.
+
 ## Presentation and Motion
 
 Tailwind CSS v4 utilities are colocated with the React markup that owns each layout, surface, state, and breakpoint. `src/styles.css` is intentionally limited to `@theme` tokens, global base rules, a small set of shared primitives, and effects that are clearer as CSS: keyframes, pseudo-elements, gradients, and visualization geometry. New component-specific spacing or responsive behavior belongs in JSX rather than a new stylesheet selector.
@@ -165,7 +171,7 @@ The cookie panel stores either `essential` or `accepted` under `controllo-consen
 
 ## Metadata and Discovery
 
-`PageMeta` updates the title, description, Open Graph title/description/type, canonical URL, and `SoftwareApplication` JSON-LD after navigation. Canonical URLs use `https://controllo.ai` as the production origin.
+`PageMeta` updates the title, description, Open Graph title/description/type, canonical URL, and `SoftwareApplication` JSON-LD after navigation. It appends the brand to titles by default; the Audit Management route disables that suffix for its approved SEO title. Canonical URLs use `https://controllo.ai` as the production origin.
 
 Crawler-facing files are static:
 

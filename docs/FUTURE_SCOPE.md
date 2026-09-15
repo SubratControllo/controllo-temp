@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-11
+Last reviewed: 2026-09-15
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -226,3 +226,23 @@ Every entry must state:
 - **Dependencies:** A dedicated tablet layout decision, responsive typography review, product-panel scaling, and browser QA at 768px and 1024px.
 - **Source:** 2026-09-11 Risk hero vertical-centering and closing-CTA polish
 - **Next decision:** Should tablet use a scaled split, a cropped product preview, or the current narrative-first stack?
+
+### FS-021 — Risk closing CTA mobile QA
+
+- **Status:** Deferred
+- **Area:** Frozen Risk Management final CTA and release QA
+- **Outcome:** Verify at mobile width that the CTA copy, actions, and illustrative exposure cards remain readable, contained, and free of overlap or horizontal overflow.
+- **Trigger:** Before production sign-off for the Risk Management route, or when responsive browser QA tooling is available again.
+- **Dependencies:** A mobile-width browser session, the existing development server, and the [frozen page baseline](ROADMAP.md#frozen-risk-management-page-baseline).
+- **Source:** 2026-09-15 Risk Management finalization; [Roadmap — Recent Validation](ROADMAP.md#recent-validation)
+- **Next decision:** Does the mobile CTA pass as built, or does a verified responsive defect require a narrow fix?
+
+### FS-022 — Audit Management product proof and claim approvals
+
+- **Status:** Deferred
+- **Area:** Dedicated Audit Management route and public product claims
+- **Outcome:** Replace illustrative framework, repository, and auditor views section by section with approved redacted product captures when they explain the workflow more clearly. Consider Confluence linking, policy templates, commercial subscription language, auditor access, and broader report claims only after product-owner and runtime evidence establish availability and editorial approval.
+- **Trigger:** Product owners approve privacy-safe captures or provide runtime evidence for a specific deferred capability. The supplied sandbox screenshots confirm the visible UI fields but are not approved public captures.
+- **Dependencies:** Product-state verification, privacy/redaction review, responsive crops, runtime/entitlement evidence, accessibility and browser QA, and final editorial/legal claim approval.
+- **Source:** 2026-09-15 Audit Management section-by-section product review, implementation, and supplied sandbox screenshots
+- **Next decision:** Which approved capture or claim adds the clearest buyer proof without overstating the current framework export or auditor workflow?

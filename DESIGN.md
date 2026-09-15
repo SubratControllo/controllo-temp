@@ -89,7 +89,7 @@ Use this flow for new or reopened design work:
 - **Primary buttons:** navy surface with white text. Shared navy and mint primary buttons may lift by at most `2px`, scale by at most `1.5%`, and use one clipped white shine only on hover or keyboard focus.
 - **Mint buttons:** mint surface with navy text, reserved for the strongest conversion action.
 - **Ghost and light buttons:** quiet surface response, no lift, no shine.
-- **Icons:** use Lucide by default. Use Phosphor only when an existing surface already uses it or its vocabulary is materially better. Keep one icon family within a surface.
+- **Icons:** use `@phosphor-icons/react` for new or explicitly reopened UI. Avoid new Lucide imports; preserve existing iconography on locked surfaces unless the user reopens them. Keep one semantic icon family within each surface.
 - **Directional icons:** arrows may translate slightly on hover. Semantic icons such as calendar, status, evidence, owner, or framework symbols stay still.
 - **Tabs and selectors:** manual by default, keyboard operable with Arrow keys, Home, and End where roving focus applies. Do not autoplay unless the approved section explicitly allows it.
 - **Forms:** labels above inputs, helper text only when useful, errors below fields, visible disabled states, and no floating labels.

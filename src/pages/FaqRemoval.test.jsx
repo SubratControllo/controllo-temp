@@ -17,8 +17,8 @@ function renderRoute(path, element) {
 
 describe('generic FAQ removal', () => {
   it('removes repeated questions from generic product routes', () => {
-    renderRoute('/platform/audit-management', <ProductPage />);
-    expect(screen.getByRole('heading', { name: 'Give every audit a cleaner starting point.' })).toBeInTheDocument();
+    renderRoute('/platform', <ProductPage />);
+    expect(screen.getByRole('heading', { name: 'Run compliance like a connected system.' })).toBeInTheDocument();
     expect(screen.queryByText('Questions, answered')).not.toBeInTheDocument();
     expect(screen.queryByText('Does Controllo replace our auditor?')).not.toBeInTheDocument();
   });

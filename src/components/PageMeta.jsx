@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 
-export default function PageMeta({ title, description }) {
+export default function PageMeta({ title, description, appendBrand = true }) {
   useEffect(() => {
-    document.title = `${title} | Controllo`;
+    const fullTitle = appendBrand ? `${title} | Controllo` : title;
+    document.title = fullTitle;
     const upsert = (selector, attribute, key, content) => {
       let element = document.head.querySelector(selector);
       if (!element) {
@@ -17,7 +18,7 @@ export default function PageMeta({ title, description }) {
       'meta[property="og:title"]',
       "property",
       "og:title",
-      `${title} | Controllo`
+      fullTitle
     );
     upsert(
       'meta[property="og:description"]',
@@ -33,7 +34,7 @@ export default function PageMeta({ title, description }) {
       'meta[name="twitter:title"]',
       "name",
       "twitter:title",
-      `${title} | Controllo`
+      fullTitle
     );
     upsert(
       'meta[name="twitter:description"]',
@@ -63,6 +64,6 @@ export default function PageMeta({ title, description }) {
       url: canonicalUrl,
       description,
     });
-  }, [title, description]);
+  }, [title, description, appendBrand]);
   return null;
 }

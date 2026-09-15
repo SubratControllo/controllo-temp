@@ -36,6 +36,7 @@ Use MCP servers only when available and relevant:
 - Before adding a package, check existing dependencies and whether the feature can reasonably be built without a new dependency.
 - Treat all `VITE_*` values as public browser configuration. Never place secrets in them.
 - Preserve keyboard access, visible focus, operating-system reduced-motion behavior, static header fallback, and WebGL fallback.
+- For new or explicitly reopened UI, follow the Phosphor icon rule in `DESIGN.md`; preserve iconography on locked surfaces unless they are reopened.
 - Keep legal placeholders visibly marked until approved counsel copy replaces them.
 - Verify external-facing claims, integration availability, framework coverage, and customer proof before publishing.
 - For third-party logos or brand marks, read `public/assets/brands/README.md`, use the shared brand registry, and record exact product identity, source, and usage status there.
