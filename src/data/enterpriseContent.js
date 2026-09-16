@@ -72,6 +72,7 @@ const dedicatedProductRoutePaths = [
   '/platform/continuous-compliance',
   '/platform/risk-management',
   '/platform/audit-management',
+  '/platform/cloud-monitoring',
 ];
 
 export const genericProductRoutePaths = Object.keys(productPages).filter(

@@ -4490,11 +4490,18 @@
   isolation: isolate;
   color: rgba(6, 27, 50, 0.72);
   background: var(--risk-level-color);
-  transition: filter 180ms ease;
+  transition:
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    transform 180ms ease;
 }
-.risk-matrix-cell--controlled,
-.risk-severity-swatch--controlled {
+.risk-matrix-cell--none,
+.risk-severity-swatch--none {
   --risk-level-color: #e8efed;
+}
+.risk-matrix-cell--very-low,
+.risk-severity-swatch--very-low {
+  --risk-level-color: #d8f4eb;
 }
 .risk-matrix-cell--low,
 .risk-severity-swatch--low {
@@ -4508,20 +4515,40 @@
 .risk-severity-swatch--high {
   --risk-level-color: #e99a42;
 }
-.risk-matrix-cell--critical,
-.risk-severity-swatch--critical {
+.risk-matrix-cell--very-high,
+.risk-severity-swatch--very-high {
   --risk-level-color: #a13838;
 }
 .risk-matrix-cell--high {
   color: #35220b;
 }
-.risk-matrix-cell--critical {
+.risk-matrix-cell--very-high {
   color: white;
   box-shadow: 0 10px 24px rgba(161, 56, 56, 0.18);
 }
-.risk-matrix-cell__label {
+.risk-matrix-cell--selected {
+  box-shadow:
+    0 0 0 2px rgba(8, 127, 140, 0.55),
+    0 18px 34px rgba(8, 127, 140, 0.18);
+  transform: translateY(-1px);
+}
+.risk-matrix-cell__score,
+.risk-matrix-cell__count,
+.risk-matrix-cell__contexts {
   position: relative;
   z-index: 1;
+}
+.risk-matrix-cell__score {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.risk-matrix-cell__count {
+  font-size: 0.5rem;
+  opacity: 0.74;
+}
+.risk-matrix-cell__contexts {
+  font-size: 0.44rem;
+  opacity: 0.72;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -4531,7 +4558,7 @@
   .risk-matrix-hover-field[data-risk-hover="enabled"] .risk-matrix-cell:hover {
     filter: brightness(1.07) saturate(1.08);
   }
-  .risk-matrix-hover-field[data-risk-hover="enabled"] .risk-matrix-cell[data-risk-level="critical"]:hover {
+  .risk-matrix-hover-field[data-risk-hover="enabled"] .risk-matrix-cell[data-risk-level="very-high"]:hover {
     filter: brightness(1.08) saturate(1.08);
   }
 }
@@ -6788,10 +6815,10 @@
 .cyber-hero-dashboard-entry {
   position: absolute;
   z-index: 10;
-  top: 9%;
+  top: 15%;
   left: 3%;
   width: 94%;
-  height: 80%;
+  height: 71.5%;
   transform-style: preserve-3d;
 }
 
@@ -7207,7 +7234,7 @@
 }
 
 .cyber-hero-proof--secura {
-  top: -5%;
+  top: 0;
   bottom: auto;
   left: -2%;
   width: 13.25rem;

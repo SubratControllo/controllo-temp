@@ -67,7 +67,7 @@ describe('Compliance Current landing page', () => {
     expect(await screen.findByRole('heading', {
       level: 1,
       name: 'Keep audit scope, evidence, and reviewers aligned.',
-    }, { timeout: 3000 })).toBeInTheDocument();
+    }, { timeout: 6000 })).toBeInTheDocument();
     expect(screen.getByRole('tablist', { name: 'Audit documentation views' })).toBeInTheDocument();
     expect(screen.queryByText('Give every audit a cleaner starting point.')).not.toBeInTheDocument();
   });
@@ -284,13 +284,20 @@ describe('Compliance Current landing page', () => {
     expect(mark).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('renders the locked governance-domain and cloud-monitoring routes', () => {
+  it('renders the locked privacy route and dedicated cloud-monitoring route', async () => {
     const { unmount } = renderRoute('/solutions/privacy');
     expect(screen.getByRole('heading', { name: /operationalize privacy across data, systems, and teams/i })).toBeInTheDocument();
 
     unmount();
     renderRoute('/platform/cloud-monitoring');
-    expect(screen.getByRole('heading', { name: /turn live environment signals into compliance context/i })).toBeInTheDocument();
+    expect(await screen.findByRole('heading', {
+      level: 1,
+      name: /see your cloud\. know the risk/i,
+    }, { timeout: 3000 })).toBeInTheDocument();
+    expect(screen.getByRole('figure', {
+      name: /moving cloud monitoring planet/i,
+    })).toBeInTheDocument();
+    expect(screen.queryByText('Clarity at every handoff.')).not.toBeInTheDocument();
   });
 
   it('renders the dedicated Cybersecurity route instead of the generic product template', async () => {

@@ -129,16 +129,22 @@ The route composition is:
 1. Risk Management hero and representative command-center workspace
 2. Challenge-to-response decision ledger
 3. Manual organization, asset, vendor, privacy, and AI risk-context selector
-4. Risk assessment, register, and heatmap visibility section
+4. Risk assessment and visibility workbench
 5. Risk Management conversion
 
-The route is grounded in verified product realities from the Controllo product application: organization, asset, vendor, privacy-data-action, AI, owner/comment, likelihood/impact, linked-control, score, and heatmap structures exist in the product codebase. Copy remains conservative where product evidence is still contextual rather than a mature end-to-end workflow claim. It avoids unsupported auditor pedigree, customer proof, automatic risk-score updates, completed-control risk elimination, autonomous remediation, and live compliance-status claims. Both selectors are user controlled with pointer and keyboard support; reduced motion renders complete static content without relying on animation.
+The route is grounded in verified product realities from the Controllo product application: organization, asset, vendor, privacy-data-action, AI, owner/comment, likelihood/impact, linked-control, score, and heatmap structures exist in the product codebase. Copy remains conservative where product evidence is still contextual rather than a mature end-to-end workflow claim. It avoids unsupported auditor pedigree, customer proof, automatic risk-score updates, completed-control risk elimination, autonomous remediation, and live compliance-status claims. The risk-context selector and assessment workbench visibility tabs are user controlled with pointer and keyboard support; reduced motion renders complete static content without relying on animation. `RiskAssessmentSection` owns the route's representative Risk Signal Workbench: selected assessment record, desktop `gsap`/`ScrollTrigger` chapter progression, product-scale `0/2/5/8/10` heatmap buckets keyed by impact, likelihood, score, count, and context, manual register/heatmap tabs, persistent selected-risk detail drawer, and compact outcome rail.
 
 ### Dedicated Audit Management Route
 
 `src/pages/AuditManagementPage.jsx` owns metadata and the five-part composition for `/platform/audit-management`. `src/data/auditManagementContent.js` owns the route's claim-reviewed copy, and `src/sections/audit-management/` owns representative framework, repository, and auditor visuals. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains sitemap coverage. The existing navigation destination and sitemap entry are unchanged.
 
 The product source and supplied sandbox screenshots support in-scope frameworks, readiness/progress and View actions, an XLSX framework export, policy/evidence files with effective dates and linked controls, multiple auditor contacts with a primary flag, and separate internal/external framework assignments. Code-built visuals reinterpret those fields; they are illustrative, not approved product captures or customer data. The hero presents a branded audit orbit stage around one selected control: framework scope, linked policy/evidence records, auditor assignments, and XLSX export context sit as connected product objects without a dashboard chrome shell. Its entrance plays once, its background orbit and connector motion loop only while visible, and the shared three-layer wave closes its mist-to-white boundary. Orbit, connector, and wave motion render statically when site motion is paused or reduced. The repository selector is manual and keyboard operable, with a brief state crossfade. Production availability, commercial entitlements, Confluence linking, templates, auditor access, and final public-claim approval are not established by sandbox UI or source-code review alone; see `FS-022` in `docs/FUTURE_SCOPE.md`.
+
+### Dedicated Cloud Monitoring Route
+
+`src/pages/CloudMonitoringPage.jsx` owns metadata and the seven-section composition for `/platform/cloud-monitoring`; `src/data/cloudMonitoringContent.js` owns its claim-reviewed cloud, workforce, exposure, workflow, and conversion copy. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains its existing sitemap coverage.
+
+The page moves from a Cloud Visibility Radar hero through AWS, Azure, and GCP visibility, configuration and security context, Microsoft 365 and Google Workspace identity and endpoint context, available user-level exposure indicators, an accountable signal-to-resolution workflow, and final conversion. The radar uses verified provider marks, an explicit text treatment for Microsoft 365 until an exact reviewed mark is available, qualitative operational labels, source-to-core pulses, and one attention state rather than invented resource counts or customer data. Product states are qualitative and regularly refreshed rather than literal real-time feeds. Dark-web data is described as available exposure indicators without Google Workspace attribution, and only Jira is shown as a public workflow integration until Slack or Asana availability is verified. Existing `Reveal`, shared buttons, `MotionContext`, GSAP/ScrollTrigger, and registry-backed third-party marks provide scoped motion, offscreen pausing, reduced-motion parity, CTA behavior, and brand handling.
 
 ## Presentation and Motion
 
@@ -171,7 +177,7 @@ The cookie panel stores either `essential` or `accepted` under `controllo-consen
 
 ## Metadata and Discovery
 
-`PageMeta` updates the title, description, Open Graph title/description/type, canonical URL, and `SoftwareApplication` JSON-LD after navigation. It appends the brand to titles by default; the Audit Management route disables that suffix for its approved SEO title. Canonical URLs use `https://controllo.ai` as the production origin.
+`PageMeta` updates the title, description, Open Graph title/description/type, canonical URL, and `SoftwareApplication` JSON-LD after navigation. It appends the brand to titles by default; the Audit Management and Cloud Monitoring routes disable that suffix for their approved SEO titles. Canonical URLs use `https://controllo.ai` as the production origin.
 
 Crawler-facing files are static:
 
