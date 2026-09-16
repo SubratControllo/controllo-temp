@@ -189,7 +189,7 @@ export const auditClosing = {
   title: 'Walk through your next audit handoff.',
   titleAccent: 'audit handoff.',
   copy: 'Bring one real framework review. We will look at the documents, auditor assignments, and decisions that need to stay connected.',
-  proof: 'Setup in under 15 minutes · No credit card required · Full team access',
-  primaryCta: { label: 'Start free trial', href: '/pricing' },
-  secondaryCta: { label: 'Request a demo', href: '/demo' },
+  proof: 'Framework scope · Linked records · Auditor assignments',
+  primaryCta: { label: 'Request a demo', href: '/demo' },
+  secondaryCta: { label: 'View pricing', href: '/pricing' },
 };

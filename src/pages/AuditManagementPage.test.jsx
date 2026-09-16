@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { MotionProvider } from '../context/MotionContext';
-import { auditHero, auditRepositoryViews } from '../data/auditManagementContent';
+import { auditClosing, auditHero, auditRepositoryViews } from '../data/auditManagementContent';
 import { getAuditDossierStep } from '../sections/audit-management/auditDossierStep';
 import AuditHeroSection from '../sections/audit-management/AuditHeroSection';
 import AuditManagementPage from './AuditManagementPage';
@@ -35,10 +35,17 @@ describe('AuditManagementPage', () => {
     expect(within(hero).getByRole('link', { name: 'Request a demo' })).toHaveAttribute('href', '/demo');
     expect(within(hero).getByRole('link', { name: /Explore the workspace/i })).toHaveAttribute('href', '#audit-workspace');
     expect(within(hero).queryByText(auditHero.supporting)).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Four views. One reviewable audit context.' })).toBeInTheDocument();
+    const workspace = screen.getByRole('heading', { name: 'Four views. One reviewable audit context.' }).closest('section');
+    expect(workspace).toHaveClass('pt-20', 'pb-12', 'md:pt-24', 'md:pb-16', 'min-[1081px]:min-h-[200vh]');
+    expect(workspace?.querySelector('.absolute.inset-x-0.top-0.h-px.bg-line')).toBeNull();
+    expect(workspace?.querySelector('.min-\\[1081px\\]\\:top-\\[116px\\]')).toBeInTheDocument();
+    expect(workspace?.querySelector('.min-\\[1081px\\]\\:h-\\[calc\\(100svh-116px\\)\\]')).toBeInTheDocument();
+    expect(workspace?.querySelector('.min-\\[1081px\\]\\:min-h-\\[170vh\\]')).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Walk through your next audit handoff.' })).toBeInTheDocument();
     expect(screen.getAllByRole('link', { name: 'Request a demo' })).toHaveLength(2);
-    expect(document.body.textContent).not.toMatch(/policy templates|secondary auditor|subscription|Confluence|automatic request routing|complete audit trail|live badge|Read-Only Access/i);
+    expect(screen.getByRole('link', { name: 'View pricing' })).toHaveAttribute('href', '/pricing');
+    expect(document.body.textContent).toContain(auditClosing.proof);
+    expect(document.body.textContent).not.toMatch(/policy templates|secondary auditor|subscription|Confluence|automatic request routing|complete audit trail|live badge|Read-Only Access|setup in under|no credit card|full team access|twelve seats|flat per-seat|download/i);
   });
 
   it('renders repository records as a passive enterprise deck', () => {

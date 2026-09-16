@@ -8,7 +8,7 @@ const icons = [FolderOpen, FileText, ClipboardText, UsersThree];
 
 function DossierCorner({ label, value, detail, className = '' }) {
   return (
-    <div className={`min-w-0 rounded-[16px] border border-white/10 bg-white/[.055] p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] ${className}`}>
+    <div className={`min-w-0 overflow-hidden rounded-[16px] border border-white/10 bg-white/[.055] p-3.5 shadow-[inset_0_1px_0_rgba(255,255,255,.06)] ${className}`}>
       <span className="block font-mono text-[.55rem] uppercase tracking-[.08em] text-white/45">{label}</span>
       <strong className="mt-1 block truncate text-sm font-medium text-white">{value}</strong>
       <span className="mt-1 block truncate text-xs text-white/56">{detail}</span>
@@ -28,27 +28,40 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
   const activeStep = activeIndex;
   const activeArea = areas[activeStep] || areas[0];
   const activeDossier = activeArea.dossier || {};
+  const dossierType = activeDossier.type;
   const headerBadge = activeDossier.type === 'auditor' ? activeArea.badge : activeDossier.badge || activeArea.badge || activeArea.cue;
   const linkedControls = activeDossier.linkedControls || activeDossier.controls?.map((control) => control.code) || [];
+  const dossierViewLabel = {
+    scope: 'Scope',
+    policy: 'Policy',
+    evidence: 'Evidence',
+    auditor: 'Reviewers',
+  }[dossierType] || activeArea.label;
+  const fileContextLabel = {
+    scope: 'Export',
+    policy: 'File',
+    evidence: 'File',
+    auditor: 'Assignment',
+  }[dossierType] || 'Review context';
   const cornerCards = [
     {
-      label: 'Framework',
-      value: activeArea.label,
+      label: 'View',
+      value: dossierViewLabel,
       detail: activeArea.badge || activeArea.cue,
     },
     {
       label: 'Control link',
-      value: linkedControls[0] || 'Mapped controls',
+      value: linkedControls[0]?.split(' ')[0] || 'Mapped controls',
       detail: linkedControls.length > 1 ? `${linkedControls.length} linked controls` : 'Linked record visible',
     },
     {
       label: 'File context',
-      value: activeDossier.file || activeDossier.record || 'Framework export',
+      value: fileContextLabel,
       detail: activeDossier.effectiveDate || activeDossier.freshness || 'Review context retained',
     },
     {
       label: 'Reviewer path',
-      value: activeDossier.assignments ? 'Internal + external' : 'Audit handoff',
+      value: activeDossier.assignments ? 'Assigned' : 'Handoff',
       detail: activeDossier.assignments ? `${activeDossier.assignments.length} framework assignments` : activeArea.cue,
     },
   ];
@@ -63,11 +76,9 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
     <section
       ref={sectionRef}
       id="audit-workspace"
-      className="relative scroll-mt-28 bg-white py-24 max-[760px]:py-16 min-[1081px]:min-h-[240vh]"
+      className="relative scroll-mt-28 bg-white pt-20 pb-12 md:pt-24 md:pb-16 max-[760px]:pt-16 max-[760px]:pb-12 min-[1081px]:min-h-[200vh]"
     >
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-line" />
-
-      <div className="shell grid gap-16 max-[1080px]:gap-12 min-[1081px]:min-h-[200vh] min-[1081px]:grid-cols-[.44fr_.56fr] min-[1081px]:items-start">
+      <div className="shell grid gap-16 max-[1080px]:gap-12 min-[1081px]:min-h-[170vh] min-[1081px]:grid-cols-[.44fr_.56fr] min-[1081px]:items-start">
         <Reveal motionEnabled={motionEnabled} className="min-w-0">
           <p className="eyebrow mb-5">One audit context</p>
           <h2 className="text-balance">Four views. One reviewable audit context.</h2>
@@ -121,8 +132,8 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
           </ol>
         </Reveal>
 
-        <div className="min-w-0 min-[1081px]:sticky min-[1081px]:top-16 min-[1081px]:self-start">
-          <Reveal motionEnabled={motionEnabled} className="min-w-0">
+        <div className="min-w-0 min-[1081px]:sticky min-[1081px]:top-[116px] min-[1081px]:flex min-[1081px]:h-[calc(100svh-116px)] min-[1081px]:items-center min-[1081px]:self-start">
+          <Reveal motionEnabled={motionEnabled} className="min-w-0 min-[1081px]:w-full">
             <figure
               aria-label="Representative audit dossier"
               className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#061f27] p-6 text-white shadow-[0_28px_90px_rgba(6,31,39,.32)] max-[760px]:rounded-[24px] max-[760px]:p-4"
@@ -152,10 +163,10 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
               </div>
 
               <div className="relative mt-5 rounded-[22px] border border-white/10 bg-white/[.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,.08)]">
-                <div className="grid gap-4 min-[761px]:grid-cols-[minmax(0,.82fr)_minmax(280px,1.36fr)_minmax(0,.82fr)] min-[761px]:grid-rows-[auto_auto]">
+	                <div className="grid gap-4 min-[761px]:grid-cols-[minmax(0,.62fr)_minmax(310px,1.76fr)_minmax(0,.62fr)] min-[761px]:grid-rows-[auto_auto]">
                   <DossierCorner {...cornerCards[0]} />
                   <DossierCorner {...cornerCards[1]} className="min-[761px]:col-start-3" />
-                  <div className="min-w-0 rounded-[20px] border border-white/14 bg-[#092a34]/95 p-5 shadow-[0_18px_50px_rgba(0,0,0,.18)] min-[761px]:col-start-2 min-[761px]:row-span-2 min-[761px]:row-start-1 max-[760px]:p-4">
+                  <div className="min-w-0 overflow-hidden rounded-[20px] border border-white/14 bg-[#092a34]/95 p-5 shadow-[0_18px_50px_rgba(0,0,0,.18)] min-[761px]:col-start-2 min-[761px]:row-span-2 min-[761px]:row-start-1 max-[760px]:p-4">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={activeStep}
@@ -206,15 +217,15 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
                       <div className="space-y-4">
                         <div className="rounded-[18px] border border-white/15 bg-white/[.07] p-5">
                           <div className="flex items-center gap-3 text-mint">
-                            <FileText className="size-6" aria-hidden="true" />
-                            <div>
-                              <strong className="block text-base text-white font-medium">
-                                {activeDossier.record || 'Access review policy'}
-                              </strong>
-                              <span className="text-xs font-mono text-white/60">
-                                {activeDossier.file || 'Policy_AccessReview_v3.2.pdf'}
-                              </span>
-                            </div>
+	                            <FileText className="size-6" aria-hidden="true" />
+	                            <div className="min-w-0">
+	                              <strong className="block truncate text-base text-white font-medium">
+	                                {activeDossier.record || 'Access review policy'}
+	                              </strong>
+	                              <span className="block truncate text-xs font-mono text-white/60">
+	                                {activeDossier.file || 'Policy_AccessReview_v3.2.pdf'}
+	                              </span>
+	                            </div>
                           </div>
                           <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 gap-3 text-xs">
                             <div>
@@ -231,10 +242,10 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
                           <span className="block font-mono text-[.58rem] uppercase text-mint mb-2">Linked Controls</span>
                           <div className="flex flex-wrap gap-2">
                             {(activeDossier.linkedControls || ['Access review control', 'ISO 27001 A.9.2']).map((c) => (
-                              <span key={c} className="flex items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1 text-xs text-white">
-                                <LinkSimple aria-hidden="true" className="size-3 text-mint" />
-                                <span>{c}</span>
-                              </span>
+	                              <span key={c} className="flex min-w-0 max-w-full items-center gap-1.5 rounded-lg bg-white/10 px-2.5 py-1 text-xs text-white">
+	                                <LinkSimple aria-hidden="true" className="size-3 shrink-0 text-mint" />
+	                                <span className="truncate">{c}</span>
+	                              </span>
                             ))}
                           </div>
                         </div>
@@ -245,29 +256,26 @@ export default function AuditAreasSection({ areas, motionEnabled = true }) {
                     {activeStep === 2 && (
                       <div className="space-y-4">
                         <div className="rounded-[18px] border border-white/15 bg-white/[.07] p-5">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <ClipboardText className="size-6 text-mint" aria-hidden="true" />
-                              <div>
-                                <strong className="block text-base text-white font-medium">
-                                  {activeDossier.record || 'Access review evidence'}
-                                </strong>
-                                <span className="text-xs font-mono text-white/60">
-                                  {activeDossier.file || 'IdP_User_List_Export_Q3.json'}
-                                </span>
-                              </div>
-                            </div>
-                            <span className="rounded-full bg-mint/20 px-2.5 py-1 font-mono text-[.55rem] text-mint uppercase">Fresh</span>
-                          </div>
+	                          <div className="flex min-w-0 items-center gap-3">
+	                            <ClipboardText className="size-6 shrink-0 text-mint" aria-hidden="true" />
+	                            <div className="min-w-0">
+	                              <strong className="block truncate text-base text-white font-medium">
+	                                {activeDossier.record || 'Access review evidence'}
+	                              </strong>
+	                              <span className="block truncate text-xs font-mono text-white/60">
+	                                {activeDossier.file || 'IdP_User_List_Export_Q3.json'}
+	                              </span>
+	                            </div>
+	                          </div>
                           <div className="mt-4 grid grid-cols-2 gap-3 border-t border-white/10 pt-3 text-xs text-white/70 max-[760px]:grid-cols-1">
                             <div>
-                              <span className="block font-mono text-[.55rem] uppercase text-white/40">File context</span>
-                              <strong className="text-white font-medium">{activeDossier.freshness || 'Effective date recorded'}</strong>
-                            </div>
-                            <div>
-                              <span className="block font-mono text-[.55rem] uppercase text-white/40">Linked control</span>
-                              <strong className="text-mint font-medium">{linkedControls[0] || 'Access review control'}</strong>
-                            </div>
+	                              <span className="block font-mono text-[.55rem] uppercase text-white/40">File context</span>
+	                              <strong className="block truncate text-white font-medium">{activeDossier.freshness || 'Effective date recorded'}</strong>
+	                            </div>
+	                            <div>
+	                              <span className="block font-mono text-[.55rem] uppercase text-white/40">Linked control</span>
+	                              <strong className="block truncate text-mint font-medium">{linkedControls[0] || 'Access review control'}</strong>
+	                            </div>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 rounded-[12px] bg-mint/10 p-3 text-xs text-mint">

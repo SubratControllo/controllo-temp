@@ -56,6 +56,14 @@ Keep the vertically balanced split hero with left-aligned copy, two-tone Manrope
 
 Treat further hero copy, layout, visual composition, card placement, headline scale, color treatment, and motion changes as out of scope unless a new request explicitly reopens the hero. Accessibility, verified responsive defects, product-claim corrections, metadata issues, and release-critical performance fixes may still proceed.
 
+## Frozen Audit Management Page Baseline
+
+Status: approved and frozen as a development baseline on 2026-09-16; production launch approval remains governed by the blockers below.
+
+Keep the dedicated route order and scope: frozen hero, four-view audit workspace, animated policy/evidence documentation stack, auditor assignment section, and retro final CTA. The representative visuals must stay illustrative and claim-safe: framework scope/readiness with XLSX export, linked policy/evidence records with effective dates and controls, and internal/external auditor framework assignments. Preserve the current spacing rhythm, sticky workspace centering, reduced-motion output, shared button treatments, and CTA destinations.
+
+Treat further route copy, layout, visual composition, motion polish, and CTA hierarchy changes as out of scope unless a new request explicitly reopens this page. Accessibility, verified responsive defects, product-claim corrections, metadata issues, route fixes, and release-critical performance fixes may still proceed.
+
 ## Frozen Risk Management Hero Baseline
 
 Status: approved and frozen on 2026-09-15.
