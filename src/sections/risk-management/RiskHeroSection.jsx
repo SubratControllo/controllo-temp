@@ -380,7 +380,7 @@ function RiskHeroVisual({ motionEnabled }) {
       data-testid="risk-hero-dashboard"
       ref={visualRef}
       role="group"
-    >
+    >``
       <DesktopPriorityEngine dashboardScale={dashboardScale} motionEnabled={motionEnabled} phase={phase} sceneRef={sceneRef} />
       <MobilePriorityEngine motionEnabled={motionEnabled} phase={phase} />
       <p className="sr-only">Improper privilege management is assessed, connected to an owner, control and asset, then shown with a lower target exposure after treatment.</p>

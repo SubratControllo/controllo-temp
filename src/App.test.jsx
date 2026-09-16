@@ -66,7 +66,7 @@ describe('Compliance Current landing page', () => {
 
     expect(await screen.findByRole('heading', {
       level: 1,
-      name: 'Keep audit scope, evidence, and reviewers in view.',
+      name: 'Keep audit scope, evidence, and reviewers aligned.',
     }, { timeout: 3000 })).toBeInTheDocument();
     expect(screen.getByRole('tablist', { name: 'Audit documentation views' })).toBeInTheDocument();
     expect(screen.queryByText('Give every audit a cleaner starting point.')).not.toBeInTheDocument();

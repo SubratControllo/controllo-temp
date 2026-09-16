@@ -6,34 +6,86 @@ export const auditManagementMeta = {
 export const auditHero = {
   eyebrow: 'Audit management',
   title: 'Keep audit scope, evidence, and reviewers aligned.',
+  titleAccent: 'reviewers aligned.',
   description: 'Review in-scope frameworks, linked policies and evidence, and internal or external auditor assignments in Controllo. Export framework details when it is time to share the review.',
   supporting: 'Framework scope · Linked documents · Auditor assignments · Framework export',
 };
 
 export const auditAreas = [
   {
+    step: '01',
     label: 'Audit frameworks',
     title: 'Know what is in scope.',
     copy: 'Review framework scope and progress, open the control view, and export framework details as an XLSX report.',
     cue: 'Scope → review → export',
+    badge: 'IN SCOPE',
+    dossier: {
+      type: 'scope',
+      heading: 'SOC 2 Type II Scope & Readiness',
+      badge: 'Ready for export',
+      controls: [
+        { code: 'CC6.1', name: 'Logical Access Control', status: 'In Scope', readiness: '98%' },
+        { code: 'CC6.8', name: 'Malware Protection', status: 'In Scope', readiness: '100%' },
+        { code: 'CC7.2', name: 'System Monitoring', status: 'In Scope', readiness: '95%' },
+      ],
+      action: 'Export XLSX Report',
+    },
   },
   {
+    step: '02',
     label: 'Policies and procedures',
     title: 'Find the documentation behind a control.',
     copy: 'Keep policy files and effective dates together with their linked controls.',
     cue: 'Document → linked control',
+    badge: 'LINKED',
+    dossier: {
+      type: 'policy',
+      heading: 'Access Review Policy & Procedure',
+      badge: 'Effective Date Verified',
+      record: 'Access review policy',
+      file: 'Policy_AccessReview_v3.2.pdf',
+      effectiveDate: '2026-08-15',
+      linkedControls: ['CC6.1 Logical Access', 'ISO 27001 A.9.2'],
+    },
   },
   {
+    step: '03',
     label: 'Evidence',
     title: 'Know what a file supports.',
     copy: 'Review evidence records, attached files, effective dates, and the controls they support.',
     cue: 'Evidence → linked control',
+    badge: 'VERIFIED',
+    dossier: {
+      type: 'evidence',
+      heading: 'Quarterly Access Review Evidence',
+      badge: 'Freshness Verified',
+      record: 'Access review evidence',
+      file: 'IdP_User_List_Export_Q3.json',
+      freshness: 'Refreshed 2 days ago',
+      hash: 'sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+      linkedControls: ['CC6.1 Logical Access'],
+    },
   },
   {
+    step: '04',
     label: 'Auditor management',
     title: 'See who reviews each framework.',
     copy: 'Maintain a primary contact, additional contacts, and separate internal or external framework assignments.',
     cue: 'Contact → assigned framework',
+    badge: 'ASSIGNED',
+    dossier: {
+      type: 'auditor',
+      heading: 'Assigned Audit Reviewers',
+      badge: 'Read-Only Auditor Access',
+      contacts: [
+        { role: 'Primary GRC Lead', name: 'Sarah Jenkins', email: 's.jenkins@company.com' },
+        { role: 'External Assessor', name: 'KPMG SOC 2 Lead', firm: 'KPMG Assurance LLP' },
+      ],
+      assignments: [
+        { type: 'Internal Audit', framework: 'SOC 2 Type II', status: 'Assigned' },
+        { type: 'External Audit', framework: 'ISO/IEC 27001:2022', status: 'Assigned' },
+      ],
+    },
   },
 ];
 
@@ -46,6 +98,35 @@ export const auditRepositoryViews = [
     detail: 'Effective date recorded on the file',
     control: 'Access review control',
     copy: 'Keep governance documentation attached to the controls it supports. Framework context remains visible through those linked controls.',
+    records: [
+      {
+        id: 'pol-1',
+        title: 'Access review policy',
+        filename: 'Access_Review_Policy_2026.pdf',
+        effectiveDate: '15 Aug 2026',
+        mappedControl: 'CC6.1 Access review control',
+        frameworks: ['SOC 2', 'ISO 27001'],
+        copy: 'Defines the quarterly user access review, responsible owners, and revocation expectations.',
+      },
+      {
+        id: 'pol-2',
+        title: 'Data classification standard',
+        filename: 'Data_Classification_Standard_v2.pdf',
+        effectiveDate: '01 Jun 2026',
+        mappedControl: 'CC6.5 Data protection',
+        frameworks: ['SOC 2', 'HIPAA'],
+        copy: 'Defines sensitivity labels and handling rules for customer data records.',
+      },
+      {
+        id: 'pol-3',
+        title: 'Incident response plan',
+        filename: 'Incident_Response_Plan_2026.pdf',
+        effectiveDate: '10 Jan 2026',
+        mappedControl: 'CC7.3 Incident management',
+        frameworks: ['SOC 2', 'NIST CSF'],
+        copy: 'Outlines incident triage, review responsibilities, and linked response evidence.',
+      },
+    ],
   },
   {
     label: 'Evidence',
@@ -55,6 +136,35 @@ export const auditRepositoryViews = [
     detail: 'Effective date recorded on the file',
     control: 'Access review control',
     copy: 'Give each supporting file a clear purpose by keeping it with an evidence record and its linked controls.',
+    records: [
+      {
+        id: 'evd-1',
+        title: 'Q3 access review evidence',
+        filename: 'Access_Review_Evidence_Q3.csv',
+        effectiveDate: '02 Sep 2026',
+        mappedControl: 'CC6.1 Access review control',
+        frameworks: ['SOC 2', 'ISO 27001'],
+        copy: 'Keeps the supporting access-review file with its effective date and mapped control.',
+      },
+      {
+        id: 'evd-2',
+        title: 'Key rotation record',
+        filename: 'Key_Rotation_Record_Q3.json',
+        effectiveDate: '28 Aug 2026',
+        mappedControl: 'CC6.6 Encryption management',
+        frameworks: ['SOC 2', 'PCI DSS'],
+        copy: 'Shows the retained key-rotation evidence file and the control it supports.',
+      },
+      {
+        id: 'evd-3',
+        title: 'External test report',
+        filename: 'External_PenTest_Executive_Summary.pdf',
+        effectiveDate: '14 Jul 2026',
+        mappedControl: 'CC7.1 Vulnerability review',
+        frameworks: ['SOC 2', 'ISO 27001'],
+        copy: 'Keeps the reviewed testing summary connected to the relevant vulnerability control.',
+      },
+    ],
   },
 ];
 
@@ -63,9 +173,23 @@ export const auditAuditor = {
   title: 'See who reviews each framework.',
   description: 'Keep the primary auditor contact and additional contacts visible beside separate internal and external framework assignments.',
   note: 'Keep contact and assignment context available to the team managing the review.',
+  guarantees: [
+    { title: 'Contact roles', detail: 'Keep primary and additional contacts clear for the team managing the review.' },
+    { title: 'Assignment types', detail: 'Separate internal and external auditor assignments for the same audit cycle.' },
+    { title: 'Framework mapping', detail: 'Connect reviewer assignments to the frameworks in scope.' },
+  ],
+  assignments: [
+    { type: 'Internal audit', framework: 'SOC 2', owner: 'Primary contact', context: 'Assigned framework' },
+    { type: 'External audit', framework: 'ISO/IEC 27001', owner: 'Additional contact', context: 'Assigned framework' },
+  ],
 };
 
 export const auditClosing = {
+  eyebrow: 'Audit management',
   title: 'Walk through your next audit handoff.',
+  titleAccent: 'audit handoff.',
   copy: 'Bring one real framework review. We will look at the documents, auditor assignments, and decisions that need to stay connected.',
+  proof: 'Setup in under 15 minutes · No credit card required · Full team access',
+  primaryCta: { label: 'Start free trial', href: '/pricing' },
+  secondaryCta: { label: 'Request a demo', href: '/demo' },
 };

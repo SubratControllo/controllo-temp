@@ -48,6 +48,14 @@ Use this section for the latest useful proof only. Avoid adding full diary-style
 - Audit page development validation: 2026-09-15 eight focused tests passed across the dedicated page, routing, generic FAQ, and sitemap checks. Each section was inspected in desktop/mobile browsers; final containment checks passed at 320px, 375px, 768px, 1024px, and 1440px. Metadata, canonical URL, two `/demo` actions, visible keyboard focus, and complete reduced-motion output were checked. A fresh normal-motion load had no console errors or warnings; reduced-motion emulation emitted only Motion's expected developer notice. This is not public-claim or production approval.
 - Current validation policy: run only affected tests and browser checks unless the user explicitly requests a production build, full suite, dependency install, or broader validation.
 
+## Frozen Audit Management Hero Baseline
+
+Status: approved and frozen on 2026-09-15.
+
+Keep the vertically balanced split hero with left-aligned copy, two-tone Manrope heading with the teal **reviewers aligned.** accent, demo/workspace actions, no bottom pointer rail, and the representative audit orbit stage on the right. The visual remains a product-grounded illustration around one selected control, with framework scope, linked policy/evidence records, internal/external auditor assignments, and XLSX framework export context. The shared three-layer wave closes the mist-to-white boundary; orbit, connector, and wave motion stop when site motion is paused or reduced.
+
+Treat further hero copy, layout, visual composition, card placement, headline scale, color treatment, and motion changes as out of scope unless a new request explicitly reopens the hero. Accessibility, verified responsive defects, product-claim corrections, metadata issues, and release-critical performance fixes may still proceed.
+
 ## Frozen Risk Management Hero Baseline
 
 Status: approved and frozen on 2026-09-15.
