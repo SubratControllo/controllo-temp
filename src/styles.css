@@ -4574,6 +4574,51 @@
   bottom: -1.5rem;
 }
 
+.cloud-hero[data-motion="static"] .wave-divider__wave {
+  animation: none;
+}
+
+.cloud-hero .wave-divider__wave--front {
+  bottom: -6px;
+  height: calc(100% + 6px);
+}
+
+.cloud-hero-orbit {
+  opacity: 0.5;
+}
+
+.cloud-hero-orbit--inner {
+  inset: 17% 8% 14% 8%;
+  transform: rotate(18deg);
+  border-color: rgba(38, 216, 173, 0.2);
+}
+
+.cloud-hero-orbit-track--inner {
+  inset: 17% 8% 14% 8%;
+  transform: rotate(18deg);
+}
+
+.cloud-hero-orbit-track--inner .cyber-hero-orbit-planet {
+  width: 1.18rem;
+  height: 1.18rem;
+  opacity: 0.3;
+}
+
+.cloud-hero-orbit-track--inner .cyber-hero-orbit-planet--secondary {
+  width: 0.92rem;
+  height: 0.92rem;
+  opacity: 0.24;
+}
+
+.cloud-hero .cyber-hero-orbit-field[data-motion="animated"] .cloud-hero-orbit-track--inner .cyber-hero-orbit-planet {
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.cloud-hero .cyber-hero-orbit-field[data-motion="animated"] .cloud-hero-orbit-track--inner .cyber-hero-orbit-planet--secondary {
+  animation-delay: -19s;
+}
+
 .ai-governance-hero .wave-divider__wave--front {
   bottom: -6px;
   height: calc(100% + 6px);

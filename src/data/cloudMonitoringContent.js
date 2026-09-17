@@ -17,14 +17,14 @@ export const cloudMonitoringHero = {
     { name: 'AWS', brandKey: 'aws', sync: 'Recently refreshed', resources: 'Asset inventory', state: 'Connected', detail: 'Asset inventory and configuration context' },
     { name: 'Microsoft Azure', brandKey: 'microsoftAzure', sync: 'Recently refreshed', resources: 'Asset inventory', state: 'Connected', detail: 'Asset inventory and configuration context' },
     { name: 'Google Cloud', brandKey: 'googleCloud', sync: 'Synchronized', resources: 'Supported assets', state: 'Connected', detail: 'Supported asset synchronization' },
-    { name: 'Microsoft 365', sync: 'Recently refreshed', resources: 'Identity & endpoint', state: 'Connected', detail: 'Identity and endpoint signals' },
+    { name: 'Microsoft 365', brandKey: 'microsoft365', sync: 'Recently refreshed', resources: 'Identity & endpoint', state: 'Connected', detail: 'Identity and endpoint signals' },
     { name: 'Google Workspace', brandKey: 'googleWorkspace', sync: 'Recently refreshed', resources: 'Users & devices', state: 'Connected', detail: 'Account, device, and activity context' },
   ],
 };
 
 export const cloudVisibility = {
   eyebrow: 'Cloud asset visibility',
-  title: 'Know what’s running—and how it’s configured.',
+  title: 'Know what’s running and how it’s configured.',
   description:
     'Cloud environments change constantly. New resources appear, configurations change, and services expand across regions. Controllo gives your team a centralized view of connected cloud assets and the configuration context behind them.',
   providers: [
@@ -46,7 +46,7 @@ export const cloudSignals = {
     ['Compliance context', 'Review configuration information alongside the compliance work it may inform.'],
     ['Resource context', 'See which provider, service, region, and asset the signal relates to.'],
   ],
-  highlight: 'See the asset. See the configuration. See what needs attention.',
+  highlight: 'Review each finding with its provider, service, region, and asset context.',
 };
 
 export const identityVisibility = {
@@ -80,12 +80,12 @@ export const connectedWorkflows = {
   eyebrow: 'Connected workflows',
   title: 'See the issue. Get the right team moving.',
   description:
-    'Visibility is useful when someone can act on it. Controllo keeps the signal, review context, owner, and next action together, with Jira available for supported ticketing workflows.',
-  steps: ['Signal', 'Review', 'Assign', 'Resolve'],
+    'When findings need follow-up, teams can use Controllo’s supported Jira integration to create, assign, and track tickets.',
+  steps: ['Finding', 'Ticket', 'Owner', 'Status'],
   destinations: [
-    ['Jira', 'Raise and track relevant actions through supported Jira workflows.', 'jira'],
-    ['Review owner', 'Keep responsibility visible while security and compliance teams assess the signal.'],
-    ['Action record', 'Keep the decision and next step attached to the monitoring context.'],
+    ['Jira', 'Create and manage follow-up tickets through the supported Jira integration.', 'jira'],
+    ['Review owner', 'Assign Jira issues to keep follow-up ownership visible.'],
+    ['Action record', 'Use issue status, comments, worklogs, and history to retain the follow-up record.'],
   ],
 };
 

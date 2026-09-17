@@ -1,6 +1,7 @@
 export const brandAssets = Object.freeze({
   aws: { src: '/assets/brands/aws.svg', format: 'mark' },
   microsoftAzure: { src: '/assets/brands/microsoft-azure.svg', format: 'mark' },
+  microsoft365: { src: '/assets/brands/microsoft-365.png', format: 'wordmark' },
   googleCloud: { src: '/assets/brands/google-cloud.svg', format: 'mark' },
   microsoftIntune: { src: '/assets/brands/microsoft-intune.svg', format: 'mark' },
   microsoftDefender: { src: '/assets/brands/microsoft-defender.svg', format: 'mark' },

@@ -8,6 +8,7 @@ Source snapshot: [GLINCKER/theSVG](https://github.com/GLINCKER/thesvg/tree/1f035
 | --- | --- | --- | --- |
 | `aws.svg` | `aws/color.svg` | [AWS trademarks](https://aws.amazon.com/trademark-guidelines/) | Ready for design review |
 | `microsoft-azure.svg` | `microsoft-azure/default.svg` | [Microsoft trademark guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks) | Ready for design review |
+| `microsoft-365.png` | Microsoft Stories press-kit `Microsoft365_logo_horiz_c-gray_rgb` | [Microsoft 365 trademark guidelines](https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/mscle/documents/presentations/FY26_Microsoft_365_trademark_guidelines.pdf) | Ready for light surfaces |
 | `google-cloud.svg` | `google-cloud/default.svg` | [Google brand resource center](https://about.google/brand-resource-center/) | Ready for design review |
 | `microsoft-intune.svg` | `azure-intune/default.svg` | [Microsoft trademark guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks) | Ready for design review |
 | `microsoft-defender.svg` | `microsoft-defender/default.svg` | [Microsoft trademark guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks) | Ready for design review |
