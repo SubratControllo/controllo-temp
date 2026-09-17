@@ -21,6 +21,7 @@ const ContinuousCompliancePage = lazy(() => import('./pages/ContinuousCompliance
 const RiskManagementPage = lazy(() => import('./pages/RiskManagementPage'));
 const AuditManagementPage = lazy(() => import('./pages/AuditManagementPage'));
 const CloudMonitoringPage = lazy(() => import('./pages/CloudMonitoringPage'));
+const SecuraAiPage = lazy(() => import('./pages/SecuraAiPage'));
 
 const staticPagePaths = ['/company', '/security', '/privacy-policy', '/terms', '/accessibility'];
 
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/platform/risk-management" element={<RiskManagementPage />} />
             <Route path="/platform/audit-management" element={<AuditManagementPage />} />
             <Route path="/platform/cloud-monitoring" element={<CloudMonitoringPage />} />
+            <Route path="/platform/secura-ai" element={<SecuraAiPage />} />
             {genericProductRoutePaths.map((path) => (
               <Route path={path} element={<ProductPage />} key={path} />
             ))}

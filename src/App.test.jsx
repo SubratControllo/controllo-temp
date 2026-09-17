@@ -270,11 +270,12 @@ describe('Compliance Current landing page', () => {
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 
-  it('uses the Secura product mark on the Secura AI route', () => {
+  it('renders the dedicated Secura AI content route', async () => {
     renderRoute('/platform/secura-ai');
 
-    const heading = screen.getByRole('heading', {
-      name: /guidance that understands the work around the control/i
+    const heading = await screen.findByRole('heading', {
+      level: 1,
+      name: /know what’s missing\. know what to review next/i
     });
     const hero = heading.closest('section');
     const mark = hero.querySelector('img[src="/assets/secura-mark.svg"]');
@@ -282,6 +283,8 @@ describe('Compliance Current landing page', () => {
     expect(mark).toBeInTheDocument();
     expect(mark).toHaveAttribute('alt', '');
     expect(mark).toHaveAttribute('aria-hidden', 'true');
+    expect(screen.getByRole('heading', { name: /not just a finding\. the full picture/i })).toBeInTheDocument();
+    expect(screen.queryByText('Clarity at every handoff.')).not.toBeInTheDocument();
   });
 
   it('renders the locked privacy route and dedicated cloud-monitoring route', async () => {

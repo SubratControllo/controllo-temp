@@ -1,6 +1,6 @@
 import {
   ArrowRight,
-  CheckCircle,
+  ChartPie,
   Cloud,
   CloudCheck,
   Database,
@@ -10,8 +10,9 @@ import {
   ListChecks,
   MagnifyingGlass,
   ShieldWarning,
-  SquaresFour,
+  Target,
   Ticket,
+  UserGear,
   WarningCircle,
 } from '@phosphor-icons/react';
 import { gsap } from 'gsap';
@@ -20,6 +21,7 @@ import { motion } from 'motion/react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackgroundPixelStars from '../components/BackgroundPixelStars';
+import GradientBlinds from '../components/GradientBlinds';
 import IntegrationLogo from '../components/IntegrationLogo';
 import PageMeta from '../components/PageMeta';
 import Reveal from '../components/Reveal';
@@ -45,6 +47,9 @@ const signalIllustrations = [
   '/assets/cloud-monitoring/4.svg',
 ];
 const exposureIcons = [IdentificationCard, Fingerprint, CloudCheck, WarningCircle];
+const exposureStageLabels = ['User matched', 'Indicator available', 'Context linked', 'Review ready'];
+const exposureStickyClasses = ['lg:top-28 lg:z-10', 'lg:top-32 lg:z-20', 'lg:top-36 lg:z-30', 'lg:top-40 lg:z-40'];
+const closingGradientColors = ['#061B32', '#087F8C', '#26D8AD', '#0B2946'];
 const providerVisuals = [
   { left: '50%', top: '12%', float: 5, duration: 5.2, tooltip: 'Cloud assets', color: '#087F8C', points: [[350, 98], [378, 148], [368, 198], [350, 258]] },
   { left: '89%', top: '35%', float: 7, duration: 6.4, tooltip: 'Configuration signals', color: '#35A9E8', points: [[614, 210], [560, 246], [528, 298], [442, 324]] },
@@ -445,7 +450,7 @@ function SignalsSection({ motionEnabled }) {
       <div className="pointer-events-none absolute inset-0 bg-black bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAIElEQVR42mIUEhJiwAbevXuHVZyJgUQwqmEUDB0AEGAADd8DEPTX6ksAAAAASUVORK5CYII=')] bg-[size:10px] opacity-55" aria-hidden="true" data-background-pixel-grid="" />
       <BackgroundPixelStars motionEnabled={motionEnabled} />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-[64%] bg-[radial-gradient(circle_at_58%_48%,rgba(8,127,140,.2),transparent_66%)]" aria-hidden="true" />
-      <div className="shell relative grid min-h-[calc(100svh-84px)] items-center gap-16 py-28 sm:py-32 lg:grid-cols-[minmax(0,.95fr)_minmax(31rem,1.05fr)] lg:gap-8 lg:py-28" data-signal-stage="">
+      <div className="shell relative grid min-h-svh items-center gap-16 py-28 sm:py-32 lg:grid-cols-[minmax(0,.95fr)_minmax(31rem,1.05fr)] lg:gap-8 lg:py-20" data-signal-stage="">
         <Reveal className="max-w-155 lg:pr-4" motionEnabled={motionEnabled}>
           <SectionHeading content={cloudSignals} id="cloud-signals-title" className="[&_.eyebrow]:text-mint [&_.lede]:text-[#c7d4de]" />
           <div className="mt-8 flex max-w-145 items-start gap-3">
@@ -454,7 +459,7 @@ function SignalsSection({ motionEnabled }) {
           </div>
         </Reveal>
 
-        <ol className="relative m-0 grid list-none gap-4 p-0 lg:h-[38rem] lg:block" aria-label="From cloud asset to actionable signal" data-signal-stack="">
+        <ol className="relative m-0 grid list-none gap-4 p-0 lg:h-[clamp(24rem,calc(100svh-244px),30rem)] lg:block" aria-label="From cloud asset to actionable signal" data-signal-stack="">
           {cloudSignals.steps.map(([title, description], index) => {
             const Icon = signalIcons[index];
             return (
@@ -486,31 +491,78 @@ function IdentitySection({ motionEnabled }) {
           <p className="mt-8 font-mono text-[.64rem] font-medium uppercase tracking-[.08em] text-teal">{identityVisibility.highlight}</p>
         </Reveal>
 
-        <Reveal className="overflow-hidden rounded-[22px] border border-line bg-white shadow-[0_24px_60px_rgba(6,27,50,.1)]" delay={0.08} motionEnabled={motionEnabled}>
-          <div className="flex items-center justify-between border-b border-line px-5 py-4 sm:px-7">
-            <div>
-              <p className="font-mono text-[.57rem] uppercase tracking-[.1em] text-teal">Workforce visibility</p>
-              <h3 className="mt-1 text-[1rem]">Identity & endpoint context</h3>
-            </div>
-            <DesktopTower className="size-5 text-teal" aria-hidden="true" />
-          </div>
-          <div className="divide-y divide-line px-5 sm:px-7" data-motion-sequence="">
-            {identityVisibility.sources.map(([name, description], index) => (
-              <div className="grid gap-4 py-6 sm:grid-cols-[8rem_1fr] sm:items-start" key={name}>
-                <div className="flex min-h-11 items-center gap-2.5">
-                  {index === 1 ? <BrandTile brandKey="googleWorkspace" size="inline" /> : <SquaresFour className="size-5 text-teal" aria-hidden="true" />}
-                  {index === 0 && <strong className="text-[.72rem] font-medium">{name}</strong>}
-                  {index === 1 && <span className="sr-only">{name}</span>}
-                </div>
-                <p className="m-0 text-[.74rem] leading-6 text-muted">{description}</p>
+        <Reveal delay={0.08} motionEnabled={motionEnabled}>
+          <figure
+            className="relative isolate overflow-hidden rounded-[30px] border border-line bg-white shadow-[0_24px_60px_rgba(6,27,50,.1)]"
+            aria-label="Connected workforce identity and endpoint context from Microsoft 365 and Google Workspace"
+            data-identity-dossier=""
+          >
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_32%_42%,rgba(38,216,173,.12),transparent_34%),linear-gradient(rgba(8,127,140,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(8,127,140,.035)_1px,transparent_1px)] bg-[size:auto,28px_28px,28px_28px]" aria-hidden="true" />
+            <figcaption className="relative flex items-center justify-between border-b border-line px-5 py-4 sm:px-7">
+              <div>
+                <p className="font-mono text-[.57rem] uppercase tracking-[.1em] text-teal">Workforce visibility</p>
+                <h3 className="mt-1 text-[1rem]">Identity & endpoint context</h3>
               </div>
-            ))}
-          </div>
-          <ul className="m-0 grid list-none grid-cols-2 border-t border-line bg-[#f8fbfa] p-0 sm:grid-cols-4" aria-label="Identity and endpoint signals">
-            {identityVisibility.signals.map((signal) => (
-              <li className="flex min-h-20 items-center justify-center border-b border-r border-line px-3 text-center text-[.64rem] font-medium text-navy last:border-r-0 sm:border-b-0" key={signal}>{signal}</li>
-            ))}
-          </ul>
+              <Fingerprint className="size-5 text-teal" aria-hidden="true" />
+            </figcaption>
+
+            <div className="relative p-4 sm:p-6" data-motion-sequence="">
+              <div className="relative overflow-hidden rounded-[24px] border border-line/80 bg-[#f8fbfa] px-4 py-7 sm:px-8 sm:py-9">
+                <div className="pointer-events-none absolute inset-x-1/4 top-0 h-40 bg-[radial-gradient(circle_at_50%_30%,rgba(38,216,173,.14),transparent_68%)]" aria-hidden="true" />
+
+                <div className="relative mx-auto grid max-w-[34rem] grid-cols-2 gap-3" aria-label="Connected workforce sources">
+                  {identityVisibility.sources.map(([name], index) => (
+                    <div className="flex min-h-20 items-center justify-center rounded-[17px] border border-line/80 bg-white px-4 shadow-[0_12px_28px_rgba(6,27,50,.055)]" key={name}>
+                      <span className={index === 0 ? 'scale-[2.1]' : 'scale-110 sm:scale-125'}>
+                        <BrandTile brandKey={index === 0 ? 'microsoft365' : 'googleWorkspace'} size="inline" />
+                      </span>
+                      <span className="sr-only">{name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="relative mx-auto h-14 max-w-[22rem]" aria-hidden="true">
+                  <span className="absolute left-1/4 top-0 h-8 border-l border-teal/25" />
+                  <span className="absolute right-1/4 top-0 h-8 border-r border-teal/25" />
+                  <span className="absolute left-1/4 right-1/4 top-8 border-t border-teal/25" />
+                  <span className="absolute left-1/2 top-8 h-6 border-l border-teal/25" />
+                  <span className="absolute bottom-0 left-1/2 size-2 -translate-x-1/2 rounded-full bg-mint shadow-[0_0_0_5px_rgba(38,216,173,.12),0_0_22px_rgba(38,216,173,.55)]" />
+                </div>
+
+                <div className="relative mx-auto max-w-[23rem] overflow-hidden rounded-[24px] bg-navy px-5 py-5 text-white shadow-[0_22px_45px_rgba(6,27,50,.22)]">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,#26D8AD,transparent)]" aria-hidden="true" />
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-[13px] bg-mint text-navy">
+                      <IdentificationCard className="size-5" weight="duotone" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="font-mono text-[.52rem] uppercase tracking-[.1em] text-mint">Connected workforce</p>
+                      <p className="mt-1 text-[.84rem] font-medium">Identity & endpoint context</p>
+                    </div>
+                  </div>
+                  <div className="mt-5 grid grid-cols-2 divide-x divide-white/12 border-t border-white/12 pt-4">
+                    <div className="pr-3">
+                      <IdentificationCard className="size-4 text-mint" aria-hidden="true" />
+                      <p className="mt-2 text-[.62rem] leading-5 text-[#c7d4de]">Identity visibility</p>
+                    </div>
+                    <div className="pl-4">
+                      <DesktopTower className="size-4 text-mint" aria-hidden="true" />
+                      <p className="mt-2 text-[.62rem] leading-5 text-[#c7d4de]">Endpoint metrics</p>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="relative mx-auto mt-7 grid max-w-[38rem] list-none grid-cols-2 border-y border-line p-0 sm:grid-cols-4" aria-label="Identity and endpoint signals">
+                  {identityVisibility.signals.map((signal) => (
+                    <li className="flex items-center justify-center gap-2 px-2 py-3 text-center text-[.61rem] font-medium leading-5 text-navy" key={signal}>
+                      <span className="size-1.5 shrink-0 rounded-full bg-mint shadow-[0_0_0_3px_rgba(38,216,173,.1)]" aria-hidden="true" />
+                      {signal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </figure>
         </Reveal>
       </div>
     </section>
@@ -518,10 +570,26 @@ function IdentitySection({ motionEnabled }) {
 }
 
 function ExposureSection({ motionEnabled }) {
+  const [activeExposureIndex, setActiveExposureIndex] = useState(0);
+  const exposureCardRefs = useRef([]);
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return undefined;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveExposureIndex(Number(entry.target.dataset.exposureCardIndex));
+      });
+    }, { rootMargin: '-42% 0px -42% 0px', threshold: 0.01 });
+
+    exposureCardRefs.current.forEach((card) => card && observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section bg-white" aria-labelledby="exposure-monitoring-title">
       <div className="shell">
-        <Reveal className="section-heading section-heading--split max-[760px]:grid-cols-1 max-[760px]:gap-7" motionEnabled={motionEnabled}>
+        <Reveal className="section-heading section-heading--split max-[760px]:grid-cols-1 max-[760px]:gap-7 lg:mb-14" motionEnabled={motionEnabled}>
           <div>
             <p className="eyebrow">{exposureMonitoring.eyebrow}</p>
             <h2 id="exposure-monitoring-title">{exposureMonitoring.title}</h2>
@@ -529,38 +597,98 @@ function ExposureSection({ motionEnabled }) {
           <p className="lede">{exposureMonitoring.description}</p>
         </Reveal>
 
-        <div className="grid border-y border-line lg:grid-cols-[1.15fr_.85fr]">
-          <div className="grid gap-4 py-7 lg:pr-8" data-exposure-stack="">
+        <div className="relative grid gap-5 rounded-[28px] bg-[#f3f8f6] p-4 sm:p-6 lg:grid-cols-[minmax(0,.78fr)_minmax(32rem,1.22fr)] lg:items-start lg:gap-8 lg:p-8">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_22%,rgba(38,216,173,.12),transparent_32%)]" aria-hidden="true" />
+
+          <ol className="relative m-0 grid list-none gap-4 p-0 lg:pr-1" aria-label="Exposure investigation sequence" data-exposure-stack="">
             {exposureMonitoring.signals.map(([title, description], index) => {
               const Icon = exposureIcons[index];
               return (
-                <Reveal className="min-h-44 rounded-[8px] border border-line bg-white p-6 shadow-[0_16px_40px_rgba(6,27,50,.07)] lg:sticky lg:top-28" delay={index * 0.05} motionEnabled={false} data-stack-card="" key={title}>
-                  <Icon className="size-5 text-teal" aria-hidden="true" />
-                  <h3 className="mt-8 text-[1rem]">{title}</h3>
-                  <p className="mt-3 text-[.72rem] leading-6 text-muted">{description}</p>
+                <Reveal as="li" className={`relative min-h-44 overflow-hidden rounded-[18px] border border-line bg-white p-6 shadow-[0_16px_40px_rgba(6,27,50,.07)] lg:sticky ${exposureStickyClasses[index]}`} delay={index * 0.05} motionEnabled={false} data-exposure-card-index={index} data-stack-card="" key={title} ref={(node) => { exposureCardRefs.current[index] = node; }}>
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="font-mono text-[.55rem] font-medium tracking-[.1em] text-teal">0{index + 1}</span>
+                    <span className="font-mono text-[.5rem] uppercase tracking-[.08em] text-muted">{exposureStageLabels[index]}</span>
+                  </div>
+                  <div className="mt-8 flex items-start gap-4">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-[13px] bg-mint-soft/60 text-teal">
+                      <Icon className="size-5" weight="duotone" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <h3 className="text-[1rem]">{title}</h3>
+                      <p className="mt-3 text-[.72rem] leading-6 text-muted">{description}</p>
+                    </div>
+                  </div>
                 </Reveal>
               );
             })}
-          </div>
+          </ol>
 
-          <Reveal className="relative flex min-h-105 flex-col justify-between overflow-hidden bg-[#edf8f5] p-7 lg:border-l lg:border-line" delay={0.12} motionEnabled={motionEnabled}>
-            <div className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full border border-teal/10" aria-hidden="true" />
-            <div>
-              <p className="font-mono text-[.57rem] uppercase tracking-[.11em] text-teal">Exposure review</p>
-              <h3 className="mt-2 text-[1.1rem]">Available indicator</h3>
-            </div>
-            <div className="rounded-[16px] border border-teal/15 bg-white p-5 shadow-[0_16px_38px_rgba(6,27,50,.08)]">
-              <div className="flex items-center justify-between gap-4 border-b border-line pb-4">
-                <span className="flex items-center gap-2 text-[.72rem] font-medium"><IdentificationCard className="size-4 text-teal" aria-hidden="true" /> Organizational user</span>
-                <span className="font-mono text-[.54rem] uppercase tracking-[.08em] text-teal">Review</span>
+          <Reveal as="figure" className="relative order-first m-0 overflow-hidden rounded-[24px] border border-line bg-white shadow-[0_24px_60px_rgba(6,27,50,.1)] lg:order-last lg:sticky lg:top-28 lg:self-start" delay={0.12} motionEnabled={motionEnabled} aria-label="Exposure review from available indicator to security investigation" data-exposure-canvas="">
+            <div className="flex items-center justify-between gap-5 border-b border-line px-5 py-4 sm:px-6">
+              <div>
+                <p className="font-mono text-[.55rem] uppercase tracking-[.11em] text-teal">Exposure review</p>
+                <h3 className="mt-1 text-[1rem]">User-level investigation</h3>
               </div>
-              <dl className="mt-4 grid gap-3 text-[.66rem]">
-                <div className="flex justify-between gap-4"><dt className="text-muted">Indicator</dt><dd className="font-medium text-navy">Credential data available</dd></div>
-                <div className="flex justify-between gap-4"><dt className="text-muted">Context</dt><dd className="font-medium text-navy">Source recorded</dd></div>
-                <div className="flex justify-between gap-4"><dt className="text-muted">Next step</dt><dd className="font-medium text-navy">Security review</dd></div>
-              </dl>
+              <span className="flex items-center gap-2 font-mono text-[.52rem] uppercase tracking-[.08em] text-teal">
+                <span className="size-2 rounded-full bg-mint shadow-[0_0_0_4px_rgba(38,216,173,.12)]" aria-hidden="true" />
+                Indicator available
+              </span>
             </div>
-            <p className="mt-8 border-t border-teal/20 pt-5 text-[.72rem] leading-6 text-muted">{exposureMonitoring.highlight}</p>
+
+            <div className="grid gap-4 bg-[#f8fbfa] p-4 sm:p-5 md:grid-cols-[.88fr_1.12fr]">
+              <div className="rounded-[18px] border border-line bg-white p-3.5">
+                <div className="flex items-center justify-between px-2 pb-3">
+                  <p className="text-[.7rem] font-medium text-navy">Signal inbox</p>
+                  <span className="font-mono text-[.5rem] uppercase tracking-[.08em] text-muted">4 stages</span>
+                </div>
+                <div className="grid grid-cols-4 gap-1 px-2 pb-3" aria-hidden="true">
+                  {exposureStageLabels.map((label, index) => (
+                    <span className={`h-1 rounded-full transition-colors duration-200 motion-reduce:transition-none ${index <= activeExposureIndex ? 'bg-mint' : 'bg-line'}`} key={label} />
+                  ))}
+                </div>
+                <ol className="m-0 grid list-none gap-1.5 p-0" aria-label="Exposure review stages">
+                  {exposureMonitoring.signals.map(([title], index) => {
+                    const Icon = exposureIcons[index];
+                    return (
+                      <li className={`relative flex min-h-16 items-center gap-3 rounded-[12px] bg-[#f8fbfa] px-3 py-2.5 transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${index === activeExposureIndex ? 'opacity-100' : '-translate-x-0.5 opacity-40'}`} data-exposure-stage="" key={title}>
+                        <span className={`relative z-10 flex size-5 shrink-0 items-center justify-center rounded-full border border-teal/20 bg-white text-teal transition-transform duration-200 ease-out motion-reduce:transition-none ${index === activeExposureIndex ? 'scale-100' : 'scale-75'}`} data-exposure-stage-marker="">
+                          <Icon className="size-3" aria-hidden="true" />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="truncate text-[.64rem] font-medium text-navy">{title}</p>
+                          <p className="mt-0.5 font-mono text-[.46rem] uppercase tracking-[.07em] text-muted">{exposureStageLabels[index]}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+              </div>
+
+              <div className="flex min-h-86 flex-col justify-between rounded-[18px] bg-navy p-5 text-white shadow-[0_18px_44px_rgba(6,27,50,.18)]">
+                <div>
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="flex size-10 items-center justify-center rounded-[13px] bg-mint text-navy">
+                      <IdentificationCard className="size-5" weight="duotone" aria-hidden="true" />
+                    </span>
+                    <span className="font-mono text-[.5rem] uppercase tracking-[.08em] text-mint">Review</span>
+                  </div>
+                  <p className="mt-6 font-mono text-[.5rem] uppercase tracking-[.1em] text-mint">Selected finding</p>
+                  <h4 className="mt-2 text-[1.05rem] text-white">Organizational user</h4>
+                  <p className="mt-3 max-w-70 text-[.66rem] leading-5 text-[#c7d4de]">An available exposure indicator is connected to the identity context your team can review.</p>
+                </div>
+
+                <dl className="mt-7 grid gap-3 border-t border-white/12 pt-5 text-[.62rem]">
+                  <div className="flex justify-between gap-4"><dt className="text-[#9fb2c2]">Indicator</dt><dd className="text-right font-medium text-white">Credential data available</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-[#9fb2c2]">Context</dt><dd className="text-right font-medium text-white">Source recorded</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-[#9fb2c2]">Next step</dt><dd className="text-right font-medium text-mint">Security review</dd></div>
+                </dl>
+              </div>
+            </div>
+
+            <figcaption className="flex items-start gap-3 border-t border-line px-5 py-4 text-[.66rem] leading-5 text-muted sm:px-6">
+              <MagnifyingGlass className="mt-0.5 size-4 shrink-0 text-teal" aria-hidden="true" />
+              {exposureMonitoring.highlight}
+            </figcaption>
           </Reveal>
         </div>
       </div>
@@ -569,39 +697,63 @@ function ExposureSection({ motionEnabled }) {
 }
 
 function WorkflowSection({ motionEnabled }) {
-  const icons = [ShieldWarning, MagnifyingGlass, IdentificationCard, CheckCircle];
+  const icons = [Target, Ticket, UserGear, ChartPie];
 
   return (
-    <section className="section bg-mist" aria-labelledby="connected-workflows-title">
-      <div className="shell">
-        <Reveal className="mx-auto max-w-205 text-center" motionEnabled={motionEnabled}>
-          <SectionHeading content={connectedWorkflows} id="connected-workflows-title" className="[&_.lede]:mx-auto" />
+    <section className="section relative isolate overflow-hidden bg-mist" aria-labelledby="connected-workflows-title">
+      <div className="pointer-events-none absolute inset-0 [background:radial-gradient(125%_125%_at_50%_10%,transparent_48%,rgba(53,169,232,.2)_100%)]" aria-hidden="true" />
+      <div className="shell relative">
+        <Reveal className="mx-auto max-w-210 text-center" motionEnabled={motionEnabled}>
+          <h2 id="connected-workflows-title">{connectedWorkflows.title}</h2>
+          <p className="mx-auto mt-6 max-w-165 text-[.9rem] leading-7 text-muted">{connectedWorkflows.description}</p>
         </Reveal>
 
-        <ol className="mx-auto mt-15 grid max-w-250 list-none grid-flow-dense grid-cols-2 gap-px overflow-hidden rounded-[8px] border border-line bg-line p-0 md:grid-cols-4" aria-label="Signal review workflow" data-motion-sequence="">
-          {connectedWorkflows.steps.map((step, index) => {
-            const Icon = icons[index];
-            return (
-              <Reveal as="li" className="relative flex min-h-34 flex-col justify-between bg-white p-5" delay={index * 0.06} motionEnabled={motionEnabled} key={step}>
-                <Icon className="size-5 text-teal" aria-hidden="true" />
-                <span className="text-[.82rem] font-medium text-navy">{step}</span>
-                {index < connectedWorkflows.steps.length - 1 && <ArrowRight className="absolute -right-3 top-1/2 z-10 hidden size-5 rounded-full bg-mint p-1 text-navy md:block" weight="bold" aria-hidden="true" />}
-              </Reveal>
-            );
-          })}
-        </ol>
+        <div className="relative mx-auto mt-14 max-w-260">
+          <div className="pointer-events-none absolute inset-0 z-20 hidden md:block" aria-hidden="true">
+            {connectedWorkflows.steps.slice(0, -1).map((step, index) => (
+              <span className="absolute top-1/2 w-24 -translate-x-1/2 -translate-y-1/2 text-teal/70" key={step} style={{ left: `${(index + 1) * 25}%` }}>
+                <motion.svg className="h-7 w-full overflow-visible" fill="none" initial={motionEnabled ? { opacity: 0 } : false} transition={{ delay: 0.22, duration: 0.5 }} viewBox="0 0 96 28" whileInView={{ opacity: 1 }}>
+                  <motion.path d="M2 14H88" initial={motionEnabled ? { pathLength: 0 } : false} stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" transition={{ delay: 0.22, duration: 0.65, ease: [0.16, 1, 0.3, 1] }} viewport={{ amount: 0.8, once: true }} whileInView={{ pathLength: 1 }} />
+                  <motion.path d="m79 5 9 9-9 9" initial={motionEnabled ? { opacity: 0, pathLength: 0 } : false} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" transition={{ delay: 0.58, duration: 0.35 }} viewport={{ amount: 0.8, once: true }} whileInView={{ opacity: 1, pathLength: 1 }} />
+                </motion.svg>
+              </span>
+            ))}
+          </div>
 
-        <div className="mx-auto mt-10 grid max-w-250 border-t border-line md:grid-cols-3" data-motion-sequence="">
+          <ol className="relative grid list-none gap-7 p-0 md:grid-cols-4 md:gap-0" aria-label="Signal review workflow" data-motion-sequence="">
+            {connectedWorkflows.steps.map((step, index) => {
+              const Icon = icons[index];
+              return (
+                <Reveal as="li" className={`relative z-10 flex w-full max-w-40 items-center gap-3 justify-self-center rounded-[18px] px-4 py-4 text-left shadow-[0_12px_30px_rgba(6,27,50,.075)] md:max-w-[9.5rem] ${index === connectedWorkflows.steps.length - 1 ? 'border border-mint/45 bg-mint-soft/55' : 'bg-white'}`} delay={index * 0.06} motionEnabled={motionEnabled} key={step}>
+                  <span className={`flex size-11 shrink-0 items-center justify-center rounded-[13px] ${index === connectedWorkflows.steps.length - 1 ? 'bg-white text-teal' : 'bg-[#edf8f5] text-teal'}`}>
+                    <Icon className="size-7" weight="duotone" aria-hidden="true" />
+                  </span>
+                  <span className="text-[.78rem] font-medium text-navy">{step}</span>
+                  {index < connectedWorkflows.steps.length - 1 && (
+                    <span className="absolute -bottom-7 left-1/2 z-20 h-7 w-5 -translate-x-1/2 text-teal/70 md:hidden" aria-hidden="true">
+                      <motion.svg className="size-full overflow-visible" fill="none" initial={motionEnabled ? { opacity: 0 } : false} transition={{ delay: 0.18, duration: 0.45 }} viewBox="0 0 20 28" whileInView={{ opacity: 1 }}>
+                        <motion.path d="M10 1v21" initial={motionEnabled ? { pathLength: 0 } : false} stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" transition={{ delay: 0.18, duration: 0.55 }} viewport={{ amount: 0.8, once: true }} whileInView={{ pathLength: 1 }} />
+                        <motion.path d="m4 16 6 6 6-6" initial={motionEnabled ? { opacity: 0, pathLength: 0 } : false} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" transition={{ delay: 0.48, duration: 0.3 }} viewport={{ amount: 0.8, once: true }} whileInView={{ opacity: 1, pathLength: 1 }} />
+                      </motion.svg>
+                    </span>
+                  )}
+                </Reveal>
+              );
+            })}
+          </ol>
+        </div>
+
+        <ul className="mx-auto mt-12 grid max-w-260 list-none overflow-hidden rounded-[24px] border border-line bg-white/70 p-0 shadow-[0_18px_44px_rgba(6,27,50,.065)] md:grid-cols-3 md:divide-x md:divide-line" aria-label="Workflow follow-up capabilities" data-motion-sequence="">
           {connectedWorkflows.destinations.map(([name, description, brandKey], index) => (
-            <Reveal className="border-b border-line py-6 md:border-b-0 md:border-r md:px-6 md:first:pl-0 md:last:border-r-0" delay={index * 0.06} motionEnabled={motionEnabled} key={name}>
-              <div className="flex min-h-10 items-center gap-3">
-                {brandKey ? <BrandTile brandKey={brandKey} size="inline" /> : index === 1 ? <IdentificationCard className="size-5 text-teal" aria-hidden="true" /> : <Ticket className="size-5 text-teal" aria-hidden="true" />}
-                <h3 className="text-[.95rem]">{name}</h3>
-              </div>
+            <Reveal as="li" className="group min-h-48 border-b border-line p-6 transition-colors duration-200 last:border-b-0 hover:bg-white md:border-b-0 motion-reduce:transition-none" delay={index * 0.06} motionEnabled={motionEnabled} key={name}>
+              <span className={`flex size-12 items-center justify-center rounded-[12px] transition-transform duration-200 group-hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none ${brandKey ? 'bg-[#eef4ff]' : 'bg-[#eef2f3] text-teal'}`}>
+                {brandKey ? <span className="scale-150"><BrandTile brandKey={brandKey} size="inline" /></span> : index === 1 ? <UserGear className="size-6" weight="duotone" aria-hidden="true" /> : <ListChecks className="size-6" weight="duotone" aria-hidden="true" />}
+              </span>
+              <h3 className="mt-6 text-[.95rem]">{name}</h3>
               <p className="mt-3 text-[.72rem] leading-6 text-muted">{description}</p>
             </Reveal>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
@@ -610,16 +762,25 @@ function WorkflowSection({ motionEnabled }) {
 function ClosingSection({ motionEnabled }) {
   return (
     <section className="bg-white py-10 sm:py-14" aria-labelledby="cloud-monitoring-closing-title">
-      <Reveal className="shell relative overflow-hidden rounded-[8px] bg-navy px-6 py-18 text-center text-white sm:px-12 sm:py-22" motionEnabled={motionEnabled}>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_115%,rgba(38,216,173,.2),transparent_48%)]" aria-hidden="true" />
-        <div className="relative mx-auto max-w-205">
+      <Reveal className="shell relative isolate overflow-hidden rounded-[8px] bg-navy px-6 py-18 text-center text-white sm:px-12 sm:py-22" motionEnabled={motionEnabled}>
+        <GradientBlinds className="opacity-75" gradientColors={closingGradientColors} motionEnabled={motionEnabled} />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_48%,rgba(6,27,50,.18),rgba(6,27,50,.68)_82%)]" aria-hidden="true" />
+        <div className="relative z-10 mx-auto max-w-205">
           <p className="eyebrow text-mint">{cloudMonitoringClosing.eyebrow}</p>
           <h2 className="mx-auto text-white" id="cloud-monitoring-closing-title">{cloudMonitoringClosing.title}</h2>
           <p className="mx-auto mt-6 max-w-170 text-[.9rem] leading-7 text-[#c7d4de]">{cloudMonitoringClosing.description}</p>
           <p className="mx-auto mt-3 max-w-160 text-[.76rem] leading-6 text-[#9fb2c2]">{cloudMonitoringClosing.detail}</p>
-          <Link className="button button--mint button--directional mt-9 focus-visible:outline-white" to="/demo">
-            Explore Cloud Monitoring <ArrowRight aria-hidden="true" />
-          </Link>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <Link className="button button--mint button--directional focus-visible:outline-white" to="/demo">
+              Book a Demo <ArrowRight aria-hidden="true" />
+            </Link>
+            <Link className="button button--light focus-visible:outline-white" to="/integrations">
+              Explore Integrations
+            </Link>
+          </div>
+          <p className="mx-auto mt-7 max-w-170 text-[.76rem] font-semibold leading-6 text-white">
+            {cloudMonitoringClosing.supportingLine}
+          </p>
         </div>
       </Reveal>
     </section>
@@ -701,7 +862,7 @@ function useCloudMonitoringMotion(rootRef, motionEnabled) {
             scrollTrigger: {
               anticipatePin: 1,
               trigger: signalSection,
-              start: 'top 84px',
+              start: 'center center',
               end: () => `+=${window.innerHeight * 2.6}`,
               scrub: 0.65,
               pin: true,

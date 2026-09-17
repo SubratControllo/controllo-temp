@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import RiskSection from './RiskSection';
@@ -18,11 +18,13 @@ describe('RiskSection', () => {
     });
 
     expect(section).toHaveAttribute('data-motion', 'static');
-    expect(screen.getByRole('group', {
-      name: /twenty-five risk groups. two critical/i
+    expect(screen.getByRole('img', {
+      name: /risk heatmap with a high asset risk selected/i
     })).toBeInTheDocument();
     expect(section.querySelectorAll('[data-risk-cell]')).toHaveLength(25);
-    expect(section.querySelectorAll('[data-risk-level="critical"]')).toHaveLength(2);
+    expect(section.querySelectorAll('[data-risk-level="critical"]')).toHaveLength(1);
+    expect(section).not.toHaveTextContent('A1');
+    expect(section).not.toHaveTextContent('B1');
     expect(section).toHaveTextContent('Risk Management based on NIST');
     expect(screen.getByRole('heading', {
       name: 'Manage Risk Across Your Entire Program'
@@ -39,45 +41,39 @@ describe('RiskSection', () => {
     })).toHaveAttribute('href', '/platform/risk-management');
   });
 
-  it('explains and renders the complete risk severity scale', () => {
+  it('renders the product-style stepped heatmap', () => {
     renderSection(false);
 
-    const legend = screen.getByRole('list', { name: /risk severity/i });
-    const cells = screen.getAllByRole('img', { name: /risk group/i });
+    const heatmap = screen.getByRole('img', { name: /risk heatmap with a high asset risk selected/i });
 
-    expect(legend).toHaveTextContent('Controlled');
-    expect(legend).toHaveTextContent('Low');
-    expect(legend).toHaveTextContent('Moderate');
-    expect(legend).toHaveTextContent('High');
-    expect(legend).toHaveTextContent('Critical');
-    expect(cells).toHaveLength(25);
-    expect(cells.filter((cell) => cell.dataset.riskLevel === 'controlled')).toHaveLength(11);
-    expect(cells.filter((cell) => cell.dataset.riskLevel === 'low')).toHaveLength(5);
-    expect(cells.filter((cell) => cell.dataset.riskLevel === 'moderate')).toHaveLength(4);
-    expect(cells.filter((cell) => cell.dataset.riskLevel === 'high')).toHaveLength(3);
-    expect(cells.filter((cell) => cell.dataset.riskLevel === 'critical')).toHaveLength(2);
+    expect(heatmap).toHaveAttribute('data-risk-heatmap', 'product');
+    expect(heatmap.querySelector('[data-risk-selected="true"]')).toHaveAttribute('transform', 'translate(350 150)');
+    expect(screen.queryByRole('list', { name: /risk severity/i })).not.toBeInTheDocument();
   });
 
-  it('scatters severity levels across every matrix row', () => {
+  it('matches the stepped color distribution from the product reference', () => {
     renderSection(false);
 
     const levels = [...document.querySelectorAll('[data-risk-cell]')]
       .map((cell) => cell.dataset.riskLevel);
-    const rows = Array.from({ length: 5 }, (_, index) =>
-      levels.slice(index * 5, index * 5 + 5)
-    );
 
-    expect(rows.every((row) => new Set(row).size >= 3)).toBe(true);
-    expect(new Set(rows.map((row) => row.join(','))).size).toBe(5);
+    expect(levels).toEqual([
+      'low', 'low', 'moderate', 'high', 'critical',
+      'low', 'low', 'moderate', 'high', 'high',
+      'low', 'low', 'low', 'moderate', 'moderate',
+      'low', 'low', 'low', 'low', 'low',
+      'very-low', 'very-low', 'very-low', 'none', 'very-low',
+    ]);
   });
 
-  it('removes the decorative scan when motion is reduced', () => {
+  it('keeps the marker static when motion is reduced', () => {
     renderSection(false);
 
     expect(screen.queryByTestId('risk-scan')).not.toBeInTheDocument();
+    expect(document.querySelector('[data-risk-selected="true"] animateTransform')).not.toBeInTheDocument();
   });
 
-  it('adds one sequenced scan to the motion-enabled product proof', () => {
+  it('animates the marker between heatmap squares when motion is enabled', () => {
     renderSection(true);
 
     const section = screen.getByRole('region', {
@@ -85,39 +81,8 @@ describe('RiskSection', () => {
     });
 
     expect(section).toHaveAttribute('data-motion', 'sequenced');
-    expect(screen.getByTestId('risk-scan')).toBeInTheDocument();
+    expect(screen.queryByTestId('risk-scan')).not.toBeInTheDocument();
+    expect(document.querySelector('[data-risk-selected="true"] animateTransform')).toHaveAttribute('values', '350 150;450 50;350 250;250 150;350 150');
   });
 
-  it('adds a motion-gated pointer glow surface to the risk grid', () => {
-    const { rerender } = renderSection(true);
-    const hoverField = screen.getByTestId('risk-matrix-hover-field');
-    const firstCell = hoverField.querySelector('[data-risk-cell]');
-
-    expect(hoverField).toHaveAttribute('data-risk-hover', 'enabled');
-
-    fireEvent.mouseMove(hoverField, { clientX: 48, clientY: 52 });
-
-    expect(hoverField.style.getPropertyValue('--risk-glow-opacity')).toBe('1');
-    expect(firstCell.style.getPropertyValue('--risk-cell-glow-opacity')).toBe('');
-    expect(hoverField.querySelector('[data-risk-hot="true"]')).not.toBeInTheDocument();
-
-    fireEvent.mouseLeave(hoverField);
-
-    expect(hoverField.style.getPropertyValue('--risk-glow-opacity')).toBe('0');
-    expect(hoverField.querySelector('[data-risk-hot="true"]')).not.toBeInTheDocument();
-
-    rerender(
-      <MemoryRouter>
-        <RiskSection motionEnabled={false} />
-      </MemoryRouter>
-    );
-
-    const staticHoverField = screen.getByTestId('risk-matrix-hover-field');
-
-    expect(staticHoverField).toHaveAttribute('data-risk-hover', 'disabled');
-
-    fireEvent.mouseMove(staticHoverField, { clientX: 48, clientY: 52 });
-
-    expect(staticHoverField.style.getPropertyValue('--risk-glow-opacity')).toBe('0');
-  });
 });

@@ -1,5 +1,4 @@
 import { Boxes, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, ShieldCheck } from 'lucide-react';
-import SecuraMark from '../components/SecuraMark';
 import { brandAssets } from './brandAssets';
 
 export const navGroups = [
@@ -36,12 +35,6 @@ export const productPages = {
     accent: 'teal', icon: Radar,
     features: [['Living register', 'Keep context, impact, ownership, and treatment together.'], ['Control context', 'See which controls reduce exposure and where gaps remain.'], ['Executive view', 'Translate operational detail into decision-ready signals.']]
   },
-  '/platform/secura-ai': {
-    eyebrow: 'Secura AI', title: 'Guidance that understands the work around the control.',
-    description: 'Use an AI co-auditor to find missing context, prepare next steps, and keep humans in control of every decision.',
-    accent: 'navy', icon: SecuraMark,
-    features: [['Readiness guidance', 'Prioritize work by impact, dependency, and timing.'], ['Evidence review', 'Flag missing scope and stale supporting material.'], ['Human approval', 'Keep recommendations reviewable and decisions accountable.']]
-  },
   '/platform/cloud-monitoring': {
     eyebrow: 'Cloud monitoring', title: 'Turn live environment signals into compliance context.',
     description: 'Connect cloud configuration, identity, endpoint, and workspace information to the controls and risks your team already manages.',
@@ -73,6 +66,7 @@ const dedicatedProductRoutePaths = [
   '/platform/risk-management',
   '/platform/audit-management',
   '/platform/cloud-monitoring',
+  '/platform/secura-ai',
 ];
 
 export const genericProductRoutePaths = Object.keys(productPages).filter(

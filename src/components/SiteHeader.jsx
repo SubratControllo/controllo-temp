@@ -156,7 +156,7 @@ export default function SiteHeader() {
   useEffect(() => () => clearCloseTimer(), []);
 
   return (
-    <header ref={headerRef} className="site-header shell pointer-events-none sticky top-4 z-40 pt-4 max-[760px]:top-2 max-[760px]:pt-2">
+    <header ref={headerRef} className="site-header shell pointer-events-none sticky top-4 z-50 pt-4 max-[760px]:top-2 max-[760px]:pt-2">
       <NavbarIntro className="pointer-events-auto relative isolate flex min-h-17 items-center justify-between gap-6 rounded-[22px] border border-navy/9 bg-white/88 py-2.5 pr-3 pl-5 shadow-header backdrop-blur-[18px] max-[760px]:min-h-15 max-[760px]:rounded-[18px] max-[760px]:py-2 max-[760px]:pr-2 max-[760px]:pl-3.5">
         <Link className="relative z-10 inline-flex min-h-11 items-center gap-2.75 text-[1.2rem] font-medium tracking-[-.03em] max-[760px]:text-[1.05rem]" to="/" aria-label="Controllo home" onClick={closeAll}>
           <NavbarIntroLogo>

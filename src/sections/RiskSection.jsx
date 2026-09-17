@@ -1,6 +1,4 @@
 import Reveal from "../components/Reveal";
-import { riskCells } from "../data/siteContent";
-import { useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
@@ -11,43 +9,75 @@ const riskMetrics = [
   ["5", "low organisational risks"],
 ];
 
-const riskLevels = [
-  ['controlled', 'Controlled'],
-  ['low', 'Low'],
-  ['moderate', 'Moderate'],
-  ['high', 'High'],
-  ['critical', 'Critical'],
+const heatmapRows = [
+  ['low', 'low', 'moderate', 'high', 'critical'],
+  ['low', 'low', 'moderate', 'high', 'high'],
+  ['low', 'low', 'low', 'moderate', 'moderate'],
+  ['low', 'low', 'low', 'low', 'low'],
+  ['very-low', 'very-low', 'very-low', 'none', 'very-low'],
 ];
 
-const getCellDelay = (index, critical) => {
-  const row = Math.floor(index / 5);
-  const column = index % 5;
-
-  if (critical) return 0.76 + row * 0.04;
-  return 0.12 + (row + column) * 0.055;
+const heatmapColors = {
+  none: '#e8efed',
+  'very-low': '#d8f4eb',
+  low: '#86d9bf',
+  moderate: '#f2d468',
+  high: '#e99a42',
+  critical: '#a13838',
 };
 
-export default function RiskSection({ motionEnabled }) {
-  const handleMatrixMouseMove = useCallback(
-    (event) => {
-      if (!motionEnabled || window.innerWidth <= 760) return;
-
-      const field = event.currentTarget;
-      const rect = field.getBoundingClientRect();
-
-      field.style.setProperty("--risk-glow-x", `${event.clientX - rect.left}px`);
-      field.style.setProperty("--risk-glow-y", `${event.clientY - rect.top}px`);
-      field.style.setProperty("--risk-glow-opacity", "1");
-    },
-    [motionEnabled],
+function ProductRiskHeatmap({ motionEnabled }) {
+  return (
+    <svg
+      aria-label="Risk heatmap with a high asset risk selected at likelihood 8 and impact 8."
+      className="relative z-1 block aspect-square w-full"
+      data-risk-heatmap="product"
+      role="img"
+      viewBox="0 0 500 500"
+    >
+      <defs>
+        <clipPath id="homepage-risk-heatmap-clip">
+          <rect width="500" height="500" rx="18" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#homepage-risk-heatmap-clip)">
+        {heatmapRows.flatMap((row, rowIndex) => row.map((level, columnIndex) => (
+          <rect
+            data-risk-cell
+            data-risk-level={level}
+            fill={heatmapColors[level]}
+            height="100"
+            key={`${rowIndex}-${columnIndex}`}
+            width="100"
+            x={columnIndex * 100}
+            y={rowIndex * 100}
+          />
+        )))}
+        <path d="M100 0V500M200 0V500M300 0V500M400 0V500M0 100H500M0 200H500M0 300H500M0 400H500" fill="none" stroke="rgba(6,27,50,.12)" strokeWidth="2" />
+      </g>
+      <g data-risk-selected="true" transform="translate(350 150)">
+        {motionEnabled ? (
+          <animateTransform
+            attributeName="transform"
+            calcMode="spline"
+            dur="6s"
+            keySplines=".77 0 .175 1;.77 0 .175 1;.77 0 .175 1;.77 0 .175 1"
+            keyTimes="0;.25;.5;.75;1"
+            repeatCount="indefinite"
+            type="translate"
+            values="350 150;450 50;350 250;250 150;350 150"
+          />
+        ) : null}
+        <circle r="21" fill="white" opacity=".94" />
+        <circle r="11" fill="#061b32" />
+        <circle r="20" fill="none" stroke="#087f8c" strokeWidth="3" />
+      </g>
+      <rect x="1" y="1" width="498" height="498" rx="18" fill="none" stroke="rgba(6,27,50,.16)" strokeWidth="2" />
+    </svg>
   );
+}
 
-  const handleMatrixMouseLeave = useCallback((event) => {
-    const field = event.currentTarget;
-
-    field.style.setProperty("--risk-glow-opacity", "0");
-  }, []);
-
+export default function RiskSection({ motionEnabled }) {
   return (
     <section
       aria-label="Connected risk prioritization"
@@ -69,7 +99,7 @@ export default function RiskSection({ motionEnabled }) {
           </Link>
         </Reveal>
         <Reveal
-          className="relative overflow-hidden rounded-[30px] border border-navy/10 bg-white/78 p-6.5 shadow-elevated max-[760px]:p-4"
+          className="relative w-full max-w-[640px] justify-self-end overflow-hidden rounded-[30px] border border-navy/10 bg-white/78 p-6.5 shadow-elevated max-[1080px]:justify-self-start max-[760px]:p-4"
           motionEnabled={motionEnabled}
           delay={0.08}
         >
@@ -79,68 +109,11 @@ export default function RiskSection({ motionEnabled }) {
               Illustrative data
             </span>
           </div>
-          <ul aria-label="Risk severity" className="risk-severity-legend">
-            {riskLevels.map(([level, label]) => (
-              <li key={level}>
-                <span
-                  aria-hidden="true"
-                  className={`risk-severity-swatch risk-severity-swatch--${level}`}
-                />
-                {label}
-              </li>
-            ))}
-          </ul>
           <div
-            className="risk-matrix-hover-field relative overflow-hidden rounded-[18px] border border-navy/8 bg-white/55 p-2"
-            data-risk-hover={motionEnabled ? "enabled" : "disabled"}
+            className="relative mx-auto max-w-[560px] overflow-hidden rounded-[18px] border border-navy/8 bg-white/55 p-2"
             data-testid="risk-matrix-hover-field"
-            onMouseLeave={handleMatrixMouseLeave}
-            onMouseMove={handleMatrixMouseMove}
           >
-            <div
-              className="relative z-1 grid grid-cols-5 gap-2"
-              role="group"
-              aria-label="Twenty-five risk groups. Two critical, seven monitored, and sixteen controlled."
-            >
-              {riskCells.map((cell, index) => (
-                <motion.span
-                  aria-label={`Risk group ${cell.id}, ${cell.level} risk`}
-                  className={`risk-matrix-cell risk-matrix-cell--${cell.level} relative grid aspect-square place-items-center rounded-[10px] font-mono text-[.6rem] leading-none`}
-                  data-risk-cell
-                  data-risk-level={cell.level}
-                  initial={motionEnabled ? { opacity: 0.18, scale: 0.9 } : false}
-                  key={cell.id}
-                  role="img"
-                  transition={{
-                    delay: motionEnabled ? getCellDelay(index, cell.critical) : 0,
-                    duration: cell.critical ? 0.52 : 0.38,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  viewport={{ once: true, amount: 0.45 }}
-                  whileInView={motionEnabled ? {
-                    opacity: 1,
-                    scale: cell.critical ? [0.9, 1.08, 1] : 1,
-                  } : undefined}
-                >
-                  <span className="risk-matrix-cell__label">{cell.id}</span>
-                </motion.span>
-              ))}
-            </div>
-            {motionEnabled ? (
-              <motion.span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-2 top-0 z-2 h-[20%] border-b border-teal/24 bg-gradient-to-b from-transparent via-mint/12 to-teal/8"
-                data-testid="risk-scan"
-                initial={{ opacity: 0, y: "-100%" }}
-                transition={{
-                  delay: 0.22,
-                  duration: 1.1,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                viewport={{ once: true, amount: 0.45 }}
-                whileInView={{ opacity: [0, 0.82, 0], y: "500%" }}
-              />
-            ) : null}
+            <ProductRiskHeatmap motionEnabled={motionEnabled} />
           </div>
           <div className="mt-4.5 grid grid-cols-3 gap-2.5 max-[760px]:grid-cols-1 [&>div]:rounded-[13px] [&>div]:bg-navy/5 [&>div]:p-3.5 [&_strong]:block [&_strong]:text-[1.15rem] [&_span]:block [&_span]:text-[.62rem] [&_span]:text-muted">
             {riskMetrics.map(([value, label], index) => (

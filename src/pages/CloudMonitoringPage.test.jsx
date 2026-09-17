@@ -23,7 +23,12 @@ describe('CloudMonitoringPage', () => {
     expect(screen.getByRole('list', { name: /cloud monitoring proof points/i })).toHaveTextContent('Security signals');
     expect(screen.getByRole('list', { name: /cloud monitoring proof points/i })).toHaveTextContent('Compliance context');
     expect(screen.getByRole('heading', { name: 'Know what’s running and how it’s configured.' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Know when user-level exposure needs investigation.' })).toBeInTheDocument();
+    const exposure = screen.getByRole('heading', { name: 'Know when user-level exposure needs investigation.' }).closest('section');
+    const exposureSequence = within(exposure).getByRole('list', { name: /exposure investigation sequence/i });
+    const exposureStages = within(exposure).getByRole('list', { name: /exposure review stages/i });
+    expect(within(exposureSequence).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(exposureStages).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(exposure).getByRole('figure', { name: /exposure review from available indicator/i })).toBeInTheDocument();
 
     const signals = screen.getByRole('heading', { name: 'Don’t just inventory assets. Understand what needs attention.' }).closest('section');
     expect(within(signals).getByRole('list', { name: /from cloud asset to actionable signal/i })).toBeInTheDocument();
@@ -54,7 +59,12 @@ describe('CloudMonitoringPage', () => {
     const hero = screen.getByRole('heading', { level: 1 }).closest('section');
     expect(within(hero).getByRole('link', { name: /request a demo/i })).toHaveAttribute('href', '/demo');
     expect(within(hero).getByRole('link', { name: /view monitoring signals/i })).toHaveAttribute('href', '#cloud-visibility');
-    expect(screen.getAllByRole('link', { name: /explore cloud monitoring/i }).at(-1)).toHaveAttribute('href', '/demo');
+    const closingLink = screen.getAllByRole('link', { name: /book a demo/i }).at(-1);
+    const closing = closingLink.closest('section');
+    expect(closingLink).toHaveAttribute('href', '/demo');
+    expect(within(closing).getByRole('link', { name: /explore integrations/i })).toHaveAttribute('href', '/integrations');
+    expect(within(closing).getByText('From cloud assets to identity exposure—see the signals that matter.')).toBeInTheDocument();
+    expect(closing.querySelector('[data-gradient-blinds]')).toBeInTheDocument();
     expect(document.title).toBe('Cloud Security & Compliance Monitoring | Controllo');
     expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', expect.stringContaining('AWS, Azure, GCP'));
   });
@@ -127,7 +137,10 @@ describe('CloudMonitoringPage', () => {
     renderPage();
 
     const workflow = screen.getByRole('heading', { name: 'See the issue. Get the right team moving.' }).closest('section');
-    expect(within(workflow).getByText('Jira')).toBeInTheDocument();
+    expect(within(within(workflow).getByRole('list', { name: /signal review workflow/i })).getAllByRole('listitem')).toHaveLength(4);
+    expect(within(within(workflow).getByRole('list', { name: /workflow follow-up capabilities/i })).getAllByRole('listitem')).toHaveLength(3);
+    expect(within(workflow).getByRole('heading', { name: 'Jira integration' })).toBeInTheDocument();
+    expect(workflow.querySelector('img[src="/assets/brands/jira.svg"]')).toBeInTheDocument();
     expect(within(workflow).queryByText('Slack')).not.toBeInTheDocument();
     expect(within(workflow).queryByText('Asana')).not.toBeInTheDocument();
   });

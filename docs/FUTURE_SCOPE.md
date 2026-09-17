@@ -246,3 +246,13 @@ Every entry must state:
 - **Dependencies:** Product-state verification, privacy/redaction review, responsive crops, runtime/entitlement evidence, accessibility and browser QA, and final editorial/legal claim approval.
 - **Source:** 2026-09-15 Audit Management section-by-section product review, implementation, and supplied sandbox screenshots
 - **Next decision:** Which approved capture or claim adds the clearest buyer proof without overstating the current framework export or auditor workflow?
+
+### FS-023 — Secura AI section visual direction
+
+- **Status:** Active
+- **Area:** Dedicated `/platform/secura-ai` route
+- **Outcome:** Give each of the seven approved content sections a distinct but connected visual role, led by an inspectable control-context-to-gap-analysis product story rather than generic AI spectacle.
+- **Trigger:** The content-first route and claim boundaries are accepted as the working page narrative.
+- **Dependencies:** Section-by-section visual decisions, approved product-state references or clearly labelled samples, preserved human-review language, reduced-motion behavior, mobile containment, and focused browser QA.
+- **Source:** 2026-09-17 Secura AI content review and content-first route implementation
+- **Next decision:** With the product-authentic hero sequence established, which visual should carry the full-control-context section without repeating the hero workspace?

@@ -67,6 +67,7 @@ The site intentionally keeps content close to the frontend:
 - `src/data/enterpriseContent.js` owns navigation, product pages, frameworks, integrations, resources, and footer groups.
 - `src/data/brandAssets.js` is the runtime registry for locally hosted third-party brand marks; provenance and review status remain beside the files in `public/assets/brands/README.md`.
 - `src/data/siteContent.js` owns homepage Connected Platform and Risk visualization data.
+- `src/data/securaAiContent.js` owns the dedicated Secura AI route's claim-reviewed content inventory while its section visuals remain undecided.
 - `src/data/staticPages.js` owns company, security, privacy, terms, and accessibility content; `src/pages/StaticPage.jsx` only composes the shared presentation.
 - `src/pages/PricingPage.jsx` currently owns package comparison content locally.
 
@@ -85,6 +86,12 @@ Each route-owned section controls one visual system: Assurance Horizon, Response
 `TrialLink` accepts only an absolute `http:` or `https:` `VITE_TRIAL_URL`. A missing, blank, malformed, relative, or non-web value renders an internal Router link to `/pricing`. The variable is public browser configuration and must never contain a secret.
 
 Generic Product and Pricing pages no longer repeat FAQ content. Educational questions belong in the external article library; a future pricing-specific FAQ requires separately approved commercial answers.
+
+### Dedicated Secura AI Route
+
+`src/pages/SecuraAiPage.jsx` owns the seven-section content-first composition for `/platform/secura-ai`, and `src/data/securaAiContent.js` owns its metadata and public copy. The route is lazy-loaded explicitly in `src/App.jsx` and excluded from the generic `productPages` registry.
+
+The current route establishes content hierarchy only: hero, full control context, review process, structured output, GRC value, pre-assessment readiness, and final conversion. It uses static shared primitives without committing to section-specific product graphics, interaction, motion, or final art direction. Preserve the claim boundaries already reflected in the copy: Secura reviews an implementation description and linked context, no timing guarantee is published, supported formats are not described as universal, sample findings are labelled, and accountable people retain final judgment. Visual design remains tracked under `FS-023` in `docs/FUTURE_SCOPE.md`.
 
 ### Dedicated AI Governance Route
 

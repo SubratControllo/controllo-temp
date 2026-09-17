@@ -83,7 +83,7 @@ export const connectedWorkflows = {
     'When findings need follow-up, teams can use Controllo’s supported Jira integration to create, assign, and track tickets.',
   steps: ['Finding', 'Ticket', 'Owner', 'Status'],
   destinations: [
-    ['Jira', 'Create and manage follow-up tickets through the supported Jira integration.', 'jira'],
+    ['Jira integration', 'Create and manage follow-up tickets through the supported Jira integration.', 'jira'],
     ['Review owner', 'Assign Jira issues to keep follow-up ownership visible.'],
     ['Action record', 'Use issue status, comments, worklogs, and history to retain the follow-up record.'],
   ],
@@ -93,7 +93,8 @@ export const cloudMonitoringClosing = {
   eyebrow: 'Bring your cloud into view',
   title: 'See more than your assets.',
   description:
-    'Connect supported cloud, identity, and end-user environments to understand what is running, how it is configured, and where security or compliance context needs attention.',
+    'Connect your cloud, identity and end-user environments to understand what is running, how it is configured and where security or compliance signals need attention.',
   detail:
-    'Add available exposure indicators and connected team workflows to make the wider cloud security picture easier to review and act on.',
+    'Add dark-web exposure monitoring and connected team workflows, and your cloud security picture becomes much easier to act on.',
+  supportingLine: 'From cloud assets to identity exposure—see the signals that matter.',
 };
