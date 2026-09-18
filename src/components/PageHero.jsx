@@ -65,7 +65,7 @@ export default function PageHero({
                   ? "text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,.28)]"
                   : ""
               }`}
-              to="/platform"
+              to="/continuous-compliance"
             >
               Explore the platform
             </Link>

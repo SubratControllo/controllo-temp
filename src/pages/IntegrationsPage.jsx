@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import ConversionBand from '../components/ConversionBand';
 import { DirectoryFilters, DirectorySearch } from '../components/DirectoryControls';
 import { integrationCategories, integrations } from '../data/enterpriseContent';
@@ -19,10 +18,6 @@ export default function IntegrationsPage() {
 
   return (
     <>
-      <PageMeta
-        title="Integrations"
-        description="Connect Controllo to the systems where security and compliance work already happens."
-      />
       <PageHero
         eyebrow="Integrations"
         title="Bring evidence in without pulling teams out."

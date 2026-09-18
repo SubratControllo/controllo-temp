@@ -1,7 +1,5 @@
-import PageMeta from '../components/PageMeta';
 import { useSiteMotion } from '../context/MotionContext';
 import {
-  aiGovernanceMeta,
   aiHero,
   aiChallenges,
   aiOperations,
@@ -21,7 +19,6 @@ export default function AiGovernancePage() {
 
   return (
     <>
-      <PageMeta title={aiGovernanceMeta.title} description={aiGovernanceMeta.description} />
       <AiHeroSection content={aiHero} motionEnabled={motionEnabled} />
       <AiChallengesSection content={aiChallenges} motionEnabled={motionEnabled} />
       <AiOperationsSection content={aiOperations} motionEnabled={motionEnabled} />

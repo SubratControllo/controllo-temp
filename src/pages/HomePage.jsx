@@ -7,7 +7,6 @@ import ComplianceStory from '../sections/ComplianceStory';
 import FrameworkSection from '../sections/FrameworkSection';
 import BlogSection from '../sections/BlogSection';
 import CtaSection from '../sections/CtaSection';
-import PageMeta from '../components/PageMeta';
 import { useSiteMotion } from '../context/MotionContext';
 
 export default function HomePage() {
@@ -15,10 +14,6 @@ export default function HomePage() {
 
   return (
     <>
-      <PageMeta
-        title="Connected compliance, risk, privacy, and AI governance"
-        description="Connect controls, evidence, risk, privacy, AI governance, cloud context, and audit work in one continuously current platform."
-      />
       <HeroSection motionEnabled={motionEnabled} />
       <TrustStrip motionEnabled={motionEnabled} />
       <PlatformSection motionEnabled={motionEnabled} />

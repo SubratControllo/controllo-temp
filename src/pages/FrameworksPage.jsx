@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import ConversionBand from '../components/ConversionBand';
 import { DirectoryFilters, DirectorySearch } from '../components/DirectoryControls';
 import FrameworkSection from '../sections/FrameworkSection';
@@ -21,10 +20,6 @@ export default function FrameworksPage() {
 
   return (
     <>
-      <PageMeta
-        title="Compliance frameworks"
-        description="Build reusable compliance programs across security, privacy, and AI governance frameworks."
-      />
       <PageHero
         eyebrow="Frameworks"
         title="One control model. Every assurance path."

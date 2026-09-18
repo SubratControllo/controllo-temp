@@ -8,6 +8,8 @@ import FrameworksPage from './pages/FrameworksPage';
 import FrameworkDetailPage from './pages/FrameworkDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { genericProductRoutePaths } from './data/enterpriseContent';
+import { redirects } from './config/redirects.config.ts';
+import { staticPagePaths } from './config/routes';
 
 const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
@@ -21,8 +23,6 @@ const RiskManagementPage = lazy(() => import('./pages/RiskManagementPage'));
 const AuditManagementPage = lazy(() => import('./pages/AuditManagementPage'));
 const CloudMonitoringPage = lazy(() => import('./pages/CloudMonitoringPage'));
 const SecuraAiPage = lazy(() => import('./pages/SecuraAiPage'));
-
-const staticPagePaths = ['/company', '/security', '/privacy-policy', '/terms', '/accessibility'];
 
 const routeFallback = (
   <div
@@ -42,11 +42,14 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="/solutions/cybersecurity" element={<CybersecurityPage />} />
             <Route path="/solutions/ai-governance" element={<AiGovernancePage />} />
-            <Route path="/platform/continuous-compliance" element={<ContinuousCompliancePage />} />
-            <Route path="/platform/risk-management" element={<RiskManagementPage />} />
-            <Route path="/platform/audit-management" element={<AuditManagementPage />} />
-            <Route path="/platform/cloud-monitoring" element={<CloudMonitoringPage />} />
-            <Route path="/platform/secura-ai" element={<SecuraAiPage />} />
+            <Route path="/continuous-compliance" element={<ContinuousCompliancePage />} />
+            <Route path="/risk-management" element={<RiskManagementPage />} />
+            <Route path="/audit-management" element={<AuditManagementPage />} />
+            <Route path="/cloud-monitoring" element={<CloudMonitoringPage />} />
+            <Route path="/secura-ai" element={<SecuraAiPage />} />
+            {redirects.map(({ from, to }) => (
+              <Route path={from} element={<Navigate replace to={to} />} key={from} />
+            ))}
             {genericProductRoutePaths.map((path) => (
               <Route path={path} element={<ProductPage />} key={path} />
             ))}
@@ -56,7 +59,6 @@ export default function App() {
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/demo" element={<DemoPage />} />
-            <Route path="/privacy" element={<Navigate replace to="/solutions/privacy" />} />
             {staticPagePaths.map((path) => (
               <Route path={path} element={<StaticPage path={path} />} key={path} />
             ))}

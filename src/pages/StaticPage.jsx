@@ -1,5 +1,4 @@
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import ConversionBand from '../components/ConversionBand';
 import { staticPages, staticPagesWithoutConversion } from '../data/staticPages';
 import { useSiteMotion } from '../context/MotionContext';
@@ -10,7 +9,6 @@ export default function StaticPage({ path }) {
 
   return (
     <>
-      <PageMeta title={page.title} description={page.description} />
       <PageHero {...page} motionEnabled={motionEnabled} demo={false} />
       <section className="section bg-white">
         <div className="shell max-w-[980px]">

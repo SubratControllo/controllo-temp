@@ -1,9 +1,3 @@
-export const cloudMonitoringMeta = {
-  title: 'Cloud Security & Compliance Monitoring | Controllo',
-  description:
-    'Monitor supported AWS, Azure, GCP, Microsoft 365, and Google Workspace environments with current asset, configuration, identity, security, and available exposure context.',
-};
-
 export const cloudMonitoringHero = {
   eyebrow: 'Live cloud monitoring',
   title: 'See your cloud.',

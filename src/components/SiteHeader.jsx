@@ -13,6 +13,7 @@ import { navGroups } from '../data/enterpriseContent';
 
 const finePointerQuery = '(hover: hover) and (pointer: fine) and (min-width: 1081px)';
 const panelId = (label) => `nav-panel-${label.toLowerCase().replace(/\s+/g, '-')}`;
+const hasOverviewCard = (group) => group.href || group.label === 'Platform';
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -207,11 +208,11 @@ export default function SiteHeader() {
               {openGroup === group.label && (
                 <div
                   id={panelId(group.label)}
-                  className={`mega-panel static grid w-auto grid-cols-1 gap-6 rounded-3xl border border-line bg-[#f4f8f7] p-2 shadow-none min-[1081px]:absolute min-[1081px]:top-12 min-[1081px]:left-1/2 min-[1081px]:w-160 min-[1081px]:-translate-x-1/2 min-[1081px]:bg-white/98 min-[1081px]:p-6 min-[1081px]:shadow-elevated ${group.href ? 'min-[1081px]:grid-cols-[180px_1fr]' : 'min-[1081px]:grid-cols-1'}`}
+                  className={`mega-panel static grid w-auto grid-cols-1 gap-6 rounded-3xl border border-line bg-[#f4f8f7] p-2 shadow-none min-[1081px]:absolute min-[1081px]:top-12 min-[1081px]:left-1/2 min-[1081px]:w-160 min-[1081px]:-translate-x-1/2 min-[1081px]:bg-white/98 min-[1081px]:p-6 min-[1081px]:shadow-elevated ${hasOverviewCard(group) ? 'min-[1081px]:grid-cols-[180px_1fr]' : 'min-[1081px]:grid-cols-1'}`}
                   onMouseEnter={clearCloseTimer}
                   onMouseLeave={() => scheduleHoverClose(group.label)}
                 >
-                  {group.href && <div className="group/nav-overview relative hidden overflow-hidden rounded-[18px] bg-navy p-4.5 text-white transition-[background-color,box-shadow] duration-300 ease-out min-[1081px]:flex min-[1081px]:flex-col min-[1081px]:items-start min-[1081px]:justify-between">
+                  {hasOverviewCard(group) && <div className="group/nav-overview relative hidden overflow-hidden rounded-[18px] bg-navy p-4.5 text-white transition-[background-color,box-shadow] duration-300 ease-out min-[1081px]:flex min-[1081px]:flex-col min-[1081px]:items-start min-[1081px]:justify-between">
                     <span
                       className="pointer-events-none absolute right-[-72px] bottom-[-40px] z-0 h-32 w-46 translate-x-7 rounded-full bg-[radial-gradient(circle_at_center,rgba(38,216,173,.28),rgba(16,175,164,.1)_42%,rgba(16,175,164,0)_70%)] opacity-0 blur-xl transition-[opacity,transform] duration-500 ease-out group-hover/nav-overview:translate-x-0 group-hover/nav-overview:opacity-100 motion-reduce:translate-x-0 motion-reduce:transition-opacity"
                       aria-hidden="true"
@@ -224,7 +225,11 @@ export default function SiteHeader() {
                       draggable="false"
                     />
                     <span className="relative z-10 font-mono text-[.61rem] font-medium leading-normal tracking-widest uppercase text-mint">Explore {group.label}</span>
-                    <Link className="relative z-10 flex gap-1.75 text-[.76rem] text-white [&>svg]:size-3.75 [&>svg]:shrink-0 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5" to={group.href} onClick={closeAll}>View overview <ArrowRight aria-hidden="true" /></Link>
+                    {group.href ? (
+                      <Link className="relative z-10 flex gap-1.75 text-[.76rem] text-white [&>svg]:size-3.75 [&>svg]:shrink-0 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5" to={group.href} onClick={closeAll}>View overview <ArrowRight aria-hidden="true" /></Link>
+                    ) : (
+                      <span className="relative z-10 text-[.76rem] leading-[1.45] text-white/82">Five connected capabilities</span>
+                    )}
                   </div>}
                   <div className="grid grid-cols-1 gap-1.5 min-[761px]:grid-cols-2">
                     {group.links.map(([href, label, detail]) => (

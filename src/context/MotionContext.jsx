@@ -1,11 +1,15 @@
-import { createContext, useContext, useMemo } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { useReducedMotion } from 'motion/react';
 
 const MotionContext = createContext(null);
 
 export function MotionProvider({ children }) {
   const prefersReducedMotion = useReducedMotion();
-  const motionEnabled = !prefersReducedMotion;
+  const [hydrated, setHydrated] = useState(
+    () => typeof document !== 'undefined' && !document.getElementById('root')?.hasChildNodes(),
+  );
+  useEffect(() => setHydrated(true), []);
+  const motionEnabled = hydrated && !prefersReducedMotion;
   const value = useMemo(() => ({ motionEnabled }), [motionEnabled]);
   return <MotionContext.Provider value={value}>{children}</MotionContext.Provider>;
 }

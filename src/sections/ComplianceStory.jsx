@@ -41,9 +41,7 @@ export default function ComplianceStory({ motionEnabled }) {
   const ref = useRef(null);
   const [scrollStage, setScrollStage] = useState(0);
   const [mobileStage, setMobileStage] = useState(0);
-  const [isMobileJourney, setIsMobileJourney] = useState(
-    () => window.matchMedia?.(mobileJourneyQuery).matches ?? false,
-  );
+  const [isMobileJourney, setIsMobileJourney] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],

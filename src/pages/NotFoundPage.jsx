@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import PageMeta from '../components/PageMeta';
 
 export default function NotFoundPage() {
   return (
     <>
-      <PageMeta
-        title="Page not found"
-        description="The requested Controllo page could not be found."
-      />
       <section className="relative -mt-[100px] min-h-[760px] overflow-hidden bg-navy pt-[230px] pb-[120px] text-white">
         <div className="not-found__wave" aria-hidden="true" />
         <div className="shell relative z-[1]">

@@ -5,6 +5,7 @@ import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import ScrollToTop from "./ScrollToTop";
 import CookiePreferences from "./CookiePreferences";
+import PageMeta from "./PageMeta";
 import { useSiteMotion } from "../context/MotionContext";
 
 export default function SiteLayout() {
@@ -23,6 +24,7 @@ export default function SiteLayout() {
       data-testid="site-root"
       data-motion={motionEnabled ? "playing" : "paused"}
     >
+      <PageMeta />
       <ScrollToTop />
       <a
         className="absolute -top-20 left-5 z-100 rounded-xl bg-navy px-4 py-3 text-white focus:top-3"

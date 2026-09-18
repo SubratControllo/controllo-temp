@@ -94,7 +94,7 @@ export default function RiskSection({ motionEnabled }) {
             Score risk, assign ownership, and see priorities through connected
             dashboards and heatmaps.
           </p>
-          <Link className="button button--directional" to="/platform/risk-management">
+          <Link className="button button--directional" to="/risk-management">
             Explore unified risk <ArrowRight aria-hidden="true" />
           </Link>
         </Reveal>

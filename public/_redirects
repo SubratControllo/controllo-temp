@@ -1,1 +1,15 @@
-/* /index.html 200
+/platform /continuous-compliance 301!
+/platform/continuous-compliance /continuous-compliance 301!
+/platform/risk-management /risk-management 301!
+/platform/audit-management /audit-management 301!
+/platform/cloud-monitoring /cloud-monitoring 301!
+/platform/secura-ai /secura-ai 301!
+/about-us /company 301!
+/schedule-a-demo /demo 301!
+/contact-us /demo 301!
+/blogs /resources 301!
+/asset-integration /integrations 301!
+/asset-integration-automation /integrations 301!
+/risk-management-2 /risk-management 301!
+/privacy /solutions/privacy 301!
+/* /404.html 404

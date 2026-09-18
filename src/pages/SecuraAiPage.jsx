@@ -1,7 +1,6 @@
 import { ArrowRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import BackgroundPixelStars from '../components/BackgroundPixelStars';
-import PageMeta from '../components/PageMeta';
 import SecuraContextSection from '../components/SecuraContextSection';
 import SecuraCtaSection from '../components/SecuraCtaSection';
 import SecuraMark from '../components/SecuraMark';
@@ -15,7 +14,6 @@ import {
   securaAiClosing,
   securaAiContext,
   securaAiHero,
-  securaAiMeta,
   securaAiOutput,
   securaAiProcess,
   securaAiReadiness,
@@ -28,7 +26,6 @@ export default function SecuraAiPage() {
 
   return (
     <>
-      <PageMeta title={securaAiMeta.title} description={securaAiMeta.description} />
 
       <section className="relative isolate -mt-25 min-h-svh overflow-hidden bg-navy pb-24 pt-48 text-white max-[1080px]:min-h-0 max-[1080px]:pt-44 max-[760px]:pb-18 max-[760px]:pt-40" aria-labelledby="secura-hero-title">
         <div className="pointer-events-none absolute inset-0 bg-black bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAIElEQVR42mIUEhJiwAbevXuHVZyJgUQwqmEUDB0AEGAADd8DEPTX6ksAAAAASUVORK5CYII=')] bg-[size:10px] opacity-55" aria-hidden="true" />

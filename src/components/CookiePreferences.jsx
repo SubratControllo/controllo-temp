@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CookiePreferences() {
-  const [visible, setVisible] = useState(
-    () =>
-      typeof localStorage !== "undefined" &&
-      !localStorage.getItem("controllo-consent")
-  );
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    setVisible(!localStorage.getItem("controllo-consent"));
+  }, []);
   if (!visible) return null;
   const choose = (value) => {
     localStorage.setItem("controllo-consent", value);

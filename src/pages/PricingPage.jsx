@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import { useSiteMotion } from '../context/MotionContext';
 
 const packages = [
@@ -91,10 +90,6 @@ export default function PricingPage() {
 
   return (
     <>
-      <PageMeta
-        title="Packages"
-        description="Explore capability-based Controllo packages for growing and enterprise compliance teams."
-      />
       <PageHero
         eyebrow="Packages"
         title="A platform shaped around your program."

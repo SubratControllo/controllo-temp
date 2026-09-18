@@ -35,6 +35,10 @@ The current public flow requires no environment values. Demo requests open the v
 | `npm test` | Run tests in watch mode |
 | `npm run build` | Create the production bundle in `dist/` |
 | `npm run preview` | Serve the built bundle locally |
+| `npm run seo:check` | Validate route metadata, canonicals, schema, sitemap settings, and redirects |
+| `npm run seo:links` | Check static internal links and report pending WordPress cutover paths |
+| `npm run seo:prerender:check` | Render every registered route in memory and verify crawler-critical HTML |
+| `npm run seo:generate` | Regenerate sitemap, robots, redirects, headers, and SEO reports |
 
 ## Project Guide
 

@@ -1,8 +1,3 @@
-export const auditManagementMeta = {
-  title: 'Audit management software for compliance & GRC',
-  description: 'Review framework scope, linked policy and evidence records, auditor assignments, and framework report exports in Controllo.',
-};
-
 export const auditHero = {
   eyebrow: 'Audit management',
   title: 'Keep audit scope, evidence, and reviewers aligned.',

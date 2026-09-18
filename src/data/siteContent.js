@@ -100,14 +100,14 @@ export const connectedCapabilities = [
     eyebrow: 'Connected risk',
     title: 'Risk management',
     description: 'Score and assign risk across assets, the organization, vendors, privacy, and AI—while keeping control relationships visible.',
-    cta: ['Explore risk management', '/platform/risk-management']
+    cta: ['Explore risk management', '/risk-management']
   },
   {
     id: 'cloud-monitoring',
     eyebrow: 'Live environment context',
     title: 'Cloud monitoring',
     description: 'Bring AWS, Azure, Google Cloud, Microsoft environments, and Google Workspace signals into compliance and risk decisions.',
-    cta: ['Explore cloud monitoring', '/platform/cloud-monitoring']
+    cta: ['Explore cloud monitoring', '/cloud-monitoring']
   }
 ];
 

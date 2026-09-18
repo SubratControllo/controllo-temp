@@ -23,7 +23,6 @@ import { Link } from 'react-router-dom';
 import BackgroundPixelStars from '../components/BackgroundPixelStars';
 import GradientBlinds from '../components/GradientBlinds';
 import IntegrationLogo from '../components/IntegrationLogo';
-import PageMeta from '../components/PageMeta';
 import Reveal from '../components/Reveal';
 import WaveDivider from '../components/WaveDivider';
 import { useSiteMotion } from '../context/MotionContext';
@@ -31,7 +30,6 @@ import { brandAssets } from '../data/brandAssets';
 import {
   cloudMonitoringClosing,
   cloudMonitoringHero,
-  cloudMonitoringMeta,
   cloudSignals,
   cloudVisibility,
   connectedWorkflows,
@@ -893,7 +891,6 @@ export default function CloudMonitoringPage() {
 
   return (
     <>
-      <PageMeta title={cloudMonitoringMeta.title} description={cloudMonitoringMeta.description} appendBrand={false} />
       <div className="w-full max-w-full overflow-x-clip" data-motion={motionEnabled ? 'animated' : 'static'} ref={rootRef}>
         <CloudHero motionEnabled={motionEnabled} />
         <CloudVisibilitySection motionEnabled={motionEnabled} />

@@ -1,8 +1,3 @@
-export const cybersecurityMeta = {
-  title: 'Cybersecurity and cloud security',
-  description: 'Connect cyber framework implementation, evidence, risk, auditor collaboration, and regularly refreshed cloud and workforce visibility in Controllo.'
-};
-
 export const cyberHero = {
   eyebrow: 'Cybersecurity & Cloud Security',
   title: 'Cyber readiness with connected visibility.',

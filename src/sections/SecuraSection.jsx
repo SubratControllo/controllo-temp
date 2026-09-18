@@ -89,7 +89,7 @@ export default function SecuraSection({ motionEnabled }) {
           </div>
           <Link
             className="mt-6 inline-flex min-h-11 items-center gap-2 text-[.76rem] font-medium text-mint transition-colors hover:text-white [&>svg]:size-4 [&>svg]:transition-transform hover:[&>svg]:translate-x-1"
-            to="/platform/secura-ai"
+            to="/secura-ai"
           >
             Explore Secura AI <ArrowRight aria-hidden="true" />
           </Link>

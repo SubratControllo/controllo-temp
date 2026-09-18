@@ -96,7 +96,7 @@ Shared navy and mint primary buttons preserve their base color, lift by at most 
 
 ## Header
 
-The shared header is a sticky white glass surface with official dark branding, desktop dropdowns, a responsive menu, and a readiness-tour action. The Platform dropdown lists the five dedicated capabilities without an overview promotion; Solutions lists Cybersecurity, Privacy, and AI Governance only.
+The shared header is a sticky white glass surface with official dark branding, desktop dropdowns, a responsive menu, and a readiness-tour action. The Platform dropdown lists the five dedicated capabilities with a non-linked navy intro card and no overview route; Solutions lists Cybersecurity, Privacy, and AI Governance only.
 
 **Freeze status:** This header baseline was approved and frozen on 2026-08-25. Preserve its visual hierarchy, dimensions, navigation model, responsive behavior, branding, and motion treatment. Reopen the design only for an explicit new header request; accessibility, correctness, and release-critical responsive fixes remain allowed.
 
@@ -201,7 +201,7 @@ At desktop widths the active panel is a stable 50/50 split with both inner compo
 
 Place the focused Risk Management proof directly after Secura and before Frameworks so the narrative moves from identified gaps to prioritized action and then to reusable framework coverage. This section supplements the compact connected-capability link; it does not promote Risk Management into a fourth governance-domain tab.
 
-Keep the 25-cell illustrative exposure matrix, two critical states, three summary metrics, honest illustrative-data label, and direct `/platform/risk-management` destination. When motion is enabled, reveal the cells in one diagonal sequence, pass one restrained scan through the matrix, resolve the critical states last, and settle the metrics afterward. The sequence plays once on entry and then becomes still. Do not pin the section, scrub the grid continuously, loop pulses, or imply that the example values are live customer data. Reduced motion renders the complete final matrix without the scan or entrance transforms. Stack narrative before product proof at and below the existing 1080px breakpoint, retain readable mobile metrics, and prevent horizontal overflow at 320px.
+Keep the 25-cell illustrative exposure matrix, two critical states, three summary metrics, honest illustrative-data label, and direct `/risk-management` destination. When motion is enabled, reveal the cells in one diagonal sequence, pass one restrained scan through the matrix, resolve the critical states last, and settle the metrics afterward. The sequence plays once on entry and then becomes still. Do not pin the section, scrub the grid continuously, loop pulses, or imply that the example values are live customer data. Reduced motion renders the complete final matrix without the scan or entrance transforms. Stack narrative before product proof at and below the existing 1080px breakpoint, retain readable mobile metrics, and prevent horizontal overflow at 320px.
 
 ### Homepage Frameworks And Connectivity
 
@@ -225,7 +225,7 @@ Keep the supporting copy framework-first: visitors start with relevant framework
 
 **Status:** all six sections approved and locked on 2026-09-09 after final content, visual, interaction, accessibility, motion, and responsive review.
 
-The dedicated `/platform/continuous-compliance` route uses six full-width bands: a light product-led hero, a between-audits change ledger with standards context, a dark five-step operating loop, a light Secura/readiness oversight workspace, a compact framework-reuse band, and a restrained navy conversion. Keep **Beyond the audit** teal while the full heading retains the same Manrope typography. The hero's code-built **Compliance Current workspace** shows framework scope, one mapped access-review control, qualitative implementation, policy, evidence, and ownership states, the next accountable action, and recorded review history. Do not use the existing full dashboard asset, personal account data, readiness percentages, customer metrics, or integration states on this route.
+The dedicated `/continuous-compliance` route uses six full-width bands: a light product-led hero, a between-audits change ledger with standards context, a dark five-step operating loop, a light Secura/readiness oversight workspace, a compact framework-reuse band, and a restrained navy conversion. Keep **Beyond the audit** teal while the full heading retains the same Manrope typography. The hero's code-built **Compliance Current workspace** shows framework scope, one mapped access-review control, qualitative implementation, policy, evidence, and ownership states, the next accountable action, and recorded review history. Do not use the existing full dashboard asset, personal account data, readiness percentages, customer metrics, or integration states on this route.
 
 ### Frozen Continuous Compliance Hero Baseline
 
@@ -309,7 +309,7 @@ Ambient transforms and opacity changes run only while the section is visible and
 
 ## Secura AI Page Baseline
 
-**Status:** all seven Secura AI sections and the complete `/platform/secura-ai` route are approved and frozen as a development baseline on 2026-09-18.
+**Status:** all seven Secura AI sections and the complete `/secura-ai` route are approved and frozen as a development baseline on 2026-09-18.
 
 Preserve the ordered product story: Control Details hero sequence, four-source Context Convergence, five-stage Review Flow, scroll-driven output walkthrough, manual-to-structured workload transformation, pre-assessment readiness workflow, and centered cinematic conversion. Each section keeps its approved Controllo typography, navy/teal/mint roles, product terminology, human-validation boundary, responsive composition, viewport-aware motion, and complete reduced-motion state. The final CTA shares the Cybersecurity cinematic film and fallback implementation but retains Secura's centered signature, copy, `/demo` action, `#secura-output` action, and proof line.
 

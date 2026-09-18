@@ -4,7 +4,7 @@ Last reviewed: 2026-09-18
 
 ## System Shape
 
-Controllo Website is a client-rendered React 19 single-page application built by Vite 8. It is a marketing site, not the Controllo product application, and it contains no server, database, authentication, or privileged API credentials.
+Controllo Website is a React 19 application built by Vite 8 and statically prerendered at release time. Client-side routing hydrates the generated HTML. It is a marketing site, not the Controllo product application, and it contains no server, database, authentication, or privileged API credentials.
 
 ```mermaid
 flowchart LR
@@ -17,7 +17,7 @@ flowchart LR
   SPA -->|Optional link| Calendar[External booking page]
 ```
 
-The production artifact is the static `dist/` directory. The host must serve `index.html` for unknown application paths so React Router can resolve deep links. `public/_redirects` provides this rule for compatible static hosts.
+The production artifact is the static `dist/` directory. Every registered public route receives its own `index.html`; unknown paths fall through to generated `404.html`. `public/_redirects` provides permanent legacy mappings plus the 404 fallback for compatible static hosts.
 
 ## Runtime Composition
 
@@ -31,7 +31,7 @@ The production artifact is the static `dist/` directory. The host must serve `in
 6. Shared site layout
 7. Active route page
 
-`src/App.jsx` is the route source of truth. Core pages are loaded immediately; lower-frequency marketing routes are lazy-loaded to create separate build chunks. Product route paths are derived from the product content registry so route and content additions cannot drift apart.
+`src/App.jsx` owns route-to-component composition, while `src/config/routes.js` is the public route registry used by SEO validation and prerendering. Core pages are loaded immediately; lower-frequency marketing routes are lazy-loaded to create separate build chunks. Product route paths are derived from the product content registry so route and content additions cannot drift apart.
 
 `SiteLayout` owns global behavior shared by every route:
 
@@ -79,7 +79,7 @@ Static arrays and reusable render components stay at module scope. Do not add me
 
 ### Dedicated Cybersecurity Route
 
-`src/pages/CybersecurityPage.jsx` owns metadata and the ordered six-section composition for `/solutions/cybersecurity`. `src/data/cybersecurityContent.js` owns the route's core approved narrative, metadata, and configured content arrays; small presentational labels and illustrative UI states may remain local to the section that renders them. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
+`src/pages/CybersecurityPage.jsx` owns the ordered six-section composition for `/solutions/cybersecurity`. `src/data/cybersecurityContent.js` owns the route's core approved narrative and configured content arrays; `src/config/seo.config.ts` owns its metadata. Small presentational labels and illustrative UI states may remain local to the section that renders them. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
 
 Each route-owned section controls one visual system: Assurance Horizon, Response Matrix, Review Dossier, Operational Monitoring Console, Shared-Control Field, or Kinetic Brand Mosaic. The Shared-Control Field is a pointer-inert mapping loom rather than another dashboard: three reusable control rows meet the Controllo emblem and branch into eight visible framework entries, while the sole framework-directory action remains outside the illustration. Its desktop grid gives the emblem a widened middle track and right-aligns it so the control-to-hub and hub-to-spine spans remain visually balanced; the stacked mobile layout centers the emblem. The measured framework spine sits midway between the two inner-facing endpoint columns. Every row owns one junction and two straight mirrored stubs; left labels precede their right-edge dots, while right labels follow their left-edge dots. One overlay SVG derives a 1:1 viewBox and every path from measured DOM anchors. A signature-guarded post-commit measurement plus a requestAnimationFrame-debounced `ResizeObserver`, window resize listener, and post-font-load pass keep endpoints aligned through hot layout changes, breakpoints, zoom, and text wrapping without causing render loops. The viewport GSAP sequence draws those measured paths once, briefly resolves each endpoint, and then becomes still. The reduced-motion fallback renders the complete diagram statically. The closing Kinetic Brand Mosaic keeps the official emblem as the right-side focal point without a dashboard, cards, labels, or connector geometry. Twenty-one translucent white, mint-soft, and mint glass fragments assemble into a controlled depth cloud around the exact emblem. A quieter navy-teal background preserves copy contrast while a right-weighted aurora, organic mist, localized halo, subtle grain, and grounded shadow concentrate depth behind the mosaic. GSAP assembles the fragments and emblem once on viewport entry, then limits ambient motion to slow aurora, mist, halo, and fragment displacement while the section remains visible. Reduced motion renders the complete mosaic statically. The Operational Monitoring Console keeps its three keyboard-operated views in one stable desktop frame. Each view pairs a navy source roster with a light monitoring workspace that derives source, signal, and review counts from its configured content, then separates current visibility from the review queue without implying that operational monitoring changes compliance status. Exact third-party marks resolve through the local brand registry and `IntegrationLogo`. `MotionContext` supplies the operating-system motion preference; automated sequences settle, clean up timers/observers, and render complete static states under reduced motion. `SiteLayout` renders the first lazy route without a second opacity entrance so route-owned hero motion is visible immediately, while subsequent client-side route changes retain the shared transition.
 
@@ -89,7 +89,7 @@ Generic Product and Pricing pages no longer repeat FAQ content. Educational ques
 
 ### Dedicated Secura AI Route
 
-`src/pages/SecuraAiPage.jsx` owns the seven-section content-first composition for `/platform/secura-ai`, and `src/data/securaAiContent.js` owns its metadata and public copy. The route is lazy-loaded explicitly in `src/App.jsx` and excluded from the generic `productPages` registry.
+`src/pages/SecuraAiPage.jsx` owns the seven-section content-first composition for `/secura-ai`, `src/data/securaAiContent.js` owns its public copy, and `src/config/seo.config.ts` owns its metadata. The route is lazy-loaded explicitly in `src/App.jsx` and excluded from the generic `productPages` registry. The legacy `/platform/secura-ai` path redirects to the flattened URL for launch compatibility.
 
 The frozen route composition is:
 
@@ -105,7 +105,7 @@ The frozen route composition is:
 
 ### Dedicated AI Governance Route
 
-`src/pages/AiGovernancePage.jsx` owns metadata and the ordered six-section composition for `/solutions/ai-governance`. `src/data/aiGovernanceContent.js` owns the route's approved AI-system, risk, Secura, framework, and conversion language. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
+`src/pages/AiGovernancePage.jsx` owns the ordered six-section composition for `/solutions/ai-governance`. `src/data/aiGovernanceContent.js` owns the route's approved AI-system, risk, Secura, framework, and conversion language; `src/config/seo.config.ts` owns its metadata. The route is lazy-loaded explicitly in `src/App.jsx` and is intentionally excluded from the generic `productPages` registry.
 
 The route composition is:
 
@@ -120,7 +120,7 @@ The operations selector changes only through pointer or keyboard input. The fram
 
 ### Dedicated Continuous Compliance Route
 
-`src/pages/ContinuousCompliancePage.jsx` owns metadata and the ordered six-section composition for `/platform/continuous-compliance`. `src/data/continuousComplianceContent.js` owns the route's framework, control, evidence, oversight, and conversion language plus its representative product states. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` continues to drive the shared `ProductPage` routes, while `productRoutePaths` includes both generic and dedicated platform paths for sitemap coverage.
+`src/pages/ContinuousCompliancePage.jsx` owns the ordered six-section composition for `/continuous-compliance`. `src/data/continuousComplianceContent.js` owns the route's framework, control, evidence, oversight, and conversion language plus its representative product states; `src/config/seo.config.ts` owns its metadata. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` continues to drive the shared `ProductPage` routes, while `productRoutePaths` includes the flattened dedicated capability paths. Legacy `/platform` and `/platform/continuous-compliance` paths redirect here for launch compatibility.
 
 The route composition is:
 
@@ -139,7 +139,7 @@ The sixth-section closing conversion and complete route are frozen at the approv
 
 ### Dedicated Risk Management Route
 
-`src/pages/RiskManagementPage.jsx` owns metadata and the ordered five-section composition for `/platform/risk-management`. `src/data/riskManagementContent.js` owns the route's hero, challenge, risk-context, assessment, register, heatmap, and conversion copy. The route is lazy-loaded explicitly in `src/App.jsx`, and `genericProductRoutePaths` excludes it so the generic `ProductPage` no longer serves the public risk path. `productRoutePaths` still includes the dedicated path for sitemap coverage.
+`src/pages/RiskManagementPage.jsx` owns the ordered five-section composition for `/risk-management`. `src/data/riskManagementContent.js` owns the route's hero, challenge, risk-context, assessment, register, heatmap, and conversion copy; `src/config/seo.config.ts` owns its metadata. The route is lazy-loaded explicitly in `src/App.jsx`, and `genericProductRoutePaths` excludes it so the generic `ProductPage` no longer serves the public risk path. `productRoutePaths` still includes the dedicated path, while legacy `/platform/risk-management` redirects to the flattened URL.
 
 The route composition is:
 
@@ -153,13 +153,13 @@ The route is grounded in verified product realities from the Controllo product a
 
 ### Dedicated Audit Management Route
 
-`src/pages/AuditManagementPage.jsx` owns metadata and the five-part composition for `/platform/audit-management`. `src/data/auditManagementContent.js` owns the route's claim-reviewed copy, and `src/sections/audit-management/` owns representative framework, repository, and auditor visuals. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains sitemap coverage. The existing navigation destination and sitemap entry are unchanged.
+`src/pages/AuditManagementPage.jsx` owns the five-part composition for `/audit-management`. `src/data/auditManagementContent.js` owns the route's claim-reviewed copy, `src/config/seo.config.ts` owns its metadata, and `src/sections/audit-management/` owns representative framework, repository, and auditor visuals. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains the dedicated path. Legacy `/platform/audit-management` redirects to the flattened URL.
 
 The product source and supplied sandbox screenshots support in-scope frameworks, readiness/progress and View actions, an XLSX framework export, policy/evidence files with effective dates and linked controls, multiple auditor contacts with a primary flag, and separate internal/external framework assignments. Code-built visuals reinterpret those fields; they are illustrative, not approved product captures or customer data. The hero presents a branded audit orbit stage around one selected control: framework scope, linked policy/evidence records, auditor assignments, and XLSX export context sit as connected product objects without a dashboard chrome shell. Its entrance plays once, its background orbit and connector motion loop only while visible, and the shared three-layer wave closes its mist-to-white boundary. Orbit, connector, and wave motion render statically when site motion is paused or reduced. The repository selector is manual and keyboard operable, with a brief state crossfade. Production availability, commercial entitlements, Confluence linking, templates, auditor access, and final public-claim approval are not established by sandbox UI or source-code review alone; see `FS-022` in `docs/FUTURE_SCOPE.md`.
 
 ### Dedicated Cloud Monitoring Route
 
-`src/pages/CloudMonitoringPage.jsx` owns metadata and the seven-section composition for `/platform/cloud-monitoring`; `src/data/cloudMonitoringContent.js` owns its claim-reviewed cloud, workforce, exposure, workflow, and conversion copy. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains its existing sitemap coverage.
+`src/pages/CloudMonitoringPage.jsx` owns the seven-section composition for `/cloud-monitoring`; `src/data/cloudMonitoringContent.js` owns its claim-reviewed cloud, workforce, exposure, workflow, and conversion copy, and `src/config/seo.config.ts` owns its metadata. The route is lazy-loaded explicitly in `src/App.jsx`; `genericProductRoutePaths` excludes it while `productRoutePaths` retains the dedicated path. Legacy `/platform/cloud-monitoring` redirects to the flattened URL.
 
 The page moves from a Cloud Visibility Radar hero through AWS, Azure, and GCP visibility, configuration and security context, Microsoft 365 and Google Workspace identity and endpoint context, available user-level exposure indicators, an accountable signal-to-resolution workflow, and final conversion. The radar uses verified provider marks, an explicit text treatment for Microsoft 365 until an exact reviewed mark is available, qualitative operational labels, source-to-core pulses, and one attention state rather than invented resource counts or customer data. Product states are qualitative and regularly refreshed rather than literal real-time feeds. Dark-web data is described as available exposure indicators without Google Workspace attribution, and only Jira is shown as a public workflow integration until Slack or Asana availability is verified. Existing `Reveal`, shared buttons, `MotionContext`, GSAP/ScrollTrigger, and registry-backed third-party marks provide scoped motion, offscreen pausing, reduced-motion parity, CTA behavior, and brand handling.
 
@@ -183,18 +183,20 @@ Visual changes must also follow `design-system/controllo-compliance-current/MAST
 
 The public `/demo` route currently uses a visible `mailto:` handoff to the verified published address `controllo.sales@accedere.io`. It does not display or submit the dormant browser-side lead form, so visitors cannot receive a simulated success state for an undelivered request. A future form, booking service, or CRM endpoint requires a separately approved production integration.
 
-The cookie panel stores either `essential` or `accepted` under `controllo-consent` in `localStorage`. This preference currently controls only whether the panel is shown. It does not yet conditionally load or suppress analytics; that gap is tracked in `docs/ROADMAP.md`.
+The cookie panel stores either `essential` or `accepted` under `controllo-consent` in `localStorage`. Optional analytics events are suppressed outside production, while disabled, and unless consent is `accepted`. No analytics vendor loader is currently installed; the launch decision remains tracked in `docs/ROADMAP.md`.
 
 ## Metadata and Discovery
 
-`PageMeta` updates the title, description, Open Graph title/description/type, canonical URL, and `SoftwareApplication` JSON-LD after navigation. It appends the brand to titles by default; the Audit Management and Cloud Monitoring routes disable that suffix for their approved SEO titles. Canonical URLs use `https://controllo.ai` as the production origin.
+`src/config/seo.config.ts` is the sole routine SEO source of truth. `PageMeta` reads it once from `SiteLayout` and updates title, description, robots, canonical, Open Graph, Twitter, verification metadata, and generated JSON-LD after navigation. Canonical URLs use `https://controllo.ai`; local and explicitly marked staging builds use `noindex,nofollow`.
 
-Crawler-facing files are static:
+`npm run seo:generate` derives crawler and hosting files from the SEO config, public route registry, and redirect config:
 
 - `public/robots.txt`
 - `public/sitemap.xml`
+- `public/_redirects`
+- `public/_headers`
 
-Route additions require both the React route and relevant crawler entries to change together.
+`scripts/prerender.mjs` uses Vite SSR transforms and React streaming SSR so lazy routes resolve before writing HTML. The build emits one HTML document per registered route plus `404.html`, and fails if a route lacks its final title, description, canonical, H1, or JSON-LD.
 
 The seven article destinations linked by the homepage and resource directory remain WordPress-owned paths on `controllo.ai`. Production hosting must route those paths to WordPress before applying the SPA fallback; otherwise the React not-found route will replace genuine article content.
 
@@ -210,8 +212,7 @@ For new public pages, start with `docs/PAGE_CREATION_BRIEF.md`. It keeps the cur
 
 ## Known Constraints
 
-- The site depends on JavaScript for route rendering and metadata updates.
-- Social crawlers that do not execute JavaScript may see only the default `index.html` metadata.
+- Interactive behavior still requires JavaScript after the prerendered HTML is delivered.
 - Google Fonts are imported from the public Google Fonts service at runtime.
 - No error-monitoring or analytics vendor is installed.
 - No CMS, localization system, authentication layer, backend, or end-to-end test suite exists.

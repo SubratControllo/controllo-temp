@@ -1,8 +1,3 @@
-export const securaAiMeta = {
-  title: 'Secura AI for Compliance Gap Analysis',
-  description: 'Review control requirements against implementation details, policies, procedures, and evidence. Secura AI surfaces gaps and prepares next actions for human review.',
-};
-
 export const securaAiHero = {
   eyebrow: 'Secura AI',
   title: 'Know what’s missing. Know what to review next.',

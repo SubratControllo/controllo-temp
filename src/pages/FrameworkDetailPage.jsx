@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
 import { CheckCircle2, Layers3, Route } from 'lucide-react';
-import PageMeta from '../components/PageMeta';
 import PageHero from '../components/PageHero';
 import ConversionBand from '../components/ConversionBand';
 import { getFrameworkBySlug } from '../data/enterpriseContent';
@@ -34,7 +33,6 @@ export default function FrameworkDetailPage() {
 
   return (
     <>
-      <PageMeta title={item.title} description={item.summary} />
       <PageHero
         eyebrow={item.code}
         title={item.title}

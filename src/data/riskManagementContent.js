@@ -1,9 +1,3 @@
-export const riskManagementMeta = {
-  title: 'Risk Management Software for Cyber, Privacy & AI',
-  description:
-    'Assess organization, asset, vendor, privacy, and AI risk context with Controllo. Use structured assessments, owners, registers, and heatmaps to set priorities.',
-};
-
 export const riskHero = {
   eyebrow: 'Comprehensive risk management',
   title: 'Know which risks need your attention.',

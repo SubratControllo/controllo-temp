@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom';
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import ConversionBand from '../components/ConversionBand';
 import Reveal from '../components/Reveal';
 import ProductDemo from '../components/ProductDemo';
@@ -9,12 +8,11 @@ import { useSiteMotion } from '../context/MotionContext';
 
 export default function ProductPage() {
   const { pathname } = useLocation();
-  const page = productPages[pathname] || productPages['/platform'];
+  const page = productPages[pathname] || productPages['/solutions/privacy'];
   const { motionEnabled } = useSiteMotion();
 
   return (
     <>
-      <PageMeta title={page.title} description={page.description} />
       <PageHero {...page} motionEnabled={motionEnabled} />
       <section className="section bg-white">
         <div className="shell">

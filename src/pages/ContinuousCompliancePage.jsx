@@ -1,4 +1,3 @@
-import PageMeta from '../components/PageMeta';
 import { useSiteMotion } from '../context/MotionContext';
 import {
   betweenAuditsContent,
@@ -6,7 +5,6 @@ import {
   complianceLoopContent,
   continuousComplianceClosing,
   continuousComplianceHero,
-  continuousComplianceMeta,
   oversightContent,
 } from '../data/continuousComplianceContent';
 import BetweenAuditsSection from '../sections/continuous-compliance/BetweenAuditsSection';
@@ -21,7 +19,6 @@ export default function ContinuousCompliancePage() {
 
   return (
     <>
-      <PageMeta title={continuousComplianceMeta.title} description={continuousComplianceMeta.description} />
       <ContinuousComplianceHeroSection content={continuousComplianceHero} motionEnabled={motionEnabled} />
       <BetweenAuditsSection content={betweenAuditsContent} motionEnabled={motionEnabled} />
       <ComplianceLoopSection content={complianceLoopContent} motionEnabled={motionEnabled} />

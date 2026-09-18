@@ -1,7 +1,5 @@
-import PageMeta from '../components/PageMeta';
 import { useSiteMotion } from '../context/MotionContext';
 import {
-  cybersecurityMeta,
   cyberChallenges,
   cyberClosing,
   cyberCloudViews,
@@ -21,7 +19,6 @@ export default function CybersecurityPage() {
 
   return (
     <>
-      <PageMeta title={cybersecurityMeta.title} description={cybersecurityMeta.description} />
       <CyberHeroSection content={cyberHero} motionEnabled={motionEnabled} />
       <CyberResponseSection items={cyberChallenges} motionEnabled={motionEnabled} />
       <CyberSecuraSection content={cyberSecuraReview} motionEnabled={motionEnabled} />

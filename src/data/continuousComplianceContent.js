@@ -1,8 +1,3 @@
-export const continuousComplianceMeta = {
-  title: 'Continuous Compliance Software and Audit Readiness',
-  description: 'Keep SOC 2 and ISO/IEC 27001 readiness moving with connected controls, evidence, Secura-assisted review, and progress across 100+ frameworks.',
-};
-
 export const continuousComplianceHero = {
   eyebrow: 'Continuous compliance',
   title: 'Continuous compliance. Beyond the audit.',

@@ -5,9 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run seo:check && npm run seo:generate && vite build && npm run seo:prerender",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "seo:check": "node scripts/seo.mjs check",
+    "seo:generate": "node scripts/seo.mjs generate",
+    "seo:links": "node scripts/seo.mjs links",
+    "seo:registry": "node scripts/seo.mjs registry",
+    "seo:prerender": "node scripts/prerender.mjs",
+    "seo:prerender:check": "node scripts/prerender.mjs --check"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

@@ -224,7 +224,7 @@ export default function HeroSection({ motionEnabled }) {
             </Link>
             <Link
               className="button button--ghost transition-[background-color,color,box-shadow] duration-200 hover:translate-y-0 hover:bg-white hover:text-teal focus-visible:bg-white focus-visible:text-teal motion-reduce:hover:translate-y-0"
-              to="/platform"
+              to="/continuous-compliance"
             >
               <span>Explore the platform</span>
             </Link>

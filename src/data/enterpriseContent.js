@@ -3,11 +3,11 @@ import { brandAssets } from './brandAssets';
 
 export const navGroups = [
   { label: 'Platform', links: [
-    ['/platform/continuous-compliance', 'Continuous compliance', 'Keep controls and evidence current.'],
-    ['/platform/risk-management', 'Risk management', 'See exposure and coordinate response.'],
-    ['/platform/audit-management', 'Audit management', 'Give every audit a clean operating layer.'],
-    ['/platform/cloud-monitoring', 'Cloud monitoring', 'Connect live environment context to compliance.'],
-    ['/platform/secura-ai', 'Secura AI', 'Move work forward with guided intelligence.']
+    ['/continuous-compliance', 'Continuous compliance', 'Keep controls and evidence current.'],
+    ['/risk-management', 'Risk management', 'See exposure and coordinate response.'],
+    ['/audit-management', 'Audit management', 'Give every audit a clean operating layer.'],
+    ['/cloud-monitoring', 'Cloud monitoring', 'Connect live environment context to compliance.'],
+    ['/secura-ai', 'Secura AI', 'Move work forward with guided intelligence.']
   ]},
   { label: 'Solutions', href: '/solutions/cybersecurity', links: [
     ['/solutions/cybersecurity', 'Cybersecurity', 'Implement controls and stay ready across frameworks.'],
@@ -21,19 +21,13 @@ export const navGroups = [
 
 /** @type {Record<string, {eyebrow:string,title:string,description:string,accent:string,icon:import('react').ComponentType,features:Array<[string,string]>}>} */
 export const productPages = {
-  '/platform': {
-    eyebrow: 'One operating layer', title: 'Run compliance like a connected system.',
-    description: 'Bring controls, evidence, risk, owners, and audit work into one continuously current view.',
-    accent: 'mint', icon: Network,
-    features: [['Shared control model', 'Define once and reuse approved work across frameworks.'], ['Evidence current', 'Keep source, owner, scope, and freshness attached.'], ['Readiness views', 'Give leaders and teams the right level of detail.']]
-  },
-  '/platform/risk-management': {
+  '/risk-management': {
     eyebrow: 'Risk management', title: 'See risk while it is still actionable.',
     description: 'Connect risk to the controls, evidence, systems, and owners that determine what happens next.',
     accent: 'teal', icon: Radar,
     features: [['Living register', 'Keep context, impact, ownership, and treatment together.'], ['Control context', 'See which controls reduce exposure and where gaps remain.'], ['Executive view', 'Translate operational detail into decision-ready signals.']]
   },
-  '/platform/cloud-monitoring': {
+  '/cloud-monitoring': {
     eyebrow: 'Cloud monitoring', title: 'Turn live environment signals into compliance context.',
     description: 'Connect cloud configuration, identity, endpoint, and workspace information to the controls and risks your team already manages.',
     accent: 'teal', icon: Cloud,
@@ -60,11 +54,11 @@ export const productPages = {
 };
 
 const dedicatedProductRoutePaths = [
-  '/platform/continuous-compliance',
-  '/platform/risk-management',
-  '/platform/audit-management',
-  '/platform/cloud-monitoring',
-  '/platform/secura-ai',
+  '/continuous-compliance',
+  '/risk-management',
+  '/audit-management',
+  '/cloud-monitoring',
+  '/secura-ai',
 ];
 
 export const genericProductRoutePaths = Object.keys(productPages).filter(
@@ -140,7 +134,7 @@ export const integrationCategories = [
 ];
 
 export const footerGroups = [
-  ['Platform', [['Overview', '/platform'], ['Compliance', '/platform/continuous-compliance'], ['Risk', '/platform/risk-management'], ['Cloud', '/platform/cloud-monitoring'], ['Secura AI', '/platform/secura-ai']]],
+  ['Platform', [['Compliance', '/continuous-compliance'], ['Audit management', '/audit-management'], ['Risk', '/risk-management'], ['Cloud', '/cloud-monitoring'], ['Secura AI', '/secura-ai']]],
   ['Explore', [['Cybersecurity', '/solutions/cybersecurity'], ['Privacy operations', '/solutions/privacy'], ['AI governance', '/solutions/ai-governance'], ['Frameworks', '/frameworks'], ['Integrations', '/integrations'], ['Pricing', '/pricing']]],
   ['Company', [['About', '/company'], ['Security', '/security'], ['Privacy policy', '/privacy-policy'], ['Terms', '/terms'], ['Accessibility', '/accessibility']]]
 ];

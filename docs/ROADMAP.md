@@ -35,8 +35,8 @@ Implemented:
 - Company, security, privacy-policy, terms, and accessibility routes, with legacy `/privacy` redirected to privacy operations
 - Temporary demo handoff through the verified published sales email, with no simulated-success form exposed to visitors
 - Resource directory backed by seven existing Controllo articles instead of repeated placeholder detail bodies
-- Shared navigation keeps the Platform overview promotion, Enterprise, and Growing Teams out of the header while their placeholder routes remain available for later redesign
-- Page metadata, canonical URLs, JSON-LD, robots rules, sitemap, and SPA fallback file
+- Shared navigation keeps the Platform overview route, Enterprise, and Growing Teams out of the header while restoring the non-linked Platform intro card; dedicated platform capability pages use flattened public URLs with legacy `/platform/...` redirects
+- Central route-level SEO configuration, generated metadata and JSON-LD, production/staging robots behavior, generated sitemap and redirects, default social image, static prerendering, and real 404 fallback for compatible hosts
 - Keyboard affordances, skip link, visible focus, operating-system reduced-motion support, and WebGL fallback
 - Automated interaction/component tests and a successful production build
 - Maintainer and AI context documentation
@@ -52,6 +52,7 @@ Use this section for the latest useful proof only. Avoid adding full diary-style
 - Cloud Monitoring development validation: 2026-09-17 the 7 focused page tests passed. Desktop and 390px browser checks confirmed valid demo/integrations destinations, no horizontal overflow, and no console errors; reduced-motion and WebGL fallbacks remain covered by the component implementation. This is not production launch approval.
 - Secura AI development validation: 2026-09-18 the dedicated route passed its focused page, sitemap, and isolated route checks. Its seven sections now cover the product-authentic hero sequence, Context Convergence, five-stage Secura Review Flow, scroll-driven output walkthrough, workload transformation, pre-assessment readiness, and centered cinematic conversion. The final CTA reuses the shared Cybersecurity cinematic field with offscreen playback gating and a static reduced-motion fallback while preserving Secura's copy and destinations. Nine focused Secura page tests and five focused shared Cybersecurity CTA tests pass; desktop browser inspection confirmed the centered closing composition. The complete route is frozen as a development baseline, not approved for production launch.
 - Temporary launch conversion validation: 2026-09-18 51 focused component/page/sitemap tests and 5 targeted app assertions passed. Desktop and 375px browser checks confirmed the email demo handoff, the seven-article resource directory, the shared header without trial promotion, and responsive layouts. Two unrelated stale Audit and Cloud assertions remain in the broader `App.test.jsx` file; no production build or full suite was run.
+- SEO launch hardening: 2026-09-18 `seo:check` completed with 0 errors and 2 editorial length warnings, `seo:links` completed with 0 errors and 7 WordPress cutover warnings, and the SSR check rendered 25 routes with required metadata, H1 content, and structured data. No production build was run.
 - Current validation policy: run only affected tests and browser checks unless the user explicitly requests a production build, full suite, dependency install, or broader validation.
 
 ## Temporary Launch Conversion Override
@@ -332,8 +333,8 @@ Complete after the blockers and before launch:
 - [x] Finalize and freeze the complete 2026-09-01 homepage baseline, including section order, governance-domain interaction, product visuals, framework and integration proof, seven-day readiness placement, WordPress links, conversion copy, and responsive/reduced-motion behavior.
 - [x] Standardize shared primary and secondary button interaction while keeping icon usage semantic and context-specific.
 - [x] Consolidate repeated React directory behavior and establish indexed, content-owned route/detail boundaries without changing the current UX.
-- [x] Finish sitemap coverage for privacy, terms, accessibility, the seven supplied WordPress articles, and every approved public route.
-- [ ] Decide whether route-specific pre-rendering or server rendering is required for social crawlers and SEO; add Open Graph images and Twitter metadata if approved.
+- [x] Generate sitemap coverage from the central SEO config for every approved indexable React route; pending WordPress articles remain excluded until their cutover path is resolved.
+- [x] Statically prerender registered public routes and generate route-specific Open Graph, Twitter, canonical, robots, and structured-data output with a default 1200×630 social image.
 - [x] Replace shared generic resource bodies with direct links to the seven supplied live Controllo articles and remove the unpublished SPA detail routes.
 - [ ] Publish detailed GDPR and ISO 42001 pages or keep them clearly marked as coming soon.
 - [ ] Turn integration cards into accurate availability states and supporting pages/links, or label the directory as planned coverage.
@@ -345,7 +346,6 @@ Complete after the blockers and before launch:
 These are useful but do not have enough release context to schedule yet:
 
 - Content management or structured content generation if non-developers need frequent publishing
-- Route-level pre-rendering if crawler or performance evidence justifies it
 - Localization after target regions and translation ownership are defined
 - Error monitoring after vendor, privacy, and retention decisions are approved
 - Split the remaining effects stylesheet only if visualization ownership or maintenance friction justifies the extra files

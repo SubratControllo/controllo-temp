@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import PageMeta from '../components/PageMeta';
 import { DirectoryFilters } from '../components/DirectoryControls';
 import { blogArticles } from '../data/siteContent';
 import { useSiteMotion } from '../context/MotionContext';
@@ -22,10 +21,6 @@ export default function ResourcesPage() {
 
   return (
     <>
-      <PageMeta
-        title="Resources"
-        description="Practical guidance for operating continuous compliance, risk, and audit readiness."
-      />
       <PageHero
         eyebrow="Resources"
         title="Practical guidance for keeping trust current."

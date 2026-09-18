@@ -1,5 +1,4 @@
 import { CheckCircle2 } from 'lucide-react';
-import PageMeta from '../components/PageMeta';
 
 const salesEmail = 'controllo.sales@accedere.io';
 const salesEmailHref = `mailto:${salesEmail}?subject=${encodeURIComponent('Controllo demo request')}`;
@@ -12,10 +11,6 @@ const expectations = [
 
 export default function DemoPage() {
   return <>
-    <PageMeta
-      title="Request a demo"
-      description="Request a focused Controllo walkthrough shaped around your compliance program and readiness priorities."
-    />
     <section className="-mt-[100px] min-h-[900px] bg-[linear-gradient(135deg,var(--color-navy),#073d58)] pt-[210px] pb-[120px] text-white max-[760px]:pt-[170px] max-[760px]:pb-[90px]">
       <div className="shell grid grid-cols-[.9fr_1.1fr] items-start gap-[90px] max-[1080px]:grid-cols-1 max-[760px]:gap-[52px]">
         <div className="relative top-auto min-[1081px]:sticky min-[1081px]:top-[150px]">

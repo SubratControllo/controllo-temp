@@ -1,8 +1,3 @@
-export const aiGovernanceMeta = {
-  title: 'Operational AI governance and risk',
-  description: 'Connect AI systems, accountable owners, risk assessment, controls, and evidence in one operational governance view.'
-};
-
 export const aiHero = {
   eyebrow: 'Operational AI Governance',
   title: 'Turn AI standards into structured, actionable governance.',
