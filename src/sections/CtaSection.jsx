@@ -1,5 +1,4 @@
 import Reveal from "../components/Reveal";
-import BrandCtaContent from "../components/BrandCtaContent";
 import { Link } from "react-router-dom";
 import { CalendarDays } from "lucide-react";
 import { motion } from "motion/react";
@@ -82,19 +81,7 @@ export default function CtaSection({ motionEnabled }) {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                className="button button--directional group/brand-cta relative isolate overflow-hidden border border-white/25 transition-transform duration-300 hover:scale-[1.015] hover:bg-navy focus-visible:scale-[1.015] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 max-[480px]:w-full"
-                to={homepageLinks.trial}
-              >
-                <BrandCtaContent
-                  iconTestId="final-primary-cta-icon"
-                  motionEnabled={motionEnabled}
-                  shineTestId="final-primary-cta-shine"
-                >
-                  Start free trial
-                </BrandCtaContent>
-              </Link>
-              <Link
-                className="button button--light shadow-none transition-[background-color,color,box-shadow] duration-200 hover:translate-y-0 hover:bg-white hover:text-teal focus-visible:bg-white focus-visible:text-teal motion-reduce:hover:translate-y-0 max-[480px]:w-full"
+                className="button button--directional max-[480px]:w-full"
                 to={homepageLinks.demo}
               >
                 <CalendarDays aria-hidden="true" /> Request a demo

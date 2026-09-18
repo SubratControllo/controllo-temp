@@ -23,22 +23,18 @@ describe('CtaSection', () => {
     expect(within(section).queryByText(/focused package/i)).not.toBeInTheDocument();
   });
 
-  it('presents distinct trial and demo actions inside a named conversion region', () => {
+  it('presents one demo action while trial promotion is paused', () => {
     renderSection();
 
     const section = screen.getByRole('region', {
       name: /a clearer compliance program starts here/i
     });
-    const trial = within(section).getByRole('link', { name: /start free trial/i });
     const demo = within(section).getByRole('link', { name: /request a demo/i });
 
-    expect(trial).toHaveAttribute('href', '/pricing');
-    expect(trial).toHaveClass('button--directional');
-    expect(trial.querySelector('.lucide-arrow-right')).toBeInTheDocument();
+    expect(within(section).queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
     expect(demo).toHaveAttribute('href', '/demo');
-    expect(demo).not.toHaveClass('button--directional');
+    expect(demo).toHaveClass('button--directional');
     expect(demo.querySelector('.lucide-calendar-days')).toBeInTheDocument();
-    expect(demo.querySelector('.lucide-arrow-right')).not.toBeInTheDocument();
   });
 
   it('renders one decorative three-segment emblem instead of duplicated marks', () => {
@@ -73,23 +69,12 @@ describe('CtaSection', () => {
     expect(document.querySelector('.cta-emblem-field')).toHaveAttribute('data-motion', 'static');
   });
 
-  it('pairs the navbar primary hover treatment with the quieter hero secondary response', () => {
+  it('keeps the temporary demo action primary', () => {
     renderSection(true);
 
-    const trial = screen.getByRole('link', { name: /start free trial/i });
     const demo = screen.getByRole('link', { name: /request a demo/i });
 
-    expect(trial).toHaveClass('group/brand-cta');
-    expect(trial.className).toContain('overflow-hidden');
-    expect(trial.className).toContain('hover:scale-[1.015]');
-    expect(trial.className).toContain('focus-visible:scale-[1.015]');
-    expect(screen.getByTestId('final-primary-cta-shine')).toBeInTheDocument();
-    expect(screen.getByTestId('final-primary-cta-icon')).toBeInTheDocument();
-
-    expect(demo.className).toContain('hover:translate-y-0');
-    expect(demo.className).toContain('hover:bg-white');
-    expect(demo.className).toContain('hover:text-teal');
-    expect(demo.className).toContain('focus-visible:text-teal');
-    expect(demo).not.toHaveClass('group/brand-cta');
+    expect(demo).toHaveClass('button--directional');
+    expect(screen.queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
   });
 });

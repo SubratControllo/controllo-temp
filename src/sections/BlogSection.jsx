@@ -38,7 +38,7 @@ function ArticleLink({ article, headingId, featured = false, position }) {
 }
 
 export default function BlogSection({ motionEnabled }) {
-  const [featured, ...supporting] = blogArticles;
+  const [featured, ...supporting] = blogArticles.slice(0, 3);
 
   return (
     <section className="section bg-mist" aria-labelledby="blog-heading">

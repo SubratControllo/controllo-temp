@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
-  ArrowRight,
   CalendarDays,
   ChartNoAxesColumnIncreasing,
   ClipboardCheck,
@@ -11,7 +10,6 @@ import {
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'motion/react';
 import Reveal from '../../components/Reveal';
-import TrialLink from '../../components/TrialLink';
 import WaveDivider from '../../components/WaveDivider';
 
 const PRIMARY_EASE = [0.16, 1, 0.3, 1];
@@ -231,11 +229,7 @@ export default function RiskHeroSection({ content, motionEnabled }) {
           </h1>
           <p className="lede mt-6 max-w-[560px]">{content.description}</p>
           <div className="action-row mt-8 max-[460px]:grid">
-            <TrialLink className="button button--mint button--directional">
-              <ArrowRight aria-hidden="true" size={16} />
-              Start free trial
-            </TrialLink>
-            <Link className="button button--ghost" to="/demo">
+            <Link className="button button--mint" to="/demo">
               <CalendarDays aria-hidden="true" size={16} />
               Request a demo
             </Link>

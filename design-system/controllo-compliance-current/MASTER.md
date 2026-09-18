@@ -1,6 +1,6 @@
 # Controllo Compliance Current Design System
 
-Last reviewed: 2026-09-07
+Last reviewed: 2026-09-18
 
 Use this file for every visual or interaction change. `src/styles.css` is the implementation source for tokens and shared primitives; component markup is the source for local layout and responsive behavior.
 
@@ -96,7 +96,7 @@ Shared navy and mint primary buttons preserve their base color, lift by at most 
 
 ## Header
 
-The shared header is a sticky white glass surface with official dark branding, desktop dropdowns, a responsive menu, and a readiness-tour action.
+The shared header is a sticky white glass surface with official dark branding, desktop dropdowns, a responsive menu, and a readiness-tour action. The Platform dropdown lists the five dedicated capabilities without an overview promotion; Solutions lists Cybersecurity, Privacy, and AI Governance only.
 
 **Freeze status:** This header baseline was approved and frozen on 2026-08-25. Preserve its visual hierarchy, dimensions, navigation model, responsive behavior, branding, and motion treatment. Reopen the design only for an explicit new header request; accessibility, correctness, and release-critical responsive fixes remain allowed.
 
@@ -150,7 +150,7 @@ The frozen baseline includes:
 - The asymmetric Frameworks and Connectivity ledger, approved scale metrics, registry-backed framework and integration proof, per-category **+ More in library** cues, and one destination link for each directory.
 - The five-step Seven-Day Readiness Path positioned immediately before Blog, with its stable sticky preview, scroll-linked stages, and static reduced-motion completion state.
 - The one-lead/two-supporting-story Blog index with direct WordPress destinations.
-- The final mint conversion panel, one assembled Controllo emblem, accurate framework-first supporting copy, **Start free trial** pricing-intent action, and **Request a demo** action.
+- The final mint conversion panel, one assembled Controllo emblem, accurate framework-first supporting copy, and the temporary single **Request a demo** action.
 - The shared footer CTA **See Controllo with your workflow**, which continues to `/demo`.
 
 ### Hero Focus Stack
@@ -219,7 +219,7 @@ Each story remains a semantic, named article landmark with one direct WordPress 
 
 **Freeze status:** included in the 2026-09-01 frozen homepage baseline. Keep one mint conversion panel with the narrative on the left and a dedicated brand field on the right. The brand field uses the official three-segment Controllo emblem as one inline SVG; its segments assemble once from short offsets and then remain still. Reduced motion renders the completed emblem immediately.
 
-Keep the supporting copy framework-first: visitors start with relevant frameworks and connect controls, evidence, risks, and ownership as their assurance program grows. Keep **Start free trial** as the dominant navy action with one right arrow and **Request a demo** as the quieter white action with a calendar icon. Do not repeat the arrow on both actions. The primary reuses the header CTA's clipped shine and `1.5%` maximum hover/focus scale. The secondary remains non-shiny, does not lift, and uses the homepage Hero secondary action's quiet teal text response while its calendar stays still. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make both actions full width on small mobile screens. Do not reintroduce double rings, duplicated emblems, looping motion, stock imagery, package language, or extra conversion claims.
+Keep the supporting copy framework-first: visitors start with relevant frameworks and connect controls, evidence, risks, and ownership as their assurance program grows. During the temporary launch override, keep **Request a demo** as the single action and route it through `/demo` to the published email handoff. Preserve the split through 1024px, stack the emblem into a compact lower band below 900px, and make the action full width on small mobile screens. Do not reintroduce trial promotion, double rings, duplicated emblems, looping motion, stock imagery, package language, or extra conversion claims until the relevant launch decision is approved.
 
 ## Continuous Compliance Page Baseline
 
@@ -231,7 +231,7 @@ The dedicated `/platform/continuous-compliance` route uses six full-width bands:
 
 **Status:** approved and locked on 2026-09-08.
 
-Preserve the vertically centered editorial split, teal color-only **Beyond the audit** accent, two-action trial/demo hierarchy, three-part capability rail, and representative **Compliance Current workspace** with distinct state icons and restrained anchored annotations. The hero closes with the shared three-layer animated wave divider used by the locked homepage and solution heroes; paused and reduced motion render the wave statically. Do not reintroduce breadcrumbs, the false `AC-04` reference, queued-review claims, generic check badges, hard full-width proof rules, dense dashboard imagery, personal data, percentages, or unsupported live monitoring language.
+Preserve the vertically centered editorial split, teal color-only **Beyond the audit** accent, temporary single demo action, three-part capability rail, and representative **Compliance Current workspace** with distinct state icons and restrained anchored annotations. The hero closes with the shared three-layer animated wave divider used by the locked homepage and solution heroes; paused and reduced motion render the wave statically. Do not reintroduce trial promotion, breadcrumbs, the false `AC-04` reference, queued-review claims, generic check badges, hard full-width proof rules, dense dashboard imagery, personal data, percentages, or unsupported live monitoring language.
 
 **Wave-to-content transition rule:** a wave divider is the transition, never an additional border or rule. Its front layer must overlap the receiving section by 6px so antialiasing cannot expose the hero field at the boundary. When the next section begins a new narrative chapter, use the AI Governance spacing contract of 24px top padding, increasing to 32px from the medium breakpoint, measured from the hero boundary; do not stack the generic section top padding beneath the wave.
 
@@ -275,7 +275,7 @@ Framework logos and additional detail links remain deferred under `FS-019` until
 
 **Status:** approved and locked on 2026-09-09 after final copy, visual, motion, accessibility, and responsive review.
 
-Preserve the uninterrupted navy closing poster and direct handoff into the shared navy footer. The centered uppercase heading uses a white lead line and a warm-white-to-lavender-to-coral gradient accent with a restrained soft glow; the complete accessible heading remains **Make your next audit a review, not a restart.** Keep the oversized low-opacity Controllo watermark decorative and hidden from assistive technology. Preserve the concise description, mint **Start free trial** action to `/pricing`, outlined **Request a demo** action to `/demo`, and subordinate proof sentence. Buttons remain at least 46px high and stack without clipped or wrapped labels on narrow screens.
+Preserve the uninterrupted navy closing poster and direct handoff into the shared navy footer. The centered uppercase heading uses a white lead line and a warm-white-to-lavender-to-coral gradient accent with a restrained soft glow; the complete accessible heading remains **Make your next audit a review, not a restart.** Keep the oversized low-opacity Controllo watermark decorative and hidden from assistive technology. During the temporary launch override, preserve the concise description, mint **Request a demo** action to `/demo`, and subordinate proof sentence without a trial action. The button remains at least 46px high without a clipped or wrapped label on narrow screens.
 
 The entrance is a single sequence under 750ms: lead line, accent flow, description, actions, and proof. It does not loop, autoplay a state change, track the cursor, or continue offscreen. Paused and reduced-motion modes render the complete composition immediately. Do not add a form, trust-logo strip, third-party award, copied reference asset or wording, video, ambient glow field, aggregate metric, unsupported automation claim, or a separate visual boundary before the footer.
 
@@ -303,15 +303,23 @@ Responsive behavior is implemented at the established 1440, 1024, 768, and 375 p
 
 **Status:** approved and frozen on 2026-09-06 after focused component tests and responsive browser QA.
 
-Keep the approved **AI Governance, Connected** signature, headline, supporting copy, proof line, and two-action hierarchy inside the single-viewport cinematic composition. Preserve the distinct code-built governance current: five context nodes, three connected SVG paths, traveling mint current bands, and the central mint field. Do not add pulse rings, large orbital rings, an automatic button sheen, the Cybersecurity film, or new performance and trust claims.
+Keep the approved **AI Governance, Connected** signature, headline, supporting copy, proof line, and temporary single demo action inside the single-viewport cinematic composition. Preserve the distinct code-built governance current: five context nodes, three connected SVG paths, traveling mint current bands, and the central mint field. Do not add trial promotion, pulse rings, large orbital rings, an automatic button sheen, the Cybersecurity film, or new performance and trust claims.
 
 Ambient transforms and opacity changes run only while the section is visible and stop offscreen. Reduced motion renders the complete static field. Preserve exact `100svh` fit, visible keyboard focus, Phosphor action icons, mobile sentence-level headline wrapping, zero horizontal overflow through 320px, and the normal handoff to the shared footer. Reopen its composition, copy, proof points, motion, or buttons only through an explicit request for this closing section; accessibility, verified responsive defects, claim corrections, and release-critical performance fixes remain permitted.
+
+## Secura AI Page Baseline
+
+**Status:** all seven Secura AI sections and the complete `/platform/secura-ai` route are approved and frozen as a development baseline on 2026-09-18.
+
+Preserve the ordered product story: Control Details hero sequence, four-source Context Convergence, five-stage Review Flow, scroll-driven output walkthrough, manual-to-structured workload transformation, pre-assessment readiness workflow, and centered cinematic conversion. Each section keeps its approved Controllo typography, navy/teal/mint roles, product terminology, human-validation boundary, responsive composition, viewport-aware motion, and complete reduced-motion state. The final CTA shares the Cybersecurity cinematic film and fallback implementation but retains Secura's centered signature, copy, `/demo` action, `#secura-output` action, and proof line.
+
+Do not restyle, reorder, or recombine the route's sections without an explicit request. Accessibility corrections, verified responsive defects, factual or legal corrections, metadata and route fixes, and release-critical performance work remain permitted. The deferred Context Convergence motion refinement remains recorded under `FS-024` and does not reopen the page by itself.
 
 ## Frozen Cybersecurity Hero Baseline
 
 **Status:** re-approved and frozen on 2026-09-07 after the explicit removal of the editorial-heading experiment, focused component tests, and responsive browser QA.
 
-Keep the approved headline, supporting copy, two actions, and vertically centered desktop split. **Cyber readiness** is teal and the remaining headline is navy, while the complete headline retains the same Manrope medium font, size, weight, style, and line-height with no italic or secondary-font accent. The right visual uses one enlarged, pointer-inert **Access review** workspace with its final shallow perspective applied from the first frame. One low-contrast elliptical orbit sits behind the dashboard. Exactly two bare official Controllo emblems follow that same path in the same forward direction with a half-cycle separation; they may disappear naturally while passing behind the product plane.
+Keep the approved headline, supporting copy, temporary single demo action, and vertically centered desktop split. **Cyber readiness** is teal and the remaining headline is navy, while the complete headline retains the same Manrope medium font, size, weight, style, and line-height with no italic or secondary-font accent. The right visual uses one enlarged, pointer-inert **Access review** workspace with its final shallow perspective applied from the first frame. One low-contrast elliptical orbit sits behind the dashboard. Exactly two bare official Controllo emblems follow that same path in the same forward direction with a half-cycle separation; they may disappear naturally while passing behind the product plane.
 
 On desktop and tablet, retain the four product-aligned proof cards for Secura AI, cloud security, identity and endpoint risk, and framework coverage. They enter once from the dashboard origin using only transform and opacity, then remain still. On small mobile screens, retain the two primary Secura and cloud cards and hide the lower supporting pair. Preserve the transient center signal, accurate local brand marks, decorative semantics, pointer inertness, zero horizontal overflow, and the complete reduced-motion state.
 
@@ -337,7 +345,7 @@ The viewport sequence draws the measured paths once, settles the endpoints, and 
 
 **Status:** approved and frozen on 2026-09-06 after focused component tests and responsive browser QA.
 
-Keep the closing conversion section's approved copy, proof points, and two-action hierarchy inside one centered, single-viewport cinematic composition. A full-bleed abstract film sits behind a layered navy scrim, subtle grain, and vignette; the official emblem appears once in the compact **Connected assurance** signature. The section does not duplicate the site header, import reference-page fonts or navigation, add cards or dashboards, or introduce unsupported trust claims and performance metrics.
+Keep the closing conversion section's approved copy, proof points, and temporary single demo action inside one centered, single-viewport cinematic composition. A full-bleed abstract film sits behind a layered navy scrim, subtle grain, and vignette; the official emblem appears once in the compact **Connected assurance** signature. The section does not duplicate the site header, import reference-page fonts or navigation, add trial promotion, cards, dashboards, or unsupported trust claims and performance metrics.
 
 Preserve the decorative, muted, looping, pointer-inert media semantics; pause playback while the section is offscreen or the document is hidden. Reduced motion removes the film and exposes the complete static navy-teal fallback. Keep the foreground stable after its one-time staggered reveal, retain visible keyboard focus, fit the full composition within `100svh` at desktop and mobile sizes, and maintain zero horizontal overflow. Reopen the media source, background treatment, motion choreography, copy, proof points, or buttons only through an explicit request for this closing section. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still proceed.
 

@@ -9,8 +9,7 @@ export const aiHero = {
   titleAccent: 'AI standards',
   description: 'Bring AI systems, accountable owners, risk assessment, controls, and evidence into one operating view—so your team can respond to evolving AI standards and regulation with clearer readiness.',
   actions: [
-    { label: 'Start free trial', to: '/pricing', variant: 'primary' },
-    { label: 'Request a demo', to: '/demo', variant: 'secondary' }
+    { label: 'Request a demo', to: '/demo', variant: 'primary' }
   ],
   dossier: {
     label: 'AI governance workspace',
@@ -127,8 +126,7 @@ export const aiClosing = {
   title: 'Know your AI. Manage the risk. Prove readiness.',
   description: 'Bring systems, owners, assessments, controls, and evidence into one structured operating view.',
   actions: [
-    { label: 'Start free trial', to: '/pricing', variant: 'primary' },
-    { label: 'Request a demo', to: '/demo', variant: 'secondary' }
+    { label: 'Request a demo', to: '/demo', variant: 'primary' }
   ],
   proof: 'AI system inventory · AI risk assessment · Secura AI guidance · Framework readiness'
 };

@@ -26,14 +26,11 @@ describe('ContinuousComplianceCtaSection', () => {
         name: 'Make your next audit a review, not a restart.',
       }),
     ).toBeInTheDocument();
-    expect(within(conversion).getByRole('link', { name: 'Start free trial' })).toHaveAttribute(
-      'href',
-      '/pricing',
-    );
     expect(within(conversion).getByRole('link', { name: 'Request a demo' })).toHaveAttribute(
       'href',
       '/demo',
     );
+    expect(within(conversion).queryByRole('link', { name: 'Start free trial' })).not.toBeInTheDocument();
     expect(within(conversion).getByText(continuousComplianceClosing.proof)).toBeInTheDocument();
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
   });

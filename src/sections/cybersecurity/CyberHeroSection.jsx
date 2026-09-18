@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BookOpen,
   CalendarDays,
   Check,
@@ -22,7 +21,6 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import HeroTitleText from '../../components/HeroTitleText';
 import IntegrationLogo from '../../components/IntegrationLogo';
-import TrialLink from '../../components/TrialLink';
 import WaveDivider from '../../components/WaveDivider';
 import { brandAssets } from '../../data/brandAssets';
 
@@ -302,8 +300,7 @@ export default function CyberHeroSection({ content, motionEnabled }) {
           </h1>
           <p className="lede mt-5 max-w-135">{content.description}</p>
           <div className="action-row mt-7 max-[460px]:grid">
-            <TrialLink className="button button--mint button--directional"><ArrowRight aria-hidden="true" />Start Free Trial</TrialLink>
-            <Link className="button button--ghost" to="/demo"><CalendarDays aria-hidden="true" />Request a Demo</Link>
+            <Link className="button button--mint" to="/demo"><CalendarDays aria-hidden="true" />Request a Demo</Link>
           </div>
         </div>
         <figure

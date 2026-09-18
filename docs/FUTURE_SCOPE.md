@@ -1,6 +1,6 @@
 # Future Scope
 
-Last reviewed: 2026-09-15
+Last reviewed: 2026-09-18
 
 This is Controllo's durable register for work intentionally left for later. Record every deferred idea or future plan here when it appears during discovery, implementation, review, or validation. An entry preserves context; it is not approval to expand the current task.
 
@@ -71,9 +71,9 @@ Every entry must state:
 
 - **Status:** Planned
 - **Area:** Production launch readiness
-- **Outcome:** Complete legal approval, live lead delivery, claim/editorial review, hosting/HTTPS/deep-route verification, and the decision on pre-rendering plus social metadata. Published-route sitemap coverage is now guarded by `src/sitemap.test.js`.
+- **Outcome:** Complete legal approval, approve the current sales-email handoff or replace it with live lead delivery, finish claim/editorial review, preserve the seven WordPress article paths through hosting cutover, verify HTTPS/deep routes, and decide on pre-rendering plus social metadata. Published-route sitemap coverage is guarded by `src/sitemap.test.js`.
 - **Trigger:** A production launch window and owners are assigned.
-- **Dependencies:** Counsel, product/content approval, deployment host, lead endpoint, crawler requirements, and approved social assets.
+- **Dependencies:** Counsel, product/content approval, deployment host and WordPress path routing, final lead-channel decision, crawler requirements, and approved social assets.
 - **Source:** [Roadmap — Launch Blockers](ROADMAP.md#launch-blockers) and [Release Quality](ROADMAP.md#release-quality)
 - **Next decision:** Which blockers define the next release milestone, who owns each, and what is the validation evidence?
 
@@ -249,10 +249,20 @@ Every entry must state:
 
 ### FS-023 — Secura AI section visual direction
 
-- **Status:** Active
+- **Status:** Completed
 - **Area:** Dedicated `/platform/secura-ai` route
 - **Outcome:** Give each of the seven approved content sections a distinct but connected visual role, led by an inspectable control-context-to-gap-analysis product story rather than generic AI spectacle.
 - **Trigger:** The content-first route and claim boundaries are accepted as the working page narrative.
 - **Dependencies:** Section-by-section visual decisions, approved product-state references or clearly labelled samples, preserved human-review language, reduced-motion behavior, mobile containment, and focused browser QA.
 - **Source:** 2026-09-17 Secura AI content review and content-first route implementation
-- **Next decision:** With the product-authentic hero sequence established, which visual should carry the full-control-context section without repeating the hero workspace?
+- **Next decision:** None. The seven-section route is frozen; reopen only through an explicit request or a verified accessibility, factual, responsive, metadata, route, or release-critical performance issue.
+
+### FS-024 — Secura AI Context Convergence motion refinement
+
+- **Status:** Deferred
+- **Area:** Frozen **One control. Every relevant source in context.** section on `/platform/secura-ai`
+- **Outcome:** If the section is reopened, strengthen the source-to-core animation only where it makes Secura's combined-context review easier to understand, while preserving the approved composition and settled reading state.
+- **Trigger:** User research shows that the current staged connector reveal does not sufficiently explain the combined review, or an approved product state provides a more authentic causal sequence.
+- **Dependencies:** Explicit reopening, an approved short storyboard, preserved keyboard and touch states, offscreen pausing, static reduced-motion parity, responsive containment through 320px, and focused performance/browser QA.
+- **Source:** 2026-09-18 Context Convergence approval and freeze decision
+- **Next decision:** Which single causal beat adds understanding beyond the current node entrances, inward signal pulses, and resolved four-source state?

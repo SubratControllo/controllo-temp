@@ -2,7 +2,7 @@ import { Boxes, ClipboardCheck, Cloud, FileSearch, Gauge, Network, Radar, Shield
 import { brandAssets } from './brandAssets';
 
 export const navGroups = [
-  { label: 'Platform', href: '/platform', links: [
+  { label: 'Platform', links: [
     ['/platform/continuous-compliance', 'Continuous compliance', 'Keep controls and evidence current.'],
     ['/platform/risk-management', 'Risk management', 'See exposure and coordinate response.'],
     ['/platform/audit-management', 'Audit management', 'Give every audit a clean operating layer.'],
@@ -12,9 +12,7 @@ export const navGroups = [
   { label: 'Solutions', href: '/solutions/cybersecurity', links: [
     ['/solutions/cybersecurity', 'Cybersecurity', 'Implement controls and stay ready across frameworks.'],
     ['/solutions/privacy', 'Privacy', 'Run ROPA, DPIA, data-flow, and PII work.'],
-    ['/solutions/ai-governance', 'AI governance', 'Govern AI systems, owners, status, and risk.'],
-    ['/solutions/enterprise', 'Enterprise', 'Unify assurance across teams and entities.'],
-    ['/solutions/growing-teams', 'Growing teams', 'Build trust without building more process.']
+    ['/solutions/ai-governance', 'AI governance', 'Govern AI systems, owners, status, and risk.']
   ]},
   { label: 'Frameworks', href: '/frameworks' },
   { label: 'Integrations', href: '/integrations' },
@@ -140,17 +138,6 @@ export const integrationCategories = [
   'All',
   ...new Set(integrations.map(({ category }) => category))
 ];
-
-export const resources = [
-  { slug: 'continuous-compliance-field-guide', type: 'Guide', title: 'A field guide to continuous compliance', summary: 'A practical operating model for moving from point-in-time preparation to a current program.', read: '8 min' },
-  { slug: 'shared-control-model', type: 'Brief', title: 'Why shared controls change multi-framework work', summary: 'See how a connected control model reduces duplicate effort without removing accountability.', read: '6 min' },
-  { slug: 'audit-readiness-questions', type: 'Checklist', title: 'Ten questions that reveal audit readiness', summary: 'A focused readiness review for security and GRC leaders before the next audit cycle.', read: '5 min' }
-];
-
-export const resourceTypes = ['All', ...new Set(resources.map((item) => item.type))];
-const resourcesBySlug = new Map(resources.map((item) => [item.slug, item]));
-
-export const getResourceBySlug = (slug) => resourcesBySlug.get(slug);
 
 export const footerGroups = [
   ['Platform', [['Overview', '/platform'], ['Compliance', '/platform/continuous-compliance'], ['Risk', '/platform/risk-management'], ['Cloud', '/platform/cloud-monitoring'], ['Secura AI', '/platform/secura-ai']]],

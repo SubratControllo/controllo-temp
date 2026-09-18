@@ -1,6 +1,8 @@
 import { CheckCircle2 } from 'lucide-react';
 import PageMeta from '../components/PageMeta';
-import LeadForm from '../components/LeadForm';
+
+const salesEmail = 'controllo.sales@accedere.io';
+const salesEmailHref = `mailto:${salesEmail}?subject=${encodeURIComponent('Controllo demo request')}`;
 
 const expectations = [
   'A practical view of your current operating friction',
@@ -25,7 +27,17 @@ export default function DemoPage() {
             {expectations.map((item) => <p className="flex items-center gap-2.5 text-[.76rem] text-[#c4d4dd] [&>svg]:w-[17px] [&>svg]:text-mint" key={item}><CheckCircle2 aria-hidden="true" />{item}</p>)}
           </div>
         </div>
-        <div className="rounded-[30px] bg-white p-9 text-navy shadow-form max-[760px]:p-[22px]"><LeadForm /></div>
+        <div className="rounded-[30px] bg-white p-9 text-navy shadow-form max-[760px]:p-[22px]">
+          <p className="eyebrow">Email the Controllo team</p>
+          <h2 className="mt-5">Request your readiness tour.</h2>
+          <p className="mt-5 max-w-125 leading-[1.75] text-muted">
+            Tell us which framework, control, evidence, risk, or audit workflow you want to review. We’ll reply to arrange a focused conversation.
+          </p>
+          <a className="button button--mint mt-8" href={salesEmailHref}>Email sales</a>
+          <p className="mt-5 mb-0 text-[.74rem] text-muted">
+            Or write to <a className="text-teal underline" href={salesEmailHref}>{salesEmail}</a>
+          </p>
+        </div>
       </div>
     </section>
   </>;

@@ -22,10 +22,10 @@ describe('AiHeroSection', () => {
     const titleAccent = within(hero).getByText('AI standards', { exact: true });
     expect(titleAccent.tagName).toBe('SPAN');
     expect(titleAccent).toHaveClass('hero-title-accent');
-    expect(within(hero).getByRole('link', { name: /start free trial/i }))
-      .toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: /request a demo/i }))
       .toHaveAttribute('href', '/demo');
+    expect(within(hero).queryByRole('link', { name: /start free trial/i }))
+      .not.toBeInTheDocument();
     expect(within(hero).getByRole('figure', { name: /representative ai governance workflow/i }))
       .toHaveAttribute('data-motion-state', 'settled');
     expect(within(hero).getByText('AI governance workspace')).toBeVisible();

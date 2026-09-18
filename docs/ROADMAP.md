@@ -1,6 +1,6 @@
 # Roadmap and Current Progress
 
-Last reviewed: 2026-09-17
+Last reviewed: 2026-09-18
 
 This file is the current delivery source of truth. Update it when a capability or launch blocker changes; keep speculative ideas out until they have an owner and a clear outcome.
 
@@ -20,20 +20,22 @@ Implemented:
 - Homepage hero content aligned to the two-tone “Fast Compliance, Smarter Audit Readiness” narrative, with governed framework/control/mapping proof, a pricing-intent **View plans** primary action, and low-friction platform exploration
 - Viewport-driven Secura grid current with matching 42px square tiles, offscreen pausing, no user interaction, and a static reduced-motion fallback
 - Product-authentic Secura viewport loop with the existing CursorGrid, a compact control-detail opening state, connected policy/evidence/owner context, review-scope inputs, the real gradient Secura activation banner, a deterministic control-review request, a “2 gaps found” result, one continuous three-metric rail, four reviewable checks, an action-ready recommendation tray, constrained centered composition, and a static reduced-motion result state
-- Platform overview plus a dedicated content-first Secura AI route covering full control context, the review process, structured analysis output, GRC value, pre-assessment readiness, human judgment, and a demo handoff. The hero now has its product-authentic visual system; the remaining six sections remain open for the next design phase.
-- [x] Replace the generic Continuous Compliance route with a dedicated six-section page covering between-audit change, control and evidence maintenance, manually selected operating steps, user-initiated Secura review, qualitative readiness oversight, framework reuse, and a claim-safe trial/demo handoff.
-- [x] Replace the generic Risk Management route with a dedicated five-section page covering structured assessments, risk ownership, organization/asset/vendor/privacy/AI context, risk register and heatmap visibility, linked-control context, and claim-safe trial/demo handoff. Its hero uses one stable-perspective representative risk workspace with the current assessment scale, a restrained decision loop, connected owner/control context, target-exposure framing, dashboard-origin proof-card entrances, a readable mobile reflow, and a static reduced-motion state. The challenge-to-response journey now gives the second section a sticky decision context, four larger scrolling challenge cards, and one-time viewport entrances; the assessment section now presents a scroll-driven Risk Signal Workbench with selected assessment criteria, product-scale `0/2/5/8/10` heatmap buckets, manual register/heatmap views, a persistent linked-context drawer, and a compact outcome rail.
+- [x] Dedicated seven-section Secura AI route covering full control context, the review process, structured analysis output, GRC value, pre-assessment readiness, human judgment, and a centered cinematic demo handoff. The complete route is approved and frozen as a development baseline on 2026-09-18.
+- [x] Replace the generic Continuous Compliance route with a dedicated six-section page covering between-audit change, control and evidence maintenance, manually selected operating steps, user-initiated Secura review, qualitative readiness oversight, framework reuse, and a single demo handoff during the temporary launch override.
+- [x] Replace the generic Risk Management route with a dedicated five-section page covering structured assessments, risk ownership, organization/asset/vendor/privacy/AI context, risk register and heatmap visibility, linked-control context, and a single demo handoff during the temporary launch override. Its hero uses one stable-perspective representative risk workspace with the current assessment scale, a restrained decision loop, connected owner/control context, target-exposure framing, dashboard-origin proof-card entrances, a readable mobile reflow, and a static reduced-motion state. The challenge-to-response journey now gives the second section a sticky decision context, four larger scrolling challenge cards, and one-time viewport entrances; the assessment section now presents a scroll-driven Risk Signal Workbench with selected assessment criteria, product-scale `0/2/5/8/10` heatmap buckets, manual register/heatmap views, a persistent linked-context drawer, and a compact outcome rail.
 - [x] Replace the generic Audit Management route with a dedicated five-part page covering framework scope and XLSX export, a four-view audit ledger, linked policy/evidence records, auditor contacts and internal/external framework assignments, and a single-action demo handoff. Its representative product views use illustrative records rather than customer data or unapproved captures; repository tabs are manual and keyboard operable. Public claim and screenshot approval remain launch gates.
 - [x] Replace the generic Cloud Monitoring route with a dedicated seven-part page covering supported cloud asset and configuration visibility, security and compliance context, workforce identity and endpoint signals, available user-level exposure indicators, and accountable Jira-backed workflows. Its animated Cloud Visibility Radar uses verified sources, qualitative source-to-core signals, one configuration attention state, a click/keyboard source-to-core pulse, per-provider signal tooltips with a mint path-to-core trace on hover, and a complete reduced-motion view instead of customer data, readiness scores, or literal real-time claims. The full route is approved and frozen as a development baseline on 2026-09-17, including the full-viewport Security & Compliance Signals sequence, verified Microsoft 365 and Google Workspace workforce visual, sticky exposure investigation, Jira-backed workflow, and Gradient Blinds final CTA with demo and integrations destinations. Slack and Asana remain excluded until integration availability is verified.
 - Solution pages for cybersecurity, privacy operations, AI governance, enterprise, and growing teams
-- [x] Replace the generic Cybersecurity route with a claim-verified six-section page covering framework implementation, Secura review, risk and auditor context, supported cloud/workforce monitoring, framework reuse, and an externally configurable trial handoff. The route has distinct responsive graphics, keyboard-operable tabs, one-shot motion, and complete reduced-motion states.
+- [x] Replace the generic Cybersecurity route with a claim-verified six-section page covering framework implementation, Secura review, risk and auditor context, supported cloud/workforce monitoring, framework reuse, and a single demo handoff during the temporary launch override. The route has distinct responsive graphics, keyboard-operable tabs, one-shot motion, and complete reduced-motion states.
 - [x] Replace the generic AI Governance route with a dedicated six-section page for AI-system inventory, risk assessment, accountable ownership, Secura review, conservative framework context, and connected conversion. The explicit lazy route has two manually operated keyboard-accessible selectors, responsive product-led compositions, focused validation, and complete reduced-motion output; production launch approval is still governed by the launch blockers below.
 - Framework directory with search/filter and live detail pages for SOC 2, ISO 27001, and HIPAA
 - Integration directory with search/filter
-- Resource directory and detail routes
+- Resource directory linking directly to the seven supplied live Controllo articles
 - Capability-based package comparison
 - Company, security, privacy-policy, terms, and accessibility routes, with legacy `/privacy` redirected to privacy operations
-- Demo form validation, duplicate prevention, honeypot, simulated/local mode, optional endpoint mode, and optional booking handoff
+- Temporary demo handoff through the verified published sales email, with no simulated-success form exposed to visitors
+- Resource directory backed by seven existing Controllo articles instead of repeated placeholder detail bodies
+- Shared navigation keeps the Platform overview promotion, Enterprise, and Growing Teams out of the header while their placeholder routes remain available for later redesign
 - Page metadata, canonical URLs, JSON-LD, robots rules, sitemap, and SPA fallback file
 - Keyboard affordances, skip link, visible focus, operating-system reduced-motion support, and WebGL fallback
 - Automated interaction/component tests and a successful production build
@@ -48,8 +50,83 @@ Use this section for the latest useful proof only. Avoid adding full diary-style
 - Risk page validation: 2026-09-15 focused page tests passed 6/6; browser QA at 375px, 768px, 1024px, and 1440px confirmed the hero and decision-ledger layouts, zero horizontal overflow, and no console warnings or errors. The final CTA and compact heatmap tab were also reviewed at 1280px, with correct trial/demo destinations and no horizontal overflow. Recheck the final CTA at mobile width before production sign-off.
 - Audit page development validation: 2026-09-15 eight focused tests passed across the dedicated page, routing, generic FAQ, and sitemap checks. Each section was inspected in desktop/mobile browsers; final containment checks passed at 320px, 375px, 768px, 1024px, and 1440px. Metadata, canonical URL, two `/demo` actions, visible keyboard focus, and complete reduced-motion output were checked. A fresh normal-motion load had no console errors or warnings; reduced-motion emulation emitted only Motion's expected developer notice. This is not public-claim or production approval.
 - Cloud Monitoring development validation: 2026-09-17 the 7 focused page tests passed. Desktop and 390px browser checks confirmed valid demo/integrations destinations, no horizontal overflow, and no console errors; reduced-motion and WebGL fallbacks remain covered by the component implementation. This is not production launch approval.
-- Secura AI development validation: 2026-09-17 the content-first route passed its focused page, sitemap, and isolated route checks. Its hero now opens on the real Control Details screen and runs one viewport-aware phase timeline: the live product-gradient banner lifts from its exact position in the source image, an aligned 4:3 dark dashboard reveals the centered 7×7 analysis loader, and the workspace transforms into a detailed California AI Act result with control context, analysis stats, verdict, missing sections, document findings, and a recommended review action. The floating progress signal enters with analysis, counts from 0 to 66, and fills seven segments over the analysis window; the review-required and three-sections-missing signals pop out smoothly only after the sequence reaches its final hold. The sequence plays once and holds the completed result for reading while the Secura banner remains active in view. The banner links to the demo route, offscreen visibility still gates its WebGL work, and reduced motion resolves to the static final result. Three focused page tests passed; desktop and 390px browser checks confirmed the updated composition. Visual direction for the remaining six sections is still open.
+- Secura AI development validation: 2026-09-18 the dedicated route passed its focused page, sitemap, and isolated route checks. Its seven sections now cover the product-authentic hero sequence, Context Convergence, five-stage Secura Review Flow, scroll-driven output walkthrough, workload transformation, pre-assessment readiness, and centered cinematic conversion. The final CTA reuses the shared Cybersecurity cinematic field with offscreen playback gating and a static reduced-motion fallback while preserving Secura's copy and destinations. Nine focused Secura page tests and five focused shared Cybersecurity CTA tests pass; desktop browser inspection confirmed the centered closing composition. The complete route is frozen as a development baseline, not approved for production launch.
+- Temporary launch conversion validation: 2026-09-18 51 focused component/page/sitemap tests and 5 targeted app assertions passed. Desktop and 375px browser checks confirmed the email demo handoff, the seven-article resource directory, the shared header without trial promotion, and responsive layouts. Two unrelated stale Audit and Cloud assertions remain in the broader `App.test.jsx` file; no production build or full suite was run.
 - Current validation policy: run only affected tests and browser checks unless the user explicitly requests a production build, full suite, dependency install, or broader validation.
+
+## Temporary Launch Conversion Override
+
+Status: approved on 2026-09-18 for the initial public release.
+
+Self-service trial promotion is temporarily removed from the shared header, homepage closing conversion, Cybersecurity, AI Governance, Continuous Compliance, and Risk Management. Existing unfinished pages remain publishable as clearly incomplete development surfaces, but they must not imply that trial registration or activation is available.
+
+All public demo actions continue to `/demo`. That route now presents the verified published address `controllo.sales@accedere.io` through an explicit email action and visible fallback address; it no longer mounts the simulated-success lead form. This override supersedes trial/demo CTA details in the frozen baselines until a production trial, booking, or lead-delivery path is approved.
+
+The homepage retains its one-lead/two-supporting article layout, while `/resources` exposes the seven supplied live Controllo articles. Production routing must preserve those WordPress-owned paths before the SPA fallback.
+
+## Frozen Secura AI Hero Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the navy pixel-field hero, all-white Manrope headline, compact Secura identity, current copy and actions, and the product-authentic right-side sequence. The visual opens on the real Control Details screen, lifts the existing Secura banner from the screenshot, transitions through the aligned analysis workspace, and holds the complete review result with progress, verdict, missing-section, and recommendation signals. Preserve the current restrained perspective, one-play timeline, active banner treatment, demo destination, offscreen WebGL gating, responsive composition, and reduced-motion result state.
+
+Treat further hero copy, layout, typography, color, visual composition, animation choreography, and CTA changes as out of scope unless the user explicitly reopens the hero. Accessibility, verified responsive defects, product-claim corrections, metadata issues, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Context Convergence Baseline
+
+Status: approved and frozen for now on 2026-09-18.
+
+Keep the light Context Convergence composition beneath **One control. Every relevant source in context.** Preserve the four product-authentic source nodes, central Secura AI core, curved source-to-core connectors, compact proof line, interaction states, responsive vertical stack, and complete reduced-motion output. The section remains distinct from the hero and communicates that the control requirement, implementation description, policies and procedures, and evidence are reviewed together.
+
+Treat further copy, source inventory, layout, iconography, connector geometry, interaction behavior, and motion choreography as out of scope unless the user explicitly reopens this section. A richer explanatory animation is intentionally deferred in `docs/FUTURE_SCOPE.md`; accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Review Flow Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the compact five-stage **Describe → Connect → Analyze → Understand → Improve** flow beneath **Deep gap analysis, structured for review.** Preserve the icon-led connector rail, automatic viewport-controlled phase sequence, product-authentic microstates, completed and queued states, restrained active-card emphasis, 3+2 tablet layout, vertical mobile timeline, complete hold, soft reset, offscreen pause, and static reduced-motion result. The current shortened supporting copy and compact card proportions are part of the approved baseline.
+
+Treat further copy, card geometry, iconography, rail behavior, internal product previews, phase timing, and motion choreography as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Output Walkthrough Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the dark navy section beneath **Not just a finding. The full picture.** Preserve the four vertically spaced analysis stages, the desktop sticky white sample-control-review panel, scroll-position stage activation, restrained crossfades, structured gap table, final review recommendation, compact closing proof line, and the non-sticky mobile sequence that pairs each stage with its corresponding output. The panel must remain readable after each transition and keep human validation explicit.
+
+Treat further copy, stage spacing, sticky behavior, panel composition, table content, transition choreography, and mobile ordering as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Workload Transformation Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the light comparison beneath **Spend less time assembling the first review. Focus on what needs attention.** Preserve the five offset manual-review tasks, their exact measured connections into the central Secura analysis core, the three structured outputs, the compact four-part proof strip, the viewport-controlled automatic sequence, soft reset, responsive vertical fallback, and complete static reduced-motion state. Connector paths must continue to start and end at the rendered surface edges and remain behind the cards and core.
+
+Treat further copy, task and output inventory, card geometry, connector routing, core composition, proof strip, phase timing, and motion choreography as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Pre-Assessment Readiness Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the two-column section beneath **Review potential gaps before formal assessment.** Preserve the left-aligned explanation and six text-led benefit rows, the five-step review workflow, the emphasized Step 03 Secura review, the connected three-finding analysis panel, prioritized-finding summary, full-width navy human-judgment statement, viewport-controlled automatic sequence, mobile ordering, and complete static reduced-motion state. The analysis panel uses the same Secura mark as the hero, and connector rails reveal only with their active phase rather than extending into future empty steps.
+
+Treat further copy, benefit inventory, workflow order, finding language, connector behavior, phase timing, panel composition, and disclaimer treatment as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Final CTA Baseline
+
+Status: approved and frozen on 2026-09-18.
+
+Keep the full-viewport cinematic conversion beneath **Give Secura a control. See what your team may have missed.** Preserve the shared Cybersecurity background film, fallback, scrim, grain, vignette, offscreen playback gating, and reduced-motion static state. Keep the Secura signature, headline, description, demo and sample-analysis actions, and closing proof line centered as one content stack. The CTA destinations remain `/demo` and `#secura-output`.
+
+Treat further copy, alignment, typography, background media, CTA hierarchy, entrance motion, proof line, and destinations as out of scope unless the user explicitly reopens this section. Accessibility corrections, verified responsive defects, claim corrections, metadata or route fixes, and release-critical performance fixes may still proceed.
+
+## Frozen Secura AI Page Baseline
+
+Status: approved and frozen as a development baseline on 2026-09-18; production launch approval remains governed by the blockers below.
+
+Keep the seven-section order: product-authentic Secura hero, Context Convergence, Secura Review Flow, structured output walkthrough, workload transformation, pre-assessment readiness, and centered cinematic conversion. Preserve the approved copy, claim boundaries, CTA destinations, section-specific motion, viewport pausing, complete reduced-motion states, responsive compositions, human-validation language, and shared header/footer behavior.
+
+Reopen page composition, copy, visual direction, motion choreography, or CTA hierarchy only through an explicit request. Accessibility corrections, verified responsive defects, factual or legal corrections, metadata and route fixes, and release-critical performance work remain permitted.
 
 ## Frozen Audit Management Hero Baseline
 
@@ -87,7 +164,7 @@ Treat further page copy, layout, visual composition, and motion polish as out of
 
 Status: approved and frozen on 2026-09-08.
 
-The approved baseline keeps the centered editorial split, Manrope heading with a teal color-only **Beyond the audit** accent, trial/demo actions, a three-part capability rail, and the claim-audited representative **Compliance Current workspace**. The product visual uses mapped access-review language, qualitative state cards with distinct icons, anchored evidence/owner/history annotations, and a next accountable action without percentages, live-status claims, or an invented control identifier. A shared three-layer wave divider now carries the mist hero into the following white section and resolves statically when motion is paused or reduced.
+The approved baseline keeps the centered editorial split, Manrope heading with a teal color-only **Beyond the audit** accent, temporary single demo action, a three-part capability rail, and the claim-audited representative **Compliance Current workspace**. The product visual uses mapped access-review language, qualitative state cards with distinct icons, anchored evidence/owner/history annotations, and a next accountable action without percentages, live-status claims, or an invented control identifier. A shared three-layer wave divider now carries the mist hero into the following white section and resolves statically when motion is paused or reduced.
 
 Treat further hero copy, layout, workspace composition, annotation inventory or position, wave choreography, capability-rail styling, and visual restyling as out of scope unless a new request explicitly reopens the hero. Accessibility corrections, verified responsive defects, product-claim corrections, metadata issues, and release-critical performance fixes may still be patched without reopening the design.
 
@@ -129,7 +206,7 @@ Treat further copy, support-signal inventory, framework-path inventory, layout, 
 
 Status: approved and frozen on 2026-09-09 after final copy, visual, motion, accessibility, and responsive review.
 
-The approved sixth section is a compact navy closing poster that hands directly into the shared navy footer. Preserve the centered uppercase heading, white lead line, warm-white-to-lavender-to-coral gradient accent with its restrained soft glow, oversized low-opacity Controllo watermark, concise supporting copy, and compact conversion rail. **Start free trial** remains the mint primary action to `/pricing`; **Request a demo** remains the quiet outlined action to `/demo`; the proof sentence remains subordinate to both actions. The one-shot entrance reveals the lead line, then the accent flow, description, actions, and proof in under 750ms, with no ambient loop. Reduced motion renders the complete composition immediately.
+The approved sixth section is a compact navy closing poster that hands directly into the shared navy footer. Preserve the centered uppercase heading, white lead line, warm-white-to-lavender-to-coral gradient accent with its restrained soft glow, oversized low-opacity Controllo watermark, concise supporting copy, and compact conversion rail. During the temporary launch override, **Request a demo** is the sole mint action to `/demo`; the proof sentence remains subordinate. The one-shot entrance reveals the lead line, then the accent flow, description, action, and proof in under 750ms, with no ambient loop. Reduced motion renders the complete composition immediately.
 
 Do not add email capture, awards, trust-logo strips, copied reference assets or wording, autoplay, cursor tracking, video, aggregate metrics, unsupported product claims, or a separate visual break before the footer. Treat further copy, typography, gradient palette, glow, watermark, conversion-rail composition, motion, and responsive restyling as out of scope unless a new request explicitly reopens this section. Accessibility corrections, verified responsive defects, product-claim corrections, route fixes, and release-critical performance fixes may still proceed without reopening the wider design.
 
@@ -151,7 +228,7 @@ Treat further chapter pacing, scene composition, motion choreography, visual res
 
 Status: re-approved and frozen on 2026-09-07.
 
-The approved baseline keeps **Cyber readiness** teal and the remaining headline navy while every word retains identical Manrope typography, with no italic or secondary-font accent. It preserves the two actions beside one stable-perspective **Access review** workspace. One low-contrast orbit and two same-direction Controllo emblems sit behind the dashboard; four desktop proof cards pop once from the dashboard origin, while small mobile screens retain the two primary cards. The visual remains pointer-inert, claim-safe, responsive, and complete under reduced motion.
+The approved baseline keeps **Cyber readiness** teal and the remaining headline navy while every word retains identical Manrope typography, with no italic or secondary-font accent. It preserves the temporary single demo action beside one stable-perspective **Access review** workspace. One low-contrast orbit and two same-direction Controllo emblems sit behind the dashboard; four desktop proof cards pop once from the dashboard origin, while small mobile screens retain the two primary cards. The visual remains pointer-inert, claim-safe, responsive, and complete under reduced motion.
 
 Treat further hero composition, orbit count or direction, dashboard perspective, proof-card inventory, choreography, and visual restyling as out of scope unless a new request explicitly reopens this hero. Accessibility corrections, verified responsive defects, product-claim corrections, and release-critical performance issues may still be patched without reopening the design.
 
@@ -193,7 +270,7 @@ Status: approved and frozen on 2026-09-01. The design system's **Frozen Homepage
 
 The approved homepage order is Hero, popular-framework marquee, Connected Platform, Secura AI, focused Risk Management proof, Frameworks and Connectivity, Seven-Day Readiness Path, Blog, and final conversion CTA. The shared footer follows. Cybersecurity, Privacy, and AI Governance remain the three equal governance domains. Risk Management and Cloud Monitoring remain connected capabilities, not two additional top-level domain tabs; the additional Risk proof is a narrative handoff from identified gaps to prioritized action, not a fourth governance domain. Domain panels change only after manual selection and keep a stable equal-column desktop frame. The Secura narrative carries one contextual product-page link; its assessment canvas remains an interactive demonstration rather than a navigation surface.
 
-The hero uses **View plans** and **Explore the platform**. The header uses a quiet **Start free trial** pricing link and primary **Request a Demo** action. The final panel uses **Start free trial** and **Request a demo**, while the footer uses **See Controllo with your workflow**. Pricing-intent actions do not claim that registration or payment is connected. Do not add payment, customer logos, testimonials, unverified integrations, or new homepage sections without explicitly reopening the relevant product/content decision.
+The hero uses **View plans** and **Explore the platform**. During the temporary launch override, the header and final panel expose only **Request a Demo**, while the footer uses **See Controllo with your workflow**. The pricing page remains available as an unfinished public surface, but no trial action claims that registration or payment is connected. Do not add payment, customer logos, testimonials, unverified integrations, or new homepage sections without explicitly reopening the relevant product/content decision.
 
 ## Frozen Homepage Blog Index
 
@@ -217,11 +294,11 @@ Treat new decorative concepts, double rings, duplicate emblems, looping animatio
 
 - Hero primary: **View plans** leads to pricing.
 - Hero secondary: **Explore the platform**.
-- Navbar quiet action: **Start free trial** leads to pricing.
 - Navbar primary: **Request a Demo**.
-- Final homepage panel: **Start free trial** leads to pricing as an interim intent CTA; it does not claim that registration is connected.
+- Self-service trial actions remain hidden until Phase 2 is production-verified.
+- Final homepage panel: **Request a demo** is the only conversion action.
 - Footer: **See Controllo with your workflow** leads to the demo route.
-- Rename the action to **Book a Demo** only when visitors can select a calendar time directly.
+- The demo route opens a pre-addressed email to `controllo.sales@accedere.io`; use **Book a Demo** only when visitors can select a calendar time directly.
 
 ### Phase 2 — Activated free trial (planned)
 
@@ -239,11 +316,11 @@ Treat new decorative concepts, double rings, duplicate emblems, looping animatio
 These items must be resolved before calling the website production-ready.
 
 - [ ] Replace privacy and terms placeholders with approved legal language and publish valid privacy/security contact channels.
-- [ ] Configure a production lead endpoint and verify validation, CORS, rate limiting, spam handling, retention, deletion, CRM/email delivery, and failure recovery.
-- [ ] Supply the approved production `VITE_TRIAL_URL` owned by the external trial application, connect pricing-intent actions to the approved registration/payment handoff, verify registration and useful first-session activation end to end, and reconcile the external system's trial duration before publishing any duration claim.
+- [x] Replace the simulated-success demo form with an explicit handoff to the verified published sales email.
+- [x] Remove self-service trial promotion until registration, activation, and trial-duration decisions are production-verified; the future handoff remains tracked in `FS-001` and `FS-002`.
 - [ ] Decide whether analytics will launch. If yes, load it only under the approved consent policy and honor `essential`; if no, remove unsupported analytics language and event behavior.
 - [ ] Approve all product claims, framework claims, package descriptions, integration availability, and customer-facing proof.
-- [ ] Complete editorial and product-claim review of every WordPress article linked from the homepage; remove unsupported outcome promises, reconcile framework/control counts, and correct copy before launch.
+- [ ] Complete editorial and product-claim review of every WordPress article linked from the site; remove unsupported outcome promises, reconcile framework/control counts, and correct copy before launch.
 - [ ] Confirm the deployment host, HTTPS/domain configuration, and deep-route fallback on the production origin.
 
 ## Release Quality
@@ -255,9 +332,9 @@ Complete after the blockers and before launch:
 - [x] Finalize and freeze the complete 2026-09-01 homepage baseline, including section order, governance-domain interaction, product visuals, framework and integration proof, seven-day readiness placement, WordPress links, conversion copy, and responsive/reduced-motion behavior.
 - [x] Standardize shared primary and secondary button interaction while keeping icon usage semantic and context-specific.
 - [x] Consolidate repeated React directory behavior and establish indexed, content-owned route/detail boundaries without changing the current UX.
-- [x] Finish sitemap coverage for privacy, terms, accessibility, eligible resource detail pages, and every approved public route.
+- [x] Finish sitemap coverage for privacy, terms, accessibility, the seven supplied WordPress articles, and every approved public route.
 - [ ] Decide whether route-specific pre-rendering or server rendering is required for social crawlers and SEO; add Open Graph images and Twitter metadata if approved.
-- [ ] Replace shared generic resource bodies with reviewed content for each resource or remove unpublished resource routes.
+- [x] Replace shared generic resource bodies with direct links to the seven supplied live Controllo articles and remove the unpublished SPA detail routes.
 - [ ] Publish detailed GDPR and ISO 42001 pages or keep them clearly marked as coming soon.
 - [ ] Turn integration cards into accurate availability states and supporting pages/links, or label the directory as planned coverage.
 - [ ] Verify desktop, mobile, keyboard, reduced-motion, deep-link, metadata, cookie, and demo-form behavior on the deployed build.

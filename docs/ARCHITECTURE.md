@@ -1,6 +1,6 @@
 # Architecture
 
-Last reviewed: 2026-09-09
+Last reviewed: 2026-09-18
 
 ## System Shape
 
@@ -67,13 +67,13 @@ The site intentionally keeps content close to the frontend:
 - `src/data/enterpriseContent.js` owns navigation, product pages, frameworks, integrations, resources, and footer groups.
 - `src/data/brandAssets.js` is the runtime registry for locally hosted third-party brand marks; provenance and review status remain beside the files in `public/assets/brands/README.md`.
 - `src/data/siteContent.js` owns homepage Connected Platform and Risk visualization data.
-- `src/data/securaAiContent.js` owns the dedicated Secura AI route's claim-reviewed content inventory while its section visuals remain undecided.
+- `src/data/securaAiContent.js` owns the dedicated Secura AI route's claim-reviewed content inventory; its seven section visuals are frozen at the 2026-09-18 development baseline.
 - `src/data/staticPages.js` owns company, security, privacy, terms, and accessibility content; `src/pages/StaticPage.jsx` only composes the shared presentation.
 - `src/pages/PricingPage.jsx` currently owns package comparison content locally.
 
 There is no CMS. Content changes are source changes and require a build/deploy cycle. Existing objects in `src/data/` are the source of truth for content shapes.
 
-Framework and resource detail pages use module-level slug maps exported through selector functions instead of scanning their collections during every render. Directory filter options are also derived once when the content module loads. `DirectoryControls` owns the shared search field and filter-chip behavior used by framework, integration, and resource directories.
+Framework detail pages use a module-level slug map exported through a selector function instead of scanning the collection during every render. Directory filter options are derived once when the content module loads. `DirectoryControls` owns the shared search field and filter-chip behavior used by framework, integration, and resource directories. The resource directory links directly to the approved existing Controllo article URLs instead of publishing repeated placeholder article bodies in the SPA.
 
 Static arrays and reusable render components stay at module scope. Do not add memoization around trivial expressions; introduce deferred rendering, pagination, or remote-data caching only when collection size or a future API makes the cost measurable.
 
@@ -83,7 +83,7 @@ Static arrays and reusable render components stay at module scope. Do not add me
 
 Each route-owned section controls one visual system: Assurance Horizon, Response Matrix, Review Dossier, Operational Monitoring Console, Shared-Control Field, or Kinetic Brand Mosaic. The Shared-Control Field is a pointer-inert mapping loom rather than another dashboard: three reusable control rows meet the Controllo emblem and branch into eight visible framework entries, while the sole framework-directory action remains outside the illustration. Its desktop grid gives the emblem a widened middle track and right-aligns it so the control-to-hub and hub-to-spine spans remain visually balanced; the stacked mobile layout centers the emblem. The measured framework spine sits midway between the two inner-facing endpoint columns. Every row owns one junction and two straight mirrored stubs; left labels precede their right-edge dots, while right labels follow their left-edge dots. One overlay SVG derives a 1:1 viewBox and every path from measured DOM anchors. A signature-guarded post-commit measurement plus a requestAnimationFrame-debounced `ResizeObserver`, window resize listener, and post-font-load pass keep endpoints aligned through hot layout changes, breakpoints, zoom, and text wrapping without causing render loops. The viewport GSAP sequence draws those measured paths once, briefly resolves each endpoint, and then becomes still. The reduced-motion fallback renders the complete diagram statically. The closing Kinetic Brand Mosaic keeps the official emblem as the right-side focal point without a dashboard, cards, labels, or connector geometry. Twenty-one translucent white, mint-soft, and mint glass fragments assemble into a controlled depth cloud around the exact emblem. A quieter navy-teal background preserves copy contrast while a right-weighted aurora, organic mist, localized halo, subtle grain, and grounded shadow concentrate depth behind the mosaic. GSAP assembles the fragments and emblem once on viewport entry, then limits ambient motion to slow aurora, mist, halo, and fragment displacement while the section remains visible. Reduced motion renders the complete mosaic statically. The Operational Monitoring Console keeps its three keyboard-operated views in one stable desktop frame. Each view pairs a navy source roster with a light monitoring workspace that derives source, signal, and review counts from its configured content, then separates current visibility from the review queue without implying that operational monitoring changes compliance status. Exact third-party marks resolve through the local brand registry and `IntegrationLogo`. `MotionContext` supplies the operating-system motion preference; automated sequences settle, clean up timers/observers, and render complete static states under reduced motion. `SiteLayout` renders the first lazy route without a second opacity entrance so route-owned hero motion is visible immediately, while subsequent client-side route changes retain the shared transition.
 
-`TrialLink` accepts only an absolute `http:` or `https:` `VITE_TRIAL_URL`. A missing, blank, malformed, relative, or non-web value renders an internal Router link to `/pricing`. The variable is public browser configuration and must never contain a secret.
+Self-service trial promotion is temporarily removed from public surfaces. The dormant `TrialLink` helper remains available for the future externally owned trial handoff tracked in `FS-001`, but no current route renders it.
 
 Generic Product and Pricing pages no longer repeat FAQ content. Educational questions belong in the external article library; a future pricing-specific FAQ requires separately approved commercial answers.
 
@@ -91,7 +91,17 @@ Generic Product and Pricing pages no longer repeat FAQ content. Educational ques
 
 `src/pages/SecuraAiPage.jsx` owns the seven-section content-first composition for `/platform/secura-ai`, and `src/data/securaAiContent.js` owns its metadata and public copy. The route is lazy-loaded explicitly in `src/App.jsx` and excluded from the generic `productPages` registry.
 
-The current route establishes content hierarchy only: hero, full control context, review process, structured output, GRC value, pre-assessment readiness, and final conversion. It uses static shared primitives without committing to section-specific product graphics, interaction, motion, or final art direction. Preserve the claim boundaries already reflected in the copy: Secura reviews an implementation description and linked context, no timing guarantee is published, supported formats are not described as universal, sample findings are labelled, and accountable people retain final judgment. Visual design remains tracked under `FS-023` in `docs/FUTURE_SCOPE.md`.
+The frozen route composition is:
+
+1. Product-authentic Control Details hero sequence
+2. Four-source Context Convergence
+3. Five-stage Secura Review Flow
+4. Scroll-driven structured-output walkthrough
+5. Manual-to-structured workload transformation
+6. Pre-assessment readiness workflow
+7. Centered cinematic conversion
+
+`MotionContext` gates the section timelines, offscreen work pauses where applicable, and reduced motion renders complete static states. `CinematicCtaField` is shared with the Cybersecurity route so both closing sections use one background-film playback and fallback implementation. Preserve the claim boundaries reflected in the copy: Secura reviews an implementation description and linked context, no timing guarantee is published, supported formats are not described as universal, sample findings are labelled, and accountable people retain final judgment. The complete route is frozen at the 2026-09-18 development baseline; `FS-024` retains only the explicitly deferred Context Convergence motion refinement.
 
 ### Dedicated AI Governance Route
 
@@ -171,14 +181,7 @@ Visual changes must also follow `design-system/controllo-compliance-current/MAST
 
 ## Browser Integrations
 
-The demo form calls `LeadService.submit`:
-
-- With no `VITE_LEAD_ENDPOINT`, it simulates success after a short delay.
-- With an endpoint, it sends JSON using an unauthenticated browser `POST` request.
-- On success, it pushes a `lead_submitted` event to `window.dataLayer`.
-- If `VITE_DEMO_CALENDAR_URL` exists, the success screen offers the booking link.
-
-The lead payload contains `name`, `email`, `company`, `size`, optional `role`, consent, the empty `website` honeypot, and `source: "enterprise-site"`. The external endpoint owns server-side validation, rate limiting, spam handling, CORS, storage, retention, and delivery. All `VITE_*` values are public browser configuration and must never contain secrets.
+The public `/demo` route currently uses a visible `mailto:` handoff to the verified published address `controllo.sales@accedere.io`. It does not display or submit the dormant browser-side lead form, so visitors cannot receive a simulated success state for an undelivered request. A future form, booking service, or CRM endpoint requires a separately approved production integration.
 
 The cookie panel stores either `essential` or `accepted` under `controllo-consent` in `localStorage`. This preference currently controls only whether the panel is shown. It does not yet conditionally load or suppress analytics; that gap is tracked in `docs/ROADMAP.md`.
 
@@ -192,6 +195,8 @@ Crawler-facing files are static:
 - `public/sitemap.xml`
 
 Route additions require both the React route and relevant crawler entries to change together.
+
+The seven article destinations linked by the homepage and resource directory remain WordPress-owned paths on `controllo.ai`. Production hosting must route those paths to WordPress before applying the SPA fallback; otherwise the React not-found route will replace genuine article content.
 
 For new public pages, start with `docs/PAGE_CREATION_BRIEF.md`. It keeps the current locked-surface summary, route checklist, and required documentation updates in one compact place so this architecture file does not duplicate roadmap or design-system detail.
 

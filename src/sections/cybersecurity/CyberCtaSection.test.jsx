@@ -20,14 +20,11 @@ describe('CyberCtaSection', () => {
     );
 
     const section = screen.getByRole('region', { name: cyberClosing.title });
-    expect(within(section).getByRole('link', { name: 'Start Free Trial' })).toHaveAttribute(
-      'href',
-      '/pricing',
-    );
     expect(within(section).getByRole('link', { name: 'Request a Demo' })).toHaveAttribute(
       'href',
       '/demo',
     );
+    expect(within(section).queryByRole('link', { name: 'Start Free Trial' })).not.toBeInTheDocument();
     expect(
       within(section).getByRole('list', { name: 'Cybersecurity platform proof' }),
     ).toHaveTextContent('100+ frameworks');
@@ -117,13 +114,12 @@ describe('CyberCtaSection', () => {
 
     const section = screen.getByRole('region', { name: cyberClosing.title });
     const signature = screen.getByTestId('cyber-cta-signature');
-    const trial = within(section).getByRole('link', { name: 'Start Free Trial' });
     const demo = within(section).getByRole('link', { name: 'Request a Demo' });
 
     expect(signature).toHaveAccessibleName('Controllo connected assurance');
     expect(signature.querySelectorAll('img[src="/assets/emblemLogo.svg"]')).toHaveLength(1);
     expect(section.querySelector('header, nav')).not.toBeInTheDocument();
-    [trial, demo].forEach((link) => expect(link).toHaveClass('focus-visible:outline-white'));
+    expect(demo).toHaveClass('focus-visible:outline-white');
     expect(section.querySelector('[data-cta-content]')).toHaveClass('text-center');
   });
 });

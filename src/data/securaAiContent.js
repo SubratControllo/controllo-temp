@@ -6,6 +6,7 @@ export const securaAiMeta = {
 export const securaAiHero = {
   eyebrow: 'Secura AI',
   title: 'Know what’s missing. Know what to review next.',
+  titleAccent: 'Know what to review next.',
   description: 'Secura reviews a control requirement alongside its implementation description, linked policies and procedures, and evidence. It surfaces missing or incomplete context and prepares recommendations for your team to validate.',
   supportingLine: 'Reviewable AI guidance for GRC teams.',
   primaryAction: { label: 'Request a demo', href: '/demo' },
@@ -15,14 +16,34 @@ export const securaAiHero = {
 export const securaAiContext = {
   eyebrow: 'Full control context',
   title: 'One control. Every relevant source in context.',
-  description: 'Secura does not review one document in isolation. It reviews the requirement together with the linked implementation description, policies, procedures, and evidence available to the control.',
+  description: 'Secura reviews the control requirement together with the linked implementation description, policies, procedures, and evidence available to the control.',
   items: [
-    ['Control requirement', 'Establishes what the control is expected to demonstrate.'],
-    ['Implementation description', 'Reviews how your organization describes the control in operation.'],
-    ['Policies and procedures', 'Reviews the documents that define how the control should operate.'],
-    ['Evidence', 'Reviews the records intended to demonstrate that the control was performed.'],
+    {
+      id: 'requirement',
+      title: 'Control requirement',
+      description: 'Defines what the control must demonstrate.',
+      status: 'Required context',
+    },
+    {
+      id: 'implementation',
+      title: 'Implementation description',
+      description: 'Shows how the control operates in practice.',
+      status: 'Implementation context',
+    },
+    {
+      id: 'policies',
+      title: 'Policies & procedures',
+      description: 'Defines how the control should operate.',
+      status: 'Linked documents',
+    },
+    {
+      id: 'evidence',
+      title: 'Evidence',
+      description: 'Demonstrates that the control was performed.',
+      status: 'Reviewable records',
+    },
   ],
-  highlight: 'Requirement + implementation + policies + evidence → Secura AI',
+  highlight: '4 sources · 1 control context · reviewable AI guidance',
 };
 
 export const securaAiProcess = {
@@ -31,10 +52,10 @@ export const securaAiProcess = {
   description: 'The information is already part of the control workflow. Secura brings the linked context together and turns it into a structured analysis.',
   steps: [
     ['Describe', 'Explain how the control is implemented.'],
-    ['Connect', 'Link the relevant policies, procedures, and evidence.'],
-    ['Analyze', 'Run Secura against the control requirement and its supporting context.'],
-    ['Understand', 'See what is supported, what is incomplete, and where context is missing.'],
-    ['Improve', 'Review the recommendations and decide what your team should address.'],
+    ['Connect', 'Link policies, procedures, and evidence.'],
+    ['Analyze', 'Review the requirement and supporting context.'],
+    ['Understand', 'See what is supported, incomplete, or missing.'],
+    ['Improve', 'Review recommendations and decide what to address.'],
   ],
   highlight: 'Describe → Connect → Analyze → Understand → Improve',
 };
@@ -63,19 +84,17 @@ export const securaAiValue = {
   eyebrow: 'Built for GRC gap analysis',
   title: 'Spend less time assembling the first review. Focus on what needs attention.',
   description: 'A manual control review means reading the requirement, implementation description, policies, procedures, and evidence, then comparing them to find what does not line up. Secura performs that first structured review and gives your team a clearer place to start.',
-  without: [
-    'Read each linked record',
-    'Compare the control context manually',
-    'Identify inconsistencies',
-    'Document the gaps',
+  manualTasks: [
+    'Read the control requirement',
+    'Review the implementation description',
+    'Check policies and procedures',
+    'Inspect linked evidence',
     'Work out the next action',
   ],
-  with: [
-    'Connect the control context',
-    'Run a Secura review',
-    'Inspect the structured gaps',
-    'Validate the recommendations',
-    'Decide and act',
+  structuredOutputs: [
+    ['Structured gaps', 'See what is incomplete or missing.'],
+    ['Source-level findings', 'Know which linked source needs attention.'],
+    ['Recommended review actions', 'See what the team should review next.'],
   ],
   differentiators: [
     ['Control aware', 'Analysis starts with the requirement.'],
@@ -99,6 +118,12 @@ export const securaAiReadiness = {
     'Prepare stronger control support for review',
   ],
   workflow: ['Implement', 'Document', 'Secura review', 'Address gaps', 'Formal review'],
+  findings: [
+    ['Implementation weak', 'Control activity not fully described'],
+    ['Policy gap found', 'Procedure not aligned to policy'],
+    ['Evidence needs review', 'Supporting record incomplete'],
+  ],
+  priority: 'Findings are prioritized before formal review.',
   boundary: 'Secura supports the analysis. Your team and auditor remain responsible for the final judgment.',
 };
 

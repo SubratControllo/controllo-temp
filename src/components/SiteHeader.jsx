@@ -66,7 +66,7 @@ export default function SiteHeader() {
   };
 
   const isGroupActive = (group) => {
-    const routes = [group.href, ...(group.links?.map(([href]) => href) ?? [])];
+    const routes = [group.href, ...(group.links?.map(([href]) => href) ?? [])].filter(Boolean);
     return routes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
   };
 
@@ -207,11 +207,11 @@ export default function SiteHeader() {
               {openGroup === group.label && (
                 <div
                   id={panelId(group.label)}
-                  className="mega-panel static grid w-auto grid-cols-1 gap-6 rounded-3xl border border-line bg-[#f4f8f7] p-2 shadow-none min-[1081px]:absolute min-[1081px]:top-12 min-[1081px]:left-1/2 min-[1081px]:w-160 min-[1081px]:-translate-x-1/2 min-[1081px]:grid-cols-[180px_1fr] min-[1081px]:bg-white/98 min-[1081px]:p-6 min-[1081px]:shadow-elevated"
+                  className={`mega-panel static grid w-auto grid-cols-1 gap-6 rounded-3xl border border-line bg-[#f4f8f7] p-2 shadow-none min-[1081px]:absolute min-[1081px]:top-12 min-[1081px]:left-1/2 min-[1081px]:w-160 min-[1081px]:-translate-x-1/2 min-[1081px]:bg-white/98 min-[1081px]:p-6 min-[1081px]:shadow-elevated ${group.href ? 'min-[1081px]:grid-cols-[180px_1fr]' : 'min-[1081px]:grid-cols-1'}`}
                   onMouseEnter={clearCloseTimer}
                   onMouseLeave={() => scheduleHoverClose(group.label)}
                 >
-                  <div className="group/nav-overview relative hidden overflow-hidden rounded-[18px] bg-navy p-4.5 text-white transition-[background-color,box-shadow] duration-300 ease-out min-[1081px]:flex min-[1081px]:flex-col min-[1081px]:items-start min-[1081px]:justify-between">
+                  {group.href && <div className="group/nav-overview relative hidden overflow-hidden rounded-[18px] bg-navy p-4.5 text-white transition-[background-color,box-shadow] duration-300 ease-out min-[1081px]:flex min-[1081px]:flex-col min-[1081px]:items-start min-[1081px]:justify-between">
                     <span
                       className="pointer-events-none absolute right-[-72px] bottom-[-40px] z-0 h-32 w-46 translate-x-7 rounded-full bg-[radial-gradient(circle_at_center,rgba(38,216,173,.28),rgba(16,175,164,.1)_42%,rgba(16,175,164,0)_70%)] opacity-0 blur-xl transition-[opacity,transform] duration-500 ease-out group-hover/nav-overview:translate-x-0 group-hover/nav-overview:opacity-100 motion-reduce:translate-x-0 motion-reduce:transition-opacity"
                       aria-hidden="true"
@@ -225,7 +225,7 @@ export default function SiteHeader() {
                     />
                     <span className="relative z-10 font-mono text-[.61rem] font-medium leading-normal tracking-widest uppercase text-mint">Explore {group.label}</span>
                     <Link className="relative z-10 flex gap-1.75 text-[.76rem] text-white [&>svg]:size-3.75 [&>svg]:shrink-0 [&>svg]:transition-transform hover:[&>svg]:translate-x-0.5" to={group.href} onClick={closeAll}>View overview <ArrowRight aria-hidden="true" /></Link>
-                  </div>
+                  </div>}
                   <div className="grid grid-cols-1 gap-1.5 min-[761px]:grid-cols-2">
                     {group.links.map(([href, label, detail]) => (
                       <Link className="group/nav-option relative flex min-h-16 flex-col items-start justify-center overflow-hidden rounded-[15px] p-3.5 transition-[background,transform] duration-300 ease-out hover:-translate-y-0.5 hover:bg-panel-hover focus-visible:bg-panel-hover min-[761px]:min-h-20" to={href} key={href} onClick={closeAll}>
@@ -255,13 +255,6 @@ export default function SiteHeader() {
           ))}
 
           <div className="mx-2 mt-2.5 mb-1 hidden gap-2 max-[1080px]:grid min-[1081px]:hidden">
-            <Link
-              className="button button--ghost min-h-11.5 w-full bg-white/72 px-4 transition-[background-color,color,box-shadow] duration-200 hover:translate-y-0 hover:bg-mint-soft hover:text-teal focus-visible:bg-mint-soft focus-visible:text-teal motion-reduce:hover:translate-y-0"
-              to="/pricing"
-              onClick={closeAll}
-            >
-              Start free trial
-            </Link>
             <Link className="button button--mint button--directional group/brand-cta relative isolate min-h-11.5 w-full overflow-hidden border border-white/30 px-4 py-0 text-navy transition-transform duration-300 hover:scale-[1.015] hover:bg-mint focus-visible:scale-[1.015] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100" to="/demo" onClick={closeAll}>
               <HeaderCtaContent>Request a Demo</HeaderCtaContent>
             </Link>
@@ -283,13 +276,6 @@ export default function SiteHeader() {
           >
             {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
-          <Link
-            className="button button--ghost min-h-11.5 bg-white/72 px-4 shadow-[inset_0_0_0_1px_rgba(6,27,50,.16)] transition-[background-color,color,box-shadow] duration-200 hover:translate-y-0 hover:bg-mint-soft hover:text-teal focus-visible:bg-mint-soft focus-visible:text-teal motion-reduce:hover:translate-y-0 max-[1080px]:hidden"
-            to="/pricing"
-            onClick={closeAll}
-          >
-            Start free trial
-          </Link>
           <Link className="button button--directional group/brand-cta relative isolate min-h-11.5 overflow-hidden border border-white/25 transition-transform duration-300 hover:scale-[1.015] hover:bg-navy focus-visible:scale-[1.015] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 max-[1080px]:hidden" to="/demo" onClick={closeAll}>
             <NavbarIntroHighlight />
             <HeaderCtaContent>Request a Demo</HeaderCtaContent>

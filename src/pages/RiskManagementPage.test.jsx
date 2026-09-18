@@ -37,8 +37,8 @@ describe('RiskManagementPage', () => {
       name: 'Know which risks need your attention.',
     }).closest('section');
 
-    expect(within(hero).getByRole('link', { name: /start free trial/i })).toHaveAttribute('href', '/pricing');
     expect(within(hero).getByRole('link', { name: /request a demo/i })).toHaveAttribute('href', '/demo');
+    expect(within(hero).queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
     expect(within(hero).getByRole('img', { name: /controllo dashboard showing overall, asset, organization, and vendor risk visibility/i })).toHaveAttribute('src', '/assets/risk-dashboard.svg');
     expect(hero.querySelector('.wave-divider[aria-hidden="true"]')).toBeInTheDocument();
     expect(hero.querySelector('.wave-divider__wave--front')).toBeInTheDocument();

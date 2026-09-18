@@ -1,7 +1,6 @@
-import { ArrowRight, CalendarDays } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import TrialLink from '../../components/TrialLink';
 
 const easeOut = [0.22, 1, 0.36, 1];
 
@@ -127,11 +126,7 @@ export default function ContinuousComplianceCtaSection({ content, motionEnabled 
         </motion.p>
         <motion.div className="continuous-cta__conversion" variants={itemVariants}>
           <div className="continuous-cta__actions">
-            <TrialLink className="button button--mint button--directional continuous-cta__primary focus-visible:outline-white">
-              <span>Start free trial</span>
-              <ArrowRight aria-hidden="true" />
-            </TrialLink>
-            <Link className="button continuous-cta__secondary focus-visible:outline-white" to="/demo">
+            <Link className="button button--mint continuous-cta__primary focus-visible:outline-white" to="/demo">
               <CalendarDays aria-hidden="true" />
               <span>Request a demo</span>
             </Link>

@@ -21,8 +21,8 @@ describe('AiCtaSection', () => {
     expect(
       within(cta).getByRole('heading', { name: /know your ai.*manage the risk.*prove readiness/i }),
     ).toBeInTheDocument();
-    expect(within(cta).getByRole('link', { name: /start free trial/i })).toHaveAttribute('href', '/pricing');
     expect(within(cta).getByRole('link', { name: /request a demo/i })).toHaveAttribute('href', '/demo');
+    expect(within(cta).queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
     expect(
       within(cta).getByRole('list', { name: /ai governance platform proof/i }),
     ).toHaveTextContent(/ai system inventory.*ai risk assessment.*secura ai guidance.*framework readiness/i);

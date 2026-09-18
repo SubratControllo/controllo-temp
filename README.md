@@ -4,7 +4,7 @@ Public marketing website for Controllo, a continuous compliance platform connect
 
 ## Current Status
 
-The repository contains a working React/Vite single-page marketing site. It includes a frozen homepage baseline, a release-hardened header, dedicated Cybersecurity, AI Governance, Risk Management, and Continuous Compliance routes, searchable framework and integration directories, resource/static pages, browser-side demo form handling, metadata, sitemap, robots rules, reduced-motion support, and static-host SPA fallback.
+The repository contains a working React/Vite single-page marketing site. It includes a frozen homepage baseline, a release-hardened header, dedicated Cybersecurity, AI Governance, Risk Management, Continuous Compliance, Audit Management, Cloud Monitoring, and Secura AI routes, searchable framework and integration directories, a live-article resource index, static pages, an email-based demo handoff, metadata, sitemap, robots rules, reduced-motion support, and static-host SPA fallback.
 
 This is not yet a production-launch declaration. Legal copy, live lead delivery, trial handoff, analytics consent enforcement, content approval, deployment verification, and final SEO coverage remain tracked in [the roadmap](docs/ROADMAP.md). AI-assisted contributors should start with [the compact agent brief](docs/AGENT_BRIEF.md).
 
@@ -19,25 +19,12 @@ Install and start the site:
 
 ```bash
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
 Vite prints the local URL, normally `http://localhost:5173`.
 
-The site works without environment values. In that mode, demo requests are simulated in the browser and no lead is delivered externally.
-
-## Environment
-
-```dotenv
-VITE_LEAD_ENDPOINT=https://example.com/api/leads
-VITE_DEMO_CALENDAR_URL=https://example.com/book
-VITE_TRIAL_URL=https://trial.example.com/start
-```
-
-`VITE_TRIAL_URL` is the optional public absolute HTTP(S) handoff owned by the external trial application. When it is absent or invalid, Cybersecurity page trial actions remain visible and lead to `/pricing`. The marketing site does not implement registration, payment, provisioning, onboarding, or trial-duration logic.
-
-All three values are optional. Every `VITE_*` variable is embedded in client-side code and must be safe to expose publicly. The lead endpoint must accept the browser JSON request described in [the architecture](docs/ARCHITECTURE.md).
+The current public flow requires no environment values. Demo requests open the visitor’s email client with the published Controllo sales address, and self-service trial promotion remains hidden until its external activation path is approved.
 
 ## Commands
 

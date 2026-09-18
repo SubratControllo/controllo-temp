@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
+import { blogArticles } from './data/siteContent';
 
 const renderRoute = (route = '/') => render(
   <MemoryRouter initialEntries={[route]}>
@@ -124,32 +125,26 @@ describe('Compliance Current landing page', () => {
     });
   });
 
-  it('adds a quiet trial action to both desktop and collapsed header navigation', () => {
+  it('keeps trial promotion out of desktop and collapsed header navigation', () => {
     renderRoute();
 
     const header = document.querySelector('header.site-header');
-    const trialCtas = within(header).getAllByRole('link', {
-      name: /start free trial/i
-    });
+    expect(within(header).queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
+    expect(within(header).getAllByRole('link', { name: /request a demo/i })).toHaveLength(2);
+  });
 
-    expect(trialCtas).toHaveLength(2);
-    trialCtas.forEach((cta) => {
-      expect(cta).toHaveAttribute('href', '/pricing');
-      expect(cta).toHaveClass('button', 'button--ghost');
-      expect(cta).not.toHaveClass('button--directional');
-      expect(cta.querySelector('svg')).not.toBeInTheDocument();
-    });
+  it('keeps unfinished overview and audience pages out of the header navigation', async () => {
+    const user = userEvent.setup();
+    renderRoute();
+    const header = document.querySelector('header.site-header');
 
-    const primaryNav = within(header).getByRole('navigation', {
-      name: /primary navigation/i
-    });
-    const desktopTrial = trialCtas.find((cta) => !primaryNav.contains(cta));
-    const desktopDemo = within(header)
-      .getAllByRole('link', { name: /request a demo/i })
-      .find((cta) => !primaryNav.contains(cta));
+    await user.click(within(header).getByRole('button', { name: 'Platform' }));
+    expect(within(header).queryByRole('link', { name: /view overview/i })).not.toBeInTheDocument();
 
-    expect(desktopTrial.className).toContain('max-[1080px]:hidden');
-    expect(desktopDemo.className).toContain('max-[1080px]:hidden');
+    await user.click(within(header).getByRole('button', { name: 'Solutions' }));
+    expect(within(header).queryByRole('link', { name: /^enterprise/i })).not.toBeInTheDocument();
+    expect(within(header).queryByRole('link', { name: /^growing teams/i })).not.toBeInTheDocument();
+    expect(within(header).getByRole('link', { name: /^cybersecurity/i })).toBeInTheDocument();
   });
 
   it('renders the homepage hero with its current responsive spacing utilities', () => {
@@ -256,12 +251,10 @@ describe('Compliance Current landing page', () => {
     }, { timeout: 3000 });
     const hero = heading.closest('section');
     const demoLink = within(hero).getByRole('link', { name: /request a demo/i });
-    const trialLink = within(hero).getByRole('link', { name: /start free trial/i });
 
     expect(heading).toBeInTheDocument();
     expect(demoLink.querySelector('.lucide-calendar-days')).toBeInTheDocument();
-    expect(demoLink).not.toHaveClass('button--directional');
-    expect(trialLink).toHaveAttribute('href', '/pricing');
+    expect(within(hero).queryByRole('link', { name: /start free trial/i })).not.toBeInTheDocument();
     expect(screen.getByRole('region', {
       name: /assess the risk\. see where to focus/i
     })).toBeInTheDocument();
@@ -335,7 +328,7 @@ describe('Compliance Current landing page', () => {
     expect(await screen.findByRole('heading', { name: /operationalize privacy across data, systems, and teams/i })).toBeInTheDocument();
   });
 
-  it('uses accurate Phase 1 demo request language', async () => {
+  it('uses the published sales email for the temporary demo handoff', async () => {
     renderRoute('/demo');
 
     expect(
@@ -343,12 +336,26 @@ describe('Compliance Current landing page', () => {
         name: /Bring one real workflow. Leave with a clearer path./i
       })
     ).toBeInTheDocument();
-    expect(
-      screen.getAllByRole('link', { name: /Request a Demo/i })
-    ).toHaveLength(2);
-    const submitButton = screen.getByRole('button', { name: /Request my demo/i });
-    expect(submitButton).toBeInTheDocument();
-    expect(submitButton.querySelector('svg')).not.toBeInTheDocument();
+    const emailLink = screen.getByRole('link', { name: /Email sales/i });
+    expect(emailLink).toHaveAttribute(
+      'href',
+      'mailto:controllo.sales@accedere.io?subject=Controllo%20demo%20request',
+    );
+    expect(screen.queryByRole('button', { name: /Request my demo/i })).not.toBeInTheDocument();
+  });
+
+  it('links the resource directory to the supplied live Controllo articles', async () => {
+    renderRoute('/resources');
+
+    expect(await screen.findByRole('heading', {
+      level: 1,
+      name: /practical guidance for keeping trust current/i,
+    })).toBeInTheDocument();
+
+    blogArticles.forEach((article) => {
+      expect(screen.getByRole('link', { name: new RegExp(article.title, 'i') }))
+        .toHaveAttribute('href', article.href);
+    });
   });
 
   it('renders a branded not found page for unknown routes', () => {

@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   BadgeCheck,
   CalendarClock,
   CalendarDays,
@@ -16,7 +15,6 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import TrialLink from '../../components/TrialLink';
 import WaveDivider from '../../components/WaveDivider';
 
 const recordIcons = {
@@ -63,11 +61,7 @@ export default function ContinuousComplianceHeroSection({ content, motionEnabled
           </h1>
           <p className="continuous-hero__lede">{content.description}</p>
           <div className="action-row mt-9">
-            <TrialLink className="button button--mint button--directional">
-              <ArrowRight aria-hidden="true" />
-              Start free trial
-            </TrialLink>
-            <Link className="button button--ghost" to="/demo">
+            <Link className="button button--mint" to="/demo">
               <CalendarDays aria-hidden="true" />
               Request a demo
             </Link>

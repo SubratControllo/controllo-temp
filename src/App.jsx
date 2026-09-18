@@ -11,7 +11,6 @@ import { genericProductRoutePaths } from './data/enterpriseContent';
 
 const IntegrationsPage = lazy(() => import('./pages/IntegrationsPage'));
 const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
-const ResourceDetailPage = lazy(() => import('./pages/ResourceDetailPage'));
 const PricingPage = lazy(() => import('./pages/PricingPage'));
 const DemoPage = lazy(() => import('./pages/DemoPage'));
 const StaticPage = lazy(() => import('./pages/StaticPage'));
@@ -55,7 +54,6 @@ export default function App() {
             <Route path="/frameworks" element={<FrameworksPage />} />
             <Route path="/frameworks/:slug" element={<FrameworkDetailPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
-            <Route path="/resources/:slug" element={<ResourceDetailPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/demo" element={<DemoPage />} />
             <Route path="/privacy" element={<Navigate replace to="/solutions/privacy" />} />

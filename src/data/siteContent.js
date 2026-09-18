@@ -113,27 +113,50 @@ export const connectedCapabilities = [
 
 export const blogArticles = [
   {
-    category: 'Continuous compliance',
-    title: 'Continuous Compliance – Simplify Security & Regulatory Management',
-    summary: 'A practical introduction to keeping compliance work current between audit cycles.',
-    href: '/blog/continuous-compliance/'
+    category: 'Compliance automation',
+    title: 'Compliance automation: the smart way to simplify regulatory compliance',
+    summary: 'A practical overview of compliance automation, common tooling, and the role of accountable human review.',
+    href: 'https://controllo.ai/blog/compliance-automation/'
   },
   {
-    category: 'Cybersecurity',
-    title: 'ISO 27001 vs SOC 2—Which Is Best for Your Business?',
-    summary: 'Understand how the two assurance paths differ and where their operating work overlaps.',
-    href: '/blog/iso-27001-vs-soc-2-which-is-best/'
+    category: 'Privacy',
+    title: 'NIST Privacy Framework functions and privacy controls',
+    summary: 'Understand the framework’s core functions and how they support structured privacy-risk management.',
+    href: 'https://controllo.ai/nist-privacy-framework-functions/'
   },
   {
-    category: 'AI governance',
-    title: 'How ISO 42001 Enhances AI Governance and Ethics',
-    summary: 'See how an AI management system creates clearer ownership, risk, and oversight.',
-    href: '/blog/iso-42001-enhances-ai-governance/'
+    category: 'SOC 2',
+    title: 'Factors affecting SOC 2 compliance cost in 2026',
+    summary: 'Review the scope, organizational, technical, and audit choices that influence SOC 2 costs.',
+    href: 'https://controllo.ai/soc-2-compliance-cost/'
+  },
+  {
+    category: 'PCI DSS',
+    title: 'Understanding PCI compliance certification cost',
+    summary: 'Explore the factors that shape PCI DSS assessment, remediation, and certification costs.',
+    href: 'https://controllo.ai/pci-compliance-certification-cost/'
+  },
+  {
+    category: 'Compliance automation',
+    title: 'Compliance automation software for SOC 2 and risk management',
+    summary: 'Learn how compliance platforms connect control work, evidence, risk, and audit preparation.',
+    href: 'https://controllo.ai/compliance-automation-software/'
+  },
+  {
+    category: 'SOC automation',
+    title: 'SOC automation tools for security and compliance teams',
+    summary: 'Compare the operating areas SOC automation tools can support across evidence, controls, and reporting.',
+    href: 'https://controllo.ai/soc-automation-tools/'
+  },
+  {
+    category: 'NIST',
+    title: 'Understanding NIST SP 800-53 controls',
+    summary: 'A guide to the control families used to organize security and privacy safeguards for information systems.',
+    href: 'https://controllo.ai/top-nist-800-53-controls/'
   }
 ];
 
 export const homepageLinks = {
-  blog: '/blogs/',
-  demo: '/demo',
-  trial: '/pricing'
+  blog: '/resources',
+  demo: '/demo'
 };

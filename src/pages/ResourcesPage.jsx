@@ -1,22 +1,24 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import PageMeta from '../components/PageMeta';
 import { DirectoryFilters } from '../components/DirectoryControls';
-import { resources, resourceTypes } from '../data/enterpriseContent';
+import { blogArticles } from '../data/siteContent';
 import { useSiteMotion } from '../context/MotionContext';
 
 const cardStyles = [
-  'row-span-2 bg-[linear-gradient(145deg,var(--color-navy),var(--color-teal))] max-[760px]:row-auto',
-  'bg-mint text-navy',
-  'bg-shell text-navy'
+  'row-span-2 bg-[linear-gradient(145deg,var(--color-navy),var(--color-teal))] text-white max-[760px]:row-auto',
+  'bg-navy text-white',
+  'bg-shell text-navy',
+  'bg-mint-soft text-navy'
 ];
+const getCardStyle = (index) => index < 2 ? cardStyles[index] : cardStyles[2 + ((index - 2) % 2)];
+const articleTypes = ['All', ...new Set(blogArticles.map((item) => item.category))];
 
 export default function ResourcesPage() {
   const [filter, setFilter] = useState('All');
   const { motionEnabled } = useSiteMotion();
-  const visibleResources = resources.filter((item) => filter === 'All' || item.type === filter);
+  const visibleResources = blogArticles.filter((item) => filter === 'All' || item.category === filter);
 
   return (
     <>
@@ -35,28 +37,28 @@ export default function ResourcesPage() {
       <section className="section">
         <div className="shell">
           <DirectoryFilters
-            items={resourceTypes}
+            items={articleTypes}
             value={filter}
             onChange={setFilter}
           />
-          <div className="mt-[46px] grid grid-cols-[1.2fr_.8fr] grid-rows-[repeat(2,280px)] gap-4 max-[760px]:grid-cols-1 max-[760px]:grid-rows-none">
+          <div className="mt-[46px] grid auto-rows-[280px] grid-cols-[1.2fr_.8fr] gap-4 max-[760px]:grid-cols-1 max-[760px]:auto-rows-auto">
             {visibleResources.map((item, index) => (
-              <Link
-                className={`resource-card relative overflow-hidden rounded-[28px] bg-navy p-[34px] text-white max-[760px]:min-h-[340px] ${cardStyles[index] ?? cardStyles[2]}`}
-                to={`/resources/${item.slug}`}
-                key={item.slug}
+              <a
+                className={`resource-card relative overflow-hidden rounded-[28px] p-[34px] max-[760px]:min-h-[340px] ${getCardStyle(index)}`}
+                href={item.href}
+                key={item.href}
               >
                 <span className="font-mono text-[.58rem] font-medium leading-none uppercase">
-                  {item.type} · {item.read}
+                  {item.category} · Article
                 </span>
-                <h2 className="mt-20 max-w-[560px] text-[clamp(1.5rem,3vw,2.7rem)] max-[760px]:mt-[70px]">
+                <h2 className={`max-w-[560px] ${index === 0 ? 'mt-20 text-[clamp(1.75rem,3vw,2.7rem)]' : 'mt-14 text-[clamp(1.45rem,2.2vw,2rem)]'} max-[760px]:mt-[70px]`}>
                   {item.title}
                 </h2>
                 <p className="max-w-[520px] text-[.78rem] leading-[1.7] text-inherit opacity-75">
                   {item.summary}
                 </p>
                 <ArrowUpRight className="absolute top-[26px] right-[26px]" aria-hidden="true" />
-              </Link>
+              </a>
             ))}
           </div>
         </div>

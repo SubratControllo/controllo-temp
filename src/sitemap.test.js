@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 import {
   frameworks,
   productRoutePaths,
-  resources,
 } from './data/enterpriseContent';
+import { blogArticles } from './data/siteContent';
 import { staticPages } from './data/staticPages';
 
 const sitemap = readFileSync('public/sitemap.xml', 'utf8');
@@ -13,7 +13,7 @@ const publishedFrameworkPaths = frameworks
   .filter((framework) => !framework.comingSoon)
   .map((framework) => `/frameworks/${framework.slug}`);
 
-const resourcePaths = resources.map((resource) => `/resources/${resource.slug}`);
+const articlePaths = blogArticles.map((article) => new URL(article.href).pathname);
 
 const expectedPublicPaths = [
   '/',
@@ -27,7 +27,7 @@ const expectedPublicPaths = [
   ...productRoutePaths,
   ...Object.keys(staticPages),
   ...publishedFrameworkPaths,
-  ...resourcePaths,
+  ...articlePaths,
 ];
 
 describe('sitemap', () => {

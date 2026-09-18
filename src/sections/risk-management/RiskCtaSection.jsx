@@ -1,7 +1,6 @@
-import { ArrowRight, CalendarDays, TrendingDown } from 'lucide-react';
+import { CalendarDays, TrendingDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import TrialLink from '../../components/TrialLink';
 
 const CTA_EASE = [0.16, 1, 0.3, 1];
 const HEAT_CELLS = [
@@ -58,11 +57,7 @@ export default function RiskCtaSection({ content, motionEnabled }) {
               </h2>
               <p className="lede mt-6 max-w-[610px] text-navy/68">{content.description}</p>
               <div className="mt-8 flex flex-wrap gap-3 max-[560px]:grid">
-                <TrialLink className="button button--directional">
-                  Start free trial
-                  <ArrowRight aria-hidden="true" size={16} />
-                </TrialLink>
-                <Link className="button button--ghost bg-white/62 shadow-[inset_0_0_0_1px_rgba(6,27,50,.12)]" to="/demo">
+                <Link className="button" to="/demo">
                   <CalendarDays aria-hidden="true" size={16} />
                   Request a demo
                 </Link>
